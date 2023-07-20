@@ -22,9 +22,17 @@ public enum Club {
     BRANN("SK Brann", League.ELITESERIEN),
 
     VEJLE("Vejle Boldklub", League.SUPERLIGA),
+    ODENSE("Odense BK", League.SUPERLIGA),
+    SILKEBORG("Silkeborg IF", League.SUPERLIGA),
 
     SONDERJYSKE("Sønderjyske", League.DEN_2),
     KOLDING("Kolding IF", League.DEN_2),
+    FREDERICIA("FC Fredericia", League.DEN_2),
+
+    JERV("FK Jerv", League.OBOS_LIGAEN),
+    SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
+
+    HELSINGBORG("Helsingborgs IF", League.SUPERETTAN),
 
     INDY_ELEVEN("Indy Eleven", League.USL);
 
