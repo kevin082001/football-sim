@@ -17,6 +17,7 @@ public enum Club {
     HB("HB Tórshavn", League.BETRIDEILD),
     FUGLAFJORDUR("ÍF Fuglafjørður", League.BETRIDEILD),
     VIKINGUR_GOTA("Víkingur Gøta", League.BETRIDEILD),
+    VESTUR("07 Vestur", League.BETRIDEILD),
 
     BRANN("SK Brann", League.ELITESERIEN),
 
