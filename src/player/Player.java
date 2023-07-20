@@ -73,16 +73,8 @@ public class Player { //TODO implement: retirement, market value
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Country getNation() {
@@ -103,10 +95,6 @@ public class Player { //TODO implement: retirement, market value
 
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public Position getPosition() {
