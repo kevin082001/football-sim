@@ -35,10 +35,19 @@ public enum League {
 
     ELITESERIEN("Eliteserien", Country.NO),
     OBOS_LIGAEN("OBOS-ligaen", Country.NO),
+    POSTNORD_LIGAEN("PostNord-ligaen", Country.NO),
 
     ALLSVENSKAN("Allsvenskan", Country.SE),
     SUPERETTAN("Superettan", Country.SE),
     ETTAN_NORRA("Ettan Norra", Country.SE),
+
+    DRUGA("Druga Liga", Country.SLO), //2nd tier
+
+    B_NACIONAL("Primera B Nacional", Country.AR), //2nd tier
+
+    YKKONEN("Ykkönen", Country.FI), //2nd tier
+
+    PROFESIONAL("División Profesional", Country.BO),
 
     FINNLIIGA("Finnliiga", Country.FI),
 

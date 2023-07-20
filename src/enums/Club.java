@@ -23,6 +23,10 @@ public enum Club {
     LEIKNIR("Leiknir Reykjavík", League.BESTADEILD),
     FYLKIR("Fylkir Reykjavík", League.BESTADEILD),
     HAFNARFJORDUR("FH Hafnarfjörður", League.BESTADEILD),
+    AKRANES("ÍA Akranes", League.BESTADEILD),
+    KOPAVOGUR("HK Kópavogs", League.BESTADEILD),
+
+    EKENAS("Ekenäs IF", League.YKKONEN),
 
     BRANN("SK Brann", League.ELITESERIEN),
 
@@ -46,6 +50,9 @@ public enum Club {
     JERV("FK Jerv", League.OBOS_LIGAEN),
     SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
     KONGSVINGER("Kongsvinger IL", League.OBOS_LIGAEN),
+    HODD("IL Hødd", League.OBOS_LIGAEN),
+
+    LEVANGER("Levanger FK", League.POSTNORD_LIGAEN),
 
     DEGERFORS("Degerfors IF", League.ALLSVENSKAN),
     AIK("AIK Solna", League.ALLSVENSKAN),
@@ -55,6 +62,12 @@ public enum Club {
     ESKILSTUNA("AFC Eskilstuna", League.SUPERETTAN),
 
     DALKURD("Dalkurd FF", League.ETTAN_NORRA),
+
+    FUZINAR("NK Fuzinar", League.DRUGA),
+
+    ALL_BOYS("CA All Boys", League.B_NACIONAL),
+
+    PETROLERO("Club Independiente Petrolero", League.PROFESIONAL),
 
     INDY_ELEVEN("Indy Eleven", League.USL);
 
