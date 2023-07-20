@@ -1,6 +1,7 @@
 package enums;
 
 public enum Country {
+    AR("Argentina"),
     AT("Austria"),
     BE("Belgium"),
     CA("Canada"),
@@ -16,6 +17,7 @@ public enum Country {
     FO("Faroe Islands"),
     FR("France"),
     GB("Great Britain"),
+    GH("Ghana"),
     GL("Greenland"),
     HR("Croatia"),
     HU("Hungary"),
@@ -35,6 +37,8 @@ public enum Country {
     RU("Russia"),
     SCO("Scotland"),
     SE("Sweden"),
+    SRB("Serbia"),
+    TG("Togo"),
     UA("Ukraine"),
     US("United States"),
     WAL("Wales");
