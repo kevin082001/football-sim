@@ -27,7 +27,7 @@ public class Player { //TODO implement: retirement, market value
     private int talent;
 
     public Player(String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
-                  Club[] clubsSoFar, int attack, int control, int defense, int matches, int goals, int talent) {
+                  Club[] clubsSoFar, int attack, int control, int defense, int talent) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nation = nation;
@@ -40,8 +40,8 @@ public class Player { //TODO implement: retirement, market value
         this.attack = attack;
         this.control = control;
         this.defense = defense;
-        this.matches = matches;
-        this.goals = goals;
+        this.matches = 0;
+        this.goals = 0;
         this.talent = talent;
     }
 
