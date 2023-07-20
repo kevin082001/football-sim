@@ -14,7 +14,18 @@ public enum Club {
     STREYMUR("EB/Streymur", League.BETRIDEILD),
     B36("B36 Tórshavn", League.BETRIDEILD),
     KLAKSVIK("KI Klaksvík", League.BETRIDEILD),
-    HB("HB Tórshavn", League.BETRIDEILD);
+    HB("HB Tórshavn", League.BETRIDEILD),
+    FUGLAFJORDUR("ÍF Fuglafjørður", League.BETRIDEILD),
+    VIKINGUR_GOTA("Víkingur Gøta", League.BETRIDEILD),
+
+    BRANN("SK Brann", League.ELITESERIEN),
+
+    VEJLE("Vejle Boldklub", League.SUPERLIGA),
+
+    SONDERJYSKE("Sønderjyske", League.DEN_2),
+    KOLDING("Kolding IF", League.DEN_2),
+
+    INDY_ELEVEN("Indy Eleven", League.USL);
 
 
     private final String name;
