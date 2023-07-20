@@ -18,21 +18,43 @@ public enum Club {
     FUGLAFJORDUR("ÍF Fuglafjørður", League.BETRIDEILD),
     VIKINGUR_GOTA("Víkingur Gøta", League.BETRIDEILD),
     VESTUR("07 Vestur", League.BETRIDEILD),
+    TVOROYRI("TB Tvøroyri", League.BETRIDEILD),
+
+    LEIKNIR("Leiknir Reykjavík", League.BESTADEILD),
+    FYLKIR("Fylkir Reykjavík", League.BESTADEILD),
+    HAFNARFJORDUR("FH Hafnarfjörður", League.BESTADEILD),
 
     BRANN("SK Brann", League.ELITESERIEN),
 
     VEJLE("Vejle Boldklub", League.SUPERLIGA),
     ODENSE("Odense BK", League.SUPERLIGA),
     SILKEBORG("Silkeborg IF", League.SUPERLIGA),
+    HVIDOVRE("Hvidovre IF", League.SUPERLIGA),
+    MIDTJYLLAND("FC Midtjylland", League.SUPERLIGA),
 
     SONDERJYSKE("Sønderjyske", League.DEN_2),
     KOLDING("Kolding IF", League.DEN_2),
     FREDERICIA("FC Fredericia", League.DEN_2),
+    HORSENS("AC Horsens", League.DEN_2),
+
+    MIDDELFART("Middelfart Boldklub", League.DEN_3),
+    ESBJERG("Esbjerg fB", League.DEN_3),
+    NYKOBING("Nykøbing FC", League.DEN_3),
+    THISTED("Thisted FC", League.DEN_3),
+    SKIVE("Skive IK", League.DEN_3),
 
     JERV("FK Jerv", League.OBOS_LIGAEN),
     SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
+    KONGSVINGER("Kongsvinger IL", League.OBOS_LIGAEN),
+
+    DEGERFORS("Degerfors IF", League.ALLSVENSKAN),
+    AIK("AIK Solna", League.ALLSVENSKAN),
 
     HELSINGBORG("Helsingborgs IF", League.SUPERETTAN),
+    OREBRO("Örebro SK", League.SUPERETTAN),
+    ESKILSTUNA("AFC Eskilstuna", League.SUPERETTAN),
+
+    DALKURD("Dalkurd FF", League.ETTAN_NORRA),
 
     INDY_ELEVEN("Indy Eleven", League.USL);
 
