@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class GameLogic {
     //private static Club currentClub;
-    private static List<Match> matches;
+    private static List<Match> matches = new ArrayList<>();
     private final static Random rand = new Random(System.nanoTime());
 
     public static List<Match> initMatchesForSeason(Club club) {
@@ -18,16 +18,6 @@ public class GameLogic {
 
         League league = club.getLeague();
         List<Club> clubsInLeague = ClubHelper.getClubsForLeague(league);
-
-        for (Club home : clubsInLeague) {
-            for (Club away : clubsInLeague) {
-                if (home.equals(away)) {
-                    continue;
-                }
-                matches.add(new Match(home, away, null));
-                matches.add(new Match(away, home, null));
-            }
-        }
 
         for (int homeIndex = 0; homeIndex < clubsInLeague.size(); homeIndex++) {
             for (int awayIndex = homeIndex; awayIndex < clubsInLeague.size(); awayIndex++) {
@@ -40,6 +30,18 @@ public class GameLogic {
         }
 
         return shuffleMatches();
+    }
+
+    public static Match getNextMatch(Club club) {
+        for (Match m : matches) {
+            if (m.getScore() != null) {
+                continue;
+            }
+            if (m.getHome().equals(club) || m.getAway().equals(club)) {
+                return m;
+            }
+        }
+        return null;
     }
 
     private static List<Match> shuffleMatches() {

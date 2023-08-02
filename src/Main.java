@@ -1,11 +1,14 @@
 import GameObjects.JobOffer;
+import GameObjects.Match;
 import enums.Club;
 import enums.Country;
 import enums.League;
 import helper.ClubHelper;
+import helper.GameLogic;
 import helper.LeagueHelper;
 import GameObjects.Player;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Main { //TODO implement: transfer market, international cups (EL,CL,...), more countries and leagues, World Cup
@@ -21,6 +24,8 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     private Club clubToManage;
     private int money;
 
+    private List<Match> matchesThisSeason = new ArrayList<>();
+
     private List<JobOffer> jobOffers = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
@@ -31,6 +36,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     private void run() throws InterruptedException {
         //TimeUnit.SECONDS.sleep(5);
         askStartClub();
+        matchesThisSeason = GameLogic.initMatchesForSeason(clubToManage);
         printHomeMenu();
 
         //TODO implement logic
@@ -160,6 +166,23 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void printNextMatchDetails() {
         //TODO implement
+        Match nextMatch = GameLogic.getNextMatch(clubToManage);
+        if (nextMatch == null) {
+            //That should actually NEVER be printed
+            System.out.println("All matches played");
+            return;
+        }
+
+        System.out.println("Next match:");
+        System.out.println(nextMatch.getHome().getName() + "   VS.   " + nextMatch.getAway().getName());
+        System.out.println();
+        System.out.println("Press ENTER to return to home menu");
+        try {
+            System.in.read();
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printTable() {
