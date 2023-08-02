@@ -6,10 +6,12 @@ import enums.League;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameLogic {
     //private static Club currentClub;
     private static List<Match> matches;
+    private final static Random rand = new Random(System.nanoTime());
 
     public static List<Match> initMatchesForSeason(Club club) {
         List<Match> result = new ArrayList<>();
@@ -17,17 +19,37 @@ public class GameLogic {
         League league = club.getLeague();
         List<Club> clubsInLeague = ClubHelper.getClubsForLeague(league);
 
-        //TODO shuffle matches a bit
         for (Club home : clubsInLeague) {
             for (Club away : clubsInLeague) {
                 if (home.equals(away)) {
                     continue;
                 }
                 matches.add(new Match(home, away, null));
-                matches.add(new Match(away,home,null));
+                matches.add(new Match(away, home, null));
             }
         }
 
-        return matches;
+        for (int homeIndex = 0; homeIndex < clubsInLeague.size(); homeIndex++) {
+            for (int awayIndex = homeIndex; awayIndex < clubsInLeague.size(); awayIndex++) {
+                if (clubsInLeague.get(homeIndex).equals(clubsInLeague.get(awayIndex))) {
+                    continue;
+                }
+                matches.add(new Match(clubsInLeague.get(homeIndex), clubsInLeague.get(awayIndex), null));
+                matches.add(new Match(clubsInLeague.get(awayIndex), clubsInLeague.get(homeIndex), null));
+            }
+        }
+
+        return shuffleMatches();
+    }
+
+    private static List<Match> shuffleMatches() {
+        List<Match> tmp = matches;
+        List<Match> shuffled = new ArrayList<>();
+        while (!tmp.isEmpty()) {
+            Match m = tmp.get(rand.nextInt(tmp.size()));
+            shuffled.add(m);
+            tmp.remove(m);
+        }
+        return shuffled;
     }
 }
