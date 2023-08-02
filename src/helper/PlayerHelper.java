@@ -3,7 +3,7 @@ package helper;
 import enums.Club;
 import enums.Country;
 import enums.Position;
-import player.Player;
+import GameObjects.Player;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

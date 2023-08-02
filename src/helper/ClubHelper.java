@@ -2,7 +2,7 @@ package helper;
 
 import enums.Club;
 import enums.League;
-import player.Player;
+import GameObjects.Player;
 
 import java.util.*;
 

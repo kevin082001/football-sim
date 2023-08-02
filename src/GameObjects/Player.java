@@ -1,4 +1,4 @@
-package player;
+package GameObjects;
 
 import enums.Club;
 import enums.Country;
