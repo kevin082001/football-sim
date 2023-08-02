@@ -18,7 +18,7 @@ public class Player { //TODO implement: retirement, market value
     private Position position;
     private Club club;
 
-    private Club[] clubsSoFar; //Maybe make new Object where Club and Year from/to is stored (Transfer)
+    private Club[] clubsSoFar; //TODO Maybe make new Object where Club and Year from/to is stored (Transfer)
     private int attack;
     private int control;
     private int defense;
