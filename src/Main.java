@@ -119,11 +119,12 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         System.out.println();
         System.out.println("0) Quit without save");
         System.out.println("1) Next Match details");
-        System.out.println("2) My Squad");
-        System.out.println("3) My Club");
-        System.out.println("4) Buy/sell players");
-        System.out.println("5) Job offers (" + jobOffers.size() + ")");
-        System.out.println("6) Save game");
+        System.out.println("2) Table");
+        System.out.println("3) My Squad");
+        System.out.println("4) My Club");
+        System.out.println("5) Buy/sell players");
+        System.out.println("6) Job offers (" + jobOffers.size() + ")");
+        System.out.println("7) Save game");
         System.out.println();
         System.out.print(">> ");
         int choice = sc.nextInt();
@@ -134,18 +135,21 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
                 printNextMatchDetails();
                 break;
             case 2:
-                printMySquad();
+                printTable();
                 break;
             case 3:
-                printMyClub();
+                printMySquad();
                 break;
             case 4:
-                printTransferMarket();
+                printMyClub();
                 break;
             case 5:
-                printJobOffers();
+                printTransferMarket();
                 break;
             case 6:
+                printJobOffers();
+                break;
+            case 7:
                 saveGame();
                 break;
             default:
@@ -154,27 +158,31 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         }
     }
 
-    private void printNextMatchDetails(){
+    private void printNextMatchDetails() {
         //TODO implement
     }
 
-    private void printMySquad(){
+    private void printTable() {
         //TODO implement
     }
 
-    private void printMyClub(){
+    private void printMySquad() {
         //TODO implement
     }
 
-    private void printTransferMarket(){
+    private void printMyClub() {
         //TODO implement
     }
 
-    private void printJobOffers(){
+    private void printTransferMarket() {
         //TODO implement
     }
 
-    private void saveGame(){
+    private void printJobOffers() {
+        //TODO implement
+    }
+
+    private void saveGame() {
         //TODO implement
     }
 }
