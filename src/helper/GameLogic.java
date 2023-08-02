@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class GameLogic {
     //private static Club currentClub;
-    private static List<Match> matches = new ArrayList<>();
+    //private static List<Match> matches = new ArrayList<>();
     private final static Random rand = new Random(System.nanoTime());
 
     public static List<Match> initMatchesForSeason(Club club) {
@@ -24,16 +24,15 @@ public class GameLogic {
                 if (clubsInLeague.get(homeIndex).equals(clubsInLeague.get(awayIndex))) {
                     continue;
                 }
-                matches.add(new Match(clubsInLeague.get(homeIndex), clubsInLeague.get(awayIndex), null));
-                matches.add(new Match(clubsInLeague.get(awayIndex), clubsInLeague.get(homeIndex), null));
+                result.add(new Match(clubsInLeague.get(homeIndex), clubsInLeague.get(awayIndex), null));
+                result.add(new Match(clubsInLeague.get(awayIndex), clubsInLeague.get(homeIndex), null));
             }
         }
 
-        return shuffleMatches();
+        return shuffleMatches(result);
     }
 
-    public static Match getNextMatch(Club club) {
-        for (Match m : matches) {
+    public static Match getNextMatch(Club club, List<Match> matchesThisSeason) {        for (Match m : matchesThisSeason) {
             if (m.getScore() != null) {
                 continue;
             }
@@ -44,13 +43,13 @@ public class GameLogic {
         return null;
     }
 
-    private static List<Match> shuffleMatches() {
-        List<Match> tmp = matches;
+    private static List<Match> shuffleMatches(List<Match> toShuffle) {
         List<Match> shuffled = new ArrayList<>();
-        while (!tmp.isEmpty()) {
-            Match m = tmp.get(rand.nextInt(tmp.size()));
+
+        while (!toShuffle.isEmpty()) {
+            Match m = toShuffle.get(rand.nextInt(toShuffle.size()));
             shuffled.add(m);
-            tmp.remove(m);
+            toShuffle.remove(m);
         }
         return shuffled;
     }

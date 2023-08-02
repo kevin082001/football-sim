@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main { //TODO implement: transfer market, international cups (EL,CL,...), more countries and leagues, World Cup
-    private final Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
     private final Random rand = new Random(System.nanoTime());
 
     private Map<Country, List<League>> countriesWithLeagues = LeagueHelper.initCountriesThatHaveLeagues();
@@ -117,6 +117,8 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void printHomeMenu() {
+        //clearScanner();
+        sc = new Scanner(System.in);
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("----------------------------------------");
         System.out.println(clubToManage.getName());
@@ -125,12 +127,13 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         System.out.println();
         System.out.println("0) Quit without save");
         System.out.println("1) Next Match details");
-        System.out.println("2) Table");
-        System.out.println("3) My Squad");
-        System.out.println("4) My Club");
-        System.out.println("5) Buy/sell players");
-        System.out.println("6) Job offers (" + jobOffers.size() + ")");
-        System.out.println("7) Save game");
+        System.out.println("2) Go to next Match");
+        System.out.println("3) Table");
+        System.out.println("4) My Squad");
+        System.out.println("5) My Club");
+        System.out.println("6) Buy/sell players");
+        System.out.println("7) Job offers (" + jobOffers.size() + ")");
+        System.out.println("8) Save game");
         System.out.println();
         System.out.print(">> ");
         int choice = sc.nextInt();
@@ -141,21 +144,24 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
                 printNextMatchDetails();
                 break;
             case 2:
-                printTable();
+                startNextMatch();
                 break;
             case 3:
-                printMySquad();
+                printTable();
                 break;
             case 4:
-                printMyClub();
+                printMySquad();
                 break;
             case 5:
-                printTransferMarket();
+                printMyClub();
                 break;
             case 6:
-                printJobOffers();
+                printTransferMarket();
                 break;
             case 7:
+                printJobOffers();
+                break;
+            case 8:
                 saveGame();
                 break;
             default:
@@ -165,8 +171,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void printNextMatchDetails() {
-        //TODO implement
-        Match nextMatch = GameLogic.getNextMatch(clubToManage);
+        Match nextMatch = GameLogic.getNextMatch(clubToManage, matchesThisSeason);
         if (nextMatch == null) {
             //That should actually NEVER be printed
             System.out.println("All matches played");
@@ -179,10 +184,14 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         System.out.println("Press ENTER to return to home menu");
         try {
             System.in.read();
-            return;
+            printHomeMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void startNextMatch() {
+        //TODO implement
     }
 
     private void printTable() {
@@ -207,5 +216,11 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void saveGame() {
         //TODO implement
+    }
+
+    private void clearScanner() {
+        while (sc.hasNext()) {
+            sc.next();
+        }
     }
 }
