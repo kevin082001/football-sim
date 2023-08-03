@@ -1,4 +1,5 @@
 import GameObjects.JobOffer;
+import GameObjects.LeagueTable;
 import GameObjects.Match;
 import enums.Club;
 import enums.Country;
@@ -37,13 +38,13 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         //TimeUnit.SECONDS.sleep(5);
         askStartClub();
         matchesThisSeason = GameLogic.initMatchesForSeason(clubToManage);
+        GameLogic.initTable(clubToManage);
         printHomeMenu();
 
         //TODO implement logic
 
     }
 
-    //private Club askStartClub() {
     private void askStartClub() {
         int i = 0;
 
@@ -196,6 +197,25 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void printTable() {
         //TODO implement
+        LeagueTable table = GameLogic.getTable();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println(table.getLeague().getName());
+        System.out.println("----------------------------------------");
+        System.out.println();
+        int i = 0;
+        for (Club c : table.getPoints().keySet()) {
+            //TODO formatted printing (the longer the club's name, the less space between club name and points)
+            System.out.println((i + 1) + ".: " + c.getName() + "       (" + table.getPoints().get(c) + " pts)");
+            i++;
+        }
+        System.out.println();
+        System.out.println("Press ENTER to return to home menu");
+        try {
+            System.in.read();
+            printHomeMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printMySquad() {

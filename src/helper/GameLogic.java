@@ -1,17 +1,21 @@
 package helper;
 
+import GameObjects.LeagueTable;
 import GameObjects.Match;
 import enums.Club;
 import enums.League;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class GameLogic {
     //private static Club currentClub;
     //private static List<Match> matches = new ArrayList<>();
     private final static Random rand = new Random(System.nanoTime());
+
+    private static LeagueTable table;
 
     public static List<Match> initMatchesForSeason(Club club) {
         List<Match> result = new ArrayList<>();
@@ -32,7 +36,8 @@ public class GameLogic {
         return shuffleMatches(result);
     }
 
-    public static Match getNextMatch(Club club, List<Match> matchesThisSeason) {        for (Match m : matchesThisSeason) {
+    public static Match getNextMatch(Club club, List<Match> matchesThisSeason) {
+        for (Match m : matchesThisSeason) {
             if (m.getScore() != null) {
                 continue;
             }
@@ -41,6 +46,33 @@ public class GameLogic {
             }
         }
         return null;
+    }
+
+    public static void initTable(Club club) {
+        League league = club.getLeague();
+
+        table = new LeagueTable(league, null);
+        for (Club c : ClubHelper.getClubsForLeague(league)) {
+            table.getPoints().put(c, 0);
+        }
+    }
+
+    public static void updateTable(List<Match> round) {
+        for (Match m : round) {
+            Club home = m.getHome();
+            Club away = m.getAway();
+            Integer homePoints = table.getPoints().get(home);
+            Integer awayPoints = table.getPoints().get(away);
+            if (m.getWinner() == null) {
+                table.getPoints().put(home, homePoints + 1);
+                table.getPoints().put(away, awayPoints + 1);
+            }
+        }
+        //TODO update ranking after properly setting points
+    }
+
+    public static LeagueTable getTable() {
+        return table;
     }
 
     private static List<Match> shuffleMatches(List<Match> toShuffle) {
@@ -53,4 +85,8 @@ public class GameLogic {
         }
         return shuffled;
     }
+
+    /*public static void setCurrentClub(Club club){
+        currentClub=club;
+    }*/
 }

@@ -36,4 +36,9 @@ public class Match {
     public void setScore(Score score) {
         this.score = score;
     }
+
+    public Club getWinner() {
+        return score.getScoreHome() == score.getScoreAway() ? null :
+                score.getScoreHome() > score.getScoreAway() ? home : away;
+    }
 }
