@@ -66,6 +66,10 @@ public class GameLogic {
             if (m.getWinner() == null) {
                 table.getPoints().put(home, homePoints + 1);
                 table.getPoints().put(away, awayPoints + 1);
+            } else if (m.getWinner().equals(home)) {
+                table.getPoints().put(home, homePoints + 3);
+            } else if (m.getWinner().equals(away)) {
+                table.getPoints().put(away, awayPoints + 3);
             }
         }
         //TODO update ranking after properly setting points
