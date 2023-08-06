@@ -3,6 +3,7 @@ package helper;
 import enums.Club;
 import enums.League;
 import GameObjects.Player;
+import enums.Position;
 
 import java.util.*;
 
@@ -55,5 +56,18 @@ public class ClubHelper {
         result.add(club1);
         result.add(club2);
         return result;
+    }
+
+    public static List<Player> sortPlayersByPosition(Club club) {
+        List<Player> unsorted = PlayerHelper.getPlayersForClub(club);
+        List<Player> sorted = new ArrayList<>();
+        for (Position pos : Position.values()) {
+            for (Player p : unsorted) {
+                if (p.getPosition().equals(pos)) {
+                    sorted.add(p);
+                }
+            }
+        }
+        return sorted;
     }
 }

@@ -4,6 +4,7 @@ import GameObjects.Match;
 import enums.Club;
 import enums.Country;
 import enums.League;
+import enums.Position;
 import helper.ClubHelper;
 import helper.GameLogic;
 import helper.LeagueHelper;
@@ -101,9 +102,9 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         List<Country> countryList = countriesWithLeagues.keySet().stream().toList();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("----------------------------------------");
+        System.out.println("-----------------------------------------");
         System.out.println("- - - - -  SELECT YOUR COUNTRY  - - - - -");
-        System.out.println("----------------------------------------");
+        System.out.println("-----------------------------------------");
         for (Country c : countryList) {
             System.out.println("(" + i + ") " + c.getName() + " (" + countriesWithLeagues.get(c).size() + " leagues)");
             i++;
@@ -196,7 +197,6 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void printTable() {
-        //TODO implement
         LeagueTable table = GameLogic.getTable();
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println(table.getLeague().getName());
@@ -219,7 +219,29 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void printMySquad() {
-        //TODO implement
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("---------------------------------------");
+        System.out.println("- - - - -     YOUR  SQUAD     - - - - -");
+        System.out.println("---------------------------------------");
+        System.out.println();
+        List<Player> players = ClubHelper.sortPlayersByPosition(clubToManage);
+        Position pos = null;
+        for (Player p : players) {
+            if (pos == null || !p.getPosition().getType().equals(pos.getType())) {
+                pos = p.getPosition();
+                System.out.println("\n\n" + pos.getType() + "\n---------------");
+            }
+            System.out.println(p.getLastName() + " (" + p.getRating() + "/" + p.getPosition() + ")    ");
+        }
+        System.out.println("\n---------------");
+        System.out.println();
+        System.out.println("Press ENTER to return to home menu");
+        try {
+            System.in.read();
+            printHomeMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printMyClub() {
@@ -238,9 +260,9 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         //TODO implement
     }
 
-    private void clearScanner() {
+    /*private void clearScanner() {
         while (sc.hasNext()) {
             sc.next();
         }
-    }
+    }*/
 }

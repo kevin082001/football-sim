@@ -5,10 +5,7 @@ import GameObjects.Match;
 import enums.Club;
 import enums.League;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class GameLogic {
     //private static Club currentClub;
@@ -51,7 +48,7 @@ public class GameLogic {
     public static void initTable(Club club) {
         League league = club.getLeague();
 
-        table = new LeagueTable(league, null);
+        table = new LeagueTable(league, new HashMap<>());
         for (Club c : ClubHelper.getClubsForLeague(league)) {
             table.getPoints().put(c, 0);
         }
