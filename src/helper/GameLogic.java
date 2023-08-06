@@ -58,6 +58,7 @@ public class GameLogic {
     }
 
     public static void updateTable(List<Match> round) {
+        League league = round.get(0).getHome().getLeague();
         for (Match m : round) {
             Club home = m.getHome();
             Club away = m.getAway();
@@ -72,7 +73,7 @@ public class GameLogic {
                 table.getPoints().put(away, awayPoints + 3);
             }
         }
-        //TODO update ranking after properly setting points
+        sortTable(league);
     }
 
     public static LeagueTable getTable() {
@@ -88,6 +89,24 @@ public class GameLogic {
             toShuffle.remove(m);
         }
         return shuffled;
+    }
+
+    private static void sortTable(League league) { //TODO not sure if this method works as intended
+        LeagueTable sorted = new LeagueTable(league, null);
+        LeagueTable tmp = sorted;
+        Integer highest = 0;
+
+        while (!tmp.getPoints().isEmpty()) {
+            Club best = null;
+            for (Club c : table.getPoints().keySet()) {
+                if (table.getPoints().get(c) > highest) {
+                    highest = table.getPoints().get(c);
+                    best = c;
+                }
+            }
+            sorted.getPoints().put(best, highest);
+            tmp.getPoints().remove(best);
+        }
     }
 
     /*public static void setCurrentClub(Club club){
