@@ -7,6 +7,11 @@ import GameObjects.SaveState;
 import enums.Club;
 import enums.League;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.*;
 
 public class GameLogic {
@@ -14,7 +19,34 @@ public class GameLogic {
     //private static List<Match> matches = new ArrayList<>();
     private final static Random rand = new Random(System.nanoTime());
 
+    private final static Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
+
     private static LeagueTable table;
+
+    private static List<Player> currentSquad;
+
+    public static void initSquad(Club club) {
+        currentSquad = new ArrayList<>();
+        currentSquad.addAll(PlayerHelper.getPlayersForClub(club));
+    }
+
+    public static void updateSquad(Player toRemove, Player toAdd, Player toUpdate) {
+        if (toAdd != null) {
+            currentSquad.add(toAdd);
+        }
+
+        for (int i = 0; i < currentSquad.size(); i++) {
+            if (currentSquad.get(i).equals(toRemove)) {
+                currentSquad.remove(i);
+            } else if (currentSquad.get(i).equals(toUpdate)) {
+                currentSquad.set(i, toUpdate);
+            }
+        }
+    }
+
+    public static List<Player> getCurrentSquad() {
+        return currentSquad;
+    }
 
     public static List<Match> initMatchesForSeason(Club club) {
         List<Match> result = new ArrayList<>();
@@ -108,16 +140,50 @@ public class GameLogic {
         }
     }
 
-    public static void saveGame(int money, Club currentClub, List<Player> squad){ //TODO think about what else is needed when saving
+    public static void saveGame(Club currentClub, int money) { //TODO think about what else is needed when saving
+        SaveState saveState = new SaveState(currentClub, money, currentSquad, table);
+
         //TODO implement (research how to write/read to/from files)
+        try {
+            FileWriter writer = new FileWriter(savePath.toFile());
+
+            writer.write("");
+            writer.flush();
+
+            writer.write(saveState.getCurrentClub().getName() + System.lineSeparator());
+            writer.write(saveState.getMoney() + System.lineSeparator());
+            for (Player player : currentSquad) {
+                //TODO write method to get non-changing data for a player (firstname, birthdate,...)
+                writer.write(player.getFirstName() + System.lineSeparator() + player.getLastName() + System.lineSeparator() + player.getNation()
+                        + System.lineSeparator() + player.getRating() + System.lineSeparator() + player.getBirthDate() + System.lineSeparator()
+                        + player.getPosition() + System.lineSeparator() + player.getClub().getName() + System.lineSeparator()
+                        + getClubsSoFarAsString(player.getClubsSoFar()) + System.lineSeparator() + player.getAttack() + System.lineSeparator()
+                        + player.getControl() + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
+                        + System.lineSeparator() + player.getGoals() + System.lineSeparator() + player.getTalent() + System.lineSeparator());
+                writer.write("###" + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
-    public static SaveState loadGame(){
+    public static SaveState loadGame() {
         //TODO implement
         return null;
     }
 
-    /*public static void setCurrentClub(Club club){
-        currentClub=club;
-    }*/
+    private static String getClubsSoFarAsString(Club[] clubsSoFar) {
+        if (clubsSoFar.length == 1) {
+            return clubsSoFar[0].getName();
+        }
+
+        String result = "";
+        for (int i = 0; i < clubsSoFar.length - 1; i++) {
+            result += clubsSoFar[i] + ",";
+        }
+
+        result += clubsSoFar[clubsSoFar.length - 1];
+        return result;
+    }
 }

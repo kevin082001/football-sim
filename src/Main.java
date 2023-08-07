@@ -24,7 +24,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     private Map<Club, List<Player>> clubs = ClubHelper.initClubs();
 
     private Club clubToManage;
-    private int money;
+    private int money=500000;
 
     private List<Match> matchesThisSeason = new ArrayList<>();
 
@@ -38,6 +38,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     private void run() throws InterruptedException {
         //TimeUnit.SECONDS.sleep(5);
         askStartClub();
+        GameLogic.initSquad(clubToManage);
         matchesThisSeason = GameLogic.initMatchesForSeason(clubToManage);
         GameLogic.initTable(clubToManage);
         printHomeMenu();
@@ -275,7 +276,15 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void saveGame() {
-        //TODO implement
+        GameLogic.saveGame(clubToManage, money);
+
+        System.out.println("Game saved successfully... Press ENTER");
+        try {
+            System.in.read();
+            printHomeMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*private void clearScanner() {

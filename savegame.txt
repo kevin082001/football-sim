@@ -1,0 +1,317 @@
+AB Argir
+500000
+Rói
+Zachariasen
+FO
+55
+1998-10-12
+GK
+AB Argir
+ARGIR,STREYMUR
+20
+20
+55
+0
+0
+47
+###
+Antonío
+Borelli
+US
+55
+1998-11-23
+GK
+AB Argir
+AB Argir
+21
+22
+56
+0
+0
+53
+###
+Ramzi
+Idrissou
+TG
+57
+1996-07-31
+CB
+AB Argir
+ARGIR,FUZINAR,HODD,LEVANGER,HODD
+38
+38
+58
+0
+0
+41
+###
+Tróndur
+á Høvdanum
+FO
+54
+1995-08-19
+CB
+AB Argir
+AB Argir
+33
+34
+54
+0
+0
+34
+###
+Dánjal
+Danielsen
+FO
+54
+2004-07-05
+CB
+AB Argir
+AB Argir
+35
+33
+55
+0
+0
+100
+###
+Sam
+Pollard
+ENG
+54
+1999-02-21
+LB
+AB Argir
+AB Argir
+51
+55
+52
+0
+0
+54
+###
+Rógvi
+Skala
+FO
+55
+2000-09-05
+LB
+AB Argir
+AB Argir
+52
+54
+54
+0
+0
+87
+###
+Gunnar
+Reynslág
+FO
+54
+2004-11-10
+LB
+AB Argir
+AB Argir
+50
+51
+54
+0
+0
+100
+###
+Beinir
+Ellefsen
+FO
+52
+1993-04-07
+LB
+AB Argir
+AB Argir
+51
+51
+51
+0
+0
+31
+###
+Jákup
+Breckmann
+FO
+56
+1998-04-16
+RB
+AB Argir
+ARGIR,TVOROYRI
+52
+54
+56
+0
+0
+54
+###
+Bjarni
+Skála
+FO
+58
+1997-11-14
+CDM
+AB Argir
+AB Argir
+48
+51
+57
+0
+0
+56
+###
+Santiago
+Lebus
+AR
+57
+1996-07-18
+CM
+AB Argir
+ARGIR,FUGLAFJORDUR,ARGIR,PETROLERO,ALL_BOYS
+56
+57
+45
+0
+0
+48
+###
+Ragnar
+Skála
+FO
+57
+2000-09-05
+CM
+AB Argir
+AB Argir
+54
+57
+57
+0
+0
+87
+###
+Bartal
+Petersen
+FO
+56
+2000-11-22
+CM
+AB Argir
+AB Argir
+50
+57
+51
+0
+0
+86
+###
+Viktor
+Benediktsson
+IS
+55
+1998-09-15
+CM
+AB Argir
+ARGIR,AKRANES,HAFNARFJORDUR,KOPAVOGUR,HAFNARFJORDUR
+54
+55
+45
+0
+0
+60
+###
+Marius
+Lindh
+DK
+55
+1999-06-22
+RM
+AB Argir
+AB Argir
+55
+53
+30
+0
+0
+75
+###
+Jakob
+Gottberg
+FI
+55
+2002-07-20
+LW
+AB Argir
+ARGIR,EKENAS
+55
+54
+26
+0
+0
+95
+###
+Teitur
+Olsen
+FO
+56
+1998-01-27
+RW
+AB Argir
+ARGIR,STREYMUR
+56
+55
+29
+0
+0
+62
+###
+Tóki
+á Lofti
+FO
+53
+1993-12-06
+RW
+AB Argir
+ARGIR,STREYMUR,VESTUR,ARGIR
+53
+50
+25
+0
+0
+21
+###
+Brian
+Jakobsen
+FO
+57
+1991-11-04
+ST
+AB Argir
+ARGIR,B36
+58
+50
+30
+0
+0
+13
+###
+Rói
+Nielsen
+FO
+52
+2005-06-10
+ST
+AB Argir
+AB Argir
+53
+48
+27
+0
+0
+100
+###
