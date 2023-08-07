@@ -2,6 +2,8 @@ package helper;
 
 import GameObjects.LeagueTable;
 import GameObjects.Match;
+import GameObjects.Player;
+import GameObjects.SaveState;
 import enums.Club;
 import enums.League;
 
@@ -104,6 +106,15 @@ public class GameLogic {
             sorted.getPoints().put(best, highest);
             tmp.getPoints().remove(best);
         }
+    }
+
+    public static void saveGame(int money, Club currentClub, List<Player> squad){ //TODO think about what else is needed when saving
+        //TODO implement (research how to write/read to/from files)
+    }
+
+    public static SaveState loadGame(){
+        //TODO implement
+        return null;
     }
 
     /*public static void setCurrentClub(Club club){
