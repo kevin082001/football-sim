@@ -235,13 +235,31 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         }
         System.out.println("\n---------------");
         System.out.println();
-        System.out.println("Press ENTER to return to home menu");
+        System.out.println("0) Go back");
+        System.out.println("1) Edit squad");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 0:
+                printHomeMenu();
+                break;
+            case 1:
+                printEditSquad();
+                break;
+            default:
+                System.out.println("Invalid option");
+                printMySquad();
+        }
+        /*System.out.println("Press ENTER to return to home menu");
         try {
             System.in.read();
             printHomeMenu();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+    }
+
+    private void printEditSquad() {
+        //TODO implement
     }
 
     private void printMyClub() {
