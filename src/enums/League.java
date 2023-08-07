@@ -3,70 +3,73 @@ package enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum League {
-    BUNDESLIGA("Deutsche Bundesliga", Country.DE, true),
-    BUNDESLIGA_2("Zweite Bundesliga", Country.DE, true),
-    DRITTE_LIGA("3. Liga", Country.DE, true),
+public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Dritte Liga -> 3,...)
+    BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
+    BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
+    DRITTE_LIGA("3. Liga", Country.DE, 3, true),
 
-    BUNDESLIGA_AUT("Österreichische Bundesliga", Country.AT, true),
-    AUT_LIGA_2("Zweite Liga", Country.AT, true),
+    BUNDESLIGA_AUT("Österreichische Bundesliga", Country.AT, 1, true),
+    AUT_LIGA_2("Zweite Liga", Country.AT, 2, true),
 
-    SERIE_A("Serie A", Country.IT, true),
-    SERIE_B("Serie B", Country.IT, true),
+    SERIE_A("Serie A", Country.IT, 1, true),
+    SERIE_B("Serie B", Country.IT, 2, true),
 
-    LALIGA("La Liga Santander", Country.ES, true),
-    LALIGA_2("La Liga Smartbank", Country.ES, true),
+    LALIGA("La Liga Santander", Country.ES, 1, true),
+    LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
 
-    LIGUE1("Ligue 1", Country.FR, true),
-    LIGUE2("Ligue 2", Country.FR, true),
+    LIGUE1("Ligue 1", Country.FR, 1, true),
+    LIGUE2("Ligue 2", Country.FR, 2, true),
 
-    EPL("Premier League", Country.GB, true),
-    EFL("EFL Championship", Country.GB, true),
-    LEAGUE_ONE("League One", Country.GB, true),
-    LEAGUE_TWO("League Two", Country.GB, true),
+    EPL("Premier League", Country.GB, 1, true),
+    EFL("EFL Championship", Country.GB, 2, true),
+    LEAGUE_ONE("League One", Country.GB, 3, true),
+    LEAGUE_TWO("League Two", Country.GB, 4, true),
 
-    BESTADEILD("Besta deild", Country.IS, true),
+    BESTADEILD("Besta deild", Country.IS, 1, true),
 
-    BETRIDEILD("Betri deild", Country.FO, true),
+    BETRIDEILD("Betri deild", Country.FO, 1, true),
 
-    SUPERLIGA("Danish Superliga", Country.DK, true),
-    DEN_2("1.Division", Country.DK, true),
-    DEN_3("2.Division", Country.DK, false),
+    SUPERLIGA("Danish Superliga", Country.DK, 1, true),
+    DEN_2("1.Division", Country.DK, 2, false),
+    DEN_3("2.Division", Country.DK, 3, false),
 
-    ELITESERIEN("Eliteserien", Country.NO, true),
-    OBOS_LIGAEN("OBOS-ligaen", Country.NO, true),
-    POSTNORD_LIGAEN("PostNord-ligaen", Country.NO, false),
+    ELITESERIEN("Eliteserien", Country.NO, 1, true),
+    OBOS_LIGAEN("OBOS-ligaen", Country.NO, 2, false),
+    POSTNORD_LIGAEN("PostNord-ligaen", Country.NO, 3, false),
 
-    ALLSVENSKAN("Allsvenskan", Country.SE, true),
-    SUPERETTAN("Superettan", Country.SE, true),
-    ETTAN_NORRA("Ettan Norra", Country.SE, false),
+    ALLSVENSKAN("Allsvenskan", Country.SE, 1, true),
+    SUPERETTAN("Superettan", Country.SE, 2, false),
+    ETTAN_NORRA("Ettan Norra", Country.SE, 3, false),
 
-    DRUGA("Druga Liga", Country.SLO, false), //2nd tier
+    DRUGA("Druga Liga", Country.SLO, 2, false),
 
-    B_NACIONAL("Primera B Nacional", Country.AR, false), //2nd tier
+    B_NACIONAL("Primera B Nacional", Country.AR, 2, false),
 
-    FINNLIIGA("Finnliiga", Country.FI, true),
+    FINNLIIGA("Finnliiga", Country.FI, 1, true),
 
-    YKKONEN("Ykkönen", Country.FI, false),
+    YKKONEN("Ykkönen", Country.FI, 2, false),
 
-    PROFESIONAL("División Profesional", Country.BO, false),
+    PROFESIONAL("División Profesional", Country.BO, 1, false),
 
-    RAIFFEISEN("Raiffeisen Super League", Country.CH, true),
+    RAIFFEISEN("Raiffeisen Super League", Country.CH, 1, true),
 
-    MEISTRILIIGA("Meistriliiga", Country.EE, true),
+    MEISTRILIIGA("Meistriliiga", Country.EE, 1, true),
 
-    MLS("Major League Soccer", Country.US, true),
-    USL("USL Championship", Country.US, false);
+    MLS("Major League Soccer", Country.US, 1, true),
+    USL("USL Championship", Country.US, 2, false);
 
     private final String name;
 
     private final Country country;
 
+    private final int tier;
+
     private final boolean playable;
 
-    League(String name, Country country, boolean playable) {
+    League(String name, Country country, int tier, boolean playable) {
         this.name = name;
         this.country = country;
+        this.tier = tier;
         this.playable = playable;
     }
 
@@ -98,5 +101,13 @@ public enum League {
 
     public Country getCountry() {
         return country;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public boolean isPlayable() {
+        return playable;
     }
 }
