@@ -143,7 +143,6 @@ public class GameLogic {
     public static void saveGame(Club currentClub, int money) { //TODO think about what else is needed when saving
         SaveState saveState = new SaveState(currentClub, money, currentSquad, table);
 
-        //TODO implement (research how to write/read to/from files)
         try {
             FileWriter writer = new FileWriter(savePath.toFile());
 
