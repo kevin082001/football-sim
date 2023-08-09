@@ -152,7 +152,7 @@ public class GameLogic {
             writer.write(saveState.getCurrentClub().getName() + System.lineSeparator());
             writer.write(saveState.getMoney() + System.lineSeparator());
             for (Player player : currentSquad) {
-                //TODO write method to get non-changing data for a player (firstname, birthdate,...)
+                //TODO write method to get non-changing data for a player (firstname, lastname, birthdate,...)
                 writer.write(player.getFirstName() + System.lineSeparator() + player.getLastName() + System.lineSeparator() + player.getNation()
                         + System.lineSeparator() + player.getRating() + System.lineSeparator() + player.getBirthDate() + System.lineSeparator()
                         + player.getPosition() + System.lineSeparator() + player.getClub().getName() + System.lineSeparator()
@@ -171,6 +171,8 @@ public class GameLogic {
         //TODO implement
         return null;
     }
+
+    // ------- PRIVATE METHODS -------
 
     private static String getClubsSoFarAsString(Club[] clubsSoFar) {
         if (clubsSoFar.length == 1) {

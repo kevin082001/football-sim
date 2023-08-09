@@ -1,316 +1,361 @@
-AB Argir
+HB Tórshavn
 500000
-Rói
-Zachariasen
+Teitur
+Gestsson
 FO
-55
-1998-10-12
+60
+1992-08-19
 GK
-AB Argir
-ARGIR,STREYMUR
+HB Tórshavn
+HB Tórshavn
 20
-20
-55
+22
+61
+0
+0
+27
+###
+Bjarti
+Mørk
+FO
+56
+2001-06-07
+GK
+HB Tórshavn
+HB,ARGIR,HB
+18
+17
+59
+0
+0
+78
+###
+Samuel
+Chukwudi
+FO
+61
+2003-06-25
+CB
+HB Tórshavn
+HB Tórshavn
+35
+34
+63
+0
+0
+92
+###
+Hørður
+Askham
+FO
+59
+1994-09-22
+CB
+HB Tórshavn
+HB,KLAKSVIK,B36,VESTUR,B36
+32
+34
+59
+0
+0
+46
+###
+Bartal
+Wardum
+FO
+59
+1997-05-03
+CB
+HB Tórshavn
+HB Tórshavn
+37
+33
+59
 0
 0
 47
 ###
-Antonío
-Borelli
-US
+Ejvind
+Mouritsen
+FO
+53
+2004-02-14
+CB
+HB Tórshavn
+HB Tórshavn
+28
+28
+54
+0
+0
+100
+###
+Viljormur
+Davidsen
+FO
+64
+1991-07-19
+LB
+HB Tórshavn
+HB,HELSINGBORG,VEJLE,FREDERICIA,JERV,ODENSE
+62
+65
+65
+0
+0
+15
+###
+Daniel
+Johansen
+FO
+62
+1998-07-09
+LB
+HB Tórshavn
+HB,FREDERICIA,HB
+59
+60
+61
+0
+0
+50
+###
+Ári
+Jónsson
+FO
+61
+1994-07-22
+LB
+HB Tórshavn
+HB,SANDNES,HB,SILKEBORG
+60
+62
+61
+0
+0
+45
+###
+Hanus
+Sørensen
+FO
+58
+2001-02-19
+RB
+HB Tórshavn
+HB,MIDDELFART,HB,MIDDELFART,HB,MIDDELFART
+59
+58
+58
+0
+0
+93
+###
+Heri
+Mohr
+FO
+57
+1997-05-13
+RB
+HB Tórshavn
+HB,ARGIR,HB,TVOROYRI
 55
-1998-11-23
-GK
-AB Argir
-AB Argir
-21
-22
 56
+58
 0
 0
 53
 ###
-Ramzi
-Idrissou
-TG
-57
-1996-07-31
-CB
-AB Argir
-ARGIR,FUZINAR,HODD,LEVANGER,HODD
-38
-38
-58
+Heðin
+Hansen
+FO
+59
+1993-07-30
+CDM
+HB Tórshavn
+HB,VIKINGUR_GOTA,HB,VIKINGUR_GOTA
+56
+55
+59
 0
 0
-41
+26
 ###
 Tróndur
-á Høvdanum
+Jensen
 FO
-54
-1995-08-19
-CB
-AB Argir
-AB Argir
-33
-34
-54
+59
+1993-02-06
+CDM
+HB Tórshavn
+HB,ARGIR,HB
+57
+57
+58
 0
 0
-34
+25
+###
+Emil
+Berger
+SE
+62
+1991-05-23
+CM
+HB Tórshavn
+HB,LEIKNIR,DALKURD,KONGSVINGER,OREBRO,FYLKIR,OREBRO,DEGERFORS,AIK,ESKILSTUNA,AIK,DEGERFORS
+60
+63
+61
+0
+0
+11
+###
+Matthias
+Præst
+DK
+61
+2000-06-21
+CM
+HB Tórshavn
+HB,ARGIR,MIDDELFART,HORSENS
+60
+61
+60
+0
+0
+85
 ###
 Dánjal
-Danielsen
+Reginsson
 FO
 54
-2004-07-05
-CB
-AB Argir
-AB Argir
-35
-33
-55
-0
-0
-100
-###
-Sam
-Pollard
-ENG
-54
-1999-02-21
-LB
-AB Argir
-AB Argir
-51
-55
-52
-0
-0
-54
-###
-Rógvi
-Skala
-FO
-55
-2000-09-05
-LB
-AB Argir
-AB Argir
-52
-54
-54
-0
-0
-87
-###
-Gunnar
-Reynslág
-FO
-54
-2004-11-10
-LB
-AB Argir
-AB Argir
-50
-51
-54
-0
-0
-100
-###
-Beinir
-Ellefsen
-FO
-52
-1993-04-07
-LB
-AB Argir
-AB Argir
-51
-51
-51
-0
-0
-31
-###
-Jákup
-Breckmann
-FO
-56
-1998-04-16
-RB
-AB Argir
-ARGIR,TVOROYRI
-52
-54
-56
-0
-0
-54
-###
-Bjarni
-Skála
-FO
-58
-1997-11-14
-CDM
-AB Argir
-AB Argir
-48
-51
-57
-0
-0
-56
-###
-Santiago
-Lebus
-AR
-57
-1996-07-18
-CM
-AB Argir
-ARGIR,FUGLAFJORDUR,ARGIR,PETROLERO,ALL_BOYS
-56
-57
-45
-0
-0
-48
-###
-Ragnar
-Skála
-FO
-57
-2000-09-05
-CM
-AB Argir
-AB Argir
-54
-57
-57
-0
-0
-87
-###
-Bartal
-Petersen
-FO
-56
-2000-11-22
-CM
-AB Argir
-AB Argir
-50
-57
-51
-0
-0
-86
-###
-Viktor
-Benediktsson
-IS
-55
-1998-09-15
-CM
-AB Argir
-ARGIR,AKRANES,HAFNARFJORDUR,KOPAVOGUR,HAFNARFJORDUR
-54
-55
-45
-0
-0
-60
-###
-Marius
-Lindh
-DK
-55
-1999-06-22
+2001-12-17
 RM
-AB Argir
-AB Argir
-55
-53
-30
-0
-0
-75
-###
-Jakob
-Gottberg
-FI
-55
-2002-07-20
-LW
-AB Argir
-ARGIR,EKENAS
-55
+HB Tórshavn
+HB,ARGIR
+54
 54
 26
 0
 0
-95
+90
 ###
-Teitur
-Olsen
+Dan
+í Soylu
 FO
-56
-1998-01-27
-RW
-AB Argir
-ARGIR,STREYMUR
-56
-55
-29
-0
-0
-62
-###
-Tóki
-á Lofti
-FO
-53
-1993-12-06
-RW
-AB Argir
-ARGIR,STREYMUR,VESTUR,ARGIR
-53
-50
-25
-0
-0
-21
-###
-Brian
-Jakobsen
-FO
-57
-1991-11-04
-ST
-AB Argir
-ARGIR,B36
-58
-50
+59
+1996-07-09
+CAM
+HB Tórshavn
+HB,STREYMUR,ARGIR
+60
+61
 30
 0
 0
-13
+50
 ###
-Rói
-Nielsen
+Áki
+Samuelsen
 FO
-52
-2005-06-10
+59
+2004-04-17
+LW
+HB Tórshavn
+HB Tórshavn
+59
+59
+24
+0
+0
+100
+###
+Leivur
+Guttesen
+FO
+56
+2002-01-17
+RW
+HB Tórshavn
+HB,ARGIR
+57
+56
+23
+0
+0
+96
+###
+Adrian
+Justinussen
+FO
+62
+1998-07-21
 ST
-AB Argir
-AB Argir
+HB Tórshavn
+HB Tórshavn
+63
+60
+32
+0
+0
 53
-48
-27
+###
+Mads
+Borchers
+DK
+62
+2002-06-18
+ST
+HB Tórshavn
+HB,ESBJERG,VESTUR,ESBJERG
+64
+58
+35
+0
+0
+95
+###
+Mikkel
+Dahl
+DK
+60
+1993-06-22
+ST
+HB Tórshavn
+HB,LEIKNIR,HB,NYKOBING,HVIDOVRE
+60
+56
+38
+0
+0
+17
+###
+Jákup
+Thomsen
+FO
+57
+1997-11-23
+ST
+HB Tórshavn
+HB,MIDTJYLLAND,HAFNARFJORDUR,MIDTJYLLAND,HAFNARFJORDUR,MIDTJYLLAND,THISTED,MIDTJYLLAND,SKIVE
+57
+55
+35
+0
+0
+47
+###
+Rani
+Sørensen
+FO
+56
+2004-04-22
+ST
+HB Tórshavn
+HB Tórshavn
+58
+49
+31
 0
 0
 100

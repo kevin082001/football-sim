@@ -24,7 +24,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     private Map<Club, List<Player>> clubs = ClubHelper.initClubs();
 
     private Club clubToManage;
-    private int money=500000;
+    private int money = 500000;
 
     private List<Match> matchesThisSeason = new ArrayList<>();
 
@@ -206,6 +206,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         int i = 0;
         for (Club c : table.getPoints().keySet()) {
             //TODO formatted printing (the longer the club's name, the less space between club name and points)
+            // current longest line is 30 chars (club: ÍF Fuglafjörður)
             System.out.println((i + 1) + ".: " + c.getName() + "       (" + table.getPoints().get(c) + " pts)");
             i++;
         }
