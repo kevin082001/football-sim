@@ -9,12 +9,15 @@ import java.util.Random;
 
 public class Player { //TODO implement: retirement, market value
     private final Random rand = new Random(System.nanoTime());
-    private String firstName;
-    private String lastName;
+
+
+    private final int id;
+    private final String firstName;
+    private final String lastName;
     private Country nation;
     private int rating;
     private int ratingWrongPos;
-    private LocalDate birthDate;
+    private final LocalDate birthDate;
     private Position position;
     private Club club;
 
@@ -26,8 +29,9 @@ public class Player { //TODO implement: retirement, market value
     private int goals;
     private int talent;
 
-    public Player(String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
+    public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
                   Club[] clubsSoFar, int attack, int control, int defense, int talent) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nation = nation;
@@ -68,6 +72,14 @@ public class Player { //TODO implement: retirement, market value
         position = newPosition;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    /*public void setId(int id) {
+        this.id = id;
+    }*/
 
     public String getFirstName() {
         return firstName;

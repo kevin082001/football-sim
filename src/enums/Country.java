@@ -46,17 +46,34 @@ public enum Country {
     US("United States"),
     WAL("Wales");
 
+    //private final String code;
     private final String name;
 
     Country(String name) {
+        //this.code = code;
         this.name = name;
     }
 
     public Country getByName(String name) {
-        if (name == null || name.equals("")) return null;
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
 
         for (Country c : Country.values()) {
             if (c.getName().equalsIgnoreCase(name)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Country getByEnumName(String enumName) {
+        if (enumName == null || enumName.trim().isEmpty()) {
+            return null;
+        }
+
+        for (Country c : Country.values()) {
+            if (c.toString().equalsIgnoreCase(enumName)) {
                 return c;
             }
         }

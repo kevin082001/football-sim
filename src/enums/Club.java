@@ -92,6 +92,20 @@ public enum Club {
         return result;
     }
 
+    public Club getByEnumName(String enumName) {
+        if (enumName == null || enumName.trim().isEmpty()) {
+            return null;
+        }
+
+        for (Club c : Club.values()) {
+            if (c.toString().equals(enumName)) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
     public String getName() {
         return name;
     }

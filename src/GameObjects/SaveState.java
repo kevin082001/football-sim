@@ -9,14 +9,14 @@ public class SaveState {
     Club currentClub;
     int money;
     List<Player> squad;
-    LeagueTable currentTable;
+    //LeagueTable currentTable;
     // List<Club> jobOffers;
 
-    public SaveState(Club currentClub, int money, List<Player> squad, LeagueTable currentTable) {
+    public SaveState(Club currentClub, int money, List<Player> squad) {
         this.currentClub = currentClub;
         this.money = money;
         this.squad = squad;
-        this.currentTable = currentTable;
+        //this.currentTable = currentTable;
         //this.jobOffers = jobOffers;
     }
 
@@ -44,7 +44,7 @@ public class SaveState {
         this.squad = squad;
     }
 
-    public LeagueTable getCurrentTable() {
+    /*public LeagueTable getCurrentTable() {
         return currentTable;
     }
 
@@ -52,7 +52,7 @@ public class SaveState {
         this.currentTable = currentTable;
     }
 
-    /*public List<Club> getJobOffers() {
+    public List<Club> getJobOffers() {
         return jobOffers;
     }
 

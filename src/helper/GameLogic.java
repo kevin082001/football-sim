@@ -1,15 +1,14 @@
 package helper;
 
-import GameObjects.LeagueTable;
-import GameObjects.Match;
-import GameObjects.Player;
-import GameObjects.SaveState;
+import GameObjects.*;
 import enums.Club;
+import enums.Country;
 import enums.League;
+import enums.Position;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.*;
@@ -141,7 +140,7 @@ public class GameLogic {
     }
 
     public static void saveGame(Club currentClub, int money) { //TODO think about what else is needed when saving
-        SaveState saveState = new SaveState(currentClub, money, currentSquad, table);
+        SaveState saveState = new SaveState(currentClub, money, currentSquad);
 
         try {
             FileWriter writer = new FileWriter(savePath.toFile());
@@ -149,16 +148,17 @@ public class GameLogic {
             writer.write("");
             writer.flush();
 
-            writer.write(saveState.getCurrentClub().getName() + System.lineSeparator());
+            writer.write(saveState.getCurrentClub() + System.lineSeparator());
             writer.write(saveState.getMoney() + System.lineSeparator());
             for (Player player : currentSquad) {
-                //TODO write method to get non-changing data for a player (firstname, lastname, birthdate,...)
-                writer.write(player.getFirstName() + System.lineSeparator() + player.getLastName() + System.lineSeparator() + player.getNation()
-                        + System.lineSeparator() + player.getRating() + System.lineSeparator() + player.getBirthDate() + System.lineSeparator()
-                        + player.getPosition() + System.lineSeparator() + player.getClub().getName() + System.lineSeparator()
-                        + getClubsSoFarAsString(player.getClubsSoFar()) + System.lineSeparator() + player.getAttack() + System.lineSeparator()
-                        + player.getControl() + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
-                        + System.lineSeparator() + player.getGoals() + System.lineSeparator() + player.getTalent() + System.lineSeparator());
+                writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
+                        + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
+                        + player.getClub() + System.lineSeparator() + getClubsSoFarAsString(player.getClubsSoFar())
+                        + System.lineSeparator() + player.getAttack() + System.lineSeparator() + player.getControl()
+                        + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
+                        + System.lineSeparator() + player.getGoals() + System.lineSeparator()
+                        + player.getTalent() + System.lineSeparator());
+
                 writer.write("###" + System.lineSeparator());
             }
             writer.close();
@@ -168,7 +168,51 @@ public class GameLogic {
     }
 
     public static SaveState loadGame() {
-        //TODO implement
+        Club currentClub;
+        int money;
+        List<Player> currentSquad;
+
+        try {
+            Scanner fileScanner = new Scanner(savePath.toFile());
+
+            currentClub = Club.B36.getByEnumName(fileScanner.nextLine());
+            money = Integer.parseInt(fileScanner.nextLine());
+
+            currentSquad = new ArrayList<>();
+            while (fileScanner.hasNextLine()) {
+                int id = Integer.parseInt(fileScanner.nextLine());
+
+                Country nation = Country.AR.getByEnumName(fileScanner.nextLine());
+                int rating = Integer.parseInt(fileScanner.nextLine());
+                Position position = Position.CM.getByEnumName(fileScanner.nextLine());
+                Club club = Club.B36.getByEnumName(fileScanner.nextLine());
+                Club[] clubsSoFar = getClubsSoFar(fileScanner.nextLine());
+                int attack = Integer.parseInt(fileScanner.nextLine());
+                int control = Integer.parseInt(fileScanner.nextLine());
+                int defense = Integer.parseInt(fileScanner.nextLine());
+                int matches = Integer.parseInt(fileScanner.nextLine());
+                int goals = Integer.parseInt(fileScanner.nextLine());
+                int talent = Integer.parseInt(fileScanner.nextLine());
+
+
+                if (fileScanner.nextLine().equals("###")) {
+                    StaticPlayerData staticData = PlayerHelper.getStaticPlayerData(id);
+                    if (staticData == null) {
+                        throw new RuntimeException("Something went wrong while reading player data (PlayerID: " + id + ")");
+                    }
+                    Player player = new Player(id, staticData.getFirstName(), staticData.getLastName(), nation, rating,
+                            staticData.getBirthDate(), position, club, clubsSoFar, attack, control, defense, talent);
+                    player.setMatches(matches);
+                    player.setGoals(goals);
+
+                    currentSquad.add(player);
+                }
+            }
+            return new SaveState(currentClub, money, currentSquad);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
         return null;
     }
 
@@ -176,7 +220,7 @@ public class GameLogic {
 
     private static String getClubsSoFarAsString(Club[] clubsSoFar) {
         if (clubsSoFar.length == 1) {
-            return clubsSoFar[0].getName();
+            return clubsSoFar[0].toString();
         }
 
         String result = "";
@@ -186,5 +230,25 @@ public class GameLogic {
 
         result += clubsSoFar[clubsSoFar.length - 1];
         return result;
+    }
+
+    private static Club[] getClubsSoFar(String asString) {
+        Club[] clubsSoFar = new Club[0];
+        String[] clubsSeparated = asString.split(",");
+
+        for (int i = 0; i < clubsSeparated.length; i++) {
+            clubsSoFar = extend(clubsSoFar);
+            clubsSoFar[clubsSoFar.length - 1] = Club.B36.getByEnumName(clubsSeparated[i]);
+        }
+
+        return clubsSoFar;
+    }
+
+    private static Club[] extend(Club[] array) {
+        Club[] newArray = new Club[array.length + 1];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
     }
 }

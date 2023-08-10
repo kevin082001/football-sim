@@ -1,6 +1,4 @@
-import GameObjects.JobOffer;
-import GameObjects.LeagueTable;
-import GameObjects.Match;
+import GameObjects.*;
 import enums.Club;
 import enums.Country;
 import enums.League;
@@ -8,7 +6,6 @@ import enums.Position;
 import helper.ClubHelper;
 import helper.GameLogic;
 import helper.LeagueHelper;
-import GameObjects.Player;
 
 import java.io.IOException;
 import java.util.*;
@@ -37,14 +34,32 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void run() throws InterruptedException {
         //TimeUnit.SECONDS.sleep(5);
-        askStartClub();
-        GameLogic.initSquad(clubToManage);
+        int newOrLoad = askNewGameOrLoad();
+        //if (clubToManage == null) {
+        if (newOrLoad == 1) {
+            askStartClub();
+            GameLogic.initSquad(clubToManage);
+        }
+        else{
+            SaveState savedGame = GameLogic.loadGame();
+            clubToManage=savedGame.getCurrentClub();
+        }
         matchesThisSeason = GameLogic.initMatchesForSeason(clubToManage);
         GameLogic.initTable(clubToManage);
         printHomeMenu();
+    }
 
-        //TODO implement logic
-
+    private int askNewGameOrLoad() {
+        System.out.println("1) New Game");
+        System.out.println("2) Load Game");
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+        if (choice < 1 || choice > 2) {
+            System.out.println("Invalid input\n\n\n\n\n\n\n\n\n\n");
+            askNewGameOrLoad();
+        }
+        return choice;
     }
 
     private void askStartClub() {

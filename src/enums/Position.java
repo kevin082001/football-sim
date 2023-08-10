@@ -36,6 +36,21 @@ public enum Position {
         return result;
     }
 
+    public Position getByEnumName(String enumName) {
+        if (enumName == null || enumName.trim().isEmpty()) {
+            return null;
+        }
+
+        for (Position p : Position.values()) {
+            if (p.toString().equalsIgnoreCase(enumName)) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+
     public String getFullName() {
         return fullName;
     }
