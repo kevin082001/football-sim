@@ -6,6 +6,7 @@ import enums.Position;
 import helper.ClubHelper;
 import helper.GameLogic;
 import helper.LeagueHelper;
+import helper.PrintHelper;
 
 import java.io.IOException;
 import java.util.*;
@@ -34,22 +35,23 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void run() throws InterruptedException {
         //TimeUnit.SECONDS.sleep(5);
-        int newOrLoad = askNewGameOrLoad();
+
+        //int newOrLoad = askNewGameOrLoad();
+        int newOrLoad = PrintHelper.askNewGameOrLoad(sc);
         //if (clubToManage == null) {
         if (newOrLoad == 1) {
             askStartClub();
             GameLogic.initSquad(clubToManage);
-        }
-        else{
+        } else {
             SaveState savedGame = GameLogic.loadGame();
-            clubToManage=savedGame.getCurrentClub();
+            clubToManage = savedGame.getCurrentClub();
         }
         matchesThisSeason = GameLogic.initMatchesForSeason(clubToManage);
         GameLogic.initTable(clubToManage);
         printHomeMenu();
     }
 
-    private int askNewGameOrLoad() {
+    /*private int askNewGameOrLoad() {
         System.out.println("1) New Game");
         System.out.println("2) Load Game");
         System.out.println();
@@ -60,7 +62,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
             askNewGameOrLoad();
         }
         return choice;
-    }
+    }*/
 
     private void askStartClub() {
         int i = 0;
