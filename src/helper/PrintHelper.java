@@ -15,4 +15,16 @@ public class PrintHelper {
         }
         return choice;
     }
+
+    public static String getSpacesForTable(int ranking, String clubName) {
+        int spacesRemaining = 22;
+        spacesRemaining -= String.valueOf(ranking).length();
+        spacesRemaining -= clubName.length();
+
+        String spaces = "";
+        while (spacesRemaining-- > 0) {
+            spaces += " ";
+        }
+        return spaces;
+    }
 }

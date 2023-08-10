@@ -51,19 +51,6 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         printHomeMenu();
     }
 
-    /*private int askNewGameOrLoad() {
-        System.out.println("1) New Game");
-        System.out.println("2) Load Game");
-        System.out.println();
-        System.out.print(">>");
-        int choice = sc.nextInt();
-        if (choice < 1 || choice > 2) {
-            System.out.println("Invalid input\n\n\n\n\n\n\n\n\n\n");
-            askNewGameOrLoad();
-        }
-        return choice;
-    }*/
-
     private void askStartClub() {
         int i = 0;
 
@@ -222,9 +209,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         System.out.println();
         int i = 0;
         for (Club c : table.getPoints().keySet()) {
-            //TODO formatted printing (the longer the club's name, the less space between club name and points)
-            // current longest line is 30 chars (club: ÍF Fuglafjörður)
-            System.out.println((i + 1) + ".: " + c.getName() + "       (" + table.getPoints().get(c) + " pts)");
+            System.out.println((i + 1) + ".: " + c.getName() + PrintHelper.getSpacesForTable((i+1), c.getName())+"(" + table.getPoints().get(c) + " pts)");
             i++;
         }
         System.out.println();
@@ -268,13 +253,6 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
                 System.out.println("Invalid option");
                 printMySquad();
         }
-        /*System.out.println("Press ENTER to return to home menu");
-        try {
-            System.in.read();
-            printHomeMenu();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     private void printEditSquad() {
