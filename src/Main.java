@@ -10,6 +10,7 @@ import helper.PrintHelper;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Main { //TODO implement: transfer market, international cups (EL,CL,...), more countries and leagues, World Cup
     private Scanner sc = new Scanner(System.in);
@@ -199,6 +200,43 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private void startNextMatch() {
         //TODO implement
+
+        Match nextMatch = GameLogic.getNextMatch(clubToManage, matchesThisSeason);
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
+        try {
+            TimeUnit.MILLISECONDS.sleep(4000);
+
+            double[] goalChances = calcGoalChances(getOpponent(nextMatch));
+            double ownChance = goalChances[0];
+            double opponentChance = goalChances[1];
+
+            for (int minute = 1; minute <= 90; minute++) {
+                //double[] goalChances = calcGoalChance(getOpponent(nextMatch));
+                //double ownChance = goalChances[0];
+                //double opponentChance=goalChances[1];
+                int randomNumber = rand.nextInt(9999);
+
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute);
+                System.out.println("Chance own " + ownChance);
+                System.out.println("Chance opponent " + opponentChance);
+
+                if (randomNumber <= ownChance) {
+                    //TODO own club scores (find a way to choose who scored the goal (maybe give each player a probability based on rating and position))
+                    System.out.println("Goal for " + clubToManage.getName() + " (" + minute + "')");
+                } else if (randomNumber <= opponentChance) {
+                    System.out.println("Goal for " + getOpponent(nextMatch).getName() + " (" + minute + "')");
+                    //TODO opponent scores (same as above)
+                }
+
+                TimeUnit.MILLISECONDS.sleep(300);
+            }
+
+            System.out.println("MATCH END!");
+            //TODO print end menu (score, best scorers,...), save result, check for player level-up
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void printTable() {
@@ -209,7 +247,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         System.out.println();
         int i = 0;
         for (Club c : table.getPoints().keySet()) {
-            System.out.println((i + 1) + ".: " + c.getName() + PrintHelper.getSpacesForTable((i+1), c.getName())+"(" + table.getPoints().get(c) + " pts)");
+            System.out.println((i + 1) + ".: " + c.getName() + PrintHelper.getSpacesForTable((i + 1), c.getName()) + "(" + table.getPoints().get(c) + " pts)");
             i++;
         }
         System.out.println();
@@ -281,6 +319,26 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private double[] calcGoalChances(Club opponent) {
+        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
+        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
+
+        double ownChance = ownStats[0] - (0.6 * opponentStats[2]) - (0.4 * opponentStats[1]);
+        double opponentChance = opponentStats[0] - (0.6 * ownStats[2]) - (0.4 * ownStats[1]);
+
+        int tmp1 = (int) (ownChance * 100);
+        int tmp2 = (int) (opponentChance * 100);
+
+        ownChance = (double) tmp1 / 100;
+        opponentChance = (double) tmp2 / 100;
+
+        return new double[]{ownChance, opponentChance};
+    }
+
+    private Club getOpponent(Match match) {
+        return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
     }
 
     /*private void clearScanner() {
