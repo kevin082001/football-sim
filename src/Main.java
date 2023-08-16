@@ -211,6 +211,12 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
             double ownChance = (goalChances[0] / 20);
             double opponentChance = ownChance + (goalChances[1] / 20);
 
+            Score score = new Score(0, 0, new HashMap<>());
+            Club opponent = getOpponent(nextMatch);
+
+            int ownGoals = 0;
+            int opponentGoals = 0;
+
             for (int minute = 1; minute <= 90; minute++) {
                 double randomNumber = rand.nextDouble(100);
 
@@ -222,15 +228,23 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
                 if (randomNumber <= ownChance) {
                     //TODO own club scores (find a way to choose who scored the goal (maybe give each player a probability based on rating and position))
                     System.out.println("Goal for " + clubToManage.getName() + " (" + minute + "')");
+                    ownGoals++;
                 } else if (randomNumber <= opponentChance) {
-                    System.out.println("Goal for " + getOpponent(nextMatch).getName() + " (" + minute + "')");
                     //TODO opponent scores (same as above)
+                    System.out.println("Goal for " + opponent.getName() + " (" + minute + "')");
+                    opponentGoals++;
                 }
 
                 TimeUnit.MILLISECONDS.sleep(300);
             }
 
+            score = updateScore(score, clubToManage, nextMatch, ownGoals);
+            score = updateScore(score, opponent, nextMatch, opponentGoals);
+
+
             System.out.println("MATCH END!");
+            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
+                            + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
             //TODO print end menu (score, best scorers,...), save result, check for player level-up
         } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -351,6 +365,15 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
     private Club getOpponent(Match match) {
         return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
+    }
+
+    private Score updateScore(Score score, Club club, Match match, int goals) {
+        if (match.getHome().equals(club)) {
+            score.setScoreHome(goals);
+        } else {
+            score.setScoreAway(goals);
+        }
+        return score;
     }
 
     /*private void clearScanner() {
