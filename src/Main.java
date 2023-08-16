@@ -208,18 +208,16 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
             TimeUnit.MILLISECONDS.sleep(4000);
 
             double[] goalChances = calcGoalChances(getOpponent(nextMatch));
-            double ownChance = goalChances[0];
-            double opponentChance = goalChances[1];
+            double ownChance = (goalChances[0] / 20);
+            double opponentChance = ownChance + (goalChances[1] / 20);
 
             for (int minute = 1; minute <= 90; minute++) {
-                //double[] goalChances = calcGoalChance(getOpponent(nextMatch));
-                //double ownChance = goalChances[0];
-                //double opponentChance=goalChances[1];
-                int randomNumber = rand.nextInt(9999);
+                double randomNumber = rand.nextDouble(100);
 
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute);
                 System.out.println("Chance own " + ownChance);
                 System.out.println("Chance opponent " + opponentChance);
+                System.out.println("rand: " + randomNumber);
 
                 if (randomNumber <= ownChance) {
                     //TODO own club scores (find a way to choose who scored the goal (maybe give each player a probability based on rating and position))
@@ -321,7 +319,7 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
         }
     }
 
-    private double[] calcGoalChances(Club opponent) {
+    /*private double[] calcGoalChances(Club opponent) {
         int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
         int[] opponentStats = ClubHelper.getStatsForClub(opponent);
 
@@ -333,6 +331,20 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
 
         ownChance = (double) tmp1 / 100;
         opponentChance = (double) tmp2 / 100;
+
+        return new double[]{ownChance, opponentChance};
+    }*/
+
+    private double[] calcGoalChances(Club opponent) {
+        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
+        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
+
+        double ownTotal = ownStats[0] + (0.5 * ownStats[2]) + (0.2 * ownStats[1]);
+        double opponentTotal = opponentStats[0] + (0.5 * opponentStats[2]) + (0.2 * opponentStats[1]);
+        double total = ownTotal + opponentTotal;
+
+        double ownChance = (ownTotal * 100) / total;
+        double opponentChance = (opponentTotal * 100) / total;
 
         return new double[]{ownChance, opponentChance};
     }
