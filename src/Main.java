@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class Main { //TODO implement: transfer market, international cups (EL,CL,...), more countries and leagues, World Cup
+public class Main { //TODO implement: transfer market, international cups (UEL, UCL, ...), more countries and leagues, WC and EC
     private Scanner sc = new Scanner(System.in);
     private final Random rand = new Random(System.nanoTime());
 
@@ -199,8 +199,6 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void startNextMatch() {
-        //TODO implement
-
         Match nextMatch = GameLogic.getNextMatch(clubToManage, matchesThisSeason);
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
@@ -314,11 +312,11 @@ public class Main { //TODO implement: transfer market, international cups (EL,CL
     }
 
     private void printTransferMarket() {
-        //TODO implement
+        //TODO implement (when players have a market value)
     }
 
     private void printJobOffers() {
-        //TODO implement
+        //TODO implement (also logic for receiving offers)
     }
 
     private void saveGame() {

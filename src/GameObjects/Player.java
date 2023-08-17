@@ -7,7 +7,7 @@ import enums.Position;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class Player { //TODO implement: retirement, market value
+public class Player { //TODO implement: retirement, market value, update talent, decrease rating when performing very badly
     private final Random rand = new Random(System.nanoTime());
 
 
@@ -21,7 +21,7 @@ public class Player { //TODO implement: retirement, market value
     private Position position;
     private Club club;
 
-    private Club[] clubsSoFar; //TODO Maybe make new Object where Club and Year from/to is stored (Transfer)
+    private Club[] clubsSoFar; //TODO Maybe make new Object where Club and Year from/to is stored (Transfer history)
     private int attack;
     private int control;
     private int defense;
