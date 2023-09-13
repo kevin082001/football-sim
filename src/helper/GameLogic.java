@@ -216,6 +216,48 @@ public class GameLogic {
         return null;
     }
 
+    public static Player getScorer(List<Player> players) {
+        int multiplierAttack = 4;
+        int multiplierControl = 3;
+        int multiplierDefense = 2;
+
+        Player candidate = null;
+        double highestChance = 0;
+        for (Player p : players) {
+            double chance = 0;
+            if (p.getPosition().getType().equals("ATT")) {
+                chance = multiplierAttack * p.getRating() * rand.nextDouble(20);
+            } else if (p.getPosition().getType().equals("CON")) {
+                chance = multiplierControl * p.getRating() * rand.nextDouble(20);
+            } else if (p.getPosition().getType().equals("DEF")) {
+                chance = multiplierDefense * p.getRating() * rand.nextDouble(20);
+            }
+            if (chance > highestChance) {
+                highestChance = chance;
+                candidate = p;
+            }
+        }
+
+        return candidate;
+    }
+
+
+    //TODO only check for players who performed well in the match
+    public static void checkForPlayerLevelUp(Match match) {
+        List<Player> toCheck = new ArrayList<>();
+        toCheck.addAll(PlayerHelper.getPlayersForClub(match.getHome()));
+        toCheck.addAll(PlayerHelper.getPlayersForClub(match.getAway()));
+
+        for (Player p : toCheck) {
+            double tmp = (double) p.getTalent() / 10;
+            if (rand.nextDouble(100) <= tmp) {
+                int oldRating = p.getRating();
+                p.levelUp();
+                System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
+            }
+        }
+    }
+
     // ------- PRIVATE METHODS -------
 
     private static String getClubsSoFarAsString(Club[] clubsSoFar) {

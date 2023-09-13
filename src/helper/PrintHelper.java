@@ -1,5 +1,10 @@
 package helper;
 
+import GameObjects.Player;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PrintHelper {
@@ -26,5 +31,22 @@ public class PrintHelper {
             spaces += " ";
         }
         return spaces;
+    }
+
+    public static void printGoalsList(Map<Player, List<Integer>> scorers) {
+        System.out.println("\n\nGOALS:");
+        for (int minute = 0; minute <= 120; minute++) { //Think whether 120 is enough as the maximum amount of minutes
+            for (Player p : scorers.keySet()) {
+                for (Integer min : scorers.get(p)) {
+                    if (min.equals(minute)) {
+                        System.out.println(p.getLastName() + " (" + min + "')");
+                    }
+                }
+            }
+        }
+
+        /*for (Player p : scorers.keySet()) {
+            System.out.println(p.getLastName() + scorers.get(p));
+        }*/
     }
 }

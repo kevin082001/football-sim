@@ -52,7 +52,7 @@ public class Player { //TODO implement: retirement, market value, update talent,
     public void levelUp() {
         rating++;
         ratingWrongPos = (int) (rating * 0.7);
-        int upgradingStat = rand.nextInt(3);
+        int upgradingStat = rand.nextInt(3); //TODO maybe change how stats are chosen (f.e: 70 attack, 40 defense --> attack has more chance to get increased)
         switch (upgradingStat) {
             case 0 -> attack++;
             case 1 -> control++;

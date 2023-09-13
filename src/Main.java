@@ -3,10 +3,7 @@ import enums.Club;
 import enums.Country;
 import enums.League;
 import enums.Position;
-import helper.ClubHelper;
-import helper.GameLogic;
-import helper.LeagueHelper;
-import helper.PrintHelper;
+import helper.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -210,6 +207,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             double opponentChance = ownChance + (goalChances[1] / 20);
 
             Score score = new Score(0, 0, new HashMap<>());
+            Map<Player, List<Integer>> scorers = new HashMap<>();
             Club opponent = getOpponent(nextMatch);
 
             int ownGoals = 0;
@@ -218,32 +216,50 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             for (int minute = 1; minute <= 90; minute++) {
                 double randomNumber = rand.nextDouble(100);
 
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute);
-                System.out.println("Chance own " + ownChance);
-                System.out.println("Chance opponent " + opponentChance);
-                System.out.println("rand: " + randomNumber);
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute + "'");
+                //System.out.println("Chance own " + ownChance);
+                //System.out.println("Chance opponent " + opponentChance);
+                //System.out.println("rand: " + randomNumber);
 
                 if (randomNumber <= ownChance) {
-                    //TODO own club scores (find a way to choose who scored the goal (maybe give each player a probability based on rating and position))
-                    System.out.println("Goal for " + clubToManage.getName() + " (" + minute + "')");
+                    Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(clubToManage));
+                    System.out.println("Goal for " + clubToManage.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
+                    scorer.setGoals(scorer.getGoals() + 1);
+                    if (scorers.containsKey(scorer)) {
+                        scorers.get(scorer).add(minute);
+                    } else {
+                        scorers.put(scorer, new ArrayList<>(minute));
+                    }
+                    score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
                     ownGoals++;
                 } else if (randomNumber <= opponentChance) {
-                    //TODO opponent scores (same as above)
-                    System.out.println("Goal for " + opponent.getName() + " (" + minute + "')");
+                    Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(opponent));
+                    System.out.println("Goal for " + opponent.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
+                    scorer.setGoals(scorer.getGoals() + 1);
+                    if (scorers.containsKey(scorer)) {
+                        scorers.get(scorer).add(minute);
+                    } else {
+                        scorers.put(scorer, new ArrayList<>(minute));
+                    }
+                    score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
                     opponentGoals++;
                 }
 
                 TimeUnit.MILLISECONDS.sleep(300);
             }
 
-            score = updateScore(score, clubToManage, nextMatch, ownGoals);
-            score = updateScore(score, opponent, nextMatch, opponentGoals);
+            //score = updateScore(score, clubToManage, nextMatch, ownGoals);
+            //score = updateScore(score, opponent, nextMatch, opponentGoals);
 
 
-            System.out.println("MATCH END!");
-            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
-                            + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
             //TODO print end menu (score, best scorers,...), save result, check for player level-up
+            System.out.println("MATCH END!");
+            PrintHelper.printGoalsList(scorers);
+            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
+                    + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
+
+            GameLogic.checkForPlayerLevelUp(nextMatch);
+            printHomeMenu();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -312,7 +328,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
     }
 
     private void printTransferMarket() {
-        //TODO implement (when players have a market value)
+        //TODO implement (when all players have a market value)
     }
 
     private void printJobOffers() {
@@ -331,22 +347,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         }
     }
 
-    /*private double[] calcGoalChances(Club opponent) {
-        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
-        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
-
-        double ownChance = ownStats[0] - (0.6 * opponentStats[2]) - (0.4 * opponentStats[1]);
-        double opponentChance = opponentStats[0] - (0.6 * ownStats[2]) - (0.4 * ownStats[1]);
-
-        int tmp1 = (int) (ownChance * 100);
-        int tmp2 = (int) (opponentChance * 100);
-
-        ownChance = (double) tmp1 / 100;
-        opponentChance = (double) tmp2 / 100;
-
-        return new double[]{ownChance, opponentChance};
-    }*/
-
+    //TODO move methods to GameLogic
     private double[] calcGoalChances(Club opponent) {
         int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
         int[] opponentStats = ClubHelper.getStatsForClub(opponent);
