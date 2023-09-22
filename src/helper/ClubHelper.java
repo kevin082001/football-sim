@@ -1,8 +1,8 @@
 package helper;
 
+import GameObjects.Player;
 import enums.Club;
 import enums.League;
-import GameObjects.Player;
 import enums.Position;
 
 import java.util.*;
@@ -69,5 +69,18 @@ public class ClubHelper {
             }
         }
         return sorted;
+    }
+
+    public static List<Club> getAllClubs() {
+        List<Club> clubs = new ArrayList<>();
+
+        for (League league : League.values()) {
+            if (ClubHelper.getClubsForLeague(league).isEmpty()) {
+                continue;
+            }
+            clubs.addAll(ClubHelper.getClubsForLeague(league));
+        }
+
+        return clubs;
     }
 }

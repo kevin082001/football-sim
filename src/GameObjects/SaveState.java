@@ -1,6 +1,7 @@
 package GameObjects;
 
 import enums.Club;
+import enums.League;
 
 import java.util.List;
 
@@ -8,14 +9,18 @@ public class SaveState {
     //TODO implement (all the important stuff when saving the game is stored here)
     Club currentClub;
     int money;
-    List<Player> squad;
+    //List<Player> currentSquad;
+
+    List<Player> allPlayers;
+
     //LeagueTable currentTable;
     // List<Club> jobOffers;
 
-    public SaveState(Club currentClub, int money, List<Player> squad) {
+    public SaveState(Club currentClub, int money, List<Player> allPlayers) {
         this.currentClub = currentClub;
         this.money = money;
-        this.squad = squad;
+        //this.currentSquad = squad;
+        this.allPlayers=allPlayers;
         //this.currentTable = currentTable;
         //this.jobOffers = jobOffers;
     }
@@ -36,12 +41,20 @@ public class SaveState {
         this.money = money;
     }
 
-    public List<Player> getSquad() {
-        return squad;
+    /*public List<Player> getCurrentSquad() {
+        return currentSquad;
     }
 
-    public void setSquad(List<Player> squad) {
-        this.squad = squad;
+    public void setCurrentSquad(List<Player> currentSquad) {
+        this.currentSquad = currentSquad;
+    }*/
+
+    public List<Player> getAllPlayers() {
+        return allPlayers;
+    }
+
+    public void setAllPlayers(List<Player> allPlayers) {
+        this.allPlayers = allPlayers;
     }
 
     /*public LeagueTable getCurrentTable() {

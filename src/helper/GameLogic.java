@@ -150,7 +150,7 @@ public class GameLogic {
 
             writer.write(saveState.getCurrentClub() + System.lineSeparator());
             writer.write(saveState.getMoney() + System.lineSeparator());
-            for (Player player : currentSquad) {
+            /*for (Player player : currentSquad) {
                 writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
                         + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
                         + player.getClub() + System.lineSeparator() + getClubsSoFarAsString(player.getClubsSoFar())
@@ -161,6 +161,23 @@ public class GameLogic {
 
                 writer.write("###" + System.lineSeparator());
             }
+            //writer.write("$$$$$$$$$$");*/
+
+            for (Club club : ClubHelper.getAllClubs()) {
+                System.out.println("Saving: Club " + club.getName());
+                for (Player player : PlayerHelper.getPlayersForClub(club)) {
+                    writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
+                            + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
+                            + player.getClub() + System.lineSeparator() + getClubsSoFarAsString(player.getClubsSoFar())
+                            + System.lineSeparator() + player.getAttack() + System.lineSeparator() + player.getControl()
+                            + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
+                            + System.lineSeparator() + player.getGoals() + System.lineSeparator()
+                            + player.getTalent() + System.lineSeparator());
+
+                    writer.write("###" + System.lineSeparator());
+                }
+            }
+
             writer.close();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -170,7 +187,9 @@ public class GameLogic {
     public static SaveState loadGame() {
         Club currentClub;
         int money;
-        List<Player> currentSquad;
+        //List<Player> currentSquad;
+        List<Player> allPlayers;
+
 
         try {
             Scanner fileScanner = new Scanner(savePath.toFile());
@@ -178,7 +197,9 @@ public class GameLogic {
             currentClub = Club.B36.getByEnumName(fileScanner.nextLine());
             money = Integer.parseInt(fileScanner.nextLine());
 
-            currentSquad = new ArrayList<>();
+            allPlayers = new ArrayList<>();
+
+            //boolean checkpointPassed = false;
             while (fileScanner.hasNextLine()) {
                 int id = Integer.parseInt(fileScanner.nextLine());
 
@@ -205,10 +226,13 @@ public class GameLogic {
                     player.setMatches(matches);
                     player.setGoals(goals);
 
-                    currentSquad.add(player);
+                    allPlayers.add(player);
                 }
+                /*else if(fileScanner.nextLine().equals("$$$$$$$$$$")){
+                    checkpointPassed=true;
+                }*/
             }
-            return new SaveState(currentClub, money, currentSquad);
+            return new SaveState(currentClub, money, allPlayers);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
