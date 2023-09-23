@@ -202,7 +202,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         try {
             TimeUnit.MILLISECONDS.sleep(4000);
 
-            double[] goalChances = calcGoalChances(getOpponent(nextMatch));
+            double[] goalChances = GameLogic.calcGoalChances(clubToManage, getOpponent(nextMatch));
             double ownChance = (goalChances[0] / 20);
             double opponentChance = ownChance + (goalChances[1] / 20);
 
@@ -245,7 +245,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
                     opponentGoals++;
                 }
 
-                TimeUnit.MILLISECONDS.sleep(300);
+                TimeUnit.MILLISECONDS.sleep(250);
             }
 
             //score = updateScore(score, clubToManage, nextMatch, ownGoals);
@@ -255,8 +255,10 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             //TODO print end menu (score, best scorers,...), save result, check for player level-up
             System.out.println("MATCH END!");
             PrintHelper.printGoalsList(scorers);
-            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
-                    + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
+//            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
+//                    + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
+            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? ownGoals : opponentGoals) +
+                    " : " + (nextMatch.getHome().equals(opponent) ? ownGoals : opponentGoals) + " ... " + opponent.getName());
 
             GameLogic.checkForPlayerLevelUp(nextMatch);
             printHomeMenu();
@@ -348,19 +350,19 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
     }
 
     //TODO move methods to GameLogic
-    private double[] calcGoalChances(Club opponent) {
-        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
-        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
-
-        double ownTotal = ownStats[0] + (0.5 * ownStats[2]) + (0.2 * ownStats[1]);
-        double opponentTotal = opponentStats[0] + (0.5 * opponentStats[2]) + (0.2 * opponentStats[1]);
-        double total = ownTotal + opponentTotal;
-
-        double ownChance = (ownTotal * 100) / total;
-        double opponentChance = (opponentTotal * 100) / total;
-
-        return new double[]{ownChance, opponentChance};
-    }
+//    private double[] calcGoalChances(Club opponent) {
+//        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
+//        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
+//
+//        double ownTotal = ownStats[0] + (0.5 * ownStats[2]) + (0.2 * ownStats[1]);
+//        double opponentTotal = opponentStats[0] + (0.5 * opponentStats[2]) + (0.2 * opponentStats[1]);
+//        double total = ownTotal + opponentTotal;
+//
+//        double ownChance = (ownTotal * 100) / total;
+//        double opponentChance = (opponentTotal * 100) / total;
+//
+//        return new double[]{ownChance, opponentChance};
+//    }
 
     private Club getOpponent(Match match) {
         return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
@@ -374,10 +376,4 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         }
         return score;
     }
-
-    /*private void clearScanner() {
-        while (sc.hasNext()) {
-            sc.next();
-        }
-    }*/
 }

@@ -44,9 +44,5 @@ public class PrintHelper {
                 }
             }
         }
-
-        /*for (Player p : scorers.keySet()) {
-            System.out.println(p.getLastName() + scorers.get(p));
-        }*/
     }
 }

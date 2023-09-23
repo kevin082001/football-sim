@@ -266,7 +266,7 @@ public class GameLogic {
     }
 
 
-    //TODO only check for players who performed well in the match
+    //TODO only check for players who performed well in the match (How is "good performance" defined?)
     public static void checkForPlayerLevelUp(Match match) {
         List<Player> toCheck = new ArrayList<>();
         toCheck.addAll(PlayerHelper.getPlayersForClub(match.getHome()));
@@ -280,6 +280,20 @@ public class GameLogic {
                 System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
             }
         }
+    }
+
+    public static double[] calcGoalChances(Club own, Club opponent) {
+        int[] ownStats = ClubHelper.getStatsForClub(own);
+        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
+
+        double ownTotal = ownStats[0] + (0.5 * ownStats[2]) + (0.2 * ownStats[1]);
+        double opponentTotal = opponentStats[0] + (0.5 * opponentStats[2]) + (0.2 * opponentStats[1]);
+        double total = ownTotal + opponentTotal;
+
+        double ownChance = (ownTotal * 100) / total;
+        double opponentChance = (opponentTotal * 100) / total;
+
+        return new double[]{ownChance, opponentChance};
     }
 
     // ------- PRIVATE METHODS -------
