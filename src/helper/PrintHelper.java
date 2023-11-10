@@ -1,6 +1,7 @@
 package helper;
 
 import GameObjects.Player;
+import enums.Club;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,12 +34,15 @@ public class PrintHelper {
         return spaces;
     }
 
-    public static void printGoalsList(Map<Player, List<Integer>> scorers) {
+    public static void printGoalsList(Map<Player, List<Integer>> scorers, Club opponent) {
         System.out.println("\n\nGOALS:");
-        for (int minute = 0; minute <= 120; minute++) { //Think whether 120 is enough as the maximum amount of minutes
+        for (int minute = 0; minute <= 120; minute++) {
             for (Player p : scorers.keySet()) {
                 for (Integer min : scorers.get(p)) {
                     if (min.equals(minute)) {
+                        if(p.getClub().equals(opponent)){
+                            System.out.print("               ");
+                        }
                         System.out.println(p.getLastName() + " (" + min + "')");
                     }
                 }
