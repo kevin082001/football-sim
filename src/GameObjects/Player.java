@@ -20,13 +20,15 @@ public class Player { //TODO implement: retirement, market value, update talent,
     private final LocalDate birthDate;
     private Position position;
     private Club club;
-
     private Club[] clubsSoFar; //TODO Maybe make new Object where Club and Year from/to is stored (Transfer history)
     private int attack;
     private int control;
     private int defense;
     private int matches;
     private int goals;
+    private int assists;
+    private int saves;
+    private int goalsConceded;
     private int talent;
 
     public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
@@ -46,6 +48,9 @@ public class Player { //TODO implement: retirement, market value, update talent,
         this.defense = defense;
         this.matches = 0;
         this.goals = 0;
+        this.assists = 0;
+        this.saves = 0;
+        this.goalsConceded = 0;
         this.talent = talent;
     }
 
@@ -171,6 +176,30 @@ public class Player { //TODO implement: retirement, market value, update talent,
 
     public void setGoals(int goals) {
         this.goals = goals;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
+    }
+
+    public int getSaves() {
+        return saves;
+    }
+
+    public void setSaves(int saves) {
+        this.saves = saves;
+    }
+
+    public int getGoalsConceded() {
+        return goalsConceded;
+    }
+
+    public void setGoalsConceded(int goalsConceded) {
+        this.goalsConceded = goalsConceded;
     }
 
     public int getTalent() {
