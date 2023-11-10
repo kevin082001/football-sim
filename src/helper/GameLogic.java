@@ -87,7 +87,8 @@ public class GameLogic {
         }
     }
 
-    public static void updateTable(List<Match> round) {
+    //Comment-in when Match logic is implemented for all matches in this round
+    /*public static void updateTable(List<Match> round) {
         League league = round.get(0).getHome().getLeague();
         for (Match m : round) {
             Club home = m.getHome();
@@ -103,6 +104,25 @@ public class GameLogic {
                 table.getPoints().put(away, awayPoints + 3);
             }
         }
+        sortTable(league);
+    }*/
+
+    public static void updateTable(Match match) {
+        League league = match.getHome().getLeague();
+
+        Club home = match.getHome();
+        Club away = match.getAway();
+        Integer homePoints = table.getPoints().get(home);
+        Integer awayPoints = table.getPoints().get(away);
+        if (match.getWinner() == null) {
+            table.getPoints().put(home, homePoints + 1);
+            table.getPoints().put(away, awayPoints + 1);
+        } else if (match.getWinner().equals(home)) {
+            table.getPoints().put(home, homePoints + 3);
+        } else if (match.getWinner().equals(away)) {
+            table.getPoints().put(away, awayPoints + 3);
+        }
+
         sortTable(league);
     }
 
@@ -250,11 +270,11 @@ public class GameLogic {
         for (Player p : players) {
             double chance = 0;
             if (p.getPosition().getType().equals("ATT")) {
-                chance = multiplierAttack * p.getRating() * rand.nextDouble(20);
+                chance = (multiplierAttack * p.getRating() + p.getAttack()) * rand.nextDouble(20);
             } else if (p.getPosition().getType().equals("CON")) {
-                chance = multiplierControl * p.getRating() * rand.nextDouble(20);
+                chance = (multiplierControl * p.getRating() + p.getAttack()) * rand.nextDouble(20);
             } else if (p.getPosition().getType().equals("DEF")) {
-                chance = multiplierDefense * p.getRating() * rand.nextDouble(20);
+                chance = (multiplierDefense * p.getRating() + p.getAttack()) * rand.nextDouble(20);
             }
             if (chance > highestChance) {
                 highestChance = chance;
