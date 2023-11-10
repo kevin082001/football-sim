@@ -215,32 +215,20 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
 
             for (int minute = 1; minute <= 90; minute++) {
                 double randomNumber = rand.nextDouble(100);
-
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute + "'");
-                //System.out.println("Chance own " + ownChance);
-                //System.out.println("Chance opponent " + opponentChance);
-                //System.out.println("rand: " + randomNumber);
 
-                if (randomNumber <= ownChance) {
+                if (randomNumber <= ownChance) { //DONT FORGET: logic has to be the same for OWN and OPPONENT
                     Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(clubToManage));
                     System.out.println("Goal for " + clubToManage.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
                     scorer.setGoals(scorer.getGoals() + 1);
-                    if (scorers.containsKey(scorer)) {
-                        scorers.get(scorer).add(minute);
-                    } else {
-                        scorers.put(scorer, new ArrayList<>(minute));
-                    }
+                    scorers = updateScorers(scorers, scorer, minute);
                     score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
                     ownGoals++;
                 } else if (randomNumber <= opponentChance) {
                     Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(opponent));
                     System.out.println("Goal for " + opponent.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
                     scorer.setGoals(scorer.getGoals() + 1);
-                    if (scorers.containsKey(scorer)) {
-                        scorers.get(scorer).add(minute);
-                    } else {
-                        scorers.put(scorer, new ArrayList<>(minute));
-                    }
+                    scorers = updateScorers(scorers, scorer, minute);
                     score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
                     opponentGoals++;
                 }
@@ -254,13 +242,14 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
 
             //TODO print end menu (score, best scorers,...), save result, check for player level-up
             System.out.println("MATCH END!");
-            PrintHelper.printGoalsList(scorers);
-//            System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? score.getScoreHome() : score.getScoreAway())
-//                    + " : " + (nextMatch.getHome().equals(opponent) ? score.getScoreHome() : score.getScoreAway()) + " ... " + opponent.getName());
+            PrintHelper.printGoalsList(scorers, opponent);
+
             System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? ownGoals : opponentGoals) +
                     " : " + (nextMatch.getHome().equals(opponent) ? ownGoals : opponentGoals) + " ... " + opponent.getName());
 
             GameLogic.checkForPlayerLevelUp(nextMatch);
+            //GameLogic.updateTable(matchesThisSeason); Comment-in when match logic is implemented so that all matches in a round get simulated
+            GameLogic.updateTable(nextMatch); //TODO fix nullpointer (Cannot invoke "GameObjects.Score.getScoreHome()" because "this.score" is null) in Match.java
             printHomeMenu();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -349,21 +338,6 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         }
     }
 
-    //TODO move methods to GameLogic
-//    private double[] calcGoalChances(Club opponent) {
-//        int[] ownStats = ClubHelper.getStatsForClub(clubToManage);
-//        int[] opponentStats = ClubHelper.getStatsForClub(opponent);
-//
-//        double ownTotal = ownStats[0] + (0.5 * ownStats[2]) + (0.2 * ownStats[1]);
-//        double opponentTotal = opponentStats[0] + (0.5 * opponentStats[2]) + (0.2 * opponentStats[1]);
-//        double total = ownTotal + opponentTotal;
-//
-//        double ownChance = (ownTotal * 100) / total;
-//        double opponentChance = (opponentTotal * 100) / total;
-//
-//        return new double[]{ownChance, opponentChance};
-//    }
-
     private Club getOpponent(Match match) {
         return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
     }
@@ -375,5 +349,18 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             score.setScoreAway(goals);
         }
         return score;
+    }
+
+    private Map<Player, List<Integer>> updateScorers(Map<Player, List<Integer>> scorers, Player scorer, Integer minute) {
+        if (scorers == null || scorer == null || minute == null) {
+            throw new IllegalArgumentException("Cannot update scorers (null value)");
+        }
+
+        if (!scorers.containsKey(scorer)) {
+            scorers.put(scorer, new ArrayList<>());
+        }
+        scorers.get(scorer).add(minute);
+
+        return scorers;
     }
 }
