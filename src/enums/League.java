@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Dritte Liga -> 3,...)
+    VEREINSLOS("Vereinslos", Country.AT, 1, false),
+
     BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
     BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
     DRITTE_LIGA("3. Liga", Country.DE, 3, true),
@@ -14,6 +16,8 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     SERIE_A("Serie A", Country.IT, 1, true),
     SERIE_B("Serie B", Country.IT, 2, true),
+    SERIE_C("Serie C", Country.IT, 3, true),
+    SERIE_D("Serie D", Country.IT, 4, false),
 
     LALIGA("La Liga Santander", Country.ES, 1, true),
     LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
@@ -27,10 +31,15 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     LEAGUE_ONE("League One", Country.GB, 3, true),
     LEAGUE_TWO("League Two", Country.GB, 4, true),
 
+    LEAGUE_TWO_SCOTLAND("Scottish League Two", Country.SCO, 4, false),
+    SCO_5("Scottish Highland Football League", Country.SCO, 5, false),
+
     BESTADEILD("Besta deild", Country.IS, 1, true),
+    LENGJUDEILD("Lengjudeild", Country.IS, 2, true),
 
     BETRIDEILD("Betri deild", Country.FO, 1, true),
-    FAROE_2("1. deild", Country.FO, 2, false),
+    FAROE_2("1. deild", Country.FO, 2, true),
+    FAROE_3("2. deild", Country.FO, 3, false),
 
     SUPERLIGA("Danish Superliga", Country.DK, 1, true),
     DEN_2("1.Division", Country.DK, 2, false),
@@ -43,6 +52,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     ALLSVENSKAN("Allsvenskan", Country.SE, 1, true),
     SUPERETTAN("Superettan", Country.SE, 2, false),
     ETTAN_NORRA("Ettan Norra", Country.SE, 3, false),
+    ETTAN_SODRA("Ettan Södra", Country.SE, 3, false),
 
     DRUGA("Druga Liga", Country.SLO, 2, false),
 
@@ -51,6 +61,9 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     FINNLIIGA("Finnliiga", Country.FI, 1, true),
 
     YKKONEN("Ykkönen", Country.FI, 2, false),
+
+    SRB_1("Super liga Srbije", Country.SRB, 1, true),
+    SRB_2("Prva liga Srbije", Country.SRB, 2, false),
 
     PROFESIONAL("División Profesional", Country.BO, 1, false),
 
