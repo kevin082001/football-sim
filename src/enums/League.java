@@ -16,6 +16,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     LALIGA("La Liga Santander", Country.ES, 1, true),
     LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
+    SEGUNDA_FEDERACION("Segunda Federación", Country.ES, 4, false),
 
     LIGUE1("Ligue 1", Country.FR, 1, true),
     LIGUE2("Ligue 2", Country.FR, 2, true),
@@ -28,6 +29,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     BESTADEILD("Besta deild", Country.IS, 1, true),
 
     BETRIDEILD("Betri deild", Country.FO, 1, true),
+    FAROE_2("1. deild", Country.FO, 2, false),
 
     SUPERLIGA("Danish Superliga", Country.DK, 1, true),
     DEN_2("1.Division", Country.DK, 2, false),
