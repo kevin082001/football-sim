@@ -7,6 +7,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
     BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
     DRITTE_LIGA("3. Liga", Country.DE, 3, true),
+    GER_4("Regionalliga", Country.DE, 4, true),
 
     BUNDESLIGA_AUT("Österreichische Bundesliga", Country.AT, 1, true),
     AUT_LIGA_2("Zweite Liga", Country.AT, 2, true),

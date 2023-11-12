@@ -9,6 +9,8 @@ public enum Club {
     LEIPZIG("RB Leipzig", League.BUNDESLIGA),
     SCHALKE("Schalke 04", League.BUNDESLIGA),
 
+    VIKTORIA_BERLIN("Viktoria Berlin", League.GER_4),
+
     ANTONIANO("Club Atlético Antoniano", League.SEGUNDA_FEDERACION),
 
     ARGIR("AB Argir", League.BETRIDEILD),
@@ -52,6 +54,7 @@ public enum Club {
     THISTED("Thisted FC", League.DEN_3),
     SKIVE("Skive IK", League.DEN_3),
     HELLERUP("Hellerup IK", League.DEN_3),
+    AKADEMISK("Akademisk BK", League.DEN_3),
 
     JERV("FK Jerv", League.OBOS_LIGAEN),
     SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
@@ -62,6 +65,7 @@ public enum Club {
 
     DEGERFORS("Degerfors IF", League.ALLSVENSKAN),
     AIK("AIK Solna", League.ALLSVENSKAN),
+    VARBERGS("Varbergs BoIS", League.ALLSVENSKAN),
 
     HELSINGBORG("Helsingborgs IF", League.SUPERETTAN),
     OREBRO("Örebro SK", League.SUPERETTAN),
