@@ -79,7 +79,25 @@ public class PlayerHelper {
             new Player(53, "Aleksandur", "Jensen", Country.FO, 62, LocalDate.of(2001, 5, 7), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 37, 37, 63, 81),
             new Player(54, "Aidan", "Liu", Country.US, 61, LocalDate.of(2000, 7, 1), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VEJLE, Club.TOFTIR, Club.VEJLE, Club.INDY_ELEVEN, Club.VEJLE}, 40, 42, 60, 78),
             new Player(55, "Aron", "Hansen", Country.FO, 51, LocalDate.of(2004, 10, 4), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 33, 33, 51, 100),
-            new Player(56, "Hjalti", "Strømsten", Country.FO, 53, LocalDate.of(1997, 1, 21), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VIKINGUR_GOTA}, 49, 46, 52, 34)
+            new Player(56, "Hjalti", "Strømsten", Country.FO, 53, LocalDate.of(1997, 1, 21), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VIKINGUR_GOTA}, 49, 46, 52, 34),
+            new Player(57, "Alex", "Mellemgaard", Country.FO, 51, LocalDate.of(1991, 11, 27), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.ARGIR}, 45, 45, 51, 12),
+            new Player(58, "Ragnar", "Samuelsen", Country.FO, 54, LocalDate.of(1999, 8, 23), Position.CDM, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.STREYMUR, Club.B36}, 42, 46, 53, 73),
+            new Player(59, "Bárdur", "Jensen", Country.FO, 54, LocalDate.of(2001, 5, 7), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 55, 48, 88),
+            new Player(60, "Áki", "Johannesen", Country.FO, 53, LocalDate.of(2002, 11, 11), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 53, 53, 39, 91),
+            new Player(61, "Karstin", "Clementsen", Country.FO, 49, LocalDate.of(2001, 9, 12), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 50, 26, 90),
+            new Player(62, "Esmar", "Clementsen", Country.FO, 50, LocalDate.of(1996, 9, 29), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 50, 50, 32, 30),
+            new Player(63, "Hilmar", "Højgaard", Country.FO, 48, LocalDate.of(2003, 8, 22), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 25, 100),
+            new Player(64, "Eli", "Hansen", Country.FO, 48, LocalDate.of(2005, 10, 17), Position.LM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 50, 33, 100),
+            new Player(65, "Boubacar Sidik", "Dabo", Country.SEN, 55, LocalDate.of(1997, 10, 10), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.ANTONIANO}, 55, 50, 26, 36),
+            new Player(66, "Hanus", "Höjgaard", Country.FO, 55, LocalDate.of(2005, 12, 3), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 53, 30, 100),
+            new Player(67, "Maha", "Samba", Country.GMB, 56, LocalDate.of(1998, 11, 9), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 55, 36, 66),
+            new Player(68, "Gilli", "Samuelsen", Country.FO, 52, LocalDate.of(1999, 2, 12), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VESTUR, Club.B36, Club.VESTUR, Club.B36}, 53, 51, 24, 82),
+            new Player(69, "Sebastian", "Lau", Country.DK, 52, LocalDate.of(1996, 7, 2), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HELLERUP}, 54, 46, 27, 35),
+            new Player(70, "Jörgen", "Nielsen", Country.FO, 51, LocalDate.of(2003, 11, 30), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.NSI, Club.OSTERS}, 52, 50, 35, 95),
+            new Player(71, "Frídi", "Petersen", Country.FO, 51, LocalDate.of(2003, 10, 18), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 51, 32, 95),
+            new Player(72, "Hjarnar", "Johansen", Country.FO, 49, LocalDate.of(2004, 4, 13), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 40, 22, 100),
+            new Player(73, "Bartal Páll", "Klein", Country.FO, 47, LocalDate.of(2006, 12, 15), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 30, 100),
+            new Player(74, "Villiam Emil", "Klein", Country.FO, 48, LocalDate.of(2000, 11, 21), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HOYVIK, Club.HB}, 49, 49, 34, 93),
     };
 
     public static List<Player> getAllPlayers() {
