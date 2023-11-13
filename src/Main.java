@@ -78,8 +78,12 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         int i = 0;
 
         Country startCountry = askStartCountry();
-        List<League> leaguesList = League.BUNDESLIGA.getByCountry(startCountry);
-        //List<League> leaguesList = playableLeagues.keySet().stream().toList();
+        //List<League> leaguesList = League.BUNDESLIGA.getByCountry(startCountry);
+        List<League> leaguesList = playableLeagues.keySet()
+                .stream()
+                .filter(x -> x.getCountry().equals(startCountry))
+                .filter(x -> x.isPlayable())
+                .toList();
 
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("----------------------------------------");
@@ -109,7 +113,8 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         System.out.println("- - - - -  SELECT YOUR COUNTRY  - - - - -");
         System.out.println("-----------------------------------------");
         for (Country c : countryList) {
-            System.out.println("(" + i + ") " + c.getName() + " (" + countriesWithLeagues.get(c).size() + " leagues)");
+            int amountOfPlayableLeagues = countriesWithLeagues.get(c).stream().filter(x->x.isPlayable()).toList().size();
+            System.out.println("(" + (i) + ") " + c.getName() + " (" + amountOfPlayableLeagues + " leagues)");
             i++;
         }
         System.out.print(">> ");
