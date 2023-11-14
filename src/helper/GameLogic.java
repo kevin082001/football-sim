@@ -123,7 +123,7 @@ public class GameLogic {
             table.getPoints().put(away, awayPoints + 3);
         }
 
-        sortTable(league);
+        //sortTable(league); TODO fix sortTable() (NullPointer)
     }
 
     public static LeagueTable getTable() {

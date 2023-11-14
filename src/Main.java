@@ -238,7 +238,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
                     opponentGoals++;
                 }
 
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(200);
             }
 
             //score = updateScore(score, clubToManage, nextMatch, ownGoals);
@@ -249,10 +249,17 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             System.out.println("MATCH END!");
             PrintHelper.printGoalsList(scorers, opponent);
 
+            System.out.println("\n");
             System.out.println(clubToManage.getName() + " ... " + (nextMatch.getHome().equals(clubToManage) ? ownGoals : opponentGoals) +
                     " : " + (nextMatch.getHome().equals(opponent) ? ownGoals : opponentGoals) + " ... " + opponent.getName());
 
             GameLogic.checkForPlayerLevelUp(nextMatch);
+
+            score.setScoreHome(ownGoals);
+            score.setScoreAway(opponentGoals);
+            nextMatch.setScore(score);
+            //score.setScorers(scorers);
+
             //GameLogic.updateTable(matchesThisSeason); Comment-in when match logic is implemented so that all matches in a round get simulated
             GameLogic.updateTable(nextMatch); //TODO fix nullpointer (Cannot invoke "GameObjects.Score.getScoreHome()" because "this.score" is null) in Match.java
             printHomeMenu();

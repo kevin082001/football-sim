@@ -9,7 +9,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
     BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
     DRITTE_LIGA("3. Liga", Country.DE, 3, true),
-    GER_4("Regionalliga", Country.DE, 4, true),
+    GER_4("Regionalliga", Country.DE, 4, false),
 
     BUNDESLIGA_AUT("Österreichische Bundesliga", Country.AT, 1, true),
     AUT_LIGA_2("Zweite Liga", Country.AT, 2, true),
@@ -21,6 +21,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     LALIGA("La Liga Santander", Country.ES, 1, true),
     LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
+    //SPANISH 3rd TIER
     SEGUNDA_FEDERACION("Segunda Federación", Country.ES, 4, false),
 
     LIGUE1("Ligue 1", Country.FR, 1, true),
@@ -34,12 +35,15 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     LEAGUE_TWO_SCOTLAND("Scottish League Two", Country.SCO, 4, false),
     SCO_5("Scottish Highland Football League", Country.SCO, 5, false),
 
+    NED_2("Keuken Kampioen Divisie", Country.NL, 2, true),
+    NED_4("Derde Divisie", Country.NL, 4, false),
+
     BESTADEILD("Besta deild", Country.IS, 1, true),
     LENGJUDEILD("Lengjudeild", Country.IS, 2, true),
 
     BETRIDEILD("Betri deild", Country.FO, 1, true),
-    FAROE_2("1. deild", Country.FO, 2, true),
-    FAROE_3("2. deild", Country.FO, 3, false),
+    FRO_2("1. deild", Country.FO, 2, true),
+    FRO_3("2. deild", Country.FO, 3, false),
 
     SUPERLIGA("Danish Superliga", Country.DK, 1, true),
     DEN_2("1.Division", Country.DK, 2, false),

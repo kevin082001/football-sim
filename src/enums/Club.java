@@ -19,11 +19,15 @@ public enum Club {
 
     ANTONIANO("Club Atlético Antoniano", League.SEGUNDA_FEDERACION),
 
-    BRENO("USD Breno",League.SERIE_D),
+    BRENO("USD Breno", League.SERIE_D),
 
     FORFAR("Forfar Athletic FC", League.LEAGUE_TWO_SCOTLAND),
 
     KEITH("Keith FC", League.SCO_5),
+
+    DEN_BOSCH("FC Den Bosch", League.NED_2),
+
+    HAAKSBERGEN("HSC '21 Haaksbergen", League.NED_4),
 
     ARGIR("AB Argir", League.BETRIDEILD),
     TOFTIR("B68 Toftir", League.BETRIDEILD),
@@ -36,10 +40,11 @@ public enum Club {
     VESTUR("07 Vestur", League.BETRIDEILD),
     TVOROYRI("TB Tvøroyri", League.BETRIDEILD),
 
-    NSI("NSÍ Runavík", League.FAROE_2),
-    HOYVIK("FC Hoyvík", League.FAROE_2),
+    NSI("NSÍ Runavík", League.FRO_2),
+    HOYVIK("FC Hoyvík", League.FRO_2),
+    SKALA("Skála IF", League.FRO_2),
 
-    SUDUROY("FC Suðuroy", League.FAROE_3),
+    SUDUROY("FC Suðuroy", League.FRO_3),
 
     KR_REYKJAVIK("KR Reykjavík", League.BESTADEILD),
     FYLKIR("Fylkir Reykjavík", League.BESTADEILD),
@@ -49,6 +54,7 @@ public enum Club {
     GRINDAVIK("UMF Grindavík", League.LENGJUDEILD),
     LEIKNIR("Leiknir Reykjavík", League.LENGJUDEILD),
     AKRANES("ÍA Akranes", League.LENGJUDEILD),
+    VESTRI("Vestri Ísafjörður", League.LENGJUDEILD),
 
     EKENAS("Ekenäs IF", League.YKKONEN),
 
@@ -87,7 +93,7 @@ public enum Club {
     VIKING("Viking FK", League.ELITESERIEN),
     SARPSBORG("Sarpsborg 08 FF", League.ELITESERIEN),
     STABAEK("Stabæk Fotball", League.ELITESERIEN),
-    SANDEFJORD("Sandefjord Fotball",League.ELITESERIEN),
+    SANDEFJORD("Sandefjord Fotball", League.ELITESERIEN),
 
     JERV("FK Jerv", League.OBOS_LIGAEN),
     SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
@@ -98,7 +104,7 @@ public enum Club {
     LEVANGER("Levanger FK", League.POSTNORD_LIGAEN),
     NOTODDEN("Notodden FK", League.POSTNORD_LIGAEN),
     TRAEFF("SK Træff", League.POSTNORD_LIGAEN),
-    STROMMEN("Strømmen IF",League.POSTNORD_LIGAEN),
+    STROMMEN("Strømmen IF", League.POSTNORD_LIGAEN),
 
     DEGERFORS("Degerfors IF", League.ALLSVENSKAN),
     AIK("AIK Solna", League.ALLSVENSKAN),
