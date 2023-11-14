@@ -98,61 +98,99 @@ public class PlayerHelper {
             new Player(74, "Jóhan", "Josephsen", Country.FO, 54, LocalDate.of(2005, 9, 9), Position.ST, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK}, 56, 50, 30, 100),
 
             new Player(75, "Jóannes", "Davidsen", Country.FO, 52, LocalDate.of(2002, 9, 19), Position.GK, Club.STREYMUR, new Club[]{Club.STREYMUR}, 15, 15, 53, 86),
-            new Player(76, "Fayo", "Kruse", Country.FO, 51, LocalDate.of(2004, 4, 16), Position.GK, Club.STREYMUR, new Club[]{Club.STREYMUR}, 14, 14, 52, 100),
+            new Player(76, "Steven", "van Dijk", Country.NL, 52, LocalDate.of(1997, 9, 1), Position.GK, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.VESTUR, Club.STREYMUR, Club.VESTUR, Club.VESTRI, Club.HAAKSBERGEN, Club.DEN_BOSCH}, 16, 16, 52, 35),
+            new Player(77, "Fayo", "Kruse", Country.FO, 51, LocalDate.of(2004, 4, 16), Position.GK, Club.STREYMUR, new Club[]{Club.STREYMUR}, 14, 14, 52, 95),
+            new Player(78, "Mikkjal", "Hellisá", Country.FO, 54, LocalDate.of(2002, 2, 18), Position.CB, Club.STREYMUR, new Club[]{Club.STREYMUR}, 33, 36, 53, 90),
+            new Player(79, "Andras", "Olsen", Country.FO, 54, LocalDate.of(1995, 10, 24), Position.CB, Club.STREYMUR, new Club[]{Club.STREYMUR}, 32, 32, 54, 30),
+            new Player(80, "Markus", "Hellisdal", Country.FO, 53, LocalDate.of(2002, 10, 11), Position.CB, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.B36}, 28, 30, 54, 90),
+            new Player(81, "Árni Grunnveit", "Olsen", Country.FO, 49, LocalDate.of(1993, 9, 13), Position.CB, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.ARGIR, Club.STREYMUR}, 25, 25, 49, 8),
+            new Player(82, "Filip", "Johansen", Country.FO, 49, LocalDate.of(2003, 7, 21), Position.CB, Club.STREYMUR, new Club[]{Club.STREYMUR}, 29, 30, 49, 95),
+            new Player(83, "Virgar", "Jónsson", Country.FO, 54, LocalDate.of(2006, 6, 13), Position.LB, Club.STREYMUR, new Club[]{Club.STREYMUR}, 47, 46, 52, 100),
+            new Player(84, "Ólavur", "Niclasen", Country.FO, 50, LocalDate.of(1998, 7, 7), Position.LB, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.FUGLAFJORDUR, Club.KLAKSVIK}, 46, 46, 49, 50),
+            new Player(85, "Bergur", "Poulsen", Country.FO, 53, LocalDate.of(2003, 3, 5), Position.RB, Club.STREYMUR, new Club[]{Club.STREYMUR}, 50, 52, 52, 95),
+            new Player(86, "Dánjal", "Godtfred", Country.FO, 55, LocalDate.of(1996, 3, 7), Position.CDM, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.TVOROYRI, Club.SUDUROY}, 47, 45, 54, 30),
+            new Player(87, "Elias", "El Moustage", Country.FO, 53, LocalDate.of(2001, 5, 30), Position.CDM, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.THISTED}, 49, 51, 52, 93),
+            new Player(88, "Bogi", "Reinert-Petersen", Country.FO, 52, LocalDate.of(1993, 2, 20), Position.CDM, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.FUGLAFJORDUR, Club.VIKINGUR_GOTA, Club.FUGLAFJORDUR, Club.KOLDING, Club.FUGLAFJORDUR, Club.HB}, 42, 44, 51, 10),
+            new Player(89, "Rógvi", "Egilstoft", Country.FO, 55, LocalDate.of(1992, 12, 7), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.NSI, Club.STREYMUR, Club.SKALA, Club.STREYMUR, Club.VESTUR}, 52, 56, 49, 8),
+            new Player(90, "Tóki", "Johannesen", Country.FO, 52, LocalDate.of(1997, 3, 17), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 51, 53, 45, 35),
+            new Player(91, "Jákup", "Hummeland", Country.FO, 52, LocalDate.of(2003, 12, 10), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 44, 50, 49, 96),
+            new Player(92, "Niels Pauli", "Danielsen", Country.FO, 50, LocalDate.of(1989, 1, 18), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.SKALA, Club.FUGLAFJORDUR, Club.KLAKSVIK, Club.STREYMUR, Club.KLAKSVIK}, 45, 50, 42, 5),
+            new Player(93, "Sverri", "Mariusarson", Country.FO, 49, LocalDate.of(2004, 8, 2), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 49, 47, 45, 100),
+            new Player(94, "Gutti", "Jóhansson", Country.FO, 50, LocalDate.of(2004, 8, 18), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 47, 48, 48, 100),
+            new Player(95, "Arnar", "Dam", Country.FO, 49, LocalDate.of(1991, 10, 18), Position.CM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 48, 48, 48, 6),
+            new Player(96, "Hans Pauli", "á Bø", Country.FO, 52, LocalDate.of(2005, 10, 29), Position.LM, Club.STREYMUR, new Club[]{Club.STREYMUR}, 52, 50, 35, 100),
+            new Player(97, "Niklas", "Kruse", Country.FO, 49, LocalDate.of(1999, 5, 11), Position.RW, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.HB, Club.STREYMUR}, 50, 50, 28, 85),
+            new Player(98, "Filip", "Djordjevic", Country.FO, 55, LocalDate.of(1994, 3, 7), Position.CF, Club.STREYMUR, new Club[]{Club.STREYMUR, Club.TVOROYRI, Club.FUGLAFJORDUR, Club.VIKINGUR_GOTA, Club.KLAKSVIK}, 54, 55, 33, 16),
+            new Player(99, "Gutti", "Dahl-Olsen", Country.FO, 54, LocalDate.of(2002, 1, 19), Position.ST, Club.STREYMUR, new Club[]{Club.STREYMUR}, 55, 50, 28, 95),
+            new Player(100, "Rani", "Hansen", Country.FO, 51, LocalDate.of(2000, 11, 27), Position.ST, Club.STREYMUR, new Club[]{Club.STREYMUR}, 53, 45, 32, 92),
 
-            new Player(77, "Benjamin", "Schubert", Country.DK, 54, LocalDate.of(1996, 9, 22), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.SONDERJYSKE, Club.KOLDING}, 21, 20, 54, 28),
-            new Player(78, "Tórdur", "Thomsen", Country.FO, 54, LocalDate.of(1986, 6, 11), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.FUGLAFJORDUR, Club.TOFTIR, Club.HB, Club.ARGIR, Club.TOFTIR, Club.FUGLAFJORDUR}, 19, 19, 55, 6),
-            new Player(79, "Svend", "Danielsen", Country.FO, 49, LocalDate.of(2005, 10, 24), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR}, 20, 20, 50, 100),
-            new Player(80, "Aleksandur", "Jensen", Country.FO, 62, LocalDate.of(2001, 5, 7), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 37, 37, 63, 81),
-            new Player(81, "Aron", "Hansen", Country.FO, 51, LocalDate.of(2004, 10, 4), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 33, 33, 51, 100),
-            new Player(82, "Ari", "Johannesen", Country.FO, 52, LocalDate.of(1996, 6, 7), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 47, 47, 52, 35),
-            new Player(83, "Hjalti", "Strømsten", Country.FO, 53, LocalDate.of(1997, 1, 21), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VIKINGUR_GOTA}, 49, 46, 52, 34),
-            new Player(84, "Alex", "Mellemgaard", Country.FO, 51, LocalDate.of(1991, 11, 27), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.ARGIR}, 45, 45, 51, 12),
-            new Player(85, "Ragnar", "Samuelsen", Country.FO, 54, LocalDate.of(1999, 8, 23), Position.CDM, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.STREYMUR, Club.B36}, 42, 46, 53, 73),
-            new Player(86, "Bárdur", "Jensen", Country.FO, 54, LocalDate.of(2001, 5, 7), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 55, 48, 88),
-            new Player(87, "Áki", "Johannesen", Country.FO, 53, LocalDate.of(2002, 11, 11), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 53, 53, 39, 91),
-            new Player(88, "Karstin", "Clementsen", Country.FO, 49, LocalDate.of(2001, 9, 12), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 50, 26, 90),
-            new Player(89, "Esmar", "Clementsen", Country.FO, 50, LocalDate.of(1996, 9, 29), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 50, 50, 32, 30),
-            new Player(90, "Hilmar", "Højgaard", Country.FO, 48, LocalDate.of(2003, 8, 22), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 25, 100),
-            new Player(91, "Eli", "Hansen", Country.FO, 48, LocalDate.of(2005, 10, 17), Position.LM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 50, 33, 100),
-            new Player(92, "Boubacar Sidik", "Dabo", Country.SEN, 55, LocalDate.of(1997, 10, 10), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.ANTONIANO}, 55, 50, 26, 36),
-            new Player(93, "Hanus", "Höjgaard", Country.FO, 55, LocalDate.of(2005, 12, 3), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 53, 30, 100),
-            new Player(94, "Maha", "Samba", Country.GMB, 56, LocalDate.of(1998, 11, 9), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 55, 36, 66),
-            new Player(95, "Gilli", "Samuelsen", Country.FO, 52, LocalDate.of(1999, 2, 12), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VESTUR, Club.B36, Club.VESTUR, Club.B36}, 53, 51, 24, 82),
-            new Player(96, "Sebastian", "Lau", Country.DK, 52, LocalDate.of(1996, 7, 2), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HELLERUP}, 54, 46, 27, 35),
-            new Player(97, "Jörgen", "Nielsen", Country.FO, 51, LocalDate.of(2003, 11, 30), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.NSI, Club.OSTERS}, 52, 50, 35, 95),
-            new Player(98, "Frídi", "Petersen", Country.FO, 51, LocalDate.of(2003, 10, 18), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 51, 32, 95),
-            new Player(99, "Hjarnar", "Johansen", Country.FO, 49, LocalDate.of(2004, 4, 13), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 40, 22, 100),
-            new Player(100, "Bartal Páll", "Klein", Country.FO, 47, LocalDate.of(2006, 12, 15), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 30, 100),
-            new Player(101, "Villiam Emil", "Klein", Country.FO, 48, LocalDate.of(2000, 11, 21), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HOYVIK, Club.HB}, 49, 49, 34, 93),
+            new Player(101, "Benjamin", "Schubert", Country.DK, 54, LocalDate.of(1996, 9, 22), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.SONDERJYSKE, Club.KOLDING}, 21, 20, 54, 28),
+            new Player(102, "Tórdur", "Thomsen", Country.FO, 54, LocalDate.of(1986, 6, 11), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.FUGLAFJORDUR, Club.TOFTIR, Club.HB, Club.ARGIR, Club.TOFTIR, Club.FUGLAFJORDUR}, 19, 19, 55, 6),
+            new Player(103, "Svend", "Danielsen", Country.FO, 49, LocalDate.of(2005, 10, 24), Position.GK, Club.TOFTIR, new Club[]{Club.TOFTIR}, 20, 20, 50, 100),
+            new Player(104, "Aleksandur", "Jensen", Country.FO, 62, LocalDate.of(2001, 5, 7), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 37, 37, 63, 81),
+            new Player(105, "Aron", "Hansen", Country.FO, 51, LocalDate.of(2004, 10, 4), Position.CB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 33, 33, 51, 100),
+            new Player(106, "Ari", "Johannesen", Country.FO, 52, LocalDate.of(1996, 6, 7), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR}, 47, 47, 52, 35),
+            new Player(107, "Hjalti", "Strømsten", Country.FO, 53, LocalDate.of(1997, 1, 21), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VIKINGUR_GOTA}, 49, 46, 52, 34),
+            new Player(108, "Alex", "Mellemgaard", Country.FO, 51, LocalDate.of(1991, 11, 27), Position.LB, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.ARGIR}, 45, 45, 51, 12),
+            new Player(109, "Ragnar", "Samuelsen", Country.FO, 54, LocalDate.of(1999, 8, 23), Position.CDM, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.B36, Club.STREYMUR, Club.B36}, 42, 46, 53, 73),
+            new Player(110, "Bárdur", "Jensen", Country.FO, 54, LocalDate.of(2001, 5, 7), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 55, 48, 88),
+            new Player(111, "Áki", "Johannesen", Country.FO, 53, LocalDate.of(2002, 11, 11), Position.CM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 53, 53, 39, 91),
+            new Player(112, "Karstin", "Clementsen", Country.FO, 49, LocalDate.of(2001, 9, 12), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 50, 26, 90),
+            new Player(113, "Esmar", "Clementsen", Country.FO, 50, LocalDate.of(1996, 9, 29), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 50, 50, 32, 30),
+            new Player(114, "Hilmar", "Højgaard", Country.FO, 48, LocalDate.of(2003, 8, 22), Position.RM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 25, 100),
+            new Player(115, "Eli", "Hansen", Country.FO, 48, LocalDate.of(2005, 10, 17), Position.LM, Club.TOFTIR, new Club[]{Club.TOFTIR}, 48, 50, 33, 100),
+            new Player(116, "Boubacar Sidik", "Dabo", Country.SEN, 55, LocalDate.of(1997, 10, 10), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.ANTONIANO}, 55, 50, 26, 36),
+            new Player(117, "Hanus", "Höjgaard", Country.FO, 55, LocalDate.of(2005, 12, 3), Position.LW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 53, 30, 100),
+            new Player(118, "Maha", "Samba", Country.GMB, 56, LocalDate.of(1998, 11, 9), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR}, 55, 55, 36, 66),
+            new Player(119, "Gilli", "Samuelsen", Country.FO, 52, LocalDate.of(1999, 2, 12), Position.RW, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.VESTUR, Club.B36, Club.VESTUR, Club.B36}, 53, 51, 24, 82),
+            new Player(120, "Sebastian", "Lau", Country.DK, 52, LocalDate.of(1996, 7, 2), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HELLERUP}, 54, 46, 27, 35),
+            new Player(121, "Jörgen", "Nielsen", Country.FO, 51, LocalDate.of(2003, 11, 30), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.NSI, Club.OSTERS}, 52, 50, 35, 95),
+            new Player(122, "Frídi", "Petersen", Country.FO, 51, LocalDate.of(2003, 10, 18), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 51, 32, 95),
+            new Player(123, "Hjarnar", "Johansen", Country.FO, 49, LocalDate.of(2004, 4, 13), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 52, 40, 22, 100),
+            new Player(124, "Bartal Páll", "Klein", Country.FO, 47, LocalDate.of(2006, 12, 15), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR}, 49, 49, 30, 100),
+            new Player(125, "Villiam Emil", "Klein", Country.FO, 48, LocalDate.of(2000, 11, 21), Position.ST, Club.TOFTIR, new Club[]{Club.TOFTIR, Club.HOYVIK, Club.HB}, 49, 49, 34, 93),
+
+            new Player(126, "Mattias", "Lamhauge", Country.FO, 61, LocalDate.of(1999, 8, 2), Position.GK, Club.B36, new Club[]{Club.B36, Club.HB, Club.ARGIR, Club.HB, Club.ARGIR, Club.HB}, 25, 25, 63, 77),
+            new Player(127, "Silas", "Eydsteinsson", Country.FO, 52, LocalDate.of(1998, 2, 13), Position.GK, Club.B36, new Club[]{Club.B36, Club.STREYMUR, Club.B36, Club.TVOROYRI, Club.B36, Club.TVOROYRI, Club.B36, Club.VESTUR, Club.ARGIR, Club.HB, Club.VESTUR}, 18, 18, 52, 70),
+            new Player(128, "Hans", "Jørgensen", Country.FO, 49, LocalDate.of(1990, 8, 13), Position.GK, Club.B36, new Club[]{Club.B36, Club.TOFTIR, Club.ARGIR, Club.HB, Club.STREYMUR, Club.HB, Club.TOFTIR, Club.VESTUR, Club.AMAGER, Club.SKALA}, 16, 16, 49, 5),
+
+            new Player(129, "Bárdur", "á Reynatrød", Country.FO, 62, LocalDate.of(2000, 1, 8), Position.GK, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA, Club.SKALA, Club.VIKINGUR_GOTA}, 22, 22, 63, 90),
+            new Player(130, "Hans Jákup", "Arngrímsson", Country.FO, 53, LocalDate.of(2004, 3, 29), Position.GK, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA}, 17, 17, 53, 96),
+
+            new Player(131, "Ari", "Petersen", Country.FO, 60, LocalDate.of(2002, 12, 7), Position.GK, Club.VESTUR, new Club[]{Club.VESTUR}, 24, 24, 60, 95),
+            new Player(132, "Sámal", "á Steig", Country.FO, 49, LocalDate.of(2006, 12, 2), Position.GK, Club.VESTUR, new Club[]{Club.VESTUR}, 14, 14, 50, 100),
+
+            new Player(133, "Tóri", "Tradará", Country.FO, 52, LocalDate.of(1996, 7, 16), Position.GK, Club.FUGLAFJORDUR, new Club[]{Club.FUGLAFJORDUR, Club.SKALA, Club.FUGLAFJORDUR}, 21, 22, 53, 30),
+
+            new Player(134, "Anders", "Hoff", Country.DK, 54, LocalDate.of(2003, 9, 4), Position.GK, Club.TVOROYRI, new Club[]{Club.TVOROYRI, Club.HORSENS, Club.MIDDELFART}, 23, 22, 55, 95),
 
             //-------------------------------------------------------
             //----------      2. Division (Denmark 3)      ----------
             //-------------------------------------------------------
-            new Player(102, "Hørður", "Askham", Country.FO, 59, LocalDate.of(1994, 9, 22), Position.CB, Club.AKADEMISK, new Club[]{Club.AKADEMISK, Club.HB, Club.KLAKSVIK, Club.B36, Club.VESTUR, Club.B36}, 32, 34, 59, 36),
+            new Player(135, "Hørður", "Askham", Country.FO, 59, LocalDate.of(1994, 9, 22), Position.CB, Club.AKADEMISK, new Club[]{Club.AKADEMISK, Club.HB, Club.KLAKSVIK, Club.B36, Club.VESTUR, Club.B36}, 32, 34, 59, 36),
 
-            new Player(103, "Daniel", "Johansen", Country.FO, 62, LocalDate.of(1998, 7, 9), Position.LB, Club.THISTED, new Club[]{Club.THISTED, Club.HB, Club.FREDERICIA, Club.HB}, 59, 60, 61, 50),
+            new Player(136, "Daniel", "Johansen", Country.FO, 62, LocalDate.of(1998, 7, 9), Position.LB, Club.THISTED, new Club[]{Club.THISTED, Club.HB, Club.FREDERICIA, Club.HB}, 59, 60, 61, 50),
 
             //-------------------------------------------------------
             //----------      Allsvenskan (Sweden 1)       ----------
             //-------------------------------------------------------
-            new Player(104, "Mads", "Borchers", Country.DK, 62, LocalDate.of(2002, 6, 18), Position.ST, Club.VARBERGS, new Club[]{Club.VARBERGS, Club.HB, Club.ESBJERG, Club.VESTUR, Club.ESBJERG}, 64, 58, 35, 95),
+            new Player(137, "Mads", "Borchers", Country.DK, 62, LocalDate.of(2002, 6, 18), Position.ST, Club.VARBERGS, new Club[]{Club.VARBERGS, Club.HB, Club.ESBJERG, Club.VESTUR, Club.ESBJERG}, 64, 58, 35, 95),
 
             //-------------------------------------------------------
             //----------       Ykkönen (Finland 2)         ----------
             //-------------------------------------------------------
-            new Player(105, "Jakob", "Gottberg", Country.FI, 53, LocalDate.of(2002, 7, 20), Position.LW, Club.EKENAS, new Club[]{Club.EKENAS, Club.ARGIR, Club.EKENAS}, 54, 53, 26, 93),
+            new Player(138, "Jakob", "Gottberg", Country.FI, 53, LocalDate.of(2002, 7, 20), Position.LW, Club.EKENAS, new Club[]{Club.EKENAS, Club.ARGIR, Club.EKENAS}, 54, 53, 26, 93),
 
             //-------------------------------------------------------
             //----------     Regionalliga (Germany 4)      ----------
             //-------------------------------------------------------
-            new Player(106, "Aidan", "Liu", Country.US, 61, LocalDate.of(2000, 7, 1), Position.CB, Club.VIKTORIA_BERLIN, new Club[]{Club.VIKTORIA_BERLIN, Club.TOFTIR, Club.VEJLE, Club.TOFTIR, Club.VEJLE, Club.INDY_ELEVEN, Club.VEJLE}, 40, 42, 60, 78),
+            new Player(139, "Aidan", "Liu", Country.US, 61, LocalDate.of(2000, 7, 1), Position.CB, Club.VIKTORIA_BERLIN, new Club[]{Club.VIKTORIA_BERLIN, Club.TOFTIR, Club.VEJLE, Club.TOFTIR, Club.VEJLE, Club.INDY_ELEVEN, Club.VEJLE}, 40, 42, 60, 78),
 
 
             //-------------------------------------------------------
             //----------          VEREINSLOS               ----------
             //-------------------------------------------------------
-            new Player(107, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, Club.VEREINSLOS, new Club[]{Club.VEREINSLOS, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
+            new Player(140, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, Club.VEREINSLOS, new Club[]{Club.VEREINSLOS, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
     };
 
     public static List<Player> getAllPlayers() {
