@@ -35,27 +35,40 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     LEAGUE_TWO_SCOTLAND("Scottish League Two", Country.SCO, 4, false),
     SCO_5("Scottish Highland Football League", Country.SCO, 5, false),
 
+    IRL_1("League Of Ireland Premier Division", Country.IE, 1, true),
+
     NED_2("Keuken Kampioen Divisie", Country.NL, 2, true),
+
     NED_4("Derde Divisie", Country.NL, 4, false),
 
     BESTADEILD("Besta deild", Country.IS, 1, true),
+
     LENGJUDEILD("Lengjudeild", Country.IS, 2, true),
 
     BETRIDEILD("Betri deild", Country.FO, 1, true),
+
     FRO_2("1. deild", Country.FO, 2, true),
+
     FRO_3("2. deild", Country.FO, 3, false),
 
     SUPERLIGA("Danish Superliga", Country.DK, 1, true),
+
     DEN_2("1.Division", Country.DK, 2, false),
+
     DEN_3("2.Division", Country.DK, 3, false),
 
     ELITESERIEN("Eliteserien", Country.NO, 1, true),
+
     OBOS_LIGAEN("OBOS-ligaen", Country.NO, 2, false),
+
     POSTNORD_LIGAEN("PostNord-ligaen", Country.NO, 3, false),
 
     ALLSVENSKAN("Allsvenskan", Country.SE, 1, true),
+
     SUPERETTAN("Superettan", Country.SE, 2, false),
+
     ETTAN_NORRA("Ettan Norra", Country.SE, 3, false),
+
     ETTAN_SODRA("Ettan Södra", Country.SE, 3, false),
 
     DRUGA("Druga Liga", Country.SLO, 2, false),
@@ -67,6 +80,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     YKKONEN("Ykkönen", Country.FI, 2, false),
 
     SRB_1("Super liga Srbije", Country.SRB, 1, true),
+
     SRB_2("Prva liga Srbije", Country.SRB, 2, false),
 
     PROFESIONAL("División Profesional", Country.BO, 1, false),
@@ -76,6 +90,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
     MEISTRILIIGA("Meistriliiga", Country.EE, 1, true),
 
     MLS("Major League Soccer", Country.US, 1, true),
+
     USL("USL Championship", Country.US, 2, false);
 
     private final String name;

@@ -25,6 +25,8 @@ public enum Club {
 
     KEITH("Keith FC", League.SCO_5),
 
+    DUNDALK("Dundalk FC", League.IRL_1),
+
     DEN_BOSCH("FC Den Bosch", League.NED_2),
 
     HAAKSBERGEN("HSC '21 Haaksbergen", League.NED_4),
@@ -45,6 +47,7 @@ public enum Club {
     SKALA("Skála IF", League.FRO_2),
 
     SUDUROY("FC Suðuroy", League.FRO_3),
+    MIDVAGUR("MB Midvágur", League.FRO_3),
 
     KR_REYKJAVIK("KR Reykjavík", League.BESTADEILD),
     FYLKIR("Fylkir Reykjavík", League.BESTADEILD),
@@ -94,6 +97,7 @@ public enum Club {
     SARPSBORG("Sarpsborg 08 FF", League.ELITESERIEN),
     STABAEK("Stabæk Fotball", League.ELITESERIEN),
     SANDEFJORD("Sandefjord Fotball", League.ELITESERIEN),
+    AALESUND("Aalesunds FK", League.ELITESERIEN),
 
     JERV("FK Jerv", League.OBOS_LIGAEN),
     SANDNES("Sandnes Ulf", League.OBOS_LIGAEN),
@@ -114,9 +118,11 @@ public enum Club {
     OREBRO("Örebro SK", League.SUPERETTAN),
     ESKILSTUNA("AFC Eskilstuna", League.SUPERETTAN),
     OSTERS("Östers IF", League.SUPERETTAN),
+    TRELLEBORGS("Trelleborgs FF", League.SUPERETTAN),
 
     DALKURD("Dalkurd FF", League.ETTAN_NORRA),
     LJUNGSKILE("Ljungskile SK", League.ETTAN_SODRA),
+    BK_OLYMPIC("BK Olympic", League.ETTAN_SODRA),
 
     FUZINAR("NK Fuzinar", League.DRUGA),
 
