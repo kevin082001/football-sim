@@ -124,6 +124,7 @@ public class GameLogic {
         }
 
         //sortTable(league); TODO fix sortTable() (NullPointer)
+        //TODO find a way to get the matches for each round and simulate them (Main.startNextMatch())
     }
 
     public static LeagueTable getTable() {
