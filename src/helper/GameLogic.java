@@ -66,6 +66,31 @@ public class GameLogic {
         return shuffleMatches(result);
     }
 
+    public static List<Match> getMatchesForRound(int round, Club club, List<Match> matchesThisSeason) {
+        List<Match> matchesThisRound = new ArrayList<>();
+        List<Club> clubsInLeague = ClubHelper.getClubsForLeague(club.getLeague());
+        int amountOfMatches = (clubsInLeague.size() - round) * 2;
+        int startIndex = getStartIndex(round, club);
+
+        for (int i = startIndex; i < (startIndex + amountOfMatches); i++) {
+            matchesThisRound.add(new Match(matchesThisSeason.get(i).getHome(), matchesThisSeason.get(i).getAway(), null));
+        }
+
+        return matchesThisRound;
+    }
+
+    private static int getStartIndex(int round, Club club) {
+        int leagueSize = ClubHelper.getClubsForLeague(club.getLeague()).size();
+
+        int alreadyPlayed = 0;
+
+        while (round-- >= 0) {
+            alreadyPlayed += (leagueSize - round) * 2;
+        }
+
+        return alreadyPlayed;
+    }
+
     public static Match getNextMatch(Club club, List<Match> matchesThisSeason) {
         for (Match m : matchesThisSeason) {
             if (m.getScore() != null) {
@@ -87,8 +112,7 @@ public class GameLogic {
         }
     }
 
-    //Comment-in when Match logic is implemented for all matches in this round
-    /*public static void updateTable(List<Match> round) {
+    public static void updateTable(List<Match> round) {
         League league = round.get(0).getHome().getLeague();
         for (Match m : round) {
             Club home = m.getHome();
@@ -105,26 +129,6 @@ public class GameLogic {
             }
         }
         sortTable(league);
-    }*/
-
-    public static void updateTable(Match match) {
-        League league = match.getHome().getLeague();
-
-        Club home = match.getHome();
-        Club away = match.getAway();
-        Integer homePoints = table.getPoints().get(home);
-        Integer awayPoints = table.getPoints().get(away);
-        if (match.getWinner() == null) {
-            table.getPoints().put(home, homePoints + 1);
-            table.getPoints().put(away, awayPoints + 1);
-        } else if (match.getWinner().equals(home)) {
-            table.getPoints().put(home, homePoints + 3);
-        } else if (match.getWinner().equals(away)) {
-            table.getPoints().put(away, awayPoints + 3);
-        }
-
-        //sortTable(league); TODO fix sortTable() (NullPointer)
-        //TODO find a way to get the matches for each round and simulate them (Main.startNextMatch())
     }
 
     public static LeagueTable getTable() {
@@ -143,7 +147,8 @@ public class GameLogic {
     }
 
     private static void sortTable(League league) { //TODO not sure if this method works as intended
-        LeagueTable sorted = new LeagueTable(league, null);
+        //LeagueTable sorted = new LeagueTable(league, table.getPoints());
+        LeagueTable sorted = new LeagueTable(league, new HashMap<>());
         LeagueTable tmp = sorted;
         Integer highest = 0;
 

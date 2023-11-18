@@ -23,6 +23,9 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
     private int money = 500000;
 
     private List<Match> matchesThisSeason = new ArrayList<>();
+    private List<Match> matchesThisRound = new ArrayList<>();
+
+    private int currentRound = 0;
 
     private List<JobOffer> jobOffers = new ArrayList<>();
 
@@ -31,12 +34,9 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         main.run();
     }
 
-    private void run() throws InterruptedException {
-        //TimeUnit.SECONDS.sleep(5);
-
-        //int newOrLoad = askNewGameOrLoad();
+    private void run() {
         int newOrLoad = PrintHelper.askNewGameOrLoad(sc);
-        //if (clubToManage == null) {
+
         if (newOrLoad == 1) {
             askStartClub();
             GameLogic.initSquad(clubToManage);
@@ -113,7 +113,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         System.out.println("- - - - -  SELECT YOUR COUNTRY  - - - - -");
         System.out.println("-----------------------------------------");
         for (Country c : countryList) {
-            int amountOfPlayableLeagues = countriesWithLeagues.get(c).stream().filter(x->x.isPlayable()).toList().size();
+            int amountOfPlayableLeagues = countriesWithLeagues.get(c).stream().filter(x -> x.isPlayable()).toList().size();
             System.out.println("(" + (i) + ") " + c.getName() + " (" + amountOfPlayableLeagues + " leagues)");
             i++;
         }
@@ -201,6 +201,9 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
     }
 
     private void startNextMatch() {
+        matchesThisRound = GameLogic.getMatchesForRound(currentRound, clubToManage, matchesThisSeason);
+        currentRound++;
+
         Match nextMatch = GameLogic.getNextMatch(clubToManage, matchesThisSeason);
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
@@ -260,12 +263,68 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             nextMatch.setScore(score);
             //score.setScorers(scorers);
 
-            //GameLogic.updateTable(matchesThisSeason); Comment-in when match logic is implemented so that all matches in a round get simulated
-            GameLogic.updateTable(nextMatch); //TODO fix nullpointer (Cannot invoke "GameObjects.Score.getScoreHome()" because "this.score" is null) in Match.java
+
+            simulateMatches(currentRound);
+            GameLogic.updateTable(matchesThisRound);
+            //GameLogic.updateTable(nextMatch);
             printHomeMenu();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void simulateMatches(int round) {
+        //TODO maybe rework algorithm so that in every round, there is the same amount of matches
+
+        List<Club> clubsInLeague = ClubHelper.getClubsForLeague(clubToManage.getLeague());
+        int matchesInRound = (clubsInLeague.size() - round) * 2;
+
+        for (int i = 0; i < matchesInRound; i++) {
+            simulateMatch(matchesThisSeason.get(i));
+        }
+    }
+
+    private void simulateMatch(Match match) {
+        Club home = match.getHome();
+
+        double[] goalChances = GameLogic.calcGoalChances(home, getOpponent(match));
+        double ownChance = (goalChances[0] / 20);
+        double opponentChance = ownChance + (goalChances[1] / 20);
+
+        Score score = new Score(0, 0, new HashMap<>());
+        Map<Player, List<Integer>> scorers = new HashMap<>();
+        Club opponent = getOpponent(match);
+
+        int ownGoals = 0;
+        int opponentGoals = 0;
+
+        for (int minute = 1; minute <= 90; minute++) {
+            double randomNumber = rand.nextDouble(100);
+
+            if (randomNumber <= ownChance) { //DONT FORGET: logic has to be the same for OWN and OPPONENT
+                Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(home));
+                scorer.setGoals(scorer.getGoals() + 1);
+                scorers = updateScorers(scorers, scorer, minute);
+                score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
+                ownGoals++;
+            } else if (randomNumber <= opponentChance) {
+                Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(opponent));
+                scorer.setGoals(scorer.getGoals() + 1);
+                scorers = updateScorers(scorers, scorer, minute);
+                score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
+                opponentGoals++;
+            }
+        }
+
+        //score = updateScore(score, clubToManage, nextMatch, ownGoals);
+        //score = updateScore(score, opponent, nextMatch, opponentGoals);
+
+        GameLogic.checkForPlayerLevelUp(match);
+
+        score.setScoreHome(ownGoals);
+        score.setScoreAway(opponentGoals);
+        match.setScore(score);
+        //score.setScorers(scorers);
     }
 
     private void printTable() {
