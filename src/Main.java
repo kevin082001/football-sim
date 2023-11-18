@@ -29,7 +29,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
 
     private List<JobOffer> jobOffers = new ArrayList<>();
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Main main = new Main();
         main.run();
     }

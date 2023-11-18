@@ -113,6 +113,9 @@ public class GameLogic {
     }
 
     public static void updateTable(List<Match> round) {
+        //TODO There's a bug in the points calculation (a team can get more than 3 points after a round)
+        // (maybe also has to do with how matches for a round get generated)
+
         League league = round.get(0).getHome().getLeague();
         for (Match m : round) {
             Club home = m.getHome();
