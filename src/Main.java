@@ -10,17 +10,21 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Main { //TODO implement: transfer market, international cups (UEL, UCL, ...), more countries and leagues, WC and EC
+
+    //TODO ----------------------------------------------------
+    // ---- Clean up code
+    // ---- extract duplicate code into methods
+    // ---- split code into BE and FE
+    // --------------------------------------------------------
+
+
     private Scanner sc = new Scanner(System.in);
     private final Random rand = new Random(System.nanoTime());
 
-    private Map<Country, List<League>> countriesWithLeagues = LeagueHelper.initCountriesThatHaveLeagues();
-
-    //private Map<League, List<Club>> leagues = LeagueHelper.initLeagues();
-    private Map<League, List<Club>> playableLeagues = LeagueHelper.initPlayableLeagues();
-    private Map<Club, List<Player>> clubs = ClubHelper.initClubs();
-
+    private Map<Country, List<League>> countriesWithLeagues;
+    private Map<League, List<Club>> playableLeagues;
     private Club clubToManage;
-    private int money = 500000;
+    private int money;
 
     private List<Match> matchesThisSeason = new ArrayList<>();
     private List<Match> matchesThisRound = new ArrayList<>();
@@ -31,6 +35,7 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
 
     public static void main(String[] args) {
         Main main = new Main();
+        main.initGameData();
         main.run();
     }
 
@@ -244,10 +249,6 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
                 TimeUnit.MILLISECONDS.sleep(200);
             }
 
-            //score = updateScore(score, clubToManage, nextMatch, ownGoals);
-            //score = updateScore(score, opponent, nextMatch, opponentGoals);
-
-
             //TODO print end menu (score, best scorers,...), save result, check for player level-up
             System.out.println("MATCH END!");
             PrintHelper.printGoalsList(scorers, opponent);
@@ -302,12 +303,15 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
             double randomNumber = rand.nextDouble(100);
 
             if (randomNumber <= ownChance) { //DONT FORGET: logic has to be the same for OWN and OPPONENT
+                updateMatchScore(home);
+
                 Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(home));
                 scorer.setGoals(scorer.getGoals() + 1);
-                scorers = updateScorers(scorers, scorer, minute);
+                scorers = updateScorers(scorers, scorer, minute); //TODO move method updateScorers() to GameLogic
                 score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
                 ownGoals++;
             } else if (randomNumber <= opponentChance) {
+                updateMatchScore(opponent);
                 Player scorer = GameLogic.getScorer(PlayerHelper.getPlayersForClub(opponent));
                 scorer.setGoals(scorer.getGoals() + 1);
                 scorers = updateScorers(scorers, scorer, minute);
@@ -315,9 +319,6 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
                 opponentGoals++;
             }
         }
-
-        //score = updateScore(score, clubToManage, nextMatch, ownGoals);
-        //score = updateScore(score, opponent, nextMatch, opponentGoals);
 
         GameLogic.checkForPlayerLevelUp(match);
 
@@ -433,5 +434,11 @@ public class Main { //TODO implement: transfer market, international cups (UEL, 
         scorers.get(scorer).add(minute);
 
         return scorers;
+    }
+
+    private void initGameData() {
+        countriesWithLeagues = LeagueHelper.initCountriesThatHaveLeagues();
+        playableLeagues = LeagueHelper.initPlayableLeagues();
+        money = 200000;
     }
 }
