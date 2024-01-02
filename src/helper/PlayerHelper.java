@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayerHelper {
-    private static Player[] players = new Player[]{ //Maximum talent = 100 (10% chance to level-up after a match)
+    private final static Player[] players = new Player[]{ //Maximum talent = 100 (10% chance to level-up after a match)
             //------------------------------------------------------
             //----------      Bundesliga (Germany 1)      ----------
             //------------------------------------------------------
@@ -157,6 +157,7 @@ public class PlayerHelper {
             new Player(130, "Sonni", "Nattestad", Country.FO, 62, LocalDate.of(1994, 8, 5), Position.CB, Club.B36, new Club[]{Club.B36, Club.DUNDALK, Club.B36, Club.FREDERICIA, Club.MOLDE, Club.HORSENS, Club.MOLDE, Club.AALESUND, Club.MOLDE, Club.HAFNARFJORDUR, Club.FYLKIR, Club.HAFNARFJORDUR, Club.MIDTJYLLAND, Club.VEJLE, Club.MIDTJYLLAND, Club.HORSENS, Club.MIDTJYLLAND, Club.VESTUR, Club.MIDVAGUR}, 42, 42, 61, 18),
             new Player(131, "Andrias", "Eriksen", Country.FO, 52, LocalDate.of(1994, 2, 22), Position.CB, Club.B36, new Club[]{Club.B36}, 33, 35, 52, 15),
             new Player(132, "Mattias", "Joensen", Country.FO, 52, LocalDate.of(2003, 2, 15), Position.CB, Club.B36, new Club[]{Club.B36, Club.STREYMUR, Club.B36}, 34, 33, 53, 95),
+
 
             new Player(133, "Bárdur", "á Reynatrød", Country.FO, 62, LocalDate.of(2000, 1, 8), Position.GK, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA, Club.SKALA, Club.VIKINGUR_GOTA}, 22, 22, 63, 90),
             new Player(134, "Hans Jákup", "Arngrímsson", Country.FO, 53, LocalDate.of(2004, 3, 29), Position.GK, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA}, 17, 17, 53, 96),
