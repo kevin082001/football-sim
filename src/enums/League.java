@@ -71,7 +71,7 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     ETTAN_SODRA("Ettan Södra", Country.SE, 3, false),
 
-    DRUGA("Druga Liga", Country.SLO, 2, false),
+    DRUGA("Druga Liga", Country.SI, 2, false),
 
     B_NACIONAL("Primera B Nacional", Country.AR, 2, false),
 
