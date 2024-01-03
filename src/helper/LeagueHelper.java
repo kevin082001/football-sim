@@ -17,7 +17,7 @@ public class LeagueHelper {
         return result;
     }
 
-    public static Map<League, List<Club>> initPlayableLeagues() {
+    public static Map<League, List<Club>> getPlayableLeagues() {
         Map<League, List<Club>> result = new HashMap<>();
         for (League l : League.BUNDESLIGA.getPlayableLeagues()) {
             result.put(l, ClubHelper.getClubsForLeague(l));
@@ -25,7 +25,7 @@ public class LeagueHelper {
         return result;
     }
 
-    public static Map<Country, List<League>> initCountriesThatHaveLeagues() {
+    public static Map<Country, List<League>> getCountriesThatHaveLeagues() {
         Map<Country, List<League>> result = new HashMap<>();
         for (Country c : Country.values()) {
             if (!League.BUNDESLIGA.getByCountry(c).isEmpty()) {
