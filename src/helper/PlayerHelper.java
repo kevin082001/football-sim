@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Last updated on: Nov 18, 2023
+ */
 public class PlayerHelper {
     private final static Player[] players = new Player[]{ //Maximum talent = 100 (10% chance to level-up after a match)
             //------------------------------------------------------
