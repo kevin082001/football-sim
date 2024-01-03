@@ -83,6 +83,7 @@ public class PrintHelper {
         System.out.println("-----------------------------------------");
         for (Country c : countryList) {
             int amountOfPlayableLeagues = Engine.getCountriesWithLeagues().get(c).stream().filter(League::isPlayable).toList().size();
+            //TODO Only countries with playable leagues should be selectable
             /*if (amountOfPlayableLeagues == 0) {
                 continue;
             }*/
@@ -146,7 +147,6 @@ public class PrintHelper {
             System.out.println("Invalid input");
             printSelectStartClub();
         }
-        //clubToManage = randomClubs.get(choice);
         Engine.setClubToManage(randomClubs.get(choice));
         return randomClubs.get(choice);
     }
