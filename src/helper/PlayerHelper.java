@@ -80,7 +80,7 @@ public class PlayerHelper {
             new Player(56, "Joánnes", "Danielsen", Country.FO, 63, LocalDate.of(1997, 9, 10), Position.RB, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.NAESTVED}, 58, 59, 62, 40),
             new Player(57, "Claes", "Kronberg", Country.DK, 52, LocalDate.of(1987, 4, 19), Position.RB, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.SANDNES, Club.VIKING, Club.SARPSBORG, Club.NYKOBING}, 49, 47, 51, 0),
             new Player(58, "Jákup", "Andreasen", Country.FO, 65, LocalDate.of(1998, 5, 31), Position.CDM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK}, 55, 57, 63, 45),
-            new Player(59, "Deni", "Pavlovic", Country.SRB, 61, LocalDate.of(1993, 9, 1), Position.CDM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.NOVI_PAZAR, Club.MACVA, Club.VOZDOVAC, Club.CUKARICKI}, 52, 52, 60, 23),
+            new Player(59, "Deni", "Pavlovic", Country.RS, 61, LocalDate.of(1993, 9, 1), Position.CDM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.NOVI_PAZAR, Club.MACVA, Club.VOZDOVAC, Club.CUKARICKI}, 52, 52, 60, 23),
             new Player(60, "Luc", "Kassi", Country.NO, 63, LocalDate.of(1994, 8, 20), Position.CM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.STABAEK}, 59, 62, 57, 28),
             new Player(61, "Hallur", "Hansson", Country.FO, 63, LocalDate.of(1992, 7, 8), Position.CM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.KR_REYKJAVIK, Club.VEJLE, Club.HORSENS, Club.VENDSYSSEL, Club.VIKINGUR_GOTA, Club.AALBORG}, 63, 60, 49, 15),
             new Player(62, "Mads", "Mikkelsen", Country.FO, 62, LocalDate.of(1999, 12, 11), Position.CM, Club.KLAKSVIK, new Club[]{Club.KLAKSVIK, Club.VENDSYSSEL}, 60, 60, 55, 55),

@@ -31,6 +31,8 @@ public class Player { //TODO implement: retirement, market value, update talent,
     private int goalsConceded;
     private int talent;
 
+    private int retirementSeason;
+
     public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
                   Club[] clubsSoFar, int attack, int control, int defense, int talent) {
         this.id = id;
@@ -52,6 +54,7 @@ public class Player { //TODO implement: retirement, market value, update talent,
         this.saves = 0;
         this.goalsConceded = 0;
         this.talent = talent;
+        this.retirementSeason = -1;
     }
 
     public void levelUp() {
@@ -208,5 +211,13 @@ public class Player { //TODO implement: retirement, market value, update talent,
 
     public void setTalent(int talent) {
         this.talent = talent;
+    }
+
+    public int getRetirementSeason() {
+        return retirementSeason;
+    }
+
+    public void setRetirementSeason(int retirementSeason) {
+        this.retirementSeason = retirementSeason;
     }
 }
