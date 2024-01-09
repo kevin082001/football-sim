@@ -285,6 +285,39 @@ public class PrintHelper {
         //TODO implement
     }
 
+    public static void printMessagePlayerRetirement(Player player) {
+        printNewLine(11);
+        printCharacter('#', 30);
+        System.out.println(player.getFirstName() + " " + player.getLastName() + " ends his career at the age of " + Engine.getPlayerAge(player) + ".");
+        System.out.println("As a " + player.getPosition().getFullName() + ", he played " + player.getMatches() + " matches and scored " + player.getGoals() + " goals.");
+        System.out.println("\nYou can go back (OK) or view details about " + player.getFirstName() + " " + player.getLastName() + "'s career.");
+        printNewLine(2);
+        System.out.println("1) OK");
+        System.out.println("2) Career details");
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                return;
+            case 2:
+                printCareerDetails(player);
+                break;
+            default:
+                System.out.println("Invalid input");
+                printNewLine(10);
+                printMessagePlayerRetirement(player);
+        }
+    }
+
+    public static void printCareerDetails(Player player) {
+        //TODO implement
+    }
+
+
+    //Private methods
+
     private static String getSpacesForTable(int ranking, String clubName) {
         int spacesRemaining = 22;
         spacesRemaining -= String.valueOf(ranking).length();
@@ -295,5 +328,23 @@ public class PrintHelper {
             spaces += " ";
         }
         return spaces;
+    }
+
+    private static void printNewLine(int numberOfNewLines) {
+        if (numberOfNewLines <= 0) {
+            return;
+        }
+        while (numberOfNewLines-- > 0) {
+            System.out.print("\n");
+        }
+    }
+
+    private static void printCharacter(char c, int times) {
+        if (times <= 0) {
+            return;
+        }
+        while (times-- > 0) {
+            System.out.print(c);
+        }
     }
 }

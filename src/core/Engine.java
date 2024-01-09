@@ -444,6 +444,8 @@ public class Engine {
         // 'See details' --> Breakdown of all clubs the player played for and how many games and goals he made. Also show evolution of rating and marketValue.
 
         //TODO Idea: Only display retirements of squad players directly, everyone else's retirement will be shown in a new 'News' page in the HomeMenu.
+
+        PrintHelper.printMessagePlayerRetirement(p);
     }
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score) {
@@ -603,7 +605,7 @@ public class Engine {
         }
     }
 
-    private static int getPlayerAge(Player p) {
+    public static int getPlayerAge(Player p) {
         return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
     }
 }
