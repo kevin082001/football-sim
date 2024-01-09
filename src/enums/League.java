@@ -3,8 +3,8 @@ package enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Dritte Liga -> 3,...)
-    VEREINSLOS("Vereinslos", Country.AT, 1, false),
+public enum League {
+    WITHOUT_CLUB("Without club", Country.AQ, 1, false),
 
     BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
     BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
@@ -21,7 +21,6 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     LALIGA("La Liga Santander", Country.ES, 1, true),
     LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
-    //SPANISH 3rd TIER
     SEGUNDA_FEDERACION("Segunda Federación", Country.ES, 4, false),
 
     LIGUE1("Ligue 1", Country.FR, 1, true),
@@ -79,9 +78,9 @@ public enum League { //TODO maybe also save the tier (f.e. Bundesliga -> 1, Drit
 
     YKKONEN("Ykkönen", Country.FI, 2, false),
 
-    SRB_1("Super liga Srbije", Country.SRB, 1, true),
+    SRB_1("Super liga Srbije", Country.RS, 1, true),
 
-    SRB_2("Prva liga Srbije", Country.SRB, 2, false),
+    SRB_2("Prva liga Srbije", Country.RS, 2, false),
 
     PROFESIONAL("División Profesional", Country.BO, 1, false),
 

@@ -195,7 +195,7 @@ public class PlayerHelper {
             //-------------------------------------------------------
             //----------          VEREINSLOS               ----------
             //-------------------------------------------------------
-            new Player(144, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, Club.VEREINSLOS, new Club[]{Club.VEREINSLOS, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
+            new Player(144, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
     };
 
     public static List<Player> getAllPlayers() {
