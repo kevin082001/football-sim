@@ -357,7 +357,7 @@ public class Engine {
         currentRound++;
 
         Match nextMatch = Engine.getNextMatch();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
+        PrintHelper.printNewLine(11);
         System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
         try {
             TimeUnit.MILLISECONDS.sleep(4000);

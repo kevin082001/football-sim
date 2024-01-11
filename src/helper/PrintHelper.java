@@ -68,6 +68,7 @@ public class PrintHelper {
                 break;
             default:
                 System.out.println("Invalid option");
+                printNewLine(11);
                 printHomeMenu();
         }
     }
@@ -77,7 +78,7 @@ public class PrintHelper {
 
         List<Country> countryList = Engine.getCountriesWithLeagues().keySet().stream().toList();
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        printNewLine(11);
         System.out.println("-----------------------------------------");
         System.out.println("- - - - -  SELECT YOUR COUNTRY  - - - - -");
         System.out.println("-----------------------------------------");
@@ -107,7 +108,7 @@ public class PrintHelper {
                 .filter(x -> x.isPlayable())
                 .toList();
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println("- - - - -  SELECT YOUR LEAGUE  - - - - -");
         System.out.println("----------------------------------------");
@@ -131,7 +132,7 @@ public class PrintHelper {
         League startLeague = printSelectStartLeague(startCountry);
         List<Club> randomClubs = ClubHelper.getRandomClubsForLeague(startLeague);
 
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println("- - - - -   SELECT YOUR CLUB   - - - - -");
         System.out.println("----------------------------------------");
@@ -158,7 +159,8 @@ public class PrintHelper {
         System.out.print(">>");
         int choice = sc.nextInt();
         if (choice < 1 || choice > 2) {
-            System.out.println("Invalid input\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("Invalid input.");
+            printNewLine(11);
             askNewGameOrLoad();
         }
         return choice;
@@ -222,18 +224,19 @@ public class PrintHelper {
         }
         System.out.println("\n---------------");
         System.out.println();
-        System.out.println("0) Go back");
-        System.out.println("1) Edit squad");
+        System.out.println("1) Go back");
+        System.out.println("2) Edit squad");
         int choice = sc.nextInt();
         switch (choice) {
-            case 0:
+            case 1:
                 printHomeMenu();
                 break;
-            case 1:
+            case 2:
                 printEditSquad();
                 break;
             default:
-                System.out.println("Invalid option");
+                System.out.println("Invalid input");
+                printNewLine(11);
                 printMySquad();
         }
     }
@@ -315,6 +318,24 @@ public class PrintHelper {
         //TODO implement
     }
 
+    public static void printNewLine(int numberOfNewLines) {
+        if (numberOfNewLines <= 0) {
+            return;
+        }
+        while (numberOfNewLines-- > 0) {
+            System.out.print("\n");
+        }
+    }
+
+    public static void printCharacter(char c, int times) {
+        if (times <= 0) {
+            return;
+        }
+        while (times-- > 0) {
+            System.out.print(c);
+        }
+    }
+
 
     //Private methods
 
@@ -328,23 +349,5 @@ public class PrintHelper {
             spaces += " ";
         }
         return spaces;
-    }
-
-    private static void printNewLine(int numberOfNewLines) {
-        if (numberOfNewLines <= 0) {
-            return;
-        }
-        while (numberOfNewLines-- > 0) {
-            System.out.print("\n");
-        }
-    }
-
-    private static void printCharacter(char c, int times) {
-        if (times <= 0) {
-            return;
-        }
-        while (times-- > 0) {
-            System.out.print(c);
-        }
     }
 }
