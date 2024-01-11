@@ -21,6 +21,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     private Position position;
     private Club club;
     private Club[] clubsSoFar; //TODO Add new class (see issue 'Player transfer history')
+    //private PlayerCareer[] career;
     private int attack;
     private int control;
     private int defense;
