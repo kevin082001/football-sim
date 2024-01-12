@@ -20,8 +20,8 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     private final LocalDate birthDate;
     private Position position;
     private Club club;
-    private Club[] clubsSoFar; //TODO Add new class (see issue 'Player transfer history')
-    //private PlayerCareer[] career;
+    private Club[] clubsSoFar;
+    private PlayerCareer[] career;
     private int attack;
     private int control;
     private int defense;
@@ -58,6 +58,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.retirementSeason = null;
     }
 
+    // Is this really the right place for this method? Shouldn't it be in Engine??
     public void levelUp() {
         setRating(getRating() + 1);
         ratingWrongPos = (int) (rating * 0.7);
@@ -132,6 +133,14 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     public void setClubsSoFar(Club[] clubsSoFar) {
         this.clubsSoFar = clubsSoFar;
+    }
+
+    public PlayerCareer[] getCareer() {
+        return career;
+    }
+
+    public void setCareer(PlayerCareer[] career) {
+        this.career = career;
     }
 
     public int getAttack() {

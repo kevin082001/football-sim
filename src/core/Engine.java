@@ -440,11 +440,6 @@ public class Engine {
     }
 
     private static void retirePlayer(Player p) {
-        //TODO call PrintHelper (message 'player XY retired in the age of XYZ. He played X games and won X matches' with option 'See details'
-        // 'See details' --> Breakdown of all clubs the player played for and how many games and goals he made. Also show evolution of rating and marketValue.
-
-        //TODO Idea: Only display retirements of squad players directly, everyone else's retirement will be shown in a new 'News' page in the HomeMenu.
-
         PrintHelper.printMessagePlayerRetirement(p);
     }
 

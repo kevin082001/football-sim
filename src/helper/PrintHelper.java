@@ -3,6 +3,7 @@ package helper;
 import GameObjects.LeagueTable;
 import GameObjects.Match;
 import GameObjects.Player;
+import GameObjects.PlayerCareer;
 import core.Engine;
 import enums.Club;
 import enums.Country;
@@ -315,7 +316,19 @@ public class PrintHelper {
     }
 
     public static void printCareerDetails(Player player) {
-        //TODO implement
+        //TODO Breakdown of all clubs the player played for and how many games and goals he made. Also show evolution of rating and marketValue
+        if (player == null || player.getCareer() == null) {
+            throw new NullPointerException("Player or player's career was null");
+        }
+
+        printNewLine(11);
+        System.out.println("CAREER DETAILS");
+        printCharacter('-', 30);
+        printNewLine(2);
+
+        for (PlayerCareer career : player.getCareer()) {
+            System.out.println(career.getFrom() + " to " + career.getUntil() + ": " + career.getClub().getName() + " (" + career.getGoals() + " in " + career.getGames() + " games)");
+        }
     }
 
     public static void printNewLine(int numberOfNewLines) {
