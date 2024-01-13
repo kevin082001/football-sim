@@ -318,7 +318,7 @@ public class PrintHelper {
     public static void printCareerDetails(Player player) {
         //TODO Breakdown of all clubs the player played for and how many games and goals he made. Also show evolution of rating and marketValue
         if (player == null || player.getCareer() == null) {
-            throw new NullPointerException("Player or player's career was null");
+            throw new NullPointerException("Player or player's career was null.");
         }
 
         printNewLine(11);
