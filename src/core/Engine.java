@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,8 @@ public class Engine {
     private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
 
     private static List<Match> matchesThisSeason;
+
+    private static int currentSeason;
     private static int money = 500_000;
 
     private static int currentRound = 0;
@@ -37,6 +40,24 @@ public class Engine {
     private static LeagueTable table;
 
     private static List<Player> currentSquad;
+
+    public static void endCurrentSeason() {
+        checkForPlayerRetirement();
+
+        //TODO see below
+        //checkForClubLeagueUpgrade();
+        //checkForClubLeagueDowngrade();
+        //checkForPOTY(); //POTY = Player of the Year
+    }
+
+    public static void startNewSeason() {
+        resetRound();
+        currentSeason++;
+        //checkPlayersJoiningFromAcademy(); TODO see issue 'Youth academy'
+        //updateMarketValues(); TODO see issue 'transfer market'
+        //updateTransferMarket(); TODO see issue 'transfer market'
+        //updatePlayerRatings();
+    }
 
     public static void initSquad(Club club) {
         currentSquad = new ArrayList<>();
@@ -336,7 +357,7 @@ public class Engine {
         currentRound++;
 
         Match nextMatch = Engine.getNextMatch();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
+        PrintHelper.printNewLine(11);
         System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
         try {
             TimeUnit.MILLISECONDS.sleep(4000);
@@ -391,7 +412,7 @@ public class Engine {
 
 
     //TODO only check for players who performed well in the match (How is "good performance" defined?)
-    public static void checkForPlayerLevelUp(Match match) {
+    private static void checkForPlayerLevelUp(Match match) {
         List<Player> toCheck = new ArrayList<>();
         toCheck.addAll(PlayerHelper.getPlayersForClub(match.getHome()));
         toCheck.addAll(PlayerHelper.getPlayersForClub(match.getAway()));
@@ -404,6 +425,22 @@ public class Engine {
                 System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
             }
         }
+    }
+
+    private static void checkForPlayerRetirement() {
+        List<Player> allPlayers = PlayerHelper.getAllPlayers();
+        Random rand = new Random(System.nanoTime());
+        for (Player p : allPlayers) {
+            int retirementChance = getRetirementChance(p);
+            int randNumber = rand.nextInt(100);
+            if (randNumber <= retirementChance) {
+                retirePlayer(p);
+            }
+        }
+    }
+
+    private static void retirePlayer(Player p) {
+        PrintHelper.printMessagePlayerRetirement(p);
     }
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score) {
@@ -521,5 +558,49 @@ public class Engine {
 
     private static void resetRound() {
         currentRound = 0;
+    }
+
+    private static int getCurrentSeason() {
+        return currentSeason;
+    }
+
+    private static int getRetirementChance(Player p) {
+        int playerAge = getPlayerAge(p);
+        if (playerAge <= 0) {
+            throw new RuntimeException("An error occurred during calculating retirement chances");
+        }
+        if (playerAge <= 24) {
+            return 0;
+        }
+        if (playerAge <= 28) {
+            return 2;
+        }
+        if (playerAge <= 30) {
+            return 4;
+        }
+        if (playerAge <= 32) {
+            return 8;
+        }
+        if (playerAge <= 34) {
+            return 20;
+        }
+        if (playerAge == 35) {
+            return 35;
+        }
+        if (playerAge == 36) {
+            return 50;
+        }
+        if (playerAge == 37) {
+            return 60;
+        }
+        if (playerAge <= 40) {
+            return 80;
+        } else {
+            return 95;
+        }
+    }
+
+    public static int getPlayerAge(Player p) {
+        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
     }
 }

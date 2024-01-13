@@ -7,7 +7,7 @@ import enums.Position;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class Player { //TODO implement: retirement, market value, update talent, decrease rating when performing very badly
+public class Player { //TODO implement: update talent, decrease rating when performing very badly
     private final Random rand = new Random(System.nanoTime());
 
 
@@ -20,7 +20,8 @@ public class Player { //TODO implement: retirement, market value, update talent,
     private final LocalDate birthDate;
     private Position position;
     private Club club;
-    private Club[] clubsSoFar; //TODO Maybe make new Object where Club and Year from/to is stored (Transfer history)
+    private Club[] clubsSoFar;
+    private PlayerCareer[] career;
     private int attack;
     private int control;
     private int defense;
@@ -30,6 +31,8 @@ public class Player { //TODO implement: retirement, market value, update talent,
     private int saves;
     private int goalsConceded;
     private int talent;
+
+    private Integer retirementSeason;
 
     public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
                   Club[] clubsSoFar, int attack, int control, int defense, int talent) {
@@ -52,8 +55,10 @@ public class Player { //TODO implement: retirement, market value, update talent,
         this.saves = 0;
         this.goalsConceded = 0;
         this.talent = talent;
+        this.retirementSeason = null;
     }
 
+    // Is this really the right place for this method? Shouldn't it be in Engine??
     public void levelUp() {
         setRating(getRating() + 1);
         ratingWrongPos = (int) (rating * 0.7);
@@ -82,10 +87,6 @@ public class Player { //TODO implement: retirement, market value, update talent,
         return id;
     }
 
-    /*public void setId(int id) {
-        this.id = id;
-    }*/
-
     public String getFirstName() {
         return firstName;
     }
@@ -96,10 +97,6 @@ public class Player { //TODO implement: retirement, market value, update talent,
 
     public Country getNation() {
         return nation;
-    }
-
-    public void setNation(Country nation) {
-        this.nation = nation;
     }
 
     public int getRating() {
@@ -136,6 +133,14 @@ public class Player { //TODO implement: retirement, market value, update talent,
 
     public void setClubsSoFar(Club[] clubsSoFar) {
         this.clubsSoFar = clubsSoFar;
+    }
+
+    public PlayerCareer[] getCareer() {
+        return career;
+    }
+
+    public void setCareer(PlayerCareer[] career) {
+        this.career = career;
     }
 
     public int getAttack() {
@@ -208,5 +213,13 @@ public class Player { //TODO implement: retirement, market value, update talent,
 
     public void setTalent(int talent) {
         this.talent = talent;
+    }
+
+    public Integer getRetirementSeason() {
+        return retirementSeason;
+    }
+
+    public void setRetirementSeason(Integer retirementSeason) {
+        this.retirementSeason = retirementSeason;
     }
 }

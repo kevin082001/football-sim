@@ -5,7 +5,7 @@ import enums.Club;
 import helper.PrintHelper;
 
 /**
- * This class is only responsible for the game's 'flow'. Processing of data is handled by {@link Engine}
+ * This class is only responsible for the game's 'flow'. Processing of data is handled by {@code Engine}
  */
 public class Game {
     public void run() {
@@ -23,5 +23,9 @@ public class Game {
         Engine.initMatchesForSeason(clubToManage);
         Engine.initTable(clubToManage);
         PrintHelper.printHomeMenu();
+
+        //TODO if all matches of the season are played, end the season
+        Engine.endCurrentSeason();
+        Engine.startNewSeason();
     }
 }
