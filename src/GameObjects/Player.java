@@ -19,6 +19,8 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     private int ratingWrongPos;
     private final LocalDate birthDate;
     private Position position;
+
+    private long marketValue;
     private Club club;
     private Club[] clubsSoFar;
     private PlayerCareer[] career;
@@ -34,7 +36,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     private Integer retirementSeason;
 
-    public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, Club club,
+    public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, long marketValue, Club club,
                   Club[] clubsSoFar, int attack, int control, int defense, int talent) {
         this.id = id;
         this.firstName = firstName;
@@ -44,6 +46,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.ratingWrongPos = (int) (0.7 * rating);
         this.birthDate = birthDate;
         this.position = position;
+        this.marketValue = marketValue;
         this.club = club;
         this.clubsSoFar = clubsSoFar;
         this.attack = attack;
@@ -71,6 +74,11 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         }
     }
 
+    /**
+     * This method is used to calculate the player's rating depending on his position when editing the squad.
+     *
+     * @param newPosition The position the player gets moved to
+     */
     public void changePosition(Position newPosition) {
         if (newPosition == null) return;
         if (!position.getType().equals(newPosition.getType())) {
@@ -117,6 +125,14 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public long getMarketValue() {
+        return marketValue;
+    }
+
+    public void setMarketValue(long marketValue) {
+        this.marketValue = marketValue;
     }
 
     public Club getClub() {

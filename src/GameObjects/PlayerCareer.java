@@ -9,15 +9,21 @@ public class PlayerCareer {
 
     private Club club;
     private Player player;
+
+    private long transferCost;
+
+    private long highestMarketValue;
     private LocalDate from;
     private LocalDate until;
     private int games;
     private int goals;
 
     //For already existing players
-    public PlayerCareer(Club club, Player player, LocalDate from, LocalDate until, int games, int goals) {
+    public PlayerCareer(Club club, Player player, long transferCost, long highestMarketValue, LocalDate from, LocalDate until, int games, int goals) {
         this.club = club;
         this.player = player;
+        this.transferCost = transferCost;
+        this.highestMarketValue = highestMarketValue;
         this.from = from;
         this.until = until;
         this.games = games;
@@ -25,11 +31,13 @@ public class PlayerCareer {
     }
 
     //For new players appearing during the game
-    public PlayerCareer(Club club, Player player) {
+    public PlayerCareer(Club club, Player player, long transferCost) {
         this.club = club;
         this.player = player;
+        this.transferCost = transferCost;
+        this.highestMarketValue = player.getMarketValue();
         this.from = LocalDate.now();
-        this.until = null; //BEHOLD, Null pointer!
+        this.until = null; //Take care of NullPointer exceptions!
         this.games = 0;
         this.goals = 0;
     }

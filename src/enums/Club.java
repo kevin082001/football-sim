@@ -69,6 +69,8 @@ public enum Club {
 
     DUNDALK("Dundalk FC", League.IRL_1),
 
+    VIANENSE("SC Vianense", League.PT_3),
+
     DEN_BOSCH("FC Den Bosch", League.NED_2),
 
     HAAKSBERGEN("HSC '21 Haaksbergen", League.NED_4),
@@ -163,6 +165,7 @@ public enum Club {
     TRELLEBORGS("Trelleborgs FF", League.SUPERETTAN),
 
     DALKURD("Dalkurd FF", League.ETTAN_NORRA),
+    KARLSTAD("IF Karlstad", League.ETTAN_NORRA),
     LJUNGSKILE("Ljungskile SK", League.ETTAN_SODRA),
     BK_OLYMPIC("BK Olympic", League.ETTAN_SODRA),
 
