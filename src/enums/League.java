@@ -66,6 +66,7 @@ public enum League {
     OBOS_LIGAEN("OBOS-ligaen", Country.NO, 2, true),
 
     POSTNORD_LIGAEN("PostNord-ligaen", Country.NO, 3, false),
+    NO_4("Norsk Tipping-Ligaen", Country.NO, 4, false),
 
     ALLSVENSKAN("Allsvenskan", Country.SE, 1, true),
 
@@ -79,9 +80,9 @@ public enum League {
 
     B_NACIONAL("Primera B Nacional", Country.AR, 2, false),
 
-    FINNLIIGA("Finnliiga", Country.FI, 1, true),
+    FI_1("Veikkausliiga", Country.FI, 1, true),
 
-    YKKONEN("Ykkönen", Country.FI, 2, true),
+    FI_2("Ykkönen", Country.FI, 2, true),
 
     SRB_1("Super liga Srbije", Country.RS, 1, true),
 

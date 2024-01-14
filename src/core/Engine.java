@@ -294,6 +294,7 @@ public class Engine {
                 Country nation = Country.AR.getByEnumName(fileScanner.nextLine());
                 int rating = Integer.parseInt(fileScanner.nextLine());
                 Position position = Position.CM.getByEnumName(fileScanner.nextLine());
+                long marketValue = Long.parseLong(fileScanner.nextLine());
                 Club club = Club.B36.getByEnumName(fileScanner.nextLine());
                 Club[] clubsSoFar = getClubsSoFar(fileScanner.nextLine());
                 int attack = Integer.parseInt(fileScanner.nextLine());
@@ -310,7 +311,7 @@ public class Engine {
                         throw new RuntimeException("Something went wrong while reading player data (PlayerID: " + id + ")");
                     }
                     Player player = new Player(id, staticData.getFirstName(), staticData.getLastName(), nation, rating,
-                            staticData.getBirthDate(), position, club, clubsSoFar, attack, control, defense, talent);
+                            staticData.getBirthDate(), position, marketValue, club, clubsSoFar, attack, control, defense, talent);
                     player.setMatches(matches);
                     player.setGoals(goals);
 

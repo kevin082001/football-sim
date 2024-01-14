@@ -57,7 +57,7 @@ public enum Club {
     LEIPZIG("RB Leipzig", League.BUNDESLIGA),
     SCHALKE("Schalke 04", League.BUNDESLIGA),
 
-    VIKTORIA_BERLIN("Viktoria Berlin", League.GER_4),
+    VIKTORIA_BERLIN("FC Viktoria 1889 Berlin", League.GER_4),
 
     ANTONIANO("Club Atlético Antoniano", League.SEGUNDA_FEDERACION),
 
@@ -75,7 +75,6 @@ public enum Club {
 
     HAAKSBERGEN("HSC '21 Haaksbergen", League.NED_4),
 
-    ARGIR("AB Argir", League.BETRIDEILD),
     TOFTIR("B68 Toftir", League.BETRIDEILD),
     STREYMUR("EB/Streymur", League.BETRIDEILD),
     B36("B36 Tórshavn", League.BETRIDEILD),
@@ -84,11 +83,12 @@ public enum Club {
     FUGLAFJORDUR("ÍF Fuglafjørður", League.BETRIDEILD),
     VIKINGUR_GOTA("Víkingur Gøta", League.BETRIDEILD),
     VESTUR("07 Vestur", League.BETRIDEILD),
-    TVOROYRI("TB Tvøroyri", League.BETRIDEILD),
+    NSI("NSÍ Runavík", League.BETRIDEILD),
+    SKALA("Skála IF", League.BETRIDEILD),
 
-    NSI("NSÍ Runavík", League.FRO_2),
     HOYVIK("FC Hoyvík", League.FRO_2),
-    SKALA("Skála IF", League.FRO_2),
+    ARGIR("AB Argir", League.FRO_2),
+    TVOROYRI("TB Tvøroyri", League.FRO_2),
 
     SUDUROY("FC Suðuroy", League.FRO_3),
     MIDVAGUR("MB Midvágur", League.FRO_3),
@@ -97,13 +97,14 @@ public enum Club {
     FYLKIR("Fylkir Reykjavík", League.BESTADEILD),
     HAFNARFJORDUR("FH Hafnarfjörður", League.BESTADEILD),
     KOPAVOGUR("HK Kópavogs", League.BESTADEILD),
+    AKUREYRI("KA Akureyri", League.BESTADEILD),
 
     GRINDAVIK("UMF Grindavík", League.LENGJUDEILD),
     LEIKNIR("Leiknir Reykjavík", League.LENGJUDEILD),
     AKRANES("ÍA Akranes", League.LENGJUDEILD),
     VESTRI("Vestri Ísafjörður", League.LENGJUDEILD),
 
-    EKENAS("Ekenäs IF", League.YKKONEN),
+    EKENAS("Ekenäs IF", League.FI_1),
 
     VEJLE("Vejle Boldklub", League.SUPERLIGA),
     ODENSE("Odense BK", League.SUPERLIGA),
@@ -153,6 +154,8 @@ public enum Club {
     NOTODDEN("Notodden FK", League.POSTNORD_LIGAEN),
     TRAEFF("SK Træff", League.POSTNORD_LIGAEN),
     STROMMEN("Strømmen IF", League.POSTNORD_LIGAEN),
+
+    SK_TRAEFF("SK Træff", League.NO_4),
 
     DEGERFORS("Degerfors IF", League.ALLSVENSKAN),
     AIK("AIK Solna", League.ALLSVENSKAN),
