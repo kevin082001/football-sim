@@ -154,7 +154,6 @@ public class PrintHelper {
     }
 
     public static int askNewGameOrLoad() {
-        printCharacter((char)0x20, 10);
         System.out.println("1) New Game");
         System.out.println("2) Load Game");
         System.out.println();

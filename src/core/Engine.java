@@ -102,7 +102,7 @@ public class Engine {
         //TODO maybe rework algorithm so that in every round, there is the same amount of matches
 
         List<Club> clubsInLeague = ClubHelper.getClubsForLeague(clubToManage.getLeague());
-        int matchesInRound = (clubsInLeague.size() - round) * 2;
+        int matchesInRound = (clubsInLeague.size() - round) * 2; //number of matches per round decreases (10 clubs --> 18, 16, 14, 12,...)
 
         for (int i = 0; i < matchesInRound; i++) {
             simulateMatch(matchesThisSeason.get(i));

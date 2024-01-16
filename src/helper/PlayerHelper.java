@@ -168,64 +168,66 @@ public class PlayerHelper {
 
             new Player(133, "Markus", "Hellisdal", Country.FO, 53, LocalDate.of(2002, 10, 11), Position.CB, 25_000, Club.SKALA, new Club[]{Club.SKALA, Club.STREYMUR, Club.B36}, 28, 30, 54, 90),
 
+            new Player(134, "Kristian", "Joensen", Country.FO, 50, LocalDate.of(1991, 12, 21), Position.GK, 10_000, Club.NSI, new Club[]{Club.NSI, Club.STREYMUR, Club.KLAKSVIK, Club.STREYMUR, Club.KLAKSVIK, Club.VESTUR, Club.LYNGBY, Club.NSI, Club.TOFTIR, Club.NSI, Club.VESTUR, Club.NSI}, 23, 23, 50, 8),
+
             //-------------------------------------------------------
             //----------    1. deildin (Faroe Islands 2)   ----------
             //-------------------------------------------------------
-            new Player(134, "Anders", "Hoff", Country.DK, 54, LocalDate.of(2003, 9, 4), Position.GK, 50_000, Club.TVOROYRI, new Club[]{Club.TVOROYRI, Club.HORSENS, Club.MIDDELFART}, 23, 22, 55, 95),
+            new Player(135, "Anders", "Hoff", Country.DK, 54, LocalDate.of(2003, 9, 4), Position.GK, 50_000, Club.TVOROYRI, new Club[]{Club.TVOROYRI, Club.HORSENS, Club.MIDDELFART}, 23, 22, 55, 95),
 
             //-------------------------------------------------------
             //----------      1. Division (Denmark 2)      ----------
             //-------------------------------------------------------
-            new Player(135, "Mattias", "Lamhauge", Country.FO, 61, LocalDate.of(1999, 8, 2), Position.GK, 150_000, Club.FREDERICIA, new Club[]{Club.FREDERICIA, Club.B36, Club.HB, Club.ARGIR, Club.HB, Club.ARGIR, Club.HB}, 25, 25, 63, 77),
+            new Player(136, "Mattias", "Lamhauge", Country.FO, 61, LocalDate.of(1999, 8, 2), Position.GK, 150_000, Club.FREDERICIA, new Club[]{Club.FREDERICIA, Club.B36, Club.HB, Club.ARGIR, Club.HB, Club.ARGIR, Club.HB}, 25, 25, 63, 77),
 
             //-------------------------------------------------------
             //----------      2. Division (Denmark 3)      ----------
             //-------------------------------------------------------
-            new Player(136, "Hørður", "Askham", Country.FO, 59, LocalDate.of(1994, 9, 22), Position.CB, 75_000, Club.AKADEMISK, new Club[]{Club.AKADEMISK, Club.HB, Club.KLAKSVIK, Club.B36, Club.VESTUR, Club.B36}, 32, 34, 59, 36),
+            new Player(137, "Hørður", "Askham", Country.FO, 59, LocalDate.of(1994, 9, 22), Position.CB, 75_000, Club.AKADEMISK, new Club[]{Club.AKADEMISK, Club.HB, Club.KLAKSVIK, Club.B36, Club.VESTUR, Club.B36}, 32, 34, 59, 36),
 
-            new Player(137, "Daniel", "Johansen", Country.FO, 62, LocalDate.of(1998, 7, 9), Position.LB, 125_000, Club.THISTED, new Club[]{Club.THISTED, Club.HB, Club.FREDERICIA, Club.HB}, 59, 60, 61, 50),
+            new Player(138, "Daniel", "Johansen", Country.FO, 62, LocalDate.of(1998, 7, 9), Position.LB, 125_000, Club.THISTED, new Club[]{Club.THISTED, Club.HB, Club.FREDERICIA, Club.HB}, 59, 60, 61, 50),
 
             //-------------------------------------------------------
             //----------      Allsvenskan (Sweden 1)       ----------
             //-------------------------------------------------------
-            new Player(138, "Mads", "Borchers", Country.DK, 63, LocalDate.of(2002, 6, 18), Position.ST, 225_000, Club.VARBERGS, new Club[]{Club.VARBERGS, Club.HB, Club.ESBJERG, Club.VESTUR, Club.ESBJERG}, 64, 58, 35, 95),
+            new Player(139, "Mads", "Borchers", Country.DK, 63, LocalDate.of(2002, 6, 18), Position.ST, 225_000, Club.VARBERGS, new Club[]{Club.VARBERGS, Club.HB, Club.ESBJERG, Club.VESTUR, Club.ESBJERG}, 64, 58, 35, 95),
 
             //-------------------------------------------------------
             //----------      Ettan Norra (Sweden 3)       ----------
             //-------------------------------------------------------
-            new Player(139, "Emil", "Berger", Country.SE, 59, LocalDate.of(1991, 5, 23), Position.CM, 75_000, Club.KARLSTAD, new Club[]{Club.KARLSTAD, Club.HB, Club.LEIKNIR, Club.DALKURD, Club.KONGSVINGER, Club.OREBRO, Club.FYLKIR, Club.OREBRO, Club.DEGERFORS, Club.AIK, Club.ESKILSTUNA, Club.AIK, Club.DEGERFORS}, 57, 61, 56, 11),
+            new Player(140, "Emil", "Berger", Country.SE, 59, LocalDate.of(1991, 5, 23), Position.CM, 75_000, Club.KARLSTAD, new Club[]{Club.KARLSTAD, Club.HB, Club.LEIKNIR, Club.DALKURD, Club.KONGSVINGER, Club.OREBRO, Club.FYLKIR, Club.OREBRO, Club.DEGERFORS, Club.AIK, Club.ESKILSTUNA, Club.AIK, Club.DEGERFORS}, 57, 61, 56, 11),
 
             //-------------------------------------------------------
             //---------  Norsk Tipping-Ligaen (Norway 4)   ----------
             //-------------------------------------------------------
-            new Player(140, "Vegard", "Forren", Country.NO, 52, LocalDate.of(1988, 2, 16), Position.CB, 25_000, Club.SK_TRAEFF, new Club[]{Club.SK_TRAEFF, Club.KLAKSVIK, Club.TRAEFF, Club.BRANN, Club.MOLDE, Club.BRIGHTON, Club.MOLDE, Club.SOUTHAMPTON, Club.MOLDE}, 35, 34, 52, 0),
+            new Player(141, "Vegard", "Forren", Country.NO, 52, LocalDate.of(1988, 2, 16), Position.CB, 25_000, Club.SK_TRAEFF, new Club[]{Club.SK_TRAEFF, Club.KLAKSVIK, Club.TRAEFF, Club.BRANN, Club.MOLDE, Club.BRIGHTON, Club.MOLDE, Club.SOUTHAMPTON, Club.MOLDE}, 35, 34, 52, 0),
 
             //-------------------------------------------------------
             //----------    Veikkausliiga (Finland 1)      ----------
             //-------------------------------------------------------
-            new Player(141, "Jakob", "Gottberg", Country.FI, 53, LocalDate.of(2002, 7, 20), Position.LW, 25_000, Club.EKENAS, new Club[]{Club.EKENAS, Club.ARGIR, Club.EKENAS}, 54, 53, 26, 93),
+            new Player(142, "Jakob", "Gottberg", Country.FI, 53, LocalDate.of(2002, 7, 20), Position.LW, 25_000, Club.EKENAS, new Club[]{Club.EKENAS, Club.ARGIR, Club.EKENAS}, 54, 53, 26, 93),
 
             //-------------------------------------------------------
             //----------     Besta deild (Iceland 1)       ----------
             //-------------------------------------------------------
-            new Player(142, "Matthias", "Præst", Country.DK, 61, LocalDate.of(2000, 6, 21), Position.CM, 125_000, Club.FYLKIR, new Club[]{Club.FYLKIR, Club.HB, Club.ARGIR, Club.MIDDELFART, Club.HORSENS}, 60, 61, 60, 85),
+            new Player(143, "Matthias", "Præst", Country.DK, 61, LocalDate.of(2000, 6, 21), Position.CM, 125_000, Club.FYLKIR, new Club[]{Club.FYLKIR, Club.HB, Club.ARGIR, Club.MIDDELFART, Club.HORSENS}, 60, 61, 60, 85),
 
             //-------------------------------------------------------
             //----------     Regionalliga (Germany 4)      ----------
             //-------------------------------------------------------
-            new Player(143, "Aidan", "Liu", Country.US, 61, LocalDate.of(2000, 7, 1), Position.CB, 100_000, Club.VIKTORIA_BERLIN, new Club[]{Club.VIKTORIA_BERLIN, Club.TOFTIR, Club.VEJLE, Club.TOFTIR, Club.VEJLE, Club.INDY_ELEVEN, Club.VEJLE}, 40, 42, 60, 78),
+            new Player(144, "Aidan", "Liu", Country.US, 61, LocalDate.of(2000, 7, 1), Position.CB, 100_000, Club.VIKTORIA_BERLIN, new Club[]{Club.VIKTORIA_BERLIN, Club.TOFTIR, Club.VEJLE, Club.TOFTIR, Club.VEJLE, Club.INDY_ELEVEN, Club.VEJLE}, 40, 42, 60, 78),
 
             //-------------------------------------------------------
             //----------        Liga 3 (Portugal 3)        ----------
             //-------------------------------------------------------
-            new Player(144, "Sam", "Pollard", Country.ENG, 54, LocalDate.of(1999, 2, 21), Position.LB, 25_000, Club.VIANENSE, new Club[]{Club.VIANENSE, Club.ARGIR}, 51, 55, 52, 54),
+            new Player(145, "Sam", "Pollard", Country.ENG, 54, LocalDate.of(1999, 2, 21), Position.LB, 25_000, Club.VIANENSE, new Club[]{Club.VIANENSE, Club.ARGIR}, 51, 55, 52, 54),
 
 
             //-------------------------------------------------------
             //----------          WITHOUT CLUB             ----------
             //-------------------------------------------------------
-            new Player(145, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, 75_000, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
-            new Player(146, "Ramzi", "Idrissou", Country.TG, 57, LocalDate.of(1996, 7, 31), Position.CB, 25_000, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.ARGIR, Club.FUZINAR, Club.HODD, Club.LEVANGER, Club.HODD}, 38, 38, 58, 41),
+            new Player(146, "Rói", "Hentze", Country.FO, 59, LocalDate.of(1999, 9, 22), Position.GK, 75_000, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.KLAKSVIK, Club.TOFTIR, Club.B36, Club.HB, Club.B36}, 22, 23, 61, 50),
+            new Player(147, "Ramzi", "Idrissou", Country.TG, 57, LocalDate.of(1996, 7, 31), Position.CB, 25_000, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.ARGIR, Club.FUZINAR, Club.HODD, Club.LEVANGER, Club.HODD}, 38, 38, 58, 41),
     };
 
     public static List<Player> getAllPlayers() {
