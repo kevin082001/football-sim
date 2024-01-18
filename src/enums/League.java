@@ -6,97 +6,98 @@ import java.util.List;
 public enum League {
     WITHOUT_CLUB("Without club", Country.AQ, 1, false),
 
-    BUNDESLIGA("Deutsche Bundesliga", Country.DE, 1, true),
-    BUNDESLIGA_2("Zweite Bundesliga", Country.DE, 2, true),
-    DRITTE_LIGA("3. Liga", Country.DE, 3, true),
-    GER_4("Regionalliga", Country.DE, 4, false),
+    ENG_1("Premier League", Country.GB, 1, true),
+    ENG_2("EFL Championship", Country.GB, 2, true),
+    ENG_3("League One", Country.GB, 3, true),
+    ENG_4("League Two", Country.GB, 4, true),
 
-    BUNDESLIGA_AUT("Österreichische Bundesliga", Country.AT, 1, true),
-    AUT_LIGA_2("Zweite Liga", Country.AT, 2, true),
+    DE_1("Deutsche Bundesliga", Country.DE, 1, true),
+    DE_2("Zweite Bundesliga", Country.DE, 2, true),
+    DE_3("3. Liga", Country.DE, 3, true),
+    DE_4("Regionalliga", Country.DE, 4, false),
 
-    SERIE_A("Serie A", Country.IT, 1, true),
-    SERIE_B("Serie B", Country.IT, 2, true),
-    SERIE_C("Serie C", Country.IT, 3, true),
-    SERIE_D("Serie D", Country.IT, 4, false),
+    AT_1("Österreichische Bundesliga", Country.AT, 1, true),
+    AT_2("Zweite Liga", Country.AT, 2, true),
 
-    LALIGA("La Liga Santander", Country.ES, 1, true),
-    LALIGA_2("La Liga Smartbank", Country.ES, 2, true),
-    PRIMERA_FEDERACION("Primera Federación", Country.ES, 3, true),
-    SEGUNDA_FEDERACION("Segunda Federación", Country.ES, 4, false),
+    IT_1("Serie A", Country.IT, 1, true),
+    IT_2("Serie B", Country.IT, 2, true),
+    IT_3("Serie C", Country.IT, 3, true),
+    IT_4("Serie D", Country.IT, 4, false),
 
-    LIGUE1("Ligue 1", Country.FR, 1, true),
-    LIGUE2("Ligue 2", Country.FR, 2, true),
+    ES_1("La Liga Santander", Country.ES, 1, true),
+    ES_2("La Liga Smartbank", Country.ES, 2, true),
+    ES_3("Primera Federación", Country.ES, 3, true),
+    ES_4("Segunda Federación", Country.ES, 4, false),
 
-    EPL("Premier League", Country.GB, 1, true),
-    EFL("EFL Championship", Country.GB, 2, true),
-    LEAGUE_ONE("League One", Country.GB, 3, true),
-    LEAGUE_TWO("League Two", Country.GB, 4, true),
+    FR_1("Ligue 1", Country.FR, 1, true),
+    FR_2("Ligue 2", Country.FR, 2, true),
 
     SCO_1("Scottish Premiership", Country.SCO, 1, true),
-    LEAGUE_TWO_SCOTLAND("Scottish League Two", Country.SCO, 4, false),
+    SCO_2("Scottish League Two", Country.SCO, 4, false),
     SCO_5("Scottish Highland Football League", Country.SCO, 5, false),
 
-    IRL_1("League Of Ireland Premier Division", Country.IE, 1, true),
+    IE_1("League Of Ireland Premier Division", Country.IE, 1, true),
 
     PT_3("Liga 3", Country.PT, 3, false),
 
-    NED_1("Eredivisie", Country.NL, 1, true),
-    NED_2("Keuken Kampioen Divisie", Country.NL, 2, true),
+    NL_1("Eredivisie", Country.NL, 1, true),
+    NL_2("Keuken Kampioen Divisie", Country.NL, 2, true),
 
-    NED_4("Derde Divisie", Country.NL, 4, false),
+    NL_4("Derde Divisie", Country.NL, 4, false),
 
-    BESTADEILD("Besta deild", Country.IS, 1, true),
+    IS_1("Besta deild", Country.IS, 1, true),
 
-    LENGJUDEILD("Lengjudeild", Country.IS, 2, false),
+    IS_2("Lengjudeild", Country.IS, 2, true),
+    IS_3("2. deild", Country.IS, 3, false),
 
-    BETRIDEILD("Betri deild", Country.FO, 1, true),
+    FO_1("Betri deild", Country.FO, 1, true),
 
-    FRO_2("1. deild", Country.FO, 2, false),
+    FO_2("1. deild", Country.FO, 2, false),
 
-    FRO_3("2. deild", Country.FO, 3, false),
+    FO_3("2. deild", Country.FO, 3, false),
 
-    SUPERLIGA("Danish Superliga", Country.DK, 1, true),
+    DK_1("Danish Superliga", Country.DK, 1, true),
 
-    DEN_2("1.Division", Country.DK, 2, true),
+    DK_2("1.Division", Country.DK, 2, true),
 
-    DEN_3("2.Division", Country.DK, 3, false),
+    DK_3("2.Division", Country.DK, 3, false),
 
-    ELITESERIEN("Eliteserien", Country.NO, 1, true),
+    NO_1("Eliteserien", Country.NO, 1, true),
 
-    OBOS_LIGAEN("OBOS-ligaen", Country.NO, 2, true),
+    NO_2("OBOS-ligaen", Country.NO, 2, true),
 
-    POSTNORD_LIGAEN("PostNord-ligaen", Country.NO, 3, false),
+    NO_3("PostNord-ligaen", Country.NO, 3, false),
     NO_4("Norsk Tipping-Ligaen", Country.NO, 4, false),
 
-    ALLSVENSKAN("Allsvenskan", Country.SE, 1, true),
+    SE_1("Allsvenskan", Country.SE, 1, true),
 
-    SUPERETTAN("Superettan", Country.SE, 2, true),
+    SE_2("Superettan", Country.SE, 2, true),
 
-    ETTAN_NORRA("Ettan Norra", Country.SE, 3, false),
+    SE_3_1("Ettan Norra", Country.SE, 3, false),
 
-    ETTAN_SODRA("Ettan Södra", Country.SE, 3, false),
+    SE_3_2("Ettan Södra", Country.SE, 3, false),
 
-    DRUGA("Druga Liga", Country.SI, 2, false),
+    SI_1("Druga Liga", Country.SI, 2, false),
 
-    B_NACIONAL("Primera B Nacional", Country.AR, 2, false),
+    AR_2("Primera B Nacional", Country.AR, 2, false),
 
     FI_1("Veikkausliiga", Country.FI, 1, true),
 
     FI_2("Ykkönen", Country.FI, 2, true),
 
-    SRB_1("Super liga Srbije", Country.RS, 1, true),
+    RS_1("Super liga Srbije", Country.RS, 1, true),
 
-    SRB_2("Prva liga Srbije", Country.RS, 2, false),
+    RS_2("Prva liga Srbije", Country.RS, 2, false),
 
-    PROFESIONAL("División Profesional", Country.BO, 1, true),
+    BO_1("División Profesional", Country.BO, 1, true),
 
-    RAIFFEISEN("Raiffeisen Super League", Country.CH, 1, true),
+    CH_1("Raiffeisen Super League", Country.CH, 1, true),
 
-    MEISTRILIIGA("Meistriliiga", Country.EE, 1, true),
+    EE_1("Meistriliiga", Country.EE, 1, true),
 
-    MLS("Major League Soccer", Country.US, 1, true),
+    US_1("Major League Soccer", Country.US, 1, true),
 
-    USL("USL Championship", Country.US, 2, true);
+    US_2("USL Championship", Country.US, 2, true);
 
     private final String name;
 
