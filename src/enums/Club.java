@@ -230,7 +230,7 @@ public enum Club {
     DALVIK("Dalvík/Reynir", League.IS_2),
 
     SELFOSS("UMF Selfoss", League.IS_3),
-    VIKINGUR_O("UMF Víkingur Ólafavík", League.IS_3),
+    VIKINGUR_O("UMF Víkingur Ólafsvík", League.IS_3),
     THROTTUR_V("Þróttur Vogum", League.IS_3),
     AEGIR("KF Ægir", League.IS_3),
     KFG("KFG Garðabær", League.IS_3),
