@@ -83,7 +83,8 @@ public enum League {
 
     FI_1("Veikkausliiga", Country.FI, 1, true),
 
-    FI_2("Ykkönen", Country.FI, 2, true),
+    FI_2("Ykkösliiga", Country.FI, 2, true),
+    FI_3("Ykkönen", Country.FI, 3, true),
 
     RS_1("Super liga Srbije", Country.RS, 1, true),
 
@@ -93,7 +94,7 @@ public enum League {
 
     CH_1("Raiffeisen Super League", Country.CH, 1, true),
 
-    EE_1("Meistriliiga", Country.EE, 1, true),
+    EE_1("Premium Liiga", Country.EE, 1, true),
 
     US_1("Major League Soccer", Country.US, 1, true),
 
