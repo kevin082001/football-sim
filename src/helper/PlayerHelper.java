@@ -133,7 +133,10 @@ public class PlayerHelper {
             new Player(104, "Sonni", "Nattestad", Country.FO, 62, LocalDate.of(1994, 8, 5), Position.CB, 125_000, Club.B36, new Club[]{Club.B36, Club.DUNDALK, Club.B36, Club.FREDERICIA, Club.MOLDE, Club.HORSENS, Club.MOLDE, Club.AALESUND, Club.MOLDE, Club.HAFNARFJORDUR, Club.FYLKIR, Club.HAFNARFJORDUR, Club.MIDTJYLLAND, Club.VEJLE, Club.MIDTJYLLAND, Club.HORSENS, Club.MIDTJYLLAND, Club.VESTUR, Club.MIDVAGUR}, 42, 42, 61, 18),
             new Player(105, "Andrias", "Eriksen", Country.FO, 52, LocalDate.of(1994, 2, 22), Position.CB, 25_000, Club.B36, new Club[]{Club.B36}, 33, 35, 52, 15),
             new Player(106, "Mattias", "Joensen", Country.FO, 52, LocalDate.of(2003, 2, 15), Position.CB, 25_000, Club.B36, new Club[]{Club.B36, Club.STREYMUR, Club.B36}, 34, 33, 53, 95),
-
+            new Player(107, "Magnus", "Egilsson", Country.FO, 54, LocalDate.of(1994, 3, 19), Position.LB, 50_000, Club.B36, new Club[]{Club.B36, Club.VALUR, Club.HB, Club.B36_II, Club.HB, Club.ARGIR, Club.HB}, 49, 49, 52, 15),
+            new Player(108, "Jann", "Benjaminsen", Country.FO, 59, LocalDate.of(1997, 4, 3), Position.RB, 100_000, Club.B36, new Club[]{Club.B36, Club.HODD, Club.NSI, Club.NSI_II}, 55, 53, 57, 22),
+            new Player(109, "Benjamin","Heinesen",Country.FO,55, LocalDate.of(1996,3,26),Position.RB,50_000,Club.B36,new Club[]{Club.B36},43,43,55,20),
+            new Player(110, "Erlendur", "Magnusson",Country.FO,53,LocalDate.of(1998,7,2),Position.RB,25_000,Club.B36,new Club[]{Club.B36, Club.B36_II},47,46,51,40),
 
             new Player(107, "Bárdur", "á Reynatrød", Country.FO, 62, LocalDate.of(2000, 1, 8), Position.GK, 125_000, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA, Club.SKALA, Club.VIKINGUR_GOTA}, 22, 22, 63, 90),
             new Player(108, "Hans Jákup", "Arngrímsson", Country.FO, 53, LocalDate.of(2004, 3, 29), Position.GK, 25_000, Club.VIKINGUR_GOTA, new Club[]{Club.VIKINGUR_GOTA}, 17, 17, 53, 96),
@@ -200,7 +203,7 @@ public class PlayerHelper {
             //-------------------------------------------------------
             //---------  Norsk Tipping-Ligaen (Norway 4)   ----------
             //-------------------------------------------------------
-            new Player(141, "Vegard", "Forren", Country.NO, 52, LocalDate.of(1988, 2, 16), Position.CB, 25_000, Club.SK_TRAEFF, new Club[]{Club.SK_TRAEFF, Club.KLAKSVIK, Club.TRAEFF, Club.BRANN, Club.MOLDE, Club.BRIGHTON, Club.MOLDE, Club.SOUTHAMPTON, Club.MOLDE}, 35, 34, 52, 0),
+            new Player(141, "Vegard", "Forren", Country.NO, 52, LocalDate.of(1988, 2, 16), Position.CB, 25_000, Club.TRAEFF, new Club[]{Club.TRAEFF, Club.KLAKSVIK, Club.TRAEFF, Club.BRANN, Club.MOLDE, Club.BRIGHTON, Club.MOLDE, Club.SOUTHAMPTON, Club.MOLDE}, 35, 34, 52, 0),
 
             //-------------------------------------------------------
             //----------    Veikkausliiga (Finland 1)      ----------

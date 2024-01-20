@@ -285,15 +285,14 @@ public enum Club {
     JERV("FK Jerv", League.NO_2),
     SANDNES("Sandnes Ulf", League.NO_2),
     KONGSVINGER("Kongsvinger IL", League.NO_2),
-    HODD("IL Hødd", League.NO_2),
     RANHEIM("Ranheim IL", League.NO_2),
 
     LEVANGER("Levanger FK", League.NO_3),
     NOTODDEN("Notodden FK", League.NO_3),
-    TRAEFF("SK Træff", League.NO_3),
     STROMMEN("Strømmen IF", League.NO_3),
+    HODD("IL Hødd", League.NO_3),
 
-    SK_TRAEFF("SK Træff", League.NO_4),
+    TRAEFF("SK Træff", League.NO_4),
 
     DEGERFORS("Degerfors IF", League.SE_1),
     AIK("AIK Solna", League.SE_1),
