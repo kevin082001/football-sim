@@ -22,8 +22,6 @@ import java.util.concurrent.TimeUnit;
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
     private final static Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
-
-
     private static Club clubToManage;
     private final static Map<Country, List<League>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
     private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
@@ -442,6 +440,23 @@ public class Engine {
 
     private static void retirePlayer(Player p) {
         PrintHelper.printMessagePlayerRetirement(p);
+        p.setClub(Club.RETIRED);
+        p.setAttack(0);
+        p.setControl(0);
+        p.setDefense(0);
+        p.setMarketValue(0);
+        p.setRating(0);
+        p.setRetirementSeason(currentSeason);
+        p.setTalent(0);
+
+        Club[] clubsSoFar = p.getClubsSoFar();
+        clubsSoFar = ArrayHelper.extend(clubsSoFar);
+        clubsSoFar[clubsSoFar.length - 1] = Club.RETIRED;
+        p.setClubsSoFar(clubsSoFar);
+
+        PlayerCareer[] career = p.getCareer();
+        career = ArrayHelper.extend(career);
+        career[career.length - 1] = new PlayerCareer(p.getClub(), p, 0);
     }
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score) {
