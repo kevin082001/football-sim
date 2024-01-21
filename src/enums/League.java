@@ -24,8 +24,8 @@ public enum League {
     IT_3("Serie C", Country.IT, 3, true),
     IT_4("Serie D", Country.IT, 4, false),
 
-    ES_1("La Liga Santander", Country.ES, 1, true),
-    ES_2("La Liga Smartbank", Country.ES, 2, true),
+    ES_1("LaLiga", Country.ES, 1, true),
+    ES_2("LaLiga2", Country.ES, 2, true),
     ES_3("Primera Federación", Country.ES, 3, true),
     ES_4("Segunda Federación", Country.ES, 4, false),
 
