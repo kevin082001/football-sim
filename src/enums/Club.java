@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Club {
+    RETIRED("Retired", League.RETIRED),
     WITHOUT_CLUB("Without club", League.WITHOUT_CLUB),
 
     MAN_CITY("Manchester City", League.ENG_1),

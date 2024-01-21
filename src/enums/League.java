@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum League {
+    RETIRED("Retired", Country.AQ, 1, false),
     WITHOUT_CLUB("Without club", Country.AQ, 1, false),
 
     ENG_1("Premier League", Country.GB, 1, true),
