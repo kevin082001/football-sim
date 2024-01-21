@@ -42,6 +42,18 @@ public class PlayerCareer {
         this.goals = 0;
     }
 
+    //For retiring players
+    public PlayerCareer(Player player) {
+        this.club = Club.RETIRED;
+        this.player = player;
+        this.transferCost = 0;
+        this.highestMarketValue = 0;
+        this.from = LocalDate.now();
+        this.until = null;
+        this.games = 0;
+        this.goals = 0;
+    }
+
     public Club getClub() {
         return club;
     }
