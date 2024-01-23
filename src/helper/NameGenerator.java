@@ -4,6 +4,7 @@ import GameObjects.PlayerName;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * NameGenerator is used for generating player names randomly (primarily for youth players who join the team)
@@ -18,10 +19,10 @@ public class NameGenerator {
     }
 
     public PlayerName getRandomName() {
-        //get random name from firstnames
-        //get random name from lastnames
-        //return as PlayerName instance
-        return null;
+        Random rand = new Random(System.nanoTime());
+        String first = firstNames.get(rand.nextInt(firstNames.size()));
+        String last = lastNames.get(rand.nextInt(lastNames.size()));
+        return new PlayerName(first, last);
     }
 
     private void initFirstNames() {
@@ -555,6 +556,7 @@ public class NameGenerator {
 
         // -----   H   -----
 
+        lastNames.add("Harrison");
         lastNames.add("Himmer");
         lastNames.add("Hoffman");
         lastNames.add("Hoffmann");
@@ -609,6 +611,10 @@ public class NameGenerator {
         lastNames.add("Marsh");
         lastNames.add("Matzinger");
         lastNames.add("Maurer");
+        lastNames.add("McAllister");
+        lastNames.add("McDonald");
+        lastNames.add("MacFarlane");
+        lastNames.add("Musil");
 
         // -----   N   -----
 
@@ -653,6 +659,17 @@ public class NameGenerator {
         lastNames.add("Schwarz");
         lastNames.add("Schwarzbauer");
         lastNames.add("Smith");
+
+        // -----   T   -----
+
+        lastNames.add("Tabakovic");
+        lastNames.add("Takeshi");
+        lastNames.add("Thorbauer");
+        lastNames.add("Thorsson");
+        lastNames.add("Toyota");
+        lastNames.add("Trent");
+        lastNames.add("Truman");
+        lastNames.add("Türker");
 
 
         //only for test!!!
