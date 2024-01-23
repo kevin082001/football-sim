@@ -28,9 +28,14 @@ public class NameGenerator {
         firstNames = new ArrayList<>();
 
         // -----   A   -----
+
+        firstNames.add("Adam");
         firstNames.add("Ahmad");
         firstNames.add("Ahmed");
         firstNames.add("Albert");
+        firstNames.add("Albin");
+        firstNames.add("Alvin");
+        firstNames.add("Alwin");
         firstNames.add("Alejandro");
         firstNames.add("Aleksandar");
         firstNames.add("Alessandro");
@@ -38,6 +43,7 @@ public class NameGenerator {
         firstNames.add("Alexander");
         firstNames.add("Alfons");
         firstNames.add("Alfred");
+        firstNames.add("Alois");
         firstNames.add("Amin");
         firstNames.add("Amir");
         firstNames.add("Andreas");
@@ -62,11 +68,16 @@ public class NameGenerator {
         firstNames.add("Bernard");
         firstNames.add("Bernd");
         firstNames.add("Bernhard");
+        firstNames.add("Bert");
+        firstNames.add("Birger");
         firstNames.add("Bob");
         firstNames.add("Boban");
         firstNames.add("Bobby");
         firstNames.add("Bogdan");
         firstNames.add("Bojan");
+        firstNames.add("Boris");
+        firstNames.add("Borislav");
+        firstNames.add("Brandon");
         firstNames.add("Branislav");
         firstNames.add("Bruno");
         firstNames.add("Bülent");
@@ -74,6 +85,8 @@ public class NameGenerator {
         // -----   C   -----
 
         firstNames.add("Cameron");
+        firstNames.add("Carl");
+        firstNames.add("Carlos");
         firstNames.add("Cem");
         firstNames.add("Charles");
         firstNames.add("Charlie");
@@ -82,6 +95,7 @@ public class NameGenerator {
         firstNames.add("Christoph");
         firstNames.add("Christopher");
         firstNames.add("Cican");
+        firstNames.add("Claude");
         firstNames.add("Cody");
         firstNames.add("Conrad");
         firstNames.add("Cory");
@@ -92,29 +106,47 @@ public class NameGenerator {
         firstNames.add("Dan");
         firstNames.add("Daniel");
         firstNames.add("Danny");
+        firstNames.add("Dario");
+        firstNames.add("Darius");
         firstNames.add("David");
         firstNames.add("Dawid");
         firstNames.add("Dejan");
+        firstNames.add("Didi");
+        firstNames.add("Dieter");
+        firstNames.add("Dietrich");
         firstNames.add("Dimitri");
         firstNames.add("Domenic");
         firstNames.add("Domenik");
         firstNames.add("Dominic");
         firstNames.add("Dominik");
+        firstNames.add("Don");
+        firstNames.add("Donald");
+        firstNames.add("Donny");
         firstNames.add("Dusan");
 
         // -----   E   -----
 
+        firstNames.add("Egon");
         firstNames.add("Eirik");
         firstNames.add("Elias");
         firstNames.add("Emil");
+        firstNames.add("Emilio");
         firstNames.add("Enrico");
         firstNames.add("Eric");
         firstNames.add("Erik");
+        firstNames.add("Ervin");
+        firstNames.add("Erwin");
+        firstNames.add("Eugene");
+        firstNames.add("Ewald");
 
         // -----   F   -----
 
         firstNames.add("Farid");
+        firstNames.add("Felix");
+        firstNames.add("Ferdinand");
         firstNames.add("Ferhat");
+        firstNames.add("Fernando");
+        firstNames.add("Florian");
         firstNames.add("Frantisek");
         firstNames.add("Franz");
         firstNames.add("Fred");
@@ -133,8 +165,10 @@ public class NameGenerator {
         firstNames.add("George");
         firstNames.add("Gerald");
         firstNames.add("Gerhard");
+        firstNames.add("Gene");
         firstNames.add("Gianluigi");
         firstNames.add("Gianni");
+        firstNames.add("Gilbert");
         firstNames.add("Giorgio");
         firstNames.add("Giovanni");
         firstNames.add("Gisbert");
@@ -143,6 +177,8 @@ public class NameGenerator {
         firstNames.add("Greg");
         firstNames.add("Gregor");
         firstNames.add("Gregory");
+        firstNames.add("Grzegorz");
+        firstNames.add("Guido");
         firstNames.add("Gunnar");
         firstNames.add("Gunther");
         firstNames.add("Gus");
@@ -152,6 +188,7 @@ public class NameGenerator {
         firstNames.add("Günter");
         firstNames.add("Günther");
         firstNames.add("Gylfi");
+        firstNames.add("György");
 
         // -----   H   -----
 
@@ -163,6 +200,11 @@ public class NameGenerator {
         firstNames.add("Heinrich");
         firstNames.add("Heinz");
         firstNames.add("Herbert");
+        firstNames.add("Heribert");
+        firstNames.add("Herman");
+        firstNames.add("Hermann");
+        firstNames.add("Herrmann");
+        firstNames.add("Hugo");
 
         // -----   I   -----
 
@@ -170,6 +212,7 @@ public class NameGenerator {
         firstNames.add("Ibrahim");
         firstNames.add("Ignaz");
         firstNames.add("Igor");
+        firstNames.add("Ion");
         firstNames.add("Irving");
         firstNames.add("Isaac");
         firstNames.add("Isak");
@@ -179,6 +222,7 @@ public class NameGenerator {
 
         // -----   J   -----
 
+        firstNames.add("Jack");
         firstNames.add("James");
         firstNames.add("Jan");
         firstNames.add("Janek");
@@ -193,12 +237,16 @@ public class NameGenerator {
         firstNames.add("Jon");
         firstNames.add("Jonas");
         firstNames.add("Jón");
+        firstNames.add("Jörg");
         firstNames.add("Julian");
+        firstNames.add("Jürgen");
 
         // -----   K   -----
 
         firstNames.add("Karl");
         firstNames.add("Kevin");
+        firstNames.add("Kilian");
+        firstNames.add("Killian");
         firstNames.add("Kim");
         firstNames.add("Klaus");
         firstNames.add("Konrad");
@@ -208,12 +256,25 @@ public class NameGenerator {
         firstNames.add("Kristof");
         firstNames.add("Kristoff");
         firstNames.add("Kristoffer");
+        firstNames.add("Kylian");
 
         // -----   L   -----
 
+        firstNames.add("Ladislav");
+        firstNames.add("Ladislaw");
         firstNames.add("Larry");
         firstNames.add("Lars");
         firstNames.add("Lasse");
+        firstNames.add("Leeroy");
+        firstNames.add("Leif");
+        firstNames.add("Leifur");
+        firstNames.add("Leo");
+        firstNames.add("Leon");
+        firstNames.add("Leopold");
+        firstNames.add("Leroy");
+        firstNames.add("Lewis");
+        firstNames.add("Lion");
+        firstNames.add("Logan");
         firstNames.add("Lothar");
         firstNames.add("Luca");
         firstNames.add("Lucas");
@@ -222,16 +283,200 @@ public class NameGenerator {
         firstNames.add("Ludvig");
         firstNames.add("Ludwig");
         firstNames.add("Luigi");
+        firstNames.add("Luis");
         firstNames.add("Luka");
         firstNames.add("Lukas");
+        firstNames.add("Lutz");
 
         // -----   M   -----
 
+        firstNames.add("Mahmoud");
+        firstNames.add("Mahmut");
+        firstNames.add("Maks");
+        firstNames.add("Maksimilian");
+        firstNames.add("Manfred");
+        firstNames.add("Manuel");
+        firstNames.add("Marc");
+        firstNames.add("Marco");
+        firstNames.add("Marcus");
+        firstNames.add("Mario");
+        firstNames.add("Marius");
+        firstNames.add("Mark");
+        firstNames.add("Marko");
+        firstNames.add("Markus");
+        firstNames.add("Matias");
+        firstNames.add("Mats");
+        firstNames.add("Matt");
+        firstNames.add("Matthew");
+        firstNames.add("Matthias");
+        firstNames.add("Matthijs");
+        firstNames.add("Mattias");
+        firstNames.add("Max");
+        firstNames.add("Maxi");
+        firstNames.add("Maximilian");
+        firstNames.add("Maxwell");
+        firstNames.add("Merlin");
+        firstNames.add("Mert");
+        firstNames.add("Mesut");
+        firstNames.add("Michael");
+        firstNames.add("Miikka");
+        firstNames.add("Mika");
+        firstNames.add("Mike");
+        firstNames.add("Mohamed");
+        firstNames.add("Mohammed");
+        firstNames.add("Moritz");
+        firstNames.add("Muhamed");
+        firstNames.add("Muhammad");
+        firstNames.add("Muhammed");
+        firstNames.add("Muhamet");
+        firstNames.add("Muhammet");
+        firstNames.add("Murat");
+
         // -----   N   -----
+
+        firstNames.add("Niclas");
+        firstNames.add("Nick");
+        firstNames.add("Nico");
+        firstNames.add("Niklas");
+        firstNames.add("Nino");
+        firstNames.add("Norbert");
+        firstNames.add("Nusret");
 
         // -----   O   -----
 
+        firstNames.add("Olaf");
+        firstNames.add("Ólafur");
+        firstNames.add("Onur");
+        firstNames.add("Oscar");
+        firstNames.add("Oskar");
+        firstNames.add("Oskari");
+
         // -----   P   -----
+
+        firstNames.add("Pablo");
+        firstNames.add("Paolo");
+        firstNames.add("Patric");
+        firstNames.add("Patrick");
+        firstNames.add("Patrik");
+        firstNames.add("Paul");
+        firstNames.add("Paulo");
+        firstNames.add("Pavel");
+        firstNames.add("Pawel");
+        firstNames.add("Pál");
+        firstNames.add("Pekka");
+        firstNames.add("Pete");
+        firstNames.add("Peter");
+        firstNames.add("Petteri");
+        firstNames.add("Piet");
+        firstNames.add("Przemyslaw");
+
+        // -----   Q   -----
+
+        // -----   R   -----
+
+        firstNames.add("Ralf");
+        firstNames.add("Ralph");
+        firstNames.add("Randolph");
+        firstNames.add("René");
+        firstNames.add("Richard");
+        firstNames.add("Rob");
+        firstNames.add("Robbie");
+        firstNames.add("Robert");
+        firstNames.add("Roberto");
+        firstNames.add("Robin");
+        firstNames.add("Rolf");
+        firstNames.add("Rolph");
+        firstNames.add("Ron");
+        firstNames.add("Ronald");
+        firstNames.add("Rowan");
+        firstNames.add("Ruben");
+        firstNames.add("Rubens");
+        firstNames.add("Rudolf");
+        firstNames.add("Rudolph");
+
+        // -----   S   -----
+
+        firstNames.add("Sam");
+        firstNames.add("Samir");
+        firstNames.add("Sandro");
+        firstNames.add("Sean");
+        firstNames.add("Sebastian");
+        firstNames.add("Semir");
+        firstNames.add("Seyid");
+        firstNames.add("Siegbert");
+        firstNames.add("Siegfried");
+        firstNames.add("Sigbert");
+        firstNames.add("Sigismund");
+        firstNames.add("Stefan");
+        firstNames.add("Steffen");
+        firstNames.add("Stephen");
+        firstNames.add("Steve");
+        firstNames.add("Steven");
+        firstNames.add("Sunny");
+        firstNames.add("Sveinn");
+        firstNames.add("Sven");
+
+        // -----   T   -----
+
+        firstNames.add("Thaddäus");
+        firstNames.add("Thomas");
+        firstNames.add("Thor");
+        firstNames.add("Thordal");
+        firstNames.add("Thorvald");
+        firstNames.add("Tobias");
+        firstNames.add("Toby");
+        firstNames.add("Tomas");
+        firstNames.add("Tomaso");
+        firstNames.add("Tomasz");
+        firstNames.add("Travis");
+        firstNames.add("Trevor");
+
+        // -----   U   -----
+
+        firstNames.add("Ulrich");
+        firstNames.add("Umberto");
+        firstNames.add("Urs");
+        firstNames.add("Uwe");
+
+        // -----   V   -----
+
+        firstNames.add("Valtteri");
+        firstNames.add("Victor");
+        firstNames.add("Viktor");
+        firstNames.add("Vladimir");
+        firstNames.add("Volkan");
+        firstNames.add("Volker");
+
+        // -----   W   -----
+
+        firstNames.add("Walt");
+        firstNames.add("Walter");
+        firstNames.add("Werner");
+        firstNames.add("Wigald");
+        firstNames.add("Wilhelm");
+        firstNames.add("Willi");
+        firstNames.add("Willy");
+        firstNames.add("Wolfgang");
+        firstNames.add("Wladimir");
+
+        // -----   X   -----
+
+        firstNames.add("Xaver");
+
+        // -----   Y   -----
+
+        firstNames.add("Yann");
+        firstNames.add("Yannick");
+        firstNames.add("Yannik");
+
+        // -----   Z   -----
+
+        firstNames.add("Zvezdan");
+        firstNames.add("Zoran");
+
+        // -----   Ö   -----
+
+        firstNames.add("Ömer");
 
 
         //only for test!!!
@@ -243,6 +488,9 @@ public class NameGenerator {
 
         // -----   A   -----
 
+        lastNames.add("Adams");
+        lastNames.add("Aigner");
+        lastNames.add("Allister");
         lastNames.add("Anzengruber");
         lastNames.add("Arnold");
         lastNames.add("Ash");
@@ -253,9 +501,139 @@ public class NameGenerator {
         lastNames.add("Aumaier");
         lastNames.add("Aursnes");
 
+        // -----   B   -----
+
+        lastNames.add("Barnes");
+        lastNames.add("Barth");
+        lastNames.add("Bauer");
+        lastNames.add("Becker");
+        lastNames.add("Beckham");
+        lastNames.add("Berner");
+        lastNames.add("Binder");
+        lastNames.add("Bindlehner");
+        lastNames.add("Bohr");
+        lastNames.add("Borg");
+        lastNames.add("Borger");
+        lastNames.add("Bottas");
+        lastNames.add("Brahm");
+        lastNames.add("Brahms");
+        lastNames.add("Brook");
+        lastNames.add("Brooks");
+        lastNames.add("Burger");
+        lastNames.add("Burn");
+        lastNames.add("Burne");
+        lastNames.add("Burner");
+        lastNames.add("Burns");
+
+        // -----   C   -----
+
+        lastNames.add("Cerny");
+        lastNames.add("Chamberlain");
+        lastNames.add("Cvetkovic");
+        lastNames.add("Czerny");
+
+        // -----   D   -----
+
+        lastNames.add("Dundee");
+
+        // -----   E   -----
+
+        lastNames.add("Eigner");
+
         // -----   F   -----
 
+        lastNames.add("Farnbrook");
         lastNames.add("Frank");
+
+        // -----   G   -----
+
+        lastNames.add("Gärtner");
+        lastNames.add("Geiger");
+        lastNames.add("Geigenbauer");
+        lastNames.add("Gräber");
+        lastNames.add("Gruber");
+
+        // -----   H   -----
+
+        lastNames.add("Himmer");
+        lastNames.add("Hoffman");
+        lastNames.add("Hoffmann");
+        lastNames.add("Hofman");
+        lastNames.add("Hofmann");
+        lastNames.add("Horvat");
+        lastNames.add("Horvath");
+        lastNames.add("Horwath");
+        lastNames.add("Huber");
+        lastNames.add("Hubmaier");
+        lastNames.add("Hubmayer");
+        lastNames.add("Humer");
+        lastNames.add("Hummer");
+        lastNames.add("Hyde");
+
+        // -----   I   -----
+
+        lastNames.add("Inn");
+        lastNames.add("Innbauer");
+        lastNames.add("Innmayer");
+        lastNames.add("Irvin");
+
+        // -----   J   -----
+
+        lastNames.add("Jackie");
+        lastNames.add("Jackson");
+        lastNames.add("Jung");
+        lastNames.add("Junge");
+        lastNames.add("Junger");
+
+        // -----   K   -----
+
+        lastNames.add("Kaminski");
+        lastNames.add("Kastenbauer");
+        lastNames.add("Kastenhofer");
+        lastNames.add("Kastner");
+        lastNames.add("Konrad");
+        lastNames.add("Kowalski");
+
+        // -----   L   -----
+
+        lastNames.add("Leitgeb");
+        lastNames.add("Leitgeber");
+        lastNames.add("Leutgeb");
+        lastNames.add("Lenin");
+        lastNames.add("Ludolf");
+
+        // -----   M   -----
+
+        lastNames.add("Manner");
+        lastNames.add("Manzinger");
+        lastNames.add("Marsh");
+        lastNames.add("Matzinger");
+        lastNames.add("Maurer");
+
+        // -----   N   -----
+
+        lastNames.add("Neubauer");
+        lastNames.add("Neuer");
+        lastNames.add("Neugebauer");
+        lastNames.add("Newman");
+
+        // -----   O   -----
+
+        lastNames.add("Ódinsson");
+
+        // -----   P   -----
+
+        lastNames.add("Perth");
+        lastNames.add("Podolski");
+        lastNames.add("Porsche");
+        lastNames.add("Putin");
+
+        // -----   Q   -----
+
+        // -----   R   -----
+
+        lastNames.add("Ratte");
+        lastNames.add("Rattenbauer");
 
         // -----   S   -----
 
@@ -263,6 +641,7 @@ public class NameGenerator {
         lastNames.add("Sahler");
         lastNames.add("Salah");
         lastNames.add("Sané");
+        lastNames.add("Schiele");
         lastNames.add("Schindlegger");
         lastNames.add("Schlecht");
         lastNames.add("Schleich");
