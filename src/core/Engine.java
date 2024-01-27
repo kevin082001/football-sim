@@ -482,6 +482,35 @@ public class Engine {
         return new double[]{ownChance, opponentChance};
     }
 
+    public static Player generateYouthPlayer() {
+        int id = PlayerHelper.getAllPlayers().size() + 1;
+        NameGenerator ng = new NameGenerator();
+        PlayerName name = ng.getRandomName();
+        String firstName = name.getFirst();
+        String lastName = name.getLast();
+        Country nation = clubToManage.getLeague().getCountry(); //TODO make nation random (higher chance to be home-country)
+        int rating = rand.nextInt(45, 60);
+        LocalDate birthDate = LocalDate.now().minusYears(rand.nextInt(16, 19)); //TODO not good rng
+        Position position = Position.values()[rand.nextInt(Position.values().length)];
+        int marketValue = 10_000;
+        Club club = clubToManage;
+        Club[] clubsSoFar = new Club[]{club};
+
+        //TODO set random based on position and rating
+        int attack = 50;
+        int control = 50;
+        int defense = 50;
+
+        int talent = 100;
+
+        Player newPlayer = new Player(
+                id, firstName, lastName, nation, rating, birthDate, position,
+                marketValue, club, clubsSoFar, attack, control, defense, talent);
+
+        PlayerHelper.addPlayer(newPlayer);
+        return newPlayer;
+    }
+
     // ------- PRIVATE METHODS -------
 
     private static Map<Player, List<Integer>> updateScorers(Map<Player, List<Integer>> scorers, Player scorer, Integer minute) {

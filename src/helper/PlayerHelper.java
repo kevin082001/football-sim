@@ -278,4 +278,13 @@ public class PlayerHelper {
         }
         return null;
     }
+
+    public static void addPlayer(Player p) {
+        if (p == null) {
+            return;
+        }
+
+        players = ArrayHelper.extend(players);
+        players[players.length - 1] = p;
+    }
 }
