@@ -11,7 +11,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     private final Random rand = new Random(System.nanoTime());
 
 
-    private final int id;
+    private int id;
     private final String firstName;
     private final String lastName;
     private Country nation;
@@ -61,8 +61,31 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.retirementSeason = null;
     }
 
-    // Is this really the right place for this method? Shouldn't it be in Engine??
-    public void levelUp() {
+    public Player(String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, long marketValue, Club club,
+                  Club[] clubsSoFar, int attack, int control, int defense, int talent) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nation = nation;
+        this.rating = rating;
+        this.ratingWrongPos = (int) (0.7 * rating);
+        this.birthDate = birthDate;
+        this.position = position;
+        this.marketValue = marketValue;
+        this.club = club;
+        this.clubsSoFar = clubsSoFar;
+        this.attack = attack;
+        this.control = control;
+        this.defense = defense;
+        this.matches = 0;
+        this.goals = 0;
+        this.assists = 0;
+        this.saves = 0;
+        this.goalsConceded = 0;
+        this.talent = talent;
+        this.retirementSeason = null;
+    }
+
+    public void levelUp() { // Is this really the right place for this method? Shouldn't it be in Engine??
         setRating(getRating() + 1);
         ratingWrongPos = (int) (rating * 0.7);
         int upgradingStat = rand.nextInt(3); //TODO maybe change how stats are chosen (f.e: 70 attack, 40 defense --> attack has more chance to get increased)
@@ -93,6 +116,10 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
