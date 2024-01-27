@@ -127,6 +127,11 @@ public class NameGenerator {
 
         // -----   E   -----
 
+        firstNames.add("Ed");
+        firstNames.add("Eddie");
+        firstNames.add("Eddy");
+        firstNames.add("Edi");
+        firstNames.add("Eduard");
         firstNames.add("Egon");
         firstNames.add("Eirik");
         firstNames.add("Elias");
@@ -142,6 +147,7 @@ public class NameGenerator {
 
         // -----   F   -----
 
+        firstNames.add("Fabian");
         firstNames.add("Farid");
         firstNames.add("Felix");
         firstNames.add("Ferdinand");
@@ -218,6 +224,7 @@ public class NameGenerator {
         firstNames.add("Isaac");
         firstNames.add("Isak");
         firstNames.add("Isidor");
+        firstNames.add("Islam");
         firstNames.add("Ivan");
         firstNames.add("Iwan");
 
@@ -231,6 +238,8 @@ public class NameGenerator {
         firstNames.add("Jerry");
         firstNames.add("Jim");
         firstNames.add("Jimmy");
+        firstNames.add("Joe");
+        firstNames.add("Joey");
         firstNames.add("Johann");
         firstNames.add("Johannes");
         firstNames.add("John");
@@ -298,6 +307,7 @@ public class NameGenerator {
         firstNames.add("Manfred");
         firstNames.add("Manuel");
         firstNames.add("Marc");
+        firstNames.add("Marcel");
         firstNames.add("Marco");
         firstNames.add("Marcus");
         firstNames.add("Mario");
@@ -305,6 +315,7 @@ public class NameGenerator {
         firstNames.add("Mark");
         firstNames.add("Marko");
         firstNames.add("Markus");
+        firstNames.add("Masahiro");
         firstNames.add("Matias");
         firstNames.add("Mats");
         firstNames.add("Matt");
@@ -419,7 +430,10 @@ public class NameGenerator {
 
         // -----   T   -----
 
+        firstNames.add("Tarek");
         firstNames.add("Thaddäus");
+        firstNames.add("Theo");
+        firstNames.add("Theodor");
         firstNames.add("Thomas");
         firstNames.add("Thor");
         firstNames.add("Thordal");
@@ -613,7 +627,8 @@ public class NameGenerator {
         lastNames.add("Maurer");
         lastNames.add("McAllister");
         lastNames.add("McDonald");
-        lastNames.add("MacFarlane");
+        lastNames.add("McFarlane");
+        lastNames.add("Miyamoto");
         lastNames.add("Musil");
 
         // -----   N   -----
@@ -645,6 +660,7 @@ public class NameGenerator {
 
         lastNames.add("Sahle");
         lastNames.add("Sahler");
+        lastNames.add("Sakurai");
         lastNames.add("Salah");
         lastNames.add("Sané");
         lastNames.add("Schiele");
@@ -666,6 +682,7 @@ public class NameGenerator {
         lastNames.add("Takeshi");
         lastNames.add("Thorbauer");
         lastNames.add("Thorsson");
+        lastNames.add("Toriyama");
         lastNames.add("Toyota");
         lastNames.add("Trent");
         lastNames.add("Truman");
