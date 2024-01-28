@@ -185,7 +185,7 @@ public class PrintHelper {
 
     public static void printScoredGoal(Player scorer, int minute) {
         Club club = scorer.getClub();
-        System.out.println("Goal for " + club + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
+        System.out.println("Goal for " + club.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
     }
 
     private static void printNextMatchDetails() {

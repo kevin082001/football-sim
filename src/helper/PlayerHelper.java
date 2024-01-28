@@ -284,6 +284,7 @@ public class PlayerHelper {
             return;
         }
 
+        p.setId(getAllPlayers().size() + 1);
         players = ArrayHelper.extend(players);
         players[players.length - 1] = p;
     }
