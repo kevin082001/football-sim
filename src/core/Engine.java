@@ -42,7 +42,7 @@ public class Engine {
     public static void endCurrentSeason() {
         checkForPlayerRetirement();
 
-        //TODO see below
+        //TODO implement methods below
         //checkForClubLeagueUpgrade();
         //checkForClubLeagueDowngrade();
         //checkForPOTY(); //POTY = Player of the Year
@@ -51,7 +51,7 @@ public class Engine {
     public static void startNewSeason() {
         resetRound();
         currentSeason++;
-        //checkPlayersJoiningFromAcademy(); TODO see issue 'Youth academy'
+        checkPlayersJoiningFromAcademy();
         //updateMarketValues(); TODO see issue 'transfer market'
         //updateTransferMarket(); TODO see issue 'transfer market'
         //updatePlayerRatings();
@@ -483,6 +483,8 @@ public class Engine {
     }
 
     public static Player generateYouthPlayer() {
+        //TODO REWORK METHOD (see other TODOs in this method)
+
         NameGenerator ng = new NameGenerator();
         PlayerName name = ng.getRandomName();
         String firstName = name.getFirst();
@@ -495,7 +497,7 @@ public class Engine {
         Club club = clubToManage;
         Club[] clubsSoFar = new Club[]{club};
 
-        //TODO set random based on position and rating
+        //TODO set stats randomly based on position and rating
         int attack = 50;
         int control = 50;
         int defense = 50;
@@ -600,6 +602,10 @@ public class Engine {
         return currentRound;
     }
 
+    public static int getPlayerAge(Player p) {
+        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
+    }
+
     private static void resetRound() {
         currentRound = 0;
     }
@@ -644,7 +650,25 @@ public class Engine {
         }
     }
 
-    public static int getPlayerAge(Player p) {
-        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
+    private static void checkPlayersJoiningFromAcademy() {
+        int chanceToGeneratePlayer = rand.nextInt(100);
+
+        //60% for 1 player to join
+        //30% for 2 players to join
+        //10% for 3 players to join
+        if (chanceToGeneratePlayer <= 60) {
+            Player newPlayer = generateYouthPlayer();
+            PlayerHelper.addPlayer(newPlayer);
+        } else if (chanceToGeneratePlayer <= 90) {
+            for (int i = 1; i <= 2; i++) {
+                Player newPlayer = generateYouthPlayer();
+                PlayerHelper.addPlayer(newPlayer);
+            }
+        } else {
+            for (int i = 1; i <= 3; i++) {
+                Player newPlayer = generateYouthPlayer();
+                PlayerHelper.addPlayer(newPlayer);
+            }
+        }
     }
 }
