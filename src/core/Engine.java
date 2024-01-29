@@ -16,9 +16,9 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-/**
- * This is the heart of the game where everything important is handled/stored
- */
+
+//TODO too much logic is handled by Engine, try to extract some logic to other classes
+// also possibly split Engine into smaller engine classes (f.e. MatchEngine, PlayerEngine,...)
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
     private final static Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
