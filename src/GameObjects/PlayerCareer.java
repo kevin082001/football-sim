@@ -5,13 +5,11 @@ import enums.Club;
 import java.time.LocalDate;
 
 public class PlayerCareer {
-    //TODO Add: loans, transferCost
+    //TODO Add Loans
 
     private Club club;
     private Player player;
-
     private long transferCost;
-
     private long highestMarketValue;
     private LocalDate from;
     private LocalDate until;
@@ -68,6 +66,23 @@ public class PlayerCareer {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public long getTransferCost() {
+        return transferCost;
+    }
+
+    public void setTransferCost(long transferCost) {
+        this.transferCost = transferCost;
+    }
+
+    public long getHighestMarketValue() {
+        return highestMarketValue;
+    }
+
+    //i think this setter is not necessary
+    public void setHighestMarketValue(long highestMarketValue) {
+        this.highestMarketValue = highestMarketValue;
     }
 
     public LocalDate getFrom() {

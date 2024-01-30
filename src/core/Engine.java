@@ -387,7 +387,6 @@ public class Engine {
                 TimeUnit.MILLISECONDS.sleep(200);
             }
 
-            //TODO print end menu (score, best scorers,...), save result, check for player level-up
             System.out.println("MATCH END!");
             PrintHelper.printGoalsList(scorers, opponent);
 
@@ -483,21 +482,20 @@ public class Engine {
     }
 
     public static Player generateYouthPlayer() {
-        //TODO REWORK METHOD (see other TODOs in this method)
-
         NameGenerator ng = new NameGenerator();
         PlayerName name = ng.getRandomName();
         String firstName = name.getFirst();
         String lastName = name.getLast();
-        Country nation = clubToManage.getLeague().getCountry(); //TODO make nation random (higher chance to be home-country)
-        int rating = rand.nextInt(45, 60);
-        LocalDate birthDate = LocalDate.now().minusYears(rand.nextInt(16, 19)); //TODO make the actual date random, not just the year
+        Country nation = getRandomNation();
+        int rating = rand.nextInt(40, 55);
+        LocalDate birthDate = getRandomBirthDate();
         Position position = Position.values()[rand.nextInt(Position.values().length)];
-        int marketValue = 10_000;
+        long marketValue = getRandomMarketValue();
         Club club = clubToManage;
         Club[] clubsSoFar = new Club[]{club};
 
         //TODO set stats randomly based on position and rating
+        //int[] stats = getRandomStats(rating, position);
         int attack = 50;
         int control = 50;
         int defense = 50;
@@ -508,6 +506,8 @@ public class Engine {
                 firstName, lastName, nation, rating, birthDate, position,
                 marketValue, club, clubsSoFar, attack, control, defense, talent);
 
+        PlayerCareer career = new PlayerCareer(clubToManage, newPlayer, 0);
+        newPlayer.addClubToCareer(career);
         PlayerHelper.addPlayer(newPlayer);
         return newPlayer;
     }
@@ -670,5 +670,58 @@ public class Engine {
                 PlayerHelper.addPlayer(newPlayer);
             }
         }
+    }
+
+    private static Country getRandomNation() {
+        int randNo = rand.nextInt(100);
+
+        //TODO maybe change chance depending on country (f.e. A team from Liechtenstein would have many Swiss players)
+        int chanceForHomeCountry = 75;
+
+        if (randNo <= chanceForHomeCountry) {
+            return clubToManage.getLeague().getCountry();
+        } else {
+            return Country.values()[rand.nextInt(Country.values().length)];
+        }
+    }
+
+    private static LocalDate getRandomBirthDate() {
+        int minYear = LocalDate.now().getYear() - 19;
+        int maxYear = LocalDate.now().getYear() - 15;
+        int year = rand.nextInt(minYear, maxYear);
+
+        int month = rand.nextInt(1, 13);
+
+        int day;
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            day = rand.nextInt(32);
+        } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            day = rand.nextInt(31);
+        } else if (month == 2 || year % 4 == 0) { //TODO calculate leap year correctly
+            day = rand.nextInt(29);
+        } else {
+            day = rand.nextInt(28);
+        }
+
+        return LocalDate.of(year, month, day);
+    }
+
+    private static long getRandomMarketValue() {
+        int[] values = new int[]{2_000, 5_000, 10_000, 15_000, 20_000, 25_000};
+        return values[rand.nextInt(values.length)];
+    }
+
+    private static boolean isLeapYear(int year) {
+        //TODO implement
+        return false;
+    }
+
+    private static int[] getRandomStats(int rating, Position position) {
+        //TODO implement
+        if (rating < 0 || position == null) {
+            return null;
+        }
+
+        return new int[]{0, 0, 0};
     }
 }

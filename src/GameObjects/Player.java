@@ -3,6 +3,7 @@ package GameObjects;
 import enums.Club;
 import enums.Country;
 import enums.Position;
+import helper.ArrayHelper;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -182,8 +183,17 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         return career;
     }
 
+    /**
+     * @deprecated Use {@link #addClubToCareer} instead
+     */
+    @Deprecated
     public void setCareer(PlayerCareer[] career) {
         this.career = career;
+    }
+
+    public void addClubToCareer(PlayerCareer club) {
+        career = ArrayHelper.extend(career);
+        career[career.length - 1] = club;
     }
 
     public int getAttack() {
