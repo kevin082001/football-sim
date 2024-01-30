@@ -14,9 +14,9 @@ public enum Position {
     LM("Left Midfield", "CON"),
     RM("Right Midfield", "CON"),
     LW("Left Wing", "ATT"),
+    RW("Right Wing", "ATT"),
     CF("Central Forward", "ATT"),
-    ST("Striker", "ATT"),
-    RW("Right Wing", "ATT");
+    ST("Striker", "ATT");
 
     private final String fullName;
     private final String type;

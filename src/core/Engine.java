@@ -697,7 +697,7 @@ public class Engine {
             day = rand.nextInt(32);
         } else if (month == 4 || month == 6 || month == 9 || month == 11) {
             day = rand.nextInt(31);
-        } else if (month == 2 || year % 4 == 0) { //TODO calculate leap year correctly
+        } else if (month == 2 && isLeapYear(year)) {
             day = rand.nextInt(29);
         } else {
             day = rand.nextInt(28);
@@ -712,16 +712,91 @@ public class Engine {
     }
 
     private static boolean isLeapYear(int year) {
-        //TODO implement
-        return false;
+        return new GregorianCalendar().isLeapYear(year);
     }
 
     private static int[] getRandomStats(int rating, Position position) {
-        //TODO implement
         if (rating < 0 || position == null) {
             return null;
         }
 
-        return new int[]{0, 0, 0};
+        int statSum;
+        int att = 0;
+        int con = 0;
+        int def = 0;
+        int minAtt, maxAtt;
+        int minCon, maxCon;
+        int minDef, maxDef;
+
+        if ((position.getType().equals("ATT") || position.getType().equals("CON")) && !position.equals(Position.CM)) {
+            statSum = (int) (rating * 2.5);
+
+            if (position.equals(Position.ST)) {
+                minAtt = rating - 2;
+                maxAtt = rating + 4;
+                att = rand.nextInt(minAtt, maxAtt + 1);
+                minCon = (int) (rating * 0.6);
+                maxCon = rating;
+                con = rand.nextInt(minCon, maxCon + 1);
+                def = statSum - att - con;
+            }
+            if (position.equals(Position.CF)) {
+                minAtt = rating - 5;
+                maxAtt = rating + 2;
+                att = rand.nextInt(minAtt, maxAtt + 1);
+                minCon = (int) (rating * 0.7);
+                maxCon = rating + 2;
+                con = rand.nextInt(minCon, maxCon + 1);
+                def = statSum - att - con;
+            }
+            if (position.equals(Position.LM) || position.equals(Position.RM)
+                    || position.equals(Position.LW) || position.equals(Position.RW)
+                    || position.equals(Position.CAM)) {
+                minAtt = (int) (rating * 0.8);
+                maxAtt = rating + 2;
+                att = rand.nextInt(minAtt, maxAtt + 1);
+                minCon = (int) (rating * 0.8);
+                maxCon = rating + 3;
+                con = rand.nextInt(minCon, maxCon + 1);
+                def = statSum - att - con;
+            }
+            if (position.equals(Position.CDM)) {
+                minAtt = (int) (rating * 0.6);
+                maxAtt = (int) (rating * 0.9);
+                att = rand.nextInt(minAtt, maxAtt + 1);
+                minCon = (int) Math.floor(rating * 0.8);
+                maxCon = rating + 2;
+                con = rand.nextInt(minCon, maxCon + 1);
+                def = statSum - att - con;
+            }
+
+        } else if (position.equals(Position.CM) || position.equals(Position.LB) || position.equals(Position.RB)) {
+            statSum = (int) (rating * 2.7);
+            minAtt = (int) (rating * 0.6);
+            maxAtt = rating;
+            att = rand.nextInt(minAtt, maxAtt + 1);
+            minCon = (int) Math.floor(rating * 0.8);
+            maxCon = rating + 2;
+            con = rand.nextInt(minCon, maxCon + 1);
+            def = statSum - att - con;
+        } else if (position.equals(Position.CB)) {
+            statSum = (int) (rating * 2.4);
+            minDef = rating - 3;
+            maxDef = rating + 2;
+            def = rand.nextInt(minDef, maxDef + 1);
+            minCon = (int) (rating * 0.6);
+            maxCon = (int) (rating * 0.8);
+            con = rand.nextInt(minCon, maxCon + 1);
+            att = statSum - def - con;
+        } else if (position.equals(Position.GK)) {
+            statSum = (int) (rating * 1.8);
+            minDef = rating - 2;
+            maxDef = rating + 3;
+            def = rand.nextInt(minDef, maxDef + 1);
+            con = ((statSum - def) / 2);
+            att = statSum - def - con;
+        }
+
+        return new int[]{att, con, def};
     }
 }
