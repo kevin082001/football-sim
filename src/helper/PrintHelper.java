@@ -35,7 +35,8 @@ public class PrintHelper {
         System.out.println("5) My Club");
         System.out.println("6) Buy/sell players");
         System.out.println("7) Job offers (" + Engine.getJobOffers().size() + ")");
-        System.out.println("8) Save game");
+        System.out.println("8) News");
+        System.out.println("9) Save game");
         System.out.println();
         System.out.print(">> ");
         int choice = sc.nextInt();
@@ -64,6 +65,9 @@ public class PrintHelper {
                 printJobOffers();
                 break;
             case 8:
+                printNewsPage();
+                break;
+            case 9:
                 Engine.saveGame();
                 printSaveGame();
                 break;
@@ -286,6 +290,10 @@ public class PrintHelper {
     }
 
     public static void printJobOffers() {
+        //TODO implement
+    }
+
+    public static void printNewsPage() {
         //TODO implement
     }
 
