@@ -65,6 +65,8 @@ public class NameGenerator {
 
         firstNames.add("Bastian");
         firstNames.add("Ben");
+        firstNames.add("Benedict");
+        firstNames.add("Benedikt");
         firstNames.add("Benjamin");
         firstNames.add("Bernard");
         firstNames.add("Bernd");
@@ -521,9 +523,12 @@ public class NameGenerator {
         lastNames.add("Barnes");
         lastNames.add("Barth");
         lastNames.add("Bauer");
+        lastNames.add("Bauernfeind");
         lastNames.add("Becker");
         lastNames.add("Beckham");
         lastNames.add("Berner");
+        lastNames.add("Bichinger");
+        lastNames.add("Bichler");
         lastNames.add("Binder");
         lastNames.add("Bindlehner");
         lastNames.add("Bohr");
@@ -534,11 +539,19 @@ public class NameGenerator {
         lastNames.add("Brahms");
         lastNames.add("Brook");
         lastNames.add("Brooks");
+        lastNames.add("Buch");
+        lastNames.add("Buchberger");
+        lastNames.add("Buchbinder");
+        lastNames.add("Bucher");
+        lastNames.add("Buchinger");
+        lastNames.add("Buchl");
         lastNames.add("Burger");
         lastNames.add("Burn");
         lastNames.add("Burne");
         lastNames.add("Burner");
         lastNames.add("Burns");
+        lastNames.add("Büchel");
+        lastNames.add("Bücher");
 
         // -----   C   -----
 
@@ -549,6 +562,9 @@ public class NameGenerator {
 
         // -----   D   -----
 
+        lastNames.add("Deut");
+        lastNames.add("Deuter");
+        lastNames.add("Deutz");
         lastNames.add("Dundee");
 
         // -----   E   -----
@@ -576,6 +592,7 @@ public class NameGenerator {
         lastNames.add("Hoffmann");
         lastNames.add("Hofman");
         lastNames.add("Hofmann");
+        lastNames.add("Holzapfel");
         lastNames.add("Horvat");
         lastNames.add("Horvath");
         lastNames.add("Horwath");
@@ -612,6 +629,8 @@ public class NameGenerator {
 
         // -----   L   -----
 
+        lastNames.add("Lang");
+        lastNames.add("Langer");
         lastNames.add("Leitgeb");
         lastNames.add("Leitgeber");
         lastNames.add("Leutgeb");
@@ -640,7 +659,7 @@ public class NameGenerator {
 
         // -----   O   -----
 
-        lastNames.add("Ódinsson");
+        lastNames.add("Ober");
 
         // -----   P   -----
 
@@ -687,6 +706,79 @@ public class NameGenerator {
         lastNames.add("Trent");
         lastNames.add("Truman");
         lastNames.add("Türker");
+
+        // -----   U   -----
+
+        lastNames.add("Umweger");
+        lastNames.add("Untermaier");
+        lastNames.add("Unterweger");
+
+        // -----   V   -----
+
+        lastNames.add("Valhalla");
+        lastNames.add("Vauxhall");
+
+        // -----   W   -----
+
+        lastNames.add("Walter");
+        lastNames.add("Weiher");
+        lastNames.add("Wimmer");
+        lastNames.add("Wunderbaldinger");
+        lastNames.add("Wurm");
+        lastNames.add("Wurmbrand");
+        lastNames.add("Wurmer");
+
+        // -----   X   -----
+
+        // -----   Y   -----
+
+        lastNames.add("Yildirim");
+        lastNames.add("Younes");
+        lastNames.add("Young");
+        lastNames.add("Youngman");
+        lastNames.add("Yunus");
+
+        // -----   Z   -----
+
+        lastNames.add("Zander");
+        lastNames.add("Zauner");
+        lastNames.add("Zuber");
+
+        // -----   Ä   -----
+
+        lastNames.add("Äbichler");
+        lastNames.add("Äkinen");
+
+        // -----   Ö   -----
+
+        lastNames.add("Österreicher");
+        lastNames.add("Östreicher");
+        lastNames.add("Özmen");
+        lastNames.add("Öztürk");
+
+        // -----   Ü   -----
+
+        lastNames.add("Ümüt");
+
+        // -----   Þ   -----
+
+        lastNames.add("Þórarinsson");
+        lastNames.add("Þórdalsson");
+        lastNames.add("Þórkelsson");
+        lastNames.add("Þórsson");
+
+        // -----   Á   -----
+
+        lastNames.add("Ákason");
+
+        // -----   Ó   -----
+
+        lastNames.add("Ódinsson");
+        lastNames.add("Ólafsson");
+
+        // -----   Ú   -----
+        // -----   Í   -----
+        // -----   Ý   -----
 
 
         //only for test!!!
