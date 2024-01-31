@@ -97,17 +97,17 @@ public class Engine {
     }
 
     public static void simulateMatches(int round) {
-        //TODO maybe rework algorithm so that in every round, there is the same amount of matches
+        //TODO rework algorithm so that in every round, there is the same amount of matches
 
         List<Club> clubsInLeague = ClubHelper.getClubsForLeague(clubToManage.getLeague());
         int matchesInRound = (clubsInLeague.size() - round) * 2; //number of matches per round decreases (10 clubs --> 18, 16, 14, 12,...)
 
         for (int i = 0; i < matchesInRound; i++) {
-            simulateMatch(matchesThisSeason.get(i));
+            simulateMatch(matchesThisSeason.get(i), false);
         }
     }
 
-    public static void simulateMatch(Match match) {
+    public static void simulateMatch(Match match, boolean isOwnClub) {
         Club home = match.getHome();
 
         double[] goalChances = Engine.calcGoalChances(match);
@@ -125,15 +125,15 @@ public class Engine {
             double randomNumber = rand.nextDouble(100);
 
             if (randomNumber <= ownChance) {
-                Engine.updateMatchScore(home, minute, scorers, score);
+                Engine.updateMatchScore(home, minute, scorers, score, isOwnClub);
                 ownGoals++;
             } else if (randomNumber <= opponentChance) {
-                Engine.updateMatchScore(opponent, minute, scorers, score);
+                Engine.updateMatchScore(opponent, minute, scorers, score, isOwnClub);
                 opponentGoals++;
             }
         }
 
-        Engine.checkForPlayerLevelUp(match);
+        Engine.checkForPlayerLevelUp(match, isOwnClub);
 
         score.setScoreHome(ownGoals);
         score.setScoreAway(opponentGoals);
@@ -377,10 +377,10 @@ public class Engine {
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute + "'");
 
                 if (randomNumber <= ownChance) {
-                    scorers = Engine.updateMatchScore(Engine.getClubToManage(), minute, scorers, score);
+                    scorers = Engine.updateMatchScore(Engine.getClubToManage(), minute, scorers, score, true);
                     ownGoals++;
                 } else if (randomNumber <= opponentChance) {
-                    scorers = Engine.updateMatchScore(Engine.getOpponent(nextMatch), minute, scorers, score);
+                    scorers = Engine.updateMatchScore(Engine.getOpponent(nextMatch), minute, scorers, score, true);
                     opponentGoals++;
                 }
 
@@ -394,7 +394,7 @@ public class Engine {
             System.out.println(Engine.getClubToManage().getName() + " ... " + (nextMatch.getHome().equals(Engine.getClubToManage()) ? ownGoals : opponentGoals) +
                     " : " + (nextMatch.getHome().equals(opponent) ? ownGoals : opponentGoals) + " ... " + opponent.getName());
 
-            Engine.checkForPlayerLevelUp(nextMatch);
+            Engine.checkForPlayerLevelUp(nextMatch, true);
 
             score.setScoreHome(ownGoals);
             score.setScoreAway(opponentGoals);
@@ -410,7 +410,7 @@ public class Engine {
 
 
     //TODO only check for players who performed well in the match (How is "good performance" defined?)
-    private static void checkForPlayerLevelUp(Match match) {
+    private static void checkForPlayerLevelUp(Match match, boolean isOwnClub) { //TODO 'isOwnClub' is a bad hack, extract println instead
         List<Player> toCheck = new ArrayList<>();
         toCheck.addAll(PlayerHelper.getPlayersForClub(match.getHome()));
         toCheck.addAll(PlayerHelper.getPlayersForClub(match.getAway()));
@@ -420,7 +420,9 @@ public class Engine {
             if (rand.nextDouble(100) <= tmp) {
                 int oldRating = p.getRating();
                 p.levelUp();
-                System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
+                if (isOwnClub) {
+                    System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
+                }
             }
         }
     }
@@ -458,12 +460,14 @@ public class Engine {
         career[career.length - 1] = new PlayerCareer(p.getClub(), p, 0);
     }
 
-    public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score) {
+    public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
         Player scorer = Engine.getScorer(PlayerHelper.getPlayersForClub(club));
         scorer.setGoals(scorer.getGoals() + 1);
         scorers = updateScorers(scorers, scorer, minute);
         score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
-        PrintHelper.printScoredGoal(scorer, minute);
+        if (isOwnClub) {
+            PrintHelper.printScoredGoal(scorer, minute);
+        }
         return scorers;
     }
 
