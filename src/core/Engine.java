@@ -1,10 +1,7 @@
 package core;
 
 import GameObjects.*;
-import enums.Club;
-import enums.Country;
-import enums.League;
-import enums.Position;
+import enums.*;
 import helper.*;
 
 import java.io.FileNotFoundException;
@@ -18,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 
 //TODO too much logic is handled by Engine, try to extract some logic to other classes
-// also possibly split Engine into smaller engine classes (f.e. MatchEngine, PlayerEngine,...)
+// also possibly split Engine into smaller engine classes (f.e. MatchEngine, PlayerEngine, NewsEngine, TransferMarketEngine, ...)
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
     private final static Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
@@ -35,6 +32,8 @@ public class Engine {
 
     private static List<JobOffer> jobOffers = new ArrayList<>(); //TODO add Job offers
 
+    private static List<News> news = new ArrayList<>();
+
     private static LeagueTable table;
 
     private static List<Player> currentSquad;
@@ -45,7 +44,7 @@ public class Engine {
         //TODO implement methods below
         //checkForClubLeagueUpgrade();
         //checkForClubLeagueDowngrade();
-        //checkForPOTY(); //POTY = Player of the Year
+        //checkForBallonDOr();
     }
 
     public static void startNewSeason() {
@@ -435,12 +434,12 @@ public class Engine {
             int randNumber = rand.nextInt(100);
             if (randNumber <= retirementChance) {
                 retirePlayer(p);
+                createNewsEntry(null, p, NewsType.RETIREMENT, true);
             }
         }
     }
 
     private static void retirePlayer(Player p) {
-        PrintHelper.printMessagePlayerRetirement(p);
         p.setClub(Club.RETIRED);
         p.setAttack(0);
         p.setControl(0);
@@ -456,8 +455,12 @@ public class Engine {
         p.setClubsSoFar(clubsSoFar);
 
         PlayerCareer[] career = p.getCareer();
-        career = ArrayHelper.extend(career);
-        career[career.length - 1] = new PlayerCareer(p.getClub(), p, 0);
+        if(career != null){ //This is kind of a bad hack, career should not be null at all
+            career = ArrayHelper.extend(career);
+            career[career.length - 1] = new PlayerCareer(p.getClub(), p, 0);
+        }
+
+        PrintHelper.printMessagePlayerRetirement(p);
     }
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
@@ -555,103 +558,6 @@ public class Engine {
         }
 
         return clubsSoFar;
-    }
-
-    //GETTER METHODS
-
-    public static Map<Country, List<League>> getCountriesWithLeagues() {
-        return countriesWithLeagues;
-    }
-
-    public static Map<League, List<Club>> getPlayableLeagues() {
-        return playableLeagues;
-    }
-
-    public static int getMoney() {
-        return money;
-    }
-
-    public static LeagueTable getTable() {
-        return table;
-    }
-
-    public static List<Player> getCurrentSquad() {
-        return currentSquad;
-    }
-
-    public static List<JobOffer> getJobOffers() {
-        return jobOffers;
-    }
-
-    public static Club getOpponent(Match match) {
-        return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
-    }
-
-    public static List<Match> getMatchesThisSeason() {
-        return matchesThisSeason;
-    }
-
-    public static Club getClubToManage() {
-        return clubToManage;
-    }
-
-    public static void setClubToManage(Club club) {
-        if (club == null || club.equals(clubToManage)) {
-            return;
-        }
-        clubToManage = club;
-    }
-
-    public static int getCurrentRound() {
-        return currentRound;
-    }
-
-    public static int getPlayerAge(Player p) {
-        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
-    }
-
-    private static void resetRound() {
-        currentRound = 0;
-    }
-
-    private static int getCurrentSeason() {
-        return currentSeason;
-    }
-
-    private static int getRetirementChance(Player p) {
-        int playerAge = getPlayerAge(p);
-        if (playerAge <= 0) {
-            throw new RuntimeException("An error occurred during calculating retirement chances");
-        }
-        if (playerAge <= 24) {
-            return 0;
-        }
-        if (playerAge <= 28) {
-            return 2;
-        }
-        if (playerAge <= 30) {
-            return 4;
-        }
-        if (playerAge <= 32) {
-            return 8;
-        }
-        if (playerAge <= 34) {
-            return 20;
-        }
-        if (playerAge == 35) {
-            return 35;
-        }
-        if (playerAge == 36) {
-            return 50;
-        }
-        if (playerAge == 37) {
-            return 60;
-        }
-        if (playerAge <= 40) {
-            return 80;
-        } else {
-            return 95;
-        }
     }
 
     private static void checkPlayersJoiningFromAcademy() {
@@ -802,5 +708,137 @@ public class Engine {
         }
 
         return new int[]{att, con, def};
+    }
+
+    private static void createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
+        if (club == null && player == null) {
+            throw new IllegalArgumentException("Either Club or Player must be set in order to create a News entry.");
+        }
+
+        News newNews = new News(player, type, null, isFollowingClub);
+        if (club == null) {
+            //newNews = new News(player, type, null, isFollowingClub);
+            switch (type) {
+                case RETIREMENT:
+                    newNews.setMessage("Player retired: " + player.getFirstName() + " " + player.getLastName() + " (" + getPlayerAge(player) + " years)");
+                    break;
+                case TRANSFER:
+                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getClubsSoFar()[1].getName() + " --> " + player.getClubsSoFar()[0].getName() + ")");
+                    break;
+                case BALLON_DOR:
+                    newNews.setMessage(player.getFirstName() + " " + player.getLastName() + " won the Ballon d'Or this year! Congratulations!");
+                    break;
+                default:
+                    break;
+            }
+        } else if (player == null) {
+            //TODO add News for a club (f.e. season winner (only shown when following), UCL winner, ...)
+            return;
+        }
+
+        news.add(newNews);
+        //TODO implement
+    }
+
+    //GETTER METHODS
+
+    public static Map<Country, List<League>> getCountriesWithLeagues() {
+        return countriesWithLeagues;
+    }
+
+    public static Map<League, List<Club>> getPlayableLeagues() {
+        return playableLeagues;
+    }
+
+    public static int getMoney() {
+        return money;
+    }
+
+    public static LeagueTable getTable() {
+        return table;
+    }
+
+    public static List<Player> getCurrentSquad() {
+        return currentSquad;
+    }
+
+    public static List<JobOffer> getJobOffers() {
+        return jobOffers;
+    }
+
+    public static Club getOpponent(Match match) {
+        return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
+    }
+
+    public static List<Match> getMatchesThisSeason() {
+        return matchesThisSeason;
+    }
+
+    public static Club getClubToManage() {
+        return clubToManage;
+    }
+
+    public static void setClubToManage(Club club) {
+        if (club == null || club.equals(clubToManage)) {
+            return;
+        }
+        clubToManage = club;
+    }
+
+    public static int getCurrentRound() {
+        return currentRound;
+    }
+
+    public static int getPlayerAge(Player p) {
+        //TODO make this calculation correct
+        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
+    }
+
+    public static List<News> getNews() {
+        return news;
+    }
+
+    private static void resetRound() {
+        currentRound = 0;
+    }
+
+    private static int getCurrentSeason() {
+        return currentSeason;
+    }
+
+    private static int getRetirementChance(Player p) {
+        int playerAge = getPlayerAge(p);
+        if (playerAge <= 0) {
+            throw new RuntimeException("An error occurred during calculating retirement chances");
+        }
+        if (playerAge <= 24) {
+            return 0;
+        }
+        if (playerAge <= 28) {
+            return 2;
+        }
+        if (playerAge <= 30) {
+            return 4;
+        }
+        if (playerAge <= 32) {
+            return 8;
+        }
+        if (playerAge <= 34) {
+            return 20;
+        }
+        if (playerAge == 35) {
+            return 35;
+        }
+        if (playerAge == 36) {
+            return 50;
+        }
+        if (playerAge == 37) {
+            return 60;
+        }
+        if (playerAge <= 40) {
+            return 80;
+        } else {
+            return 95;
+        }
     }
 }

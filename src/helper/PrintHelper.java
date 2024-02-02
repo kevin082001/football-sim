@@ -1,9 +1,6 @@
 package helper;
 
-import GameObjects.LeagueTable;
-import GameObjects.Match;
-import GameObjects.Player;
-import GameObjects.PlayerCareer;
+import GameObjects.*;
 import core.Engine;
 import enums.Club;
 import enums.Country;
@@ -294,7 +291,14 @@ public class PrintHelper {
     }
 
     public static void printNewsPage() {
-        //TODO implement
+        List<News> news = Engine.getNews();
+        if (news == null || news.isEmpty()) {
+            return;
+        }
+
+        for(News entry : news){
+            System.out.println(entry.getMessage());
+        }
     }
 
     public static void printMessagePlayerRetirement(Player player) {
@@ -312,7 +316,7 @@ public class PrintHelper {
 
         switch (choice) {
             case 1:
-                return;
+                printHomeMenu();
             case 2:
                 printCareerDetails(player);
                 break;

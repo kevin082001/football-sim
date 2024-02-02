@@ -9,23 +9,25 @@ import helper.PrintHelper;
  */
 public class Game {
     public void run() {
-        Club clubToManage;
-        int newOrLoad = PrintHelper.askNewGameOrLoad();
+        while (true) {
+            Club clubToManage;
+            int newOrLoad = PrintHelper.askNewGameOrLoad();
 
-        if (newOrLoad == 1) {
-            clubToManage = PrintHelper.printSelectStartClub();
-            Engine.initSquad(clubToManage);
-        } else {
-            SaveState savedGame = Engine.loadGame();
-            clubToManage = savedGame.getCurrentClub();
+            if (newOrLoad == 1) {
+                clubToManage = PrintHelper.printSelectStartClub();
+                Engine.initSquad(clubToManage);
+            } else {
+                SaveState savedGame = Engine.loadGame();
+                clubToManage = savedGame.getCurrentClub();
+            }
+
+            Engine.initMatchesForSeason(clubToManage);
+            Engine.initTable(clubToManage);
+            PrintHelper.printHomeMenu();
+
+            //TODO if all matches of the season are played, end the season
+            Engine.endCurrentSeason();
+            Engine.startNewSeason();
         }
-
-        Engine.initMatchesForSeason(clubToManage);
-        Engine.initTable(clubToManage);
-        PrintHelper.printHomeMenu();
-
-        //TODO if all matches of the season are played, end the season
-        Engine.endCurrentSeason();
-        Engine.startNewSeason();
     }
 }

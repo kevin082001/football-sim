@@ -23,7 +23,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     private long marketValue;
     private Club club;
-    private Club[] clubsSoFar;
+    private Club[] clubsSoFar; //TODO is clubsSoFar still needed when we have career?
     private PlayerCareer[] career;
     private int attack;
     private int control;
@@ -74,6 +74,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.marketValue = marketValue;
         this.club = club;
         this.clubsSoFar = clubsSoFar;
+        this.career = new PlayerCareer[0];
         this.attack = attack;
         this.control = control;
         this.defense = defense;
@@ -86,7 +87,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.retirementSeason = null;
     }
 
-    public void levelUp() { // Is this really the right place for this method? Shouldn't it be in Engine??
+    public void levelUp() { // Is this really the right place for this method? Shouldn't it be in PlayerEngine??
         setRating(getRating() + 1);
         ratingWrongPos = (int) (rating * 0.7);
         int upgradingStat = rand.nextInt(3); //TODO maybe change how stats are chosen (f.e: 70 attack, 40 defense --> attack has more chance to get increased)
