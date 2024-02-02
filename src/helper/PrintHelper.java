@@ -2,12 +2,16 @@ package helper;
 
 import GameObjects.*;
 import core.Engine;
+import core.NewsEngine;
+import core.PlayerEngine;
+import core.SaveLoadGame;
 import enums.Club;
 import enums.Country;
 import enums.League;
 import enums.Position;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,12 +20,12 @@ public class PrintHelper {
     private static Scanner sc = new Scanner(System.in);
 
 
-    public static void printHomeMenu() {
+    public static void printHomeMenu(Club currentClub, long money, List<News> news, Path savePath) {
         sc = new Scanner(System.in);
         System.out.println("\n\n\n\n\n\n\n\n\n\n");
         System.out.println("----------------------------------------");
         System.out.println(Engine.getClubToManage().getName());
-        System.out.println("Money: " + Engine.getMoney());
+        System.out.println("Money: " + money);
         System.out.println("----------------------------------------");
         System.out.println();
         System.out.println("0) Quit without save");
@@ -62,16 +66,17 @@ public class PrintHelper {
                 printJobOffers();
                 break;
             case 8:
-                printNewsPage();
+                printNewsPage(news);
                 break;
             case 9:
-                Engine.saveGame();
+                SaveLoadGame slg = new SaveLoadGame(savePath);
+                slg.saveGame(currentClub, money, PlayerHelper.getAllPlayers());
                 printSaveGame();
                 break;
             default:
                 System.out.println("Invalid option");
                 printNewLine(11);
-                printHomeMenu();
+                printHomeMenu(currentClub, money, news, savePath);
         }
     }
 
@@ -290,8 +295,7 @@ public class PrintHelper {
         //TODO implement
     }
 
-    public static void printNewsPage() {
-        List<News> news = Engine.getNews();
+    public static void printNewsPage(List<News> news) {
         if (news == null || news.isEmpty()) {
             return;
         }
@@ -304,7 +308,7 @@ public class PrintHelper {
     public static void printMessagePlayerRetirement(Player player) {
         printNewLine(11);
         printCharacter('#', 30);
-        System.out.println(player.getFirstName() + " " + player.getLastName() + " ends his career at the age of " + Engine.getPlayerAge(player) + ".");
+        System.out.println(player.getFirstName() + " " + player.getLastName() + " ends his career at the age of " + PlayerEngine.getPlayerAge(player) + ".");
         System.out.println("As a " + player.getPosition().getFullName() + ", he played " + player.getMatches() + " matches and scored " + player.getGoals() + " goals.");
         System.out.println("\nYou can go back (OK) or view details about " + player.getFirstName() + " " + player.getLastName() + "'s career.");
         printNewLine(2);

@@ -16,30 +16,35 @@ import java.util.concurrent.TimeUnit;
 
 //TODO too much logic is handled by Engine, try to extract some logic to other classes
 // also possibly split Engine into smaller engine classes (f.e. MatchEngine, PlayerEngine, NewsEngine, TransferMarketEngine, ...)
+
+/**
+ * Handles stuff which none of the other engines are responsible for (Player, Match, TransferMarket, News)
+ * <br>See also:<br>
+ * <ul>
+ *     <li>{@link PlayerEngine}</li>
+ *     <li>{@link MatchEngine}</li>
+ *     <li>{@link TransferMarketEngine}</li>
+ *     <li>{@link NewsEngine}</li>
+ * </ul>
+ */
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
-    private final static Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
     private static Club clubToManage;
     private final static Map<Country, List<League>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
     private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
 
     private static List<Match> matchesThisSeason;
 
-    private static int currentSeason;
-    private static int money = 500_000;
-
     private static int currentRound = 0;
 
     private static List<JobOffer> jobOffers = new ArrayList<>(); //TODO add Job offers
-
-    private static List<News> news = new ArrayList<>();
 
     private static LeagueTable table;
 
     private static List<Player> currentSquad;
 
-    public static void endCurrentSeason() {
-        checkForPlayerRetirement();
+    public static void endCurrentSeason(int season) {
+        PlayerEngine.checkForPlayerRetirement(season);
 
         //TODO implement methods below
         //checkForClubLeagueUpgrade();
@@ -47,10 +52,9 @@ public class Engine {
         //checkForBallonDOr();
     }
 
-    public static void startNewSeason() {
+    public static void startNewSeason(int newSeason) {
         resetRound();
-        currentSeason++;
-        checkPlayersJoiningFromAcademy();
+        PlayerEngine.checkPlayersJoiningFromAcademy(clubToManage);
         //updateMarketValues(); TODO see issue 'transfer market'
         //updateTransferMarket(); TODO see issue 'transfer market'
         //updatePlayerRatings();
@@ -132,7 +136,7 @@ public class Engine {
             }
         }
 
-        Engine.checkForPlayerLevelUp(match, isOwnClub);
+        PlayerEngine.checkForPlayerLevelUp(match, isOwnClub);
 
         score.setScoreHome(ownGoals);
         score.setScoreAway(opponentGoals);
@@ -236,96 +240,6 @@ public class Engine {
         }
     }
 
-    public static void saveGame() { //TODO think about what else is needed when saving
-        SaveState saveState = new SaveState(clubToManage, money, currentSquad);
-
-        try {
-            FileWriter writer = new FileWriter(savePath.toFile());
-
-            writer.write("");
-            writer.flush();
-
-            writer.write(saveState.getCurrentClub() + System.lineSeparator());
-            writer.write(saveState.getMoney() + System.lineSeparator());
-
-            for (Club club : ClubHelper.getAllClubs()) {
-                System.out.println("Saving: Club " + club.getName());
-                for (Player player : PlayerHelper.getPlayersForClub(club)) {
-                    writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
-                            + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
-                            + player.getClub() + System.lineSeparator() + getClubsSoFarAsString(player.getClubsSoFar())
-                            + System.lineSeparator() + player.getAttack() + System.lineSeparator() + player.getControl()
-                            + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
-                            + System.lineSeparator() + player.getGoals() + System.lineSeparator()
-                            + player.getTalent() + System.lineSeparator());
-
-                    writer.write("###" + System.lineSeparator());
-                }
-            }
-
-            writer.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static SaveState loadGame() {
-        Club currentClub;
-        int money;
-        //List<Player> currentSquad;
-        List<Player> allPlayers;
-
-
-        try {
-            Scanner fileScanner = new Scanner(savePath.toFile());
-
-            currentClub = Club.B36.getByEnumName(fileScanner.nextLine());
-            money = Integer.parseInt(fileScanner.nextLine());
-
-            allPlayers = new ArrayList<>();
-
-            //boolean checkpointPassed = false;
-            while (fileScanner.hasNextLine()) {
-                int id = Integer.parseInt(fileScanner.nextLine());
-
-                Country nation = Country.AR.getByEnumName(fileScanner.nextLine());
-                int rating = Integer.parseInt(fileScanner.nextLine());
-                Position position = Position.CM.getByEnumName(fileScanner.nextLine());
-                long marketValue = Long.parseLong(fileScanner.nextLine());
-                Club club = Club.B36.getByEnumName(fileScanner.nextLine());
-                Club[] clubsSoFar = getClubsSoFar(fileScanner.nextLine());
-                int attack = Integer.parseInt(fileScanner.nextLine());
-                int control = Integer.parseInt(fileScanner.nextLine());
-                int defense = Integer.parseInt(fileScanner.nextLine());
-                int matches = Integer.parseInt(fileScanner.nextLine());
-                int goals = Integer.parseInt(fileScanner.nextLine());
-                int talent = Integer.parseInt(fileScanner.nextLine());
-
-
-                if (fileScanner.nextLine().equals("###")) {
-                    StaticPlayerData staticData = PlayerHelper.getStaticPlayerData(id);
-                    if (staticData == null) {
-                        throw new RuntimeException("Something went wrong while reading player data (PlayerID: " + id + ")");
-                    }
-                    Player player = new Player(id, staticData.getFirstName(), staticData.getLastName(), nation, rating,
-                            staticData.getBirthDate(), position, marketValue, club, clubsSoFar, attack, control, defense, talent);
-                    player.setMatches(matches);
-                    player.setGoals(goals);
-
-                    allPlayers.add(player);
-                }
-                /*else if(fileScanner.nextLine().equals("$$$$$$$$$$")){
-                    checkpointPassed=true;
-                }*/
-            }
-            return new SaveState(currentClub, money, allPlayers);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
     public static Player getScorer(List<Player> players) {
         int multiplierAttack = 4;
         int multiplierControl = 3;
@@ -393,7 +307,7 @@ public class Engine {
             System.out.println(Engine.getClubToManage().getName() + " ... " + (nextMatch.getHome().equals(Engine.getClubToManage()) ? ownGoals : opponentGoals) +
                     " : " + (nextMatch.getHome().equals(opponent) ? ownGoals : opponentGoals) + " ... " + opponent.getName());
 
-            Engine.checkForPlayerLevelUp(nextMatch, true);
+            PlayerEngine.checkForPlayerLevelUp(nextMatch, true);
 
             score.setScoreHome(ownGoals);
             score.setScoreAway(opponentGoals);
@@ -405,62 +319,6 @@ public class Engine {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-    }
-
-
-    //TODO only check for players who performed well in the match (How is "good performance" defined?)
-    private static void checkForPlayerLevelUp(Match match, boolean isOwnClub) { //TODO 'isOwnClub' is a bad hack, extract println instead
-        List<Player> toCheck = new ArrayList<>();
-        toCheck.addAll(PlayerHelper.getPlayersForClub(match.getHome()));
-        toCheck.addAll(PlayerHelper.getPlayersForClub(match.getAway()));
-
-        for (Player p : toCheck) {
-            double tmp = (double) p.getTalent() / 10;
-            if (rand.nextDouble(100) <= tmp) {
-                int oldRating = p.getRating();
-                p.levelUp();
-                if (isOwnClub) {
-                    System.out.println("LEVEL-UP: " + p.getFirstName() + " " + p.getLastName() + " (" + oldRating + " -> " + p.getRating() + ")");
-                }
-            }
-        }
-    }
-
-    private static void checkForPlayerRetirement() {
-        List<Player> allPlayers = PlayerHelper.getAllPlayers();
-        Random rand = new Random(System.nanoTime());
-        for (Player p : allPlayers) {
-            int retirementChance = getRetirementChance(p);
-            int randNumber = rand.nextInt(100);
-            if (randNumber <= retirementChance) {
-                retirePlayer(p);
-                createNewsEntry(null, p, NewsType.RETIREMENT, true);
-            }
-        }
-    }
-
-    private static void retirePlayer(Player p) {
-        p.setClub(Club.RETIRED);
-        p.setAttack(0);
-        p.setControl(0);
-        p.setDefense(0);
-        p.setMarketValue(0);
-        p.setRating(0);
-        p.setRetirementSeason(currentSeason);
-        p.setTalent(0);
-
-        Club[] clubsSoFar = p.getClubsSoFar();
-        clubsSoFar = ArrayHelper.extend(clubsSoFar);
-        clubsSoFar[clubsSoFar.length - 1] = Club.RETIRED;
-        p.setClubsSoFar(clubsSoFar);
-
-        PlayerCareer[] career = p.getCareer();
-        if(career != null){ //This is kind of a bad hack, career should not be null at all
-            career = ArrayHelper.extend(career);
-            career[career.length - 1] = new PlayerCareer(p.getClub(), p, 0);
-        }
-
-        PrintHelper.printMessagePlayerRetirement(p);
     }
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
@@ -488,37 +346,6 @@ public class Engine {
         return new double[]{ownChance, opponentChance};
     }
 
-    public static Player generateYouthPlayer() {
-        NameGenerator ng = new NameGenerator();
-        PlayerName name = ng.getRandomName();
-        String firstName = name.getFirst();
-        String lastName = name.getLast();
-        Country nation = getRandomNation();
-        int rating = rand.nextInt(40, 55);
-        LocalDate birthDate = getRandomBirthDate();
-        Position position = Position.values()[rand.nextInt(Position.values().length)];
-        long marketValue = getRandomMarketValue();
-        Club club = clubToManage;
-        Club[] clubsSoFar = new Club[]{club};
-
-        //TODO set stats randomly based on position and rating
-        //int[] stats = getRandomStats(rating, position);
-        int attack = 50;
-        int control = 50;
-        int defense = 50;
-
-        int talent = 100;
-
-        Player newPlayer = new Player(
-                firstName, lastName, nation, rating, birthDate, position,
-                marketValue, club, clubsSoFar, attack, control, defense, talent);
-
-        PlayerCareer career = new PlayerCareer(clubToManage, newPlayer, 0);
-        newPlayer.addClubToCareer(career);
-        PlayerHelper.addPlayer(newPlayer);
-        return newPlayer;
-    }
-
     // ------- PRIVATE METHODS -------
 
     private static Map<Player, List<Integer>> updateScorers(Map<Player, List<Integer>> scorers, Player scorer, Integer minute) {
@@ -534,212 +361,6 @@ public class Engine {
         return scorers;
     }
 
-    private static String getClubsSoFarAsString(Club[] clubsSoFar) {
-        if (clubsSoFar.length == 1) {
-            return clubsSoFar[0].toString();
-        }
-
-        String result = "";
-        for (int i = 0; i < clubsSoFar.length - 1; i++) {
-            result += clubsSoFar[i] + ",";
-        }
-
-        result += clubsSoFar[clubsSoFar.length - 1];
-        return result;
-    }
-
-    private static Club[] getClubsSoFar(String asString) {
-        Club[] clubsSoFar = new Club[0];
-        String[] clubsSeparated = asString.split(",");
-
-        for (int i = 0; i < clubsSeparated.length; i++) {
-            clubsSoFar = ArrayHelper.extend(clubsSoFar);
-            clubsSoFar[clubsSoFar.length - 1] = Club.B36.getByEnumName(clubsSeparated[i]);
-        }
-
-        return clubsSoFar;
-    }
-
-    private static void checkPlayersJoiningFromAcademy() {
-        int chanceToGeneratePlayer = rand.nextInt(100);
-
-        //60% for 1 player to join
-        //30% for 2 players to join
-        //10% for 3 players to join
-        if (chanceToGeneratePlayer <= 60) {
-            Player newPlayer = generateYouthPlayer();
-            PlayerHelper.addPlayer(newPlayer);
-        } else if (chanceToGeneratePlayer <= 90) {
-            for (int i = 1; i <= 2; i++) {
-                Player newPlayer = generateYouthPlayer();
-                PlayerHelper.addPlayer(newPlayer);
-            }
-        } else {
-            for (int i = 1; i <= 3; i++) {
-                Player newPlayer = generateYouthPlayer();
-                PlayerHelper.addPlayer(newPlayer);
-            }
-        }
-    }
-
-    private static Country getRandomNation() {
-        int randNo = rand.nextInt(100);
-
-        //TODO maybe change chance depending on country (f.e. A team from Liechtenstein would have many Swiss players)
-        int chanceForHomeCountry = 75;
-
-        if (randNo <= chanceForHomeCountry) {
-            return clubToManage.getLeague().getCountry();
-        } else {
-            return Country.values()[rand.nextInt(Country.values().length)];
-        }
-    }
-
-    private static LocalDate getRandomBirthDate() {
-        int minYear = LocalDate.now().getYear() - 19;
-        int maxYear = LocalDate.now().getYear() - 15;
-        int year = rand.nextInt(minYear, maxYear);
-
-        int month = rand.nextInt(1, 13);
-
-        int day;
-        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-            day = rand.nextInt(32);
-        } else if (month == 4 || month == 6 || month == 9 || month == 11) {
-            day = rand.nextInt(31);
-        } else if (month == 2 && isLeapYear(year)) {
-            day = rand.nextInt(29);
-        } else {
-            day = rand.nextInt(28);
-        }
-
-        return LocalDate.of(year, month, day);
-    }
-
-    private static long getRandomMarketValue() {
-        int[] values = new int[]{2_000, 5_000, 10_000, 15_000, 20_000, 25_000};
-        return values[rand.nextInt(values.length)];
-    }
-
-    private static boolean isLeapYear(int year) {
-        return new GregorianCalendar().isLeapYear(year);
-    }
-
-    private static int[] getRandomStats(int rating, Position position) {
-        if (rating < 0 || position == null) {
-            return null;
-        }
-
-        int statSum;
-        int att = 0;
-        int con = 0;
-        int def = 0;
-        int minAtt, maxAtt;
-        int minCon, maxCon;
-        int minDef, maxDef;
-
-        if ((position.getType().equals("ATT") || position.getType().equals("CON")) && !position.equals(Position.CM)) {
-            statSum = (int) (rating * 2.5);
-
-            if (position.equals(Position.ST)) {
-                minAtt = rating - 2;
-                maxAtt = rating + 4;
-                att = rand.nextInt(minAtt, maxAtt + 1);
-                minCon = (int) (rating * 0.6);
-                maxCon = rating;
-                con = rand.nextInt(minCon, maxCon + 1);
-                def = statSum - att - con;
-            }
-            if (position.equals(Position.CF)) {
-                minAtt = rating - 5;
-                maxAtt = rating + 2;
-                att = rand.nextInt(minAtt, maxAtt + 1);
-                minCon = (int) (rating * 0.7);
-                maxCon = rating + 2;
-                con = rand.nextInt(minCon, maxCon + 1);
-                def = statSum - att - con;
-            }
-            if (position.equals(Position.LM) || position.equals(Position.RM)
-                    || position.equals(Position.LW) || position.equals(Position.RW)
-                    || position.equals(Position.CAM)) {
-                minAtt = (int) (rating * 0.8);
-                maxAtt = rating + 2;
-                att = rand.nextInt(minAtt, maxAtt + 1);
-                minCon = (int) (rating * 0.8);
-                maxCon = rating + 3;
-                con = rand.nextInt(minCon, maxCon + 1);
-                def = statSum - att - con;
-            }
-            if (position.equals(Position.CDM)) {
-                minAtt = (int) (rating * 0.6);
-                maxAtt = (int) (rating * 0.9);
-                att = rand.nextInt(minAtt, maxAtt + 1);
-                minCon = (int) Math.floor(rating * 0.8);
-                maxCon = rating + 2;
-                con = rand.nextInt(minCon, maxCon + 1);
-                def = statSum - att - con;
-            }
-
-        } else if (position.equals(Position.CM) || position.equals(Position.LB) || position.equals(Position.RB)) {
-            statSum = (int) (rating * 2.7);
-            minAtt = (int) (rating * 0.6);
-            maxAtt = rating;
-            att = rand.nextInt(minAtt, maxAtt + 1);
-            minCon = (int) Math.floor(rating * 0.8);
-            maxCon = rating + 2;
-            con = rand.nextInt(minCon, maxCon + 1);
-            def = statSum - att - con;
-        } else if (position.equals(Position.CB)) {
-            statSum = (int) (rating * 2.4);
-            minDef = rating - 3;
-            maxDef = rating + 2;
-            def = rand.nextInt(minDef, maxDef + 1);
-            minCon = (int) (rating * 0.6);
-            maxCon = (int) (rating * 0.8);
-            con = rand.nextInt(minCon, maxCon + 1);
-            att = statSum - def - con;
-        } else if (position.equals(Position.GK)) {
-            statSum = (int) (rating * 1.8);
-            minDef = rating - 2;
-            maxDef = rating + 3;
-            def = rand.nextInt(minDef, maxDef + 1);
-            con = ((statSum - def) / 2);
-            att = statSum - def - con;
-        }
-
-        return new int[]{att, con, def};
-    }
-
-    private static void createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
-        if (club == null && player == null) {
-            throw new IllegalArgumentException("Either Club or Player must be set in order to create a News entry.");
-        }
-
-        News newNews = new News(player, type, null, isFollowingClub);
-        if (club == null) {
-            //newNews = new News(player, type, null, isFollowingClub);
-            switch (type) {
-                case RETIREMENT:
-                    newNews.setMessage("Player retired: " + player.getFirstName() + " " + player.getLastName() + " (" + getPlayerAge(player) + " years)");
-                    break;
-                case TRANSFER:
-                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getClubsSoFar()[1].getName() + " --> " + player.getClubsSoFar()[0].getName() + ")");
-                    break;
-                case BALLON_DOR:
-                    newNews.setMessage(player.getFirstName() + " " + player.getLastName() + " won the Ballon d'Or this year! Congratulations!");
-                    break;
-                default:
-                    break;
-            }
-        } else if (player == null) {
-            //TODO add News for a club (f.e. season winner (only shown when following), UCL winner, ...)
-            return;
-        }
-
-        news.add(newNews);
-        //TODO implement
-    }
-
     //GETTER METHODS
 
     public static Map<Country, List<League>> getCountriesWithLeagues() {
@@ -750,22 +371,15 @@ public class Engine {
         return playableLeagues;
     }
 
-    public static int getMoney() {
-        return money;
-    }
-
     public static LeagueTable getTable() {
         return table;
-    }
-
-    public static List<Player> getCurrentSquad() {
-        return currentSquad;
     }
 
     public static List<JobOffer> getJobOffers() {
         return jobOffers;
     }
 
+    //TODO MOVE TO MATCHENGINE
     public static Club getOpponent(Match match) {
         return match.getHome().getName().equals(clubToManage.getName()) ? match.getAway() : match.getHome();
     }
@@ -789,56 +403,7 @@ public class Engine {
         return currentRound;
     }
 
-    public static int getPlayerAge(Player p) {
-        //TODO make this calculation correct
-        return p == null ? -1 : LocalDate.now().getYear() - p.getBirthDate().getYear();
-    }
-
-    public static List<News> getNews() {
-        return news;
-    }
-
     private static void resetRound() {
         currentRound = 0;
-    }
-
-    private static int getCurrentSeason() {
-        return currentSeason;
-    }
-
-    private static int getRetirementChance(Player p) {
-        int playerAge = getPlayerAge(p);
-        if (playerAge <= 0) {
-            throw new RuntimeException("An error occurred during calculating retirement chances");
-        }
-        if (playerAge <= 24) {
-            return 0;
-        }
-        if (playerAge <= 28) {
-            return 2;
-        }
-        if (playerAge <= 30) {
-            return 4;
-        }
-        if (playerAge <= 32) {
-            return 8;
-        }
-        if (playerAge <= 34) {
-            return 20;
-        }
-        if (playerAge == 35) {
-            return 35;
-        }
-        if (playerAge == 36) {
-            return 50;
-        }
-        if (playerAge == 37) {
-            return 60;
-        }
-        if (playerAge <= 40) {
-            return 80;
-        } else {
-            return 95;
-        }
     }
 }

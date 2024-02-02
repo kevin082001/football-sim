@@ -8,7 +8,7 @@ import java.util.List;
 public class SaveState {
     //TODO implement (all the important stuff when saving the game is stored here)
     Club currentClub;
-    int money;
+    long money;
     //List<Player> currentSquad;
 
     List<Player> allPlayers;
@@ -16,7 +16,7 @@ public class SaveState {
     //LeagueTable currentTable;
     // List<Club> jobOffers;
 
-    public SaveState(Club currentClub, int money, List<Player> allPlayers) {
+    public SaveState(Club currentClub, long money, List<Player> allPlayers) {
         this.currentClub = currentClub;
         this.money = money;
         //this.currentSquad = squad;
@@ -33,11 +33,11 @@ public class SaveState {
         this.currentClub = currentClub;
     }
 
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(long money) {
         this.money = money;
     }
 
