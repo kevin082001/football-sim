@@ -50,6 +50,10 @@ public class News {
         return club;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public NewsType getType() {
         return type;
     }

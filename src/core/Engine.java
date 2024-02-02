@@ -272,7 +272,7 @@ public class Engine {
         PrintHelper.printNewLine(11);
         System.out.println("------ " + nextMatch.getHome().getName() + "  VS.  " + nextMatch.getAway().getName() + " ------");
         try {
-            TimeUnit.MILLISECONDS.sleep(4000);
+            TimeUnit.MILLISECONDS.sleep(2500);
 
             double[] goalChances = Engine.calcGoalChances(nextMatch);
             double ownChance = (goalChances[0] / 20);

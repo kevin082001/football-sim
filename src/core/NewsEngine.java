@@ -5,8 +5,10 @@ import GameObjects.Player;
 import enums.Club;
 import enums.NewsType;
 
+import java.util.List;
+
 public class NewsEngine {
-    public static News createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
+    public static void createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
         if (club == null && player == null) {
             throw new IllegalArgumentException("Either Club or Player must be set in order to create a News entry.");
         }
@@ -29,9 +31,9 @@ public class NewsEngine {
             }
         } else if (player == null) {
             //TODO add Club News (f.e. season winner (only shown when following), UCL winner, ...)
-            return null;
+            return;
         }
 
-        return newNews;
+        Game.addToNews(newNews);
     }
 }

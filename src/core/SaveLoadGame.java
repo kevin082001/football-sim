@@ -18,13 +18,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SaveLoadGame { //TODO update save/load methods
-    private Path savePath;
+    private final Path savePath;
 
     public SaveLoadGame(Path savePath) {
         this.savePath = savePath;
     }
 
-    public void saveGame(Club currentClub, long money, List<Player> allPlayers) { //TODO think about what else is needed when saving
+    public void saveGame() { //TODO think about what else is needed when saving
+        Club currentClub = Game.getCurrentClub();
+        long money = Game.getMoney();
+        List<Player> allPlayers = PlayerHelper.getAllPlayers();
         SaveState saveState = new SaveState(currentClub, money, allPlayers);
 
         try {

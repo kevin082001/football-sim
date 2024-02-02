@@ -11,33 +11,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private final Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
-    private int currentSeason = 0;
-    private List<News> news = new ArrayList<>();
-    private long money = 500_000;
+    private static final Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
+    private static int currentSeason = 0;
+    private static List<News> news = new ArrayList<>();
+    private static long money = 500_000;
+    private static Club currentClub;
 
-    public void run() {
+    public static void run() {
+        int newOrLoad = PrintHelper.askNewGameOrLoad();
+
+        if (newOrLoad == 1) {
+            currentClub = PrintHelper.printSelectStartClub();
+            Engine.initSquad(currentClub);
+        } else {
+            SaveLoadGame slg = new SaveLoadGame(savePath);
+            SaveState savedGame = slg.loadGame();
+            currentClub = savedGame.getCurrentClub();
+        }
         while (true) {
-            Club clubToManage;
-            int newOrLoad = PrintHelper.askNewGameOrLoad();
-
-            if (newOrLoad == 1) {
-                clubToManage = PrintHelper.printSelectStartClub();
-                Engine.initSquad(clubToManage);
-            } else {
-                SaveLoadGame slg = new SaveLoadGame(savePath);
-                SaveState savedGame = slg.loadGame();
-                clubToManage = savedGame.getCurrentClub();
-            }
-
-            Engine.initMatchesForSeason(clubToManage);
-            Engine.initTable(clubToManage);
-            PrintHelper.printHomeMenu(clubToManage, money, news, savePath);
+            Engine.initMatchesForSeason(currentClub);
+            Engine.initTable(currentClub);
+            PrintHelper.printHomeMenu();
 
             //TODO if all matches of the season are played, end the season
             Engine.endCurrentSeason(currentSeason);
             currentSeason++;
             Engine.startNewSeason(currentSeason);
         }
+    }
+
+    public static long getMoney() {
+        return money;
+    }
+
+    public static Club getCurrentClub() {
+        return currentClub;
+    }
+
+    public static List<News> getNews() {
+        return news;
+    }
+
+    public static void addToNews(News entry) {
+        if (entry == null || (entry.getClub() == null && entry.getPlayer() == null)) {
+            return;
+        }
+        news.add(entry);
+    }
+
+    public static Path getSavePath() {
+        return savePath;
     }
 }

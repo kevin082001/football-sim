@@ -2,7 +2,7 @@ package helper;
 
 import GameObjects.*;
 import core.Engine;
-import core.NewsEngine;
+import core.Game;
 import core.PlayerEngine;
 import core.SaveLoadGame;
 import enums.Club;
@@ -20,12 +20,12 @@ public class PrintHelper {
     private static Scanner sc = new Scanner(System.in);
 
 
-    public static void printHomeMenu(Club currentClub, long money, List<News> news, Path savePath) {
+    public static void printHomeMenu() {
         sc = new Scanner(System.in);
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println(Engine.getClubToManage().getName());
-        System.out.println("Money: " + money);
+        System.out.println("Money: " + Game.getMoney());
         System.out.println("----------------------------------------");
         System.out.println();
         System.out.println("0) Quit without save");
@@ -66,17 +66,17 @@ public class PrintHelper {
                 printJobOffers();
                 break;
             case 8:
-                printNewsPage(news);
+                printNewsPage();
                 break;
             case 9:
-                SaveLoadGame slg = new SaveLoadGame(savePath);
-                slg.saveGame(currentClub, money, PlayerHelper.getAllPlayers());
+                SaveLoadGame slg = new SaveLoadGame(Game.getSavePath());
+                slg.saveGame();
                 printSaveGame();
                 break;
             default:
                 System.out.println("Invalid option");
                 printNewLine(11);
-                printHomeMenu(currentClub, money, news, savePath);
+                printHomeMenu();
         }
     }
 
@@ -215,7 +215,7 @@ public class PrintHelper {
     }
 
     private static void printMySquad() {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        printNewLine(11);
         System.out.println("---------------------------------------");
         System.out.println("- - - - -     YOUR  SQUAD     - - - - -");
         System.out.println("---------------------------------------");
@@ -295,14 +295,17 @@ public class PrintHelper {
         //TODO implement
     }
 
-    public static void printNewsPage(List<News> news) {
+    public static void printNewsPage() {
+        List<News> news = Game.getNews();
         if (news == null || news.isEmpty()) {
             return;
         }
 
-        for(News entry : news){
+        for (News entry : news) {
             System.out.println(entry.getMessage());
         }
+
+        printHomeMenu();
     }
 
     public static void printMessagePlayerRetirement(Player player) {
@@ -321,12 +324,13 @@ public class PrintHelper {
         switch (choice) {
             case 1:
                 printHomeMenu();
+                break;
             case 2:
                 printCareerDetails(player);
                 break;
             default:
                 System.out.println("Invalid input");
-                printNewLine(10);
+                printNewLine(11);
                 printMessagePlayerRetirement(player);
         }
     }
@@ -337,6 +341,9 @@ public class PrintHelper {
             throw new NullPointerException("Player or player's career was null.");
         }
 
+        if(player.getCareer().length == 0){
+            return;
+        }
         printNewLine(11);
         System.out.println("CAREER DETAILS");
         printCharacter('-', 30);
@@ -345,6 +352,8 @@ public class PrintHelper {
         for (PlayerCareer career : player.getCareer()) {
             System.out.println(career.getFrom() + " to " + career.getUntil() + ": " + career.getClub().getName() + " (" + career.getGoals() + " in " + career.getGames() + " games)");
         }
+
+        printHomeMenu();
     }
 
     public static void printNewLine(int numberOfNewLines) {
