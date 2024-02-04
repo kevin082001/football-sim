@@ -1,10 +1,7 @@
 package helper;
 
 import GameObjects.*;
-import core.Engine;
-import core.Game;
-import core.PlayerEngine;
-import core.SaveLoadGame;
+import core.*;
 import enums.Club;
 import enums.Country;
 import enums.League;
@@ -24,7 +21,7 @@ public class PrintHelper {
         sc = new Scanner(System.in);
         printNewLine(11);
         System.out.println("----------------------------------------");
-        System.out.println(Engine.getClubToManage().getName());
+        System.out.println(Game.getCurrentClub().getName());
         System.out.println("Money: " + Game.getMoney());
         System.out.println("----------------------------------------");
         System.out.println();
@@ -48,7 +45,7 @@ public class PrintHelper {
                 printNextMatchDetails();
                 break;
             case 2:
-                Engine.startNextMatch();
+                MatchEngine.startNextMatch();
                 break;
             case 3:
                 printTable();
@@ -155,7 +152,7 @@ public class PrintHelper {
             System.out.println("Invalid input");
             printSelectStartClub();
         }
-        Engine.setClubToManage(randomClubs.get(choice));
+        Game.setCurrentClub(randomClubs.get(choice));
         return randomClubs.get(choice);
     }
 
@@ -195,7 +192,7 @@ public class PrintHelper {
     }
 
     private static void printNextMatchDetails() {
-        Match nextMatch = Engine.getNextMatch();
+        Match nextMatch = MatchEngine.getNextMatch();
         if (nextMatch == null) {
             //That should actually NEVER be printed
             System.out.println("All matches played");
@@ -220,7 +217,7 @@ public class PrintHelper {
         System.out.println("- - - - -     YOUR  SQUAD     - - - - -");
         System.out.println("---------------------------------------");
         System.out.println();
-        List<Player> players = ClubHelper.sortPlayersByPosition(Engine.getClubToManage());
+        List<Player> players = ClubHelper.sortPlayersByPosition(Game.getCurrentClub());
         Position pos = null;
         for (Player p : players) {
             if (pos == null || !p.getPosition().getType().equals(pos.getType())) {
@@ -249,8 +246,8 @@ public class PrintHelper {
     }
 
     private static void printTable() {
-        LeagueTable table = Engine.getTable();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        LeagueTable table = SeasonEngine.getTable();
+        printNewLine(11);
         System.out.println(table.getLeague().getName());
         System.out.println("----------------------------------------");
         System.out.println();
@@ -313,7 +310,8 @@ public class PrintHelper {
         printCharacter('#', 30);
         System.out.println(player.getFirstName() + " " + player.getLastName() + " ends his career at the age of " + PlayerEngine.getPlayerAge(player) + ".");
         System.out.println("As a " + player.getPosition().getFullName() + ", he played " + player.getMatches() + " matches and scored " + player.getGoals() + " goals.");
-        System.out.println("\nYou can go back (OK) or view details about " + player.getFirstName() + " " + player.getLastName() + "'s career.");
+        System.out.println();
+        System.out.println("You can go back (OK) or view details about " + player.getFirstName() + " " + player.getLastName() + "'s career.");
         printNewLine(2);
         System.out.println("1) OK");
         System.out.println("2) Career details");

@@ -9,7 +9,6 @@ public class SaveState {
     //TODO implement (all the important stuff when saving the game is stored here)
     Club currentClub;
     long money;
-    //List<Player> currentSquad;
 
     List<Player> allPlayers;
 
@@ -19,7 +18,6 @@ public class SaveState {
     public SaveState(Club currentClub, long money, List<Player> allPlayers) {
         this.currentClub = currentClub;
         this.money = money;
-        //this.currentSquad = squad;
         this.allPlayers=allPlayers;
         //this.currentTable = currentTable;
         //this.jobOffers = jobOffers;
@@ -40,14 +38,6 @@ public class SaveState {
     public void setMoney(long money) {
         this.money = money;
     }
-
-    /*public List<Player> getCurrentSquad() {
-        return currentSquad;
-    }
-
-    public void setCurrentSquad(List<Player> currentSquad) {
-        this.currentSquad = currentSquad;
-    }*/
 
     public List<Player> getAllPlayers() {
         return allPlayers;

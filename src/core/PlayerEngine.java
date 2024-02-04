@@ -150,24 +150,28 @@ public class PlayerEngine {
     // -----   YOUTH ACADEMY   -----
     // -----------------------------
 
-    public static void checkPlayersJoiningFromAcademy(Club club) {
-        int chanceToGeneratePlayer = rand.nextInt(100);
+    public static void checkPlayersJoiningFromAcademy() {
+        List<Club> allClubs = ClubHelper.getAllClubs();
 
-        //60% for 1 player to join
-        //30% for 2 players to join
-        //10% for 3 players to join
-        if (chanceToGeneratePlayer <= 60) {
-            Player newPlayer = generateYouthPlayer(club);
-            PlayerHelper.addPlayer(newPlayer);
-        } else if (chanceToGeneratePlayer <= 90) {
-            for (int i = 1; i <= 2; i++) {
+        for (Club club : allClubs) {
+            int chanceToGeneratePlayer = rand.nextInt(100);
+
+            //60% for 1 player to join
+            //30% for 2 players to join
+            //10% for 3 players to join
+            if (chanceToGeneratePlayer <= 60) {
                 Player newPlayer = generateYouthPlayer(club);
                 PlayerHelper.addPlayer(newPlayer);
-            }
-        } else {
-            for (int i = 1; i <= 3; i++) {
-                Player newPlayer = generateYouthPlayer(club);
-                PlayerHelper.addPlayer(newPlayer);
+            } else if (chanceToGeneratePlayer <= 90) {
+                for (int i = 1; i <= 2; i++) {
+                    Player newPlayer = generateYouthPlayer(club);
+                    PlayerHelper.addPlayer(newPlayer);
+                }
+            } else {
+                for (int i = 1; i <= 3; i++) {
+                    Player newPlayer = generateYouthPlayer(club);
+                    PlayerHelper.addPlayer(newPlayer);
+                }
             }
         }
     }

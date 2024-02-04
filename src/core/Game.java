@@ -22,21 +22,21 @@ public class Game {
 
         if (newOrLoad == 1) {
             currentClub = PrintHelper.printSelectStartClub();
-            Engine.initSquad(currentClub);
+            ClubEngine.initSquad(currentClub);
         } else {
             SaveLoadGame slg = new SaveLoadGame(savePath);
             SaveState savedGame = slg.loadGame();
             currentClub = savedGame.getCurrentClub();
         }
         while (true) {
-            Engine.initMatchesForSeason(currentClub);
-            Engine.initTable(currentClub);
+            MatchEngine.initMatchesForSeason(currentClub);
+            SeasonEngine.initTable(currentClub);
             PrintHelper.printHomeMenu();
 
             //TODO if all matches of the season are played, end the season
-            Engine.endCurrentSeason(currentSeason);
+            SeasonEngine.endCurrentSeason(currentSeason);
             currentSeason++;
-            Engine.startNewSeason(currentSeason);
+            SeasonEngine.startNewSeason(currentSeason);
         }
     }
 
@@ -46,6 +46,10 @@ public class Game {
 
     public static Club getCurrentClub() {
         return currentClub;
+    }
+
+    public static void setCurrentClub(Club club){
+        currentClub = club;
     }
 
     public static List<News> getNews() {
