@@ -9,8 +9,7 @@ public class Main { //TODO implement: international cups (UEL, UCL, ...), more l
         //randomNameTest();
         //amountOfPlayersTest();
 
-        Game game = new Game();
-        game.run();
+        Game.run();
     }
 
     private static void randomNameTest() {
