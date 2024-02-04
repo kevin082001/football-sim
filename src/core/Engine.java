@@ -1,15 +1,15 @@
 package core;
 
 import GameObjects.JobOffer;
-import GameObjects.LeagueTable;
-import GameObjects.Match;
 import enums.Club;
 import enums.Country;
 import enums.League;
-import helper.ClubHelper;
 import helper.LeagueHelper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Handles stuff which none of the other engines are responsible for
@@ -39,7 +39,6 @@ public class Engine {
     public static Map<League, List<Club>> getPlayableLeagues() {
         return playableLeagues;
     }
-
 
 
     public static List<JobOffer> getJobOffers() {

@@ -5,8 +5,6 @@ import GameObjects.Player;
 import enums.Club;
 import enums.NewsType;
 
-import java.util.List;
-
 public class NewsEngine {
     public static void createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
         if (club == null && player == null) {

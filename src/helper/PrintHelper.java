@@ -8,7 +8,6 @@ import enums.League;
 import enums.Position;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -339,7 +338,7 @@ public class PrintHelper {
             throw new NullPointerException("Player or player's career was null.");
         }
 
-        if(player.getCareer().length == 0){
+        if (player.getCareer().length == 0) {
             return;
         }
         printNewLine(11);

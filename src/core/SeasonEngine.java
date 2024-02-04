@@ -84,6 +84,7 @@ public class SeasonEngine {
     public static LeagueTable getTable() {
         return table;
     }
+
     private static void resetRound() {
         currentRound = 0;
     }
