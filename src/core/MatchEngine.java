@@ -90,6 +90,7 @@ public class MatchEngine {
         int startIndex = getStartIndex(round, club);
 
         for (int i = startIndex; i < (startIndex + amountOfMatches); i++) {
+            //TODO IndexOutOfBoundsException: Index 90 out of bounds for length 90 (played 4 matches)
             matchesThisRound.add(new Match(matchesThisSeason.get(i).getHome(), matchesThisSeason.get(i).getAway(), null));
         }
 
@@ -183,6 +184,7 @@ public class MatchEngine {
 
             simulateMatches(currentRound);
             SeasonEngine.updateTable(getMatchesForRound(currentRound, Game.getCurrentClub(), getMatchesThisSeason()));
+            Engine.checkForJobOffers(Game.getCurrentClub()); //TODO should not be called here (separation of concerns)
             PrintHelper.printHomeMenu();
         } catch (InterruptedException ex) {
             ex.printStackTrace();

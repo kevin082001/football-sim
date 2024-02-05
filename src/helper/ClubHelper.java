@@ -83,4 +83,17 @@ public class ClubHelper {
 
         return clubs;
     }
+
+    public static long getTotalMarketValue(Club club) {
+        if (club == null || PlayerHelper.getPlayersForClub(club).isEmpty()) {
+            return 0;
+        }
+
+        long totalValue = 0;
+        for (Player p : PlayerHelper.getPlayersForClub(club)) {
+            totalValue += p.getMarketValue();
+        }
+
+        return totalValue;
+    }
 }
