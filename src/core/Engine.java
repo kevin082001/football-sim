@@ -70,12 +70,38 @@ public class Engine {
     }
 
     private static void generateJobOffer(Club club) {
-        if (club == null) {
+        if (club == null || club.equals(Game.getCurrentClub())) {
             return;
         }
+
+        //Don't allow multiple offers from the same club
+        for (JobOffer offer : jobOffers) {
+            if (offer.getClub().equals(club)) {
+                return;
+            }
+        }
+
         jobOffers.add(new JobOffer(club));
     }
 
+    public static void acceptOffer(JobOffer offer) {
+        if (offer == null) {
+            return;
+        }
+
+        Game.setCurrentClub(offer.getClub());
+        ClubEngine.initSquad(offer.getClub());
+        SeasonEngine.initTable(offer.getClub());
+        jobOffers = new ArrayList<>();
+    }
+
+    public static void declineOffer(JobOffer offer) {
+        if (offer == null) {
+            return;
+        }
+
+        removeFromOffers(offer);
+    }
 
     public static Map<Country, List<League>> getCountriesWithLeagues() {
         return countriesWithLeagues;
@@ -88,5 +114,22 @@ public class Engine {
 
     public static List<JobOffer> getJobOffers() {
         return jobOffers;
+    }
+
+    /**
+     * Removes a job offer from {@link #jobOffers}.
+     * This method may only be used when an offer expires or gets accepted/declined.
+     *
+     * @param offer The job offer
+     */
+    public static void removeFromOffers(JobOffer offer) {
+        if (offer == null) {
+            return;
+        }
+        for (JobOffer jobOffer : jobOffers) {
+            if (jobOffer.getClub().equals(offer.getClub())) {
+                jobOffers.remove(jobOffer);
+            }
+        }
     }
 }

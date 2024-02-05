@@ -72,8 +72,8 @@ public class PrintHelper {
             default:
                 System.out.println("Invalid option");
                 printNewLine(11);
-                printHomeMenu();
         }
+        printHomeMenu();
     }
 
     public static Country printSelectStartCountry() {
@@ -288,7 +288,52 @@ public class PrintHelper {
     }
 
     public static void printJobOffers() {
-        //TODO implement
+        List<JobOffer> jobOffers = Engine.getJobOffers();
+        if (jobOffers == null || jobOffers.isEmpty()) {
+            return;
+        }
+
+        printNewLine(11);
+        for (int i = 0; i < jobOffers.size(); i++) {
+            System.out.println(i + ": " + jobOffers.get(i).getClub().getName() + " (League: " + jobOffers.get(i).getClub().getLeague() + ")");
+        }
+
+        System.out.print(">> ");
+        int choice = sc.nextInt();
+        if (choice >= jobOffers.size() || choice < 0) {
+            System.out.println("Invalid option");
+            printHomeMenu();
+        }
+        printSingleJobOffer(jobOffers.get(choice));
+    }
+
+    private static void printSingleJobOffer(JobOffer offer) {
+        if (offer == null) {
+            return;
+        }
+
+        int[] totalStats = ClubHelper.getStatsForClub(offer.getClub());
+
+        printNewLine(11);
+        System.out.println("Club:               " + offer.getClub().getName());
+        System.out.println("League:             " + offer.getClub().getLeague().getName() + " (" + offer.getClub().getLeague() + ")");
+        System.out.println("Rating:             " + totalStats[0] + " ATT / " + totalStats[1] + " CON / " + totalStats[2] + " DEF");
+        System.out.println("Total market value: " + ClubHelper.getTotalMarketValue(offer.getClub()));
+        System.out.println();
+        System.out.println("1) Accept offer");
+        System.out.println("2) Decline offer (delete from list)");
+        System.out.println("3) Go back to offers");
+        System.out.print(">> ");
+        int choice = sc.nextInt();
+        if (choice > 3 || choice < 1) {
+            System.out.println("Invalid option");
+            printSingleJobOffer(offer);
+        }
+        switch (choice) {
+            case 1 -> Engine.acceptOffer(offer);
+            case 2 -> Engine.declineOffer(offer);
+            case 3 -> printJobOffers();
+        }
     }
 
     public static void printNewsPage() {
