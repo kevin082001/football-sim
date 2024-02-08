@@ -126,10 +126,15 @@ public class Engine {
         if (offer == null) {
             return;
         }
+
+        //Solved like this because otherwise, a ConcurrentModificationException would occur when trying to remove an offer
+        JobOffer toRemove = null;
         for (JobOffer jobOffer : jobOffers) {
             if (jobOffer.getClub().equals(offer.getClub())) {
-                jobOffers.remove(jobOffer);
+                toRemove = jobOffer;
+                break;
             }
         }
+        jobOffers.remove(toRemove);
     }
 }

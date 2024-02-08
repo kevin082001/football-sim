@@ -284,7 +284,32 @@ public class PrintHelper {
     }
 
     public static void printTransferMarket() {
-        //TODO implement
+        List<Player> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
+
+        if (playersOnMarket.isEmpty()) {
+            printNewLine(11);
+            System.out.println("There are currently no players on the transfer market. Try again later.");
+            try {
+                Thread.sleep(2000);
+                return;
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+        }
+
+        printNewLine(11);
+        System.out.println("-------------------------------");
+        System.out.println("------  TRANSFER MARKET  ------");
+        System.out.println("-------------------------------");
+        System.out.println();
+        System.out.println(playersOnMarket.size() + " players found");
+        System.out.println();
+        int i = 0;
+        for (Player p : playersOnMarket) {
+            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
+            i++;
+        }
+        //TODO add option menu to choose a player
     }
 
     public static void printJobOffers() {
