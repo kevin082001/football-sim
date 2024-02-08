@@ -29,7 +29,7 @@ public class Engine {
     private final static Map<Country, List<League>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
     private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
 
-    private static List<JobOffer> jobOffers = new ArrayList<>(); //TODO add Job offers
+    private static List<JobOffer> jobOffers = new ArrayList<>();
 
 
     public static void checkForJobOffers(Club currentClub) {
@@ -37,7 +37,7 @@ public class Engine {
             return;
         }
 
-        int chanceForJobOffer = 60; //TODO IMPORTANT: change back to 3 (only for testing now)
+        int chanceForJobOffer = 60; //TODO IMPORTANT: change back to 3 (only for testing)
         int chanceForJobOfferFromSameCountry = 2;
 
         //Only allow clubs that have
