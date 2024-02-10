@@ -27,7 +27,6 @@ public class TransferMarketEngine {
     }
 
     public static void checkForMarketUpdate() {
-        //TODO Decide whether to put players on the market (RNG) (NOT own players)
         Club currentClub = Game.getCurrentClub();
 
         List<Club> allNpcClubs = ClubHelper.getAllClubs()
@@ -35,11 +34,14 @@ public class TransferMarketEngine {
                 .filter(x -> x != currentClub)
                 .toList();
 
-        int chanceForPuttingPlayerOnMarket = 100; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
         for (Club c : allNpcClubs) {
+            int chanceForPuttingPlayerOnMarket = 800; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
             if (rand.nextInt(1000) <= chanceForPuttingPlayerOnMarket) {
                 List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
-                putPlayerOnMarket(playersInClub.get(rand.nextInt(playersInClub.size())));
+
+                if (!playersInClub.isEmpty()) {
+                    putPlayerOnMarket(playersInClub.get(rand.nextInt(playersInClub.size())));
+                }
             }
         }
     }
@@ -63,7 +65,6 @@ public class TransferMarketEngine {
             return;
         }
         playersOnMarket.add(p);
-        NewsEngine.createNewsEntry(Game.getCurrentClub(), p, NewsType.TRANSFER, false);
     }
 
     private static boolean isOnMarket(Player player) {

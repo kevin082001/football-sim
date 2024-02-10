@@ -76,7 +76,7 @@ public class Engine {
 
         //Don't allow multiple offers from the same club
         for (JobOffer offer : jobOffers) {
-            if (offer.getClub().equals(club)) {
+            if (offer.getClub().equals(club) || !isSelectable(club)) {
                 return;
             }
         }
@@ -122,7 +122,7 @@ public class Engine {
      *
      * @param offer The job offer
      */
-    public static void removeFromOffers(JobOffer offer) {
+    private static void removeFromOffers(JobOffer offer) {
         if (offer == null) {
             return;
         }
@@ -136,5 +136,13 @@ public class Engine {
             }
         }
         jobOffers.remove(toRemove);
+    }
+
+    private static boolean isSelectable(Club club) {
+        if (club == null) {
+            return false;
+        }
+
+        return !club.equals(Club.WITHOUT_CLUB) && !club.equals(Club.RETIRED);
     }
 }

@@ -309,7 +309,20 @@ public class PrintHelper {
             System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
             i++;
         }
-        //TODO add option menu to choose a player
+
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+        if (choice < 0 || choice >= playersOnMarket.size()) {
+            System.out.println("Invalid input");
+            try {
+                System.in.read();
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            printTransferMarket();
+        }
+        printMenuBuyPlayer(playersOnMarket.get(choice));
     }
 
     public static void printJobOffers() {
@@ -359,6 +372,11 @@ public class PrintHelper {
             case 2 -> Engine.declineOffer(offer);
             case 3 -> printJobOffers();
         }
+    }
+
+    private static void printMenuBuyPlayer(Player player){
+        //TODO implement
+        printHomeMenu();
     }
 
     public static void printNewsPage() {

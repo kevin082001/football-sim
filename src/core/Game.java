@@ -3,6 +3,7 @@ package core;
 import GameObjects.News;
 import GameObjects.SaveState;
 import enums.Club;
+import helper.PlayerHelper;
 import helper.PrintHelper;
 
 import java.nio.file.FileSystems;
@@ -18,6 +19,7 @@ public class Game {
     private static Club currentClub;
 
     public static void run() {
+        initAllPlayers();
         int newOrLoad = PrintHelper.askNewGameOrLoad();
 
         if (newOrLoad == 1) {
@@ -65,5 +67,9 @@ public class Game {
 
     public static Path getSavePath() {
         return savePath;
+    }
+
+    private static void initAllPlayers(){
+        PlayerHelper.getAllPlayers();
     }
 }

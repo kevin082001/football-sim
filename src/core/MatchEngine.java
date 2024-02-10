@@ -156,7 +156,9 @@ public class MatchEngine {
 
             for (int minute = 1; minute <= 90; minute++) {
                 double randomNumber = rand.nextDouble(100);
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + minute + "'");
+
+                PrintHelper.printNewLine(11);
+                System.out.println(minute + "'");
 
                 if (randomNumber <= ownChance) {
                     scorers = updateMatchScore(Game.getCurrentClub(), minute, scorers, score, true);
@@ -185,6 +187,7 @@ public class MatchEngine {
             simulateMatches(currentRound);
             SeasonEngine.updateTable(getMatchesForRound(currentRound, Game.getCurrentClub(), getMatchesThisSeason()));
             Engine.checkForJobOffers(Game.getCurrentClub()); //TODO should not be called here (separation of concerns)
+            TransferMarketEngine.checkForMarketUpdate(); //TODO should not be called here (separation of concerns)
             PrintHelper.printHomeMenu();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
