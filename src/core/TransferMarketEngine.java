@@ -1,18 +1,20 @@
 package core;
 
 import GameObjects.Player;
+import GameObjects.PlayerCareer;
 import enums.Club;
-import enums.NewsType;
+import helper.ArrayHelper;
 import helper.ClubHelper;
 import helper.PlayerHelper;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class TransferMarketEngine {
     private static Random rand = new Random(System.nanoTime());
-    private static List<Player> playersOnMarket = new ArrayList<>();
+    private static Map<Player, Long> playersOnMarket = new HashMap<>(); //Key: Player, Value: transfer cost (rougly market value)
 
     /**
      * Generates a random market value for youth players who join the club.
@@ -24,6 +26,19 @@ public class TransferMarketEngine {
     public static long getRandomMarketValue() {
         int[] values = new int[]{1_000, 2_000, 5_000, 10_000, 15_000, 20_000, 25_000};
         return values[rand.nextInt(values.length)];
+    }
+
+    private static long getRandomTransferCost(Player p) { //TODO possibly rework the cost calculation
+        if (p == null) {
+            return -1;
+        }
+
+        long marketValue = p.getMarketValue();
+
+        long minCost = (long) (marketValue * 0.6);
+        long maxCost = (long) (marketValue * 2.5);
+
+        return rand.nextLong(minCost, maxCost + 1);
     }
 
     public static void checkForMarketUpdate() {
@@ -52,10 +67,34 @@ public class TransferMarketEngine {
         }
 
         //TODO buy player (subtract money from own club, add money to selling club, change player's club, update player.getCareer())
+        long cost = playersOnMarket.get(player);
+        Game.setMoney(Game.getMoney() - cost);
+        player.setClub(Game.getCurrentClub());
+        Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
+        clubsSoFar[clubsSoFar.length - 1] = player.getClub();
+        PlayerCareer[] career = player.getCareer();
+        career = ArrayHelper.extend(career);
+
+        //TODO also update career of last club (highestMarketValue,...)
+        career[career.length - 1] = new PlayerCareer(Game.getCurrentClub(), player, cost);
     }
 
-    public static List<Player> getPlayersOnMarket() {
+    public static Map<Player, Long> getPlayersOnMarket() {
         return playersOnMarket;
+    }
+
+    public static boolean canBuyPlayer(Player p, long money) {
+        if (p == null || money < 1) {
+            return false;
+        }
+
+        for (Player player : playersOnMarket.keySet()) {
+            if (player.equals(p)) {
+                return money >= playersOnMarket.get(p);
+            }
+        }
+
+        return false;
     }
 
     // -----   PRIVATE METHODS   -----
@@ -64,7 +103,9 @@ public class TransferMarketEngine {
         if (p == null || isOnMarket(p)) {
             return;
         }
-        playersOnMarket.add(p);
+
+        Long transferCost = getRandomTransferCost(p);
+        playersOnMarket.put(p, transferCost);
     }
 
     private static boolean isOnMarket(Player player) {
@@ -72,7 +113,7 @@ public class TransferMarketEngine {
             return false;
         }
 
-        for (Player p : playersOnMarket) {
+        for (Player p : playersOnMarket.keySet()) {
             if (p.getId() == player.getId()) {
                 return true;
             }

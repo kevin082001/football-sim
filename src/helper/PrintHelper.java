@@ -284,7 +284,7 @@ public class PrintHelper {
     }
 
     public static void printTransferMarket() {
-        List<Player> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
+        Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
 
         if (playersOnMarket.isEmpty()) {
             printNewLine(11);
@@ -305,7 +305,7 @@ public class PrintHelper {
         System.out.println(playersOnMarket.size() + " players found");
         System.out.println();
         int i = 0;
-        for (Player p : playersOnMarket) {
+        for (Player p : playersOnMarket.keySet()) {
             System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
             i++;
         }
@@ -322,7 +322,11 @@ public class PrintHelper {
             }
             printTransferMarket();
         }
-        printMenuBuyPlayer(playersOnMarket.get(choice));
+        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getMoney())) {
+            System.out.println("Not enough money to buy the player");
+            printTransferMarket();
+        }
+        printMenuBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice]);
     }
 
     public static void printJobOffers() {
@@ -374,9 +378,36 @@ public class PrintHelper {
         }
     }
 
-    private static void printMenuBuyPlayer(Player player){
-        //TODO implement
-        printHomeMenu();
+    private static void printMenuBuyPlayer(Player player) {
+        if (player == null) {
+            return;
+        }
+
+        printNewLine(11);
+        System.out.println("Name: " + player.getFirstName() + " " + player.getLastName());
+        System.out.println("Age: " + PlayerEngine.getPlayerAge(player));
+        System.out.println("Position: " + player.getPosition());
+        System.out.println("Rating: " + player.getRating());
+        System.out.println("--------------------");
+        System.out.println("Cost: " + TransferMarketEngine.getPlayersOnMarket().get(player) + "€");
+        System.out.println();
+        System.out.println("1) Buy player");
+        System.out.println("2) Go back to transfer market");
+        System.out.print(">>");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                TransferMarketEngine.buyPlayer(player);
+                System.out.println("Player purchased successfully!");
+                printHomeMenu();
+            case 2:
+                printTransferMarket();
+            default:
+                System.out.println("Invalid input.");
+                printMenuBuyPlayer(player);
+                break;
+        }
     }
 
     public static void printNewsPage() {

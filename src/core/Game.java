@@ -46,6 +46,10 @@ public class Game {
         return money;
     }
 
+    public static void setMoney(long newAmount) {
+        money = newAmount;
+    }
+
     public static Club getCurrentClub() {
         return currentClub;
     }
@@ -69,7 +73,7 @@ public class Game {
         return savePath;
     }
 
-    private static void initAllPlayers(){
+    private static void initAllPlayers() {
         PlayerHelper.getAllPlayers();
     }
 }
