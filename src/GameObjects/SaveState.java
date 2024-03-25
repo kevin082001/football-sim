@@ -1,13 +1,12 @@
 package GameObjects;
 
-import enums.Club;
-import enums.League;
+import enums.ClubEnum;
 
 import java.util.List;
 
 public class SaveState {
     //TODO implement (all the important stuff when saving the game is stored here)
-    Club currentClub;
+    ClubEnum currentClub;
     long money;
 
     List<Player> allPlayers;
@@ -15,7 +14,7 @@ public class SaveState {
     //LeagueTable currentTable;
     // List<Club> jobOffers;
 
-    public SaveState(Club currentClub, long money, List<Player> allPlayers) {
+    public SaveState(ClubEnum currentClub, long money, List<Player> allPlayers) {
         this.currentClub = currentClub;
         this.money = money;
         this.allPlayers=allPlayers;
@@ -23,11 +22,11 @@ public class SaveState {
         //this.jobOffers = jobOffers;
     }
 
-    public Club getCurrentClub() {
+    public ClubEnum getCurrentClub() {
         return currentClub;
     }
 
-    public void setCurrentClub(Club currentClub) {
+    public void setCurrentClub(ClubEnum currentClub) {
         this.currentClub = currentClub;
     }
 

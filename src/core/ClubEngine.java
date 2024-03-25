@@ -1,7 +1,7 @@
 package core;
 
 import GameObjects.Player;
-import enums.Club;
+import enums.ClubEnum;
 import helper.PlayerHelper;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 public class ClubEngine {
     private static List<Player> currentSquad;
 
-    public static void initSquad(Club club) {
+    public static void initSquad(ClubEnum club) {
         currentSquad = new ArrayList<>();
         currentSquad.addAll(PlayerHelper.getPlayersForClub(club));
     }

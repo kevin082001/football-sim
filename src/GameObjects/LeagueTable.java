@@ -1,15 +1,15 @@
 package GameObjects;
 
-import enums.Club;
+import enums.ClubEnum;
 import enums.League;
 
 import java.util.Map;
 
 public class LeagueTable {
     League league;
-    Map<Club, Integer> points;
+    Map<ClubEnum, Integer> points;
 
-    public LeagueTable(League league, Map<Club, Integer> points) {
+    public LeagueTable(League league, Map<ClubEnum, Integer> points) {
         this.league = league;
         this.points = points;
     }
@@ -22,11 +22,11 @@ public class LeagueTable {
         this.league = league;
     }
 
-    public Map<Club, Integer> getPoints() {
+    public Map<ClubEnum, Integer> getPoints() {
         return points;
     }
 
-    public void setPoints(Map<Club, Integer> points) {
+    public void setPoints(Map<ClubEnum, Integer> points) {
         this.points = points;
     }
 }

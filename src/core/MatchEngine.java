@@ -3,7 +3,7 @@ package core;
 import GameObjects.Match;
 import GameObjects.Player;
 import GameObjects.Score;
-import enums.Club;
+import enums.ClubEnum;
 import enums.League;
 import helper.ClubHelper;
 import helper.PlayerHelper;
@@ -19,11 +19,11 @@ public class MatchEngine {
 
 
     //TODO probably move to SeasonEngine
-    public static void initMatchesForSeason(Club club) {
+    public static void initMatchesForSeason(ClubEnum club) {
         List<Match> result = new ArrayList<>();
 
         League league = club.getLeague();
-        List<Club> clubsInLeague = ClubHelper.getClubsForLeague(league);
+        List<ClubEnum> clubsInLeague = ClubHelper.getClubsForLeague(league);
 
         for (int homeIndex = 0; homeIndex < clubsInLeague.size(); homeIndex++) {
             for (int awayIndex = homeIndex; awayIndex < clubsInLeague.size(); awayIndex++) {
@@ -42,7 +42,7 @@ public class MatchEngine {
     public static void simulateMatches(int round) {
         //TODO rework algorithm so that in every round, there is the same amount of matches
 
-        List<Club> clubsInLeague = ClubHelper.getClubsForLeague(Game.getCurrentClub().getLeague());
+        List<ClubEnum> clubsInLeague = ClubHelper.getClubsForLeague(Game.getCurrentClub().getLeague());
         int matchesInRound = (clubsInLeague.size() - round) * 2; //number of matches per round decreases (10 clubs --> 18, 16, 14, 12,...)
 
         for (int i = 0; i < matchesInRound; i++) {
@@ -51,7 +51,7 @@ public class MatchEngine {
     }
 
     public static void simulateMatch(Match match, boolean isOwnClub) {
-        Club home = match.getHome();
+        ClubEnum home = match.getHome();
 
         double[] goalChances = calcGoalChances(match);
         double ownChance = (goalChances[0] / 20);
@@ -59,7 +59,7 @@ public class MatchEngine {
 
         Score score = new Score(0, 0, new HashMap<>());
         Map<Player, List<Integer>> scorers = new HashMap<>();
-        Club opponent = getOpponent(match);
+        ClubEnum opponent = getOpponent(match);
 
         int ownGoals = 0;
         int opponentGoals = 0;
@@ -83,9 +83,9 @@ public class MatchEngine {
         match.setScore(score);
     }
 
-    public static List<Match> getMatchesForRound(int round, Club club, List<Match> matchesThisSeason) {
+    public static List<Match> getMatchesForRound(int round, ClubEnum club, List<Match> matchesThisSeason) {
         List<Match> matchesThisRound = new ArrayList<>();
-        List<Club> clubsInLeague = ClubHelper.getClubsForLeague(club.getLeague());
+        List<ClubEnum> clubsInLeague = ClubHelper.getClubsForLeague(club.getLeague());
         int amountOfMatches = (clubsInLeague.size() - round) * 2;
         int startIndex = getStartIndex(round, club);
 
@@ -149,7 +149,7 @@ public class MatchEngine {
 
             Score score = new Score(0, 0, new HashMap<>());
             Map<Player, List<Integer>> scorers = new HashMap<>();
-            Club opponent = getOpponent(nextMatch);
+            ClubEnum opponent = getOpponent(nextMatch);
 
             int ownGoals = 0;
             int opponentGoals = 0;
@@ -194,7 +194,7 @@ public class MatchEngine {
         }
     }
 
-    public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
+    public static Map<Player, List<Integer>> updateMatchScore(ClubEnum club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
         Player scorer = getScorer(PlayerHelper.getPlayersForClub(club));
         scorer.setGoals(scorer.getGoals() + 1);
         scorers = updateScorers(scorers, scorer, minute);
@@ -232,7 +232,7 @@ public class MatchEngine {
         return scorers;
     }
 
-    private static int getStartIndex(int round, Club club) {
+    private static int getStartIndex(int round, ClubEnum club) {
         int leagueSize = ClubHelper.getClubsForLeague(club.getLeague()).size();
 
         int alreadyPlayed = 0;
@@ -255,7 +255,7 @@ public class MatchEngine {
         return shuffled;
     }
 
-    private static Club getOpponent(Match match) {
+    private static ClubEnum getOpponent(Match match) {
         return match.getHome().getName().equals(Game.getCurrentClub().getName()) ? match.getAway() : match.getHome();
     }
 

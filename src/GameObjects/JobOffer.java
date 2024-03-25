@@ -1,19 +1,19 @@
 package GameObjects;
 
-import enums.Club;
+import enums.ClubEnum;
 
 public class JobOffer {
-    Club club;
+    ClubEnum club;
 
-    public JobOffer(Club club) {
+    public JobOffer(ClubEnum club) {
         this.club = club;
     }
 
-    public Club getClub() {
+    public ClubEnum getClub() {
         return club;
     }
 
-    public void setClub(Club club) {
+    public void setClub(ClubEnum club) {
         this.club = club;
     }
 }

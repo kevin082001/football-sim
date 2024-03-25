@@ -2,7 +2,7 @@ package core;
 
 import GameObjects.News;
 import GameObjects.SaveState;
-import enums.Club;
+import enums.ClubEnum;
 import helper.PlayerHelper;
 import helper.PrintHelper;
 
@@ -15,8 +15,8 @@ public class Game {
     private static final Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
     private static int currentSeason = 0;
     private static List<News> news = new ArrayList<>();
-    private static long money = 500_000; //TODO ALL clubs should have money (account balance)
-    private static Club currentClub;
+    private static long money = 500_000; //TODO instead of having a class variable, use currentClub.getMoney()
+    private static ClubEnum currentClub;
 
     public static void run() {
         initAllPlayers();
@@ -50,11 +50,11 @@ public class Game {
         money = newAmount;
     }
 
-    public static Club getCurrentClub() {
+    public static ClubEnum getCurrentClub() {
         return currentClub;
     }
 
-    public static void setCurrentClub(Club club) {
+    public static void setCurrentClub(ClubEnum club) {
         currentClub = club;
     }
 

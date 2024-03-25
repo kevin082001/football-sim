@@ -3,7 +3,7 @@ package enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Club {
+public enum ClubEnum {
     RETIRED("Retired", League.RETIRED),
     WITHOUT_CLUB("Without club", League.WITHOUT_CLUB),
 
@@ -497,16 +497,16 @@ public enum Club {
     private final String name;
     private League league;
 
-    Club(String name, League league) {
+    ClubEnum(String name, League league) {
         this.name = name;
         this.league = league;
     }
 
-    public List<Club> getByLeague(League league) {
+    public List<ClubEnum> getByLeague(League league) {
         if (league == null) return null;
 
-        List<Club> result = new ArrayList<>();
-        for (Club c : Club.values()) {
+        List<ClubEnum> result = new ArrayList<>();
+        for (ClubEnum c : ClubEnum.values()) {
             if (c.getLeague().equals(league)) {
                 result.add(c);
             }
@@ -514,12 +514,12 @@ public enum Club {
         return result;
     }
 
-    public Club getByEnumName(String enumName) {
+    public ClubEnum getByEnumName(String enumName) {
         if (enumName == null || enumName.trim().isEmpty()) {
             return null;
         }
 
-        for (Club c : Club.values()) {
+        for (ClubEnum c : ClubEnum.values()) {
             if (c.toString().equals(enumName)) {
                 return c;
             }

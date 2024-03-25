@@ -2,7 +2,7 @@ package helper;
 
 import GameObjects.*;
 import core.*;
-import enums.Club;
+import enums.ClubEnum;
 import enums.Country;
 import enums.League;
 import enums.Position;
@@ -129,18 +129,18 @@ public class PrintHelper {
         return leaguesList.get(choice);
     }
 
-    public static Club printSelectStartClub() {
+    public static ClubEnum printSelectStartClub() {
         int i = 0;
 
         Country startCountry = printSelectStartCountry();
         League startLeague = printSelectStartLeague(startCountry);
-        List<Club> randomClubs = ClubHelper.getRandomClubsForLeague(startLeague);
+        List<ClubEnum> randomClubs = ClubHelper.getRandomClubsForLeague(startLeague);
 
         printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println("- - - - -   SELECT YOUR CLUB   - - - - -");
         System.out.println("----------------------------------------");
-        for (Club c : randomClubs) {
+        for (ClubEnum c : randomClubs) {
             int[] stats = ClubHelper.getStatsForClub(c);
             System.out.println("(" + i + ") " + c.getName() + " (" + stats[0] + " ATT/" + stats[1] + " CON/" + stats[2] + " DEF)");
             i++;
@@ -169,7 +169,7 @@ public class PrintHelper {
         return choice;
     }
 
-    public static void printGoalsList(Map<Player, List<Integer>> scorers, Club opponent) {
+    public static void printGoalsList(Map<Player, List<Integer>> scorers, ClubEnum opponent) {
         System.out.println("\n\nGOALS:");
         for (int minute = 0; minute <= 120; minute++) {
             for (Player p : scorers.keySet()) {
@@ -186,7 +186,7 @@ public class PrintHelper {
     }
 
     public static void printScoredGoal(Player scorer, int minute) {
-        Club club = scorer.getClub();
+        ClubEnum club = scorer.getClub();
         System.out.println("Goal for " + club.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
     }
 
@@ -251,7 +251,7 @@ public class PrintHelper {
         System.out.println("----------------------------------------");
         System.out.println();
         int i = 0;
-        for (Club c : table.getPoints().keySet()) {
+        for (ClubEnum c : table.getPoints().keySet()) {
             System.out.println((i + 1) + ".: " + c.getName() + getSpacesForTable((i + 1), c.getName()) + "(" + table.getPoints().get(c) + " pts)");
             i++;
         }

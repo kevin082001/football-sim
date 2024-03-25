@@ -2,7 +2,7 @@ package core;
 
 import GameObjects.Player;
 import GameObjects.PlayerCareer;
-import enums.Club;
+import enums.ClubEnum;
 import helper.ArrayHelper;
 import helper.ClubHelper;
 import helper.PlayerHelper;
@@ -42,14 +42,14 @@ public class TransferMarketEngine {
     }
 
     public static void checkForMarketUpdate() {
-        Club currentClub = Game.getCurrentClub();
+        ClubEnum currentClub = Game.getCurrentClub();
 
-        List<Club> allNpcClubs = ClubHelper.getAllClubs()
+        List<ClubEnum> allNpcClubs = ClubHelper.getAllClubs()
                 .stream()
                 .filter(x -> x != currentClub)
                 .toList();
 
-        for (Club c : allNpcClubs) {
+        for (ClubEnum c : allNpcClubs) {
             int chanceForPuttingPlayerOnMarket = 800; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
             if (rand.nextInt(1000) <= chanceForPuttingPlayerOnMarket) {
                 List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
@@ -70,7 +70,7 @@ public class TransferMarketEngine {
         long cost = playersOnMarket.get(player);
         Game.setMoney(Game.getMoney() - cost);
         player.setClub(Game.getCurrentClub());
-        Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
+        ClubEnum[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
         clubsSoFar[clubsSoFar.length - 1] = player.getClub();
         PlayerCareer[] career = player.getCareer();
         career = ArrayHelper.extend(career);
