@@ -12,4 +12,4 @@ This project is a terminal / console application, so there will be no graphics a
 My plan is to work on a GUI for the game once the core features of the console version are implemented.<br>
 Also, I want to add more tournaments like World Cup / EURO Cup, Champions League and much more.
 
-The GUI will be written in either Angular, Vaadin, OpenGL or Java AWT.
+The GUI will be written in either Angular or Vaadin.
