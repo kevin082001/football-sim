@@ -1,7 +1,7 @@
 package helper;
 
+import GameObjects.Club;
 import GameObjects.Player;
-import enums.ClubEnum;
 import enums.League;
 import enums.Position;
 
@@ -10,15 +10,15 @@ import java.util.*;
 public class ClubHelper {
     private static final Random rand = new Random(System.nanoTime());
 
-    public static Map<ClubEnum, List<Player>> initClubs() {
-        Map<ClubEnum, List<Player>> result = new HashMap<>();
-        for (ClubEnum c : ClubEnum.values()) {
+    public static Map<Club, List<Player>> initClubs() {
+        Map<Club, List<Player>> result = new HashMap<>();
+        for (Club c : getAllClubs()) {
             result.put(c, PlayerHelper.getPlayersForClub(c));
         }
         return result;
     }
 
-    public static int[] getStatsForClub(ClubEnum club) {
+    public static int[] getStatsForClub(Club club) {
         int totalAttack = 0;
         int totalControl = 0;
         int totalDefense = 0;
@@ -35,9 +35,9 @@ public class ClubHelper {
         return new int[]{avgAttack, avgControl, avgDefense};
     }
 
-    public static List<ClubEnum> getClubsForLeague(League league) {
-        List<ClubEnum> result = new ArrayList<>();
-        for (ClubEnum c : ClubEnum.values()) {
+    public static List<Club> getClubsForLeague(League league) {
+        List<Club> result = new ArrayList<>();
+        for (Club c : ClubHelper.getAllClubs()) {
             if (c.getLeague().equals(league)) {
                 result.add(c);
             }
@@ -45,11 +45,11 @@ public class ClubHelper {
         return result;
     }
 
-    public static List<ClubEnum> getRandomClubsForLeague(League league) {
-        List<ClubEnum> clubsInLeague = getClubsForLeague(league);
-        List<ClubEnum> result = new ArrayList<>();
-        ClubEnum club1 = clubsInLeague.get(rand.nextInt(clubsInLeague.size()));
-        ClubEnum club2;
+    public static List<Club> getRandomClubsForLeague(League league) {
+        List<Club> clubsInLeague = getClubsForLeague(league);
+        List<Club> result = new ArrayList<>();
+        Club club1 = clubsInLeague.get(rand.nextInt(clubsInLeague.size()));
+        Club club2;
         do {
             club2 = clubsInLeague.get(rand.nextInt(clubsInLeague.size()));
         } while (club2.equals(club1));
@@ -58,7 +58,7 @@ public class ClubHelper {
         return result;
     }
 
-    public static List<Player> sortPlayersByPosition(ClubEnum club) {
+    public static List<Player> sortPlayersByPosition(Club club) {
         List<Player> unsorted = PlayerHelper.getPlayersForClub(club);
         List<Player> sorted = new ArrayList<>();
         for (Position pos : Position.values()) {
@@ -71,8 +71,8 @@ public class ClubHelper {
         return sorted;
     }
 
-    public static List<ClubEnum> getAllClubs() {
-        List<ClubEnum> clubs = new ArrayList<>();
+    public static List<Club> getAllClubs() {
+        List<Club> clubs = new ArrayList<>();
 
         for (League league : League.values()) {
             if (ClubHelper.getClubsForLeague(league).isEmpty()) {
@@ -84,7 +84,21 @@ public class ClubHelper {
         return clubs;
     }
 
-    public static long getTotalMarketValue(ClubEnum club) {
+    public static Club getClubByDisplayName(String displayName) {
+        if (displayName == null || displayName.trim().isEmpty()) {
+            return null;
+        }
+
+        for (Club c : getAllClubs()) {
+            if (c.getDisplayName().equals(displayName)) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    public static long getTotalMarketValue(Club club) {
         if (club == null || PlayerHelper.getPlayersForClub(club).isEmpty()) {
             return 0;
         }

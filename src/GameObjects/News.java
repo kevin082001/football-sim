@@ -1,10 +1,9 @@
 package GameObjects;
 
-import enums.ClubEnum;
 import enums.NewsType;
 
 public class News {
-    private ClubEnum club;
+    private Club club;
 
     private Player player;
 
@@ -22,7 +21,7 @@ public class News {
      * @param message         The News message
      * @param isFollowingClub whether the user follows the club
      */
-    public News(ClubEnum club, NewsType type, String message, boolean isFollowingClub) {
+    public News(Club club, NewsType type, String message, boolean isFollowingClub) {
         this.club = club;
         this.type = type;
         this.message = message;
@@ -46,7 +45,7 @@ public class News {
         this.isFollowingClub = isFollowingClub;
     }
 
-    public ClubEnum getClub() {
+    public Club getClub() {
         return club;
     }
 

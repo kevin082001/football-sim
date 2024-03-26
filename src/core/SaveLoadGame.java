@@ -1,9 +1,9 @@
 package core;
 
+import GameObjects.Club;
 import GameObjects.Player;
 import GameObjects.SaveState;
 import GameObjects.StaticPlayerData;
-import enums.ClubEnum;
 import enums.Country;
 import enums.Position;
 import helper.ClubHelper;
@@ -25,8 +25,8 @@ public class SaveLoadGame { //TODO update save/load methods
     }
 
     public void saveGame() { //TODO think about what else is needed when saving
-        ClubEnum currentClub = Game.getCurrentClub();
-        long money = Game.getMoney();
+        Club currentClub = Game.getCurrentClub();
+        long money = Game.getCurrentClub().getMoney();
         List<Player> allPlayers = PlayerHelper.getAllPlayers();
         SaveState saveState = new SaveState(currentClub, money, allPlayers);
 
@@ -39,8 +39,8 @@ public class SaveLoadGame { //TODO update save/load methods
             writer.write(saveState.getCurrentClub() + System.lineSeparator());
             writer.write(saveState.getMoney() + System.lineSeparator());
 
-            for (ClubEnum club : ClubHelper.getAllClubs()) {
-                System.out.println("Saving: Club " + club.getName());
+            for (Club club : ClubHelper.getAllClubs()) {
+                System.out.println("Saving: Club " + club.getShortName());
                 for (Player player : PlayerHelper.getPlayersForClub(club)) {
                     writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
                             + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
@@ -61,7 +61,7 @@ public class SaveLoadGame { //TODO update save/load methods
     }
 
     public SaveState loadGame() {
-        ClubEnum currentClub;
+        Club currentClub;
         int money;
         //List<Player> currentSquad;
         List<Player> allPlayers;
@@ -70,7 +70,8 @@ public class SaveLoadGame { //TODO update save/load methods
         try {
             Scanner fileScanner = new Scanner(savePath.toFile());
 
-            currentClub = ClubEnum.B36.getByEnumName(fileScanner.nextLine());
+            //Maybe also implement method 'getClubByShortName()'
+            currentClub = ClubHelper.getClubByDisplayName(fileScanner.nextLine());
             money = Integer.parseInt(fileScanner.nextLine());
 
             allPlayers = new ArrayList<>();
@@ -83,8 +84,8 @@ public class SaveLoadGame { //TODO update save/load methods
                 int rating = Integer.parseInt(fileScanner.nextLine());
                 Position position = Position.CM.getByEnumName(fileScanner.nextLine());
                 long marketValue = Long.parseLong(fileScanner.nextLine());
-                ClubEnum club = ClubEnum.B36.getByEnumName(fileScanner.nextLine());
-                ClubEnum[] clubsSoFar = PlayerEngine.getClubsSoFar(fileScanner.nextLine());
+                Club club = ClubHelper.getClubByDisplayName(fileScanner.nextLine());
+                Club[] clubsSoFar = PlayerEngine.getClubsSoFar(fileScanner.nextLine());
                 int attack = Integer.parseInt(fileScanner.nextLine());
                 int control = Integer.parseInt(fileScanner.nextLine());
                 int defense = Integer.parseInt(fileScanner.nextLine());

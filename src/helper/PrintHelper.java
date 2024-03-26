@@ -2,7 +2,6 @@ package helper;
 
 import GameObjects.*;
 import core.*;
-import enums.ClubEnum;
 import enums.Country;
 import enums.League;
 import enums.Position;
@@ -20,7 +19,7 @@ public class PrintHelper {
         sc = new Scanner(System.in);
         printNewLine(11);
         System.out.println("----------------------------------------");
-        System.out.println(Game.getCurrentClub().getName());
+        System.out.println(Game.getCurrentClub().getDisplayName());
         System.out.println("Money: " + Game.getMoney());
         System.out.println("----------------------------------------");
         System.out.println();
@@ -129,20 +128,20 @@ public class PrintHelper {
         return leaguesList.get(choice);
     }
 
-    public static ClubEnum printSelectStartClub() {
+    public static Club printSelectStartClub() {
         int i = 0;
 
         Country startCountry = printSelectStartCountry();
         League startLeague = printSelectStartLeague(startCountry);
-        List<ClubEnum> randomClubs = ClubHelper.getRandomClubsForLeague(startLeague);
+        List<Club> randomClubs = ClubHelper.getRandomClubsForLeague(startLeague);
 
         printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println("- - - - -   SELECT YOUR CLUB   - - - - -");
         System.out.println("----------------------------------------");
-        for (ClubEnum c : randomClubs) {
+        for (Club c : randomClubs) {
             int[] stats = ClubHelper.getStatsForClub(c);
-            System.out.println("(" + i + ") " + c.getName() + " (" + stats[0] + " ATT/" + stats[1] + " CON/" + stats[2] + " DEF)");
+            System.out.println("(" + i + ") " + c.getDisplayName() + " (" + stats[0] + " ATT/" + stats[1] + " CON/" + stats[2] + " DEF)");
             i++;
         }
         System.out.print(">> ");
@@ -169,7 +168,7 @@ public class PrintHelper {
         return choice;
     }
 
-    public static void printGoalsList(Map<Player, List<Integer>> scorers, ClubEnum opponent) {
+    public static void printGoalsList(Map<Player, List<Integer>> scorers, Club opponent) {
         System.out.println("\n\nGOALS:");
         for (int minute = 0; minute <= 120; minute++) {
             for (Player p : scorers.keySet()) {
@@ -186,8 +185,8 @@ public class PrintHelper {
     }
 
     public static void printScoredGoal(Player scorer, int minute) {
-        ClubEnum club = scorer.getClub();
-        System.out.println("Goal for " + club.getName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
+        Club club = scorer.getClub();
+        System.out.println("Goal for " + club.getDisplayName() + " by " + scorer.getFirstName() + " " + scorer.getLastName() + " (" + minute + "')");
     }
 
     private static void printNextMatchDetails() {
@@ -251,8 +250,8 @@ public class PrintHelper {
         System.out.println("----------------------------------------");
         System.out.println();
         int i = 0;
-        for (ClubEnum c : table.getPoints().keySet()) {
-            System.out.println((i + 1) + ".: " + c.getName() + getSpacesForTable((i + 1), c.getName()) + "(" + table.getPoints().get(c) + " pts)");
+        for (Club c : table.getPoints().keySet()) {
+            System.out.println((i + 1) + ".: " + c.getDisplayName() + getSpacesForTable((i + 1), c.getDisplayName()) + "(" + table.getPoints().get(c) + " pts)");
             i++;
         }
         System.out.println();
@@ -306,7 +305,7 @@ public class PrintHelper {
         System.out.println();
         int i = 0;
         for (Player p : playersOnMarket.keySet()) {
-            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
+            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getDisplayName() + ") ..... " + p.getRating() + "/" + p.getPosition());
             i++;
         }
 
@@ -322,7 +321,7 @@ public class PrintHelper {
             }
             printTransferMarket();
         }
-        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getMoney())) {
+        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getCurrentClub().getMoney())) {
             System.out.println("Not enough money to buy the player");
             printTransferMarket();
         }
@@ -337,7 +336,7 @@ public class PrintHelper {
 
         printNewLine(11);
         for (int i = 0; i < jobOffers.size(); i++) {
-            System.out.println(i + ": " + jobOffers.get(i).getClub().getName() + " (League: " + jobOffers.get(i).getClub().getLeague() + ")");
+            System.out.println(i + ": " + jobOffers.get(i).getClub().getDisplayName() + " (League: " + jobOffers.get(i).getClub().getLeague() + ")");
         }
 
         System.out.print(">> ");
@@ -357,7 +356,7 @@ public class PrintHelper {
         int[] totalStats = ClubHelper.getStatsForClub(offer.getClub());
 
         printNewLine(11);
-        System.out.println("Club:               " + offer.getClub().getName());
+        System.out.println("Club:               " + offer.getClub().getDisplayName());
         System.out.println("League:             " + offer.getClub().getLeague().getName() + " (" + offer.getClub().getLeague() + ")");
         System.out.println("Rating:             " + totalStats[0] + " ATT / " + totalStats[1] + " CON / " + totalStats[2] + " DEF");
         System.out.println("Total market value: " + ClubHelper.getTotalMarketValue(offer.getClub()));

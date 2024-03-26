@@ -1,10 +1,6 @@
 package core;
 
-import GameObjects.Match;
-import GameObjects.Player;
-import GameObjects.PlayerCareer;
-import GameObjects.PlayerName;
-import enums.ClubEnum;
+import GameObjects.*;
 import enums.Country;
 import enums.NewsType;
 import enums.Position;
@@ -37,7 +33,7 @@ public class PlayerEngine {
         }
     }
 
-    public static String getClubsSoFarAsString(ClubEnum[] clubsSoFar) {
+    public static String getClubsSoFarAsString(Club[] clubsSoFar) {
         if (clubsSoFar.length == 1) {
             return clubsSoFar[0].toString();
         }
@@ -51,13 +47,13 @@ public class PlayerEngine {
         return result;
     }
 
-    public static ClubEnum[] getClubsSoFar(String asString) {
-        ClubEnum[] clubsSoFar = new ClubEnum[0];
+    public static Club[] getClubsSoFar(String asString) {
+        Club[] clubsSoFar = new Club[0];
         String[] clubsSeparated = asString.split(",");
 
         for (int i = 0; i < clubsSeparated.length; i++) {
             clubsSoFar = ArrayHelper.extend(clubsSoFar);
-            clubsSoFar[clubsSoFar.length - 1] = ClubEnum.B36.getByEnumName(clubsSeparated[i]);
+            clubsSoFar[clubsSoFar.length - 1] = ClubHelper.getClubByDisplayName(clubsSeparated[i]);
         }
 
         return clubsSoFar;
@@ -82,7 +78,7 @@ public class PlayerEngine {
     }
 
     private static void retirePlayer(Player p, int currentSeason) {
-        p.setClub(ClubEnum.RETIRED);
+        p.setClub(ClubHelper.getClubByDisplayName("Retired"));
         p.setAttack(0);
         p.setControl(0);
         p.setDefense(0);
@@ -91,10 +87,10 @@ public class PlayerEngine {
         p.setRetirementSeason(currentSeason);
         p.setTalent(0);
 
-        ClubEnum[] clubsSoFar = p.getClubsSoFar();
+        /*Club[] clubsSoFar = p.getClubsSoFar();
         clubsSoFar = ArrayHelper.extend(clubsSoFar);
         clubsSoFar[clubsSoFar.length - 1] = ClubEnum.RETIRED;
-        p.setClubsSoFar(clubsSoFar);
+        p.setClubsSoFar(clubsSoFar);*/
 
         PlayerCareer[] career = p.getCareer();
         if (career != null) { //This is kind of a bad hack, career should not be null at all
@@ -151,9 +147,9 @@ public class PlayerEngine {
     // -----------------------------
 
     public static void checkPlayersJoiningFromAcademy() {
-        List<ClubEnum> allClubs = ClubHelper.getAllClubs();
+        List<Club> allClubs = ClubHelper.getAllClubs();
 
-        for (ClubEnum club : allClubs) {
+        for (Club club : allClubs) {
             int chanceToGeneratePlayer = rand.nextInt(100);
 
             //60% for 1 player to join
@@ -177,7 +173,7 @@ public class PlayerEngine {
     }
 
     //TODO write method "generateSquad()" (see todo in Club)
-    private static Player generateYouthPlayer(ClubEnum club) {
+    private static Player generateYouthPlayer(Club club) {
         NameGenerator ng = new NameGenerator();
         PlayerName name = ng.getRandomName();
         String firstName = name.getFirst();
@@ -187,7 +183,7 @@ public class PlayerEngine {
         LocalDate birthDate = getRandomBirthDate();
         Position position = Position.values()[rand.nextInt(Position.values().length)];
         long marketValue = TransferMarketEngine.getRandomMarketValue();
-        ClubEnum[] clubsSoFar = new ClubEnum[]{club};
+        Club[] clubsSoFar = new Club[]{club};
 
         int[] stats = getRandomStats(rating, position);
         if (stats == null) {
@@ -205,7 +201,7 @@ public class PlayerEngine {
         return newPlayer;
     }
 
-    private static Country getRandomNation(ClubEnum club) {
+    private static Country getRandomNation(Club club) {
         int randNo = rand.nextInt(100);
 
         //TODO maybe change chance depending on country (f.e. A team from Liechtenstein would have many Swiss players)

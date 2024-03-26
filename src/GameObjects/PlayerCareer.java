@@ -1,13 +1,13 @@
 package GameObjects;
 
-import enums.ClubEnum;
+import helper.ClubHelper;
 
 import java.time.LocalDate;
 
 public class PlayerCareer {
-    //TODO Add Loans
+    //TODO Add Loan mechanism
 
-    private ClubEnum club;
+    private Club club;
     private Player player;
     private long transferCost;
     private long highestMarketValue;
@@ -17,7 +17,7 @@ public class PlayerCareer {
     private int goals;
 
     //For already existing players
-    public PlayerCareer(ClubEnum club, Player player, long transferCost, long highestMarketValue, LocalDate from, LocalDate until, int games, int goals) {
+    public PlayerCareer(Club club, Player player, long transferCost, long highestMarketValue, LocalDate from, LocalDate until, int games, int goals) {
         this.club = club;
         this.player = player;
         this.transferCost = transferCost;
@@ -29,7 +29,7 @@ public class PlayerCareer {
     }
 
     //For new players appearing during the game
-    public PlayerCareer(ClubEnum club, Player player, long transferCost) {
+    public PlayerCareer(Club club, Player player, long transferCost) {
         this.club = club;
         this.player = player;
         this.transferCost = transferCost;
@@ -42,7 +42,7 @@ public class PlayerCareer {
 
     //For retiring players
     public PlayerCareer(Player player) {
-        this.club = ClubEnum.RETIRED;
+        this.club = ClubHelper.getClubByDisplayName("Retired");
         this.player = player;
         this.transferCost = 0;
         this.highestMarketValue = 0;
@@ -52,11 +52,11 @@ public class PlayerCareer {
         this.goals = 0;
     }
 
-    public ClubEnum getClub() {
+    public Club getClub() {
         return club;
     }
 
-    public void setClub(ClubEnum club) {
+    public void setClub(Club club) {
         this.club = club;
     }
 

@@ -14,6 +14,8 @@ public class Club {
     private Manager manager;
     private long money;
 
+    private final boolean custom; //"true" if user created the club via "Create custom club"
+
     /**
      * Used to construct pre-generated objects (before the game starts)
      *
@@ -27,9 +29,10 @@ public class Club {
         this.displayName = displayName;
         this.shortName = shortName;
         this.league = league;
-        this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
+        //this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
         this.manager = manager;
         this.money = money;
+        this.custom = false;
     }
 
     /**
@@ -44,9 +47,10 @@ public class Club {
         this.displayName = displayName;
         this.shortName = getShortName(displayName);
         this.league = league;
-        this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
+        //this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
         this.manager = manager;
         this.money = 500_000;
+        this.custom = true;
     }
 
 
@@ -114,5 +118,9 @@ public class Club {
 
     public void setMoney(long money) {
         this.money = money;
+    }
+
+    public boolean isCustom() {
+        return custom;
     }
 }

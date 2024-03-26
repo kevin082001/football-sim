@@ -1,7 +1,7 @@
 package core;
 
+import GameObjects.Club;
 import GameObjects.JobOffer;
-import enums.ClubEnum;
 import enums.Country;
 import enums.League;
 import helper.ClubHelper;
@@ -27,12 +27,12 @@ import java.util.Random;
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
     private final static Map<Country, List<League>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
-    private final static Map<League, List<ClubEnum>> playableLeagues = LeagueHelper.getPlayableLeagues();
+    private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
 
     private static List<JobOffer> jobOffers = new ArrayList<>();
 
 
-    public static void checkForJobOffers(ClubEnum currentClub) {
+    public static void checkForJobOffers(Club currentClub) {
         if (currentClub == null) {
             return;
         }
@@ -43,8 +43,8 @@ public class Engine {
         //Only allow clubs that have
         //more than 0.5x currentClub value
         //and less than 3x currentClub value
-        List<ClubEnum> potentialClubs = new ArrayList<>();
-        for (ClubEnum club : ClubHelper.getAllClubs()) {
+        List<Club> potentialClubs = new ArrayList<>();
+        for (Club club : ClubHelper.getAllClubs()) {
             if ((ClubHelper.getTotalMarketValue(club) >= 0.5 * ClubHelper.getTotalMarketValue(currentClub))
                     && ClubHelper.getTotalMarketValue(club) <= 3 * ClubHelper.getTotalMarketValue(currentClub)) {
                 potentialClubs.add(club);
@@ -59,17 +59,17 @@ public class Engine {
                         .stream()
                         .filter(x -> x.getLeague().getCountry() == currentClub.getLeague().getCountry())
                         .toList();
-                ClubEnum offeringClub = potentialClubs.isEmpty() ? null : potentialClubs.get(rand.nextInt(potentialClubs.size()));
+                Club offeringClub = potentialClubs.isEmpty() ? null : potentialClubs.get(rand.nextInt(potentialClubs.size()));
                 generateJobOffer(offeringClub);
             } else {
                 //ANY COUNTRY
-                ClubEnum offeringClub = potentialClubs.isEmpty() ? null : potentialClubs.get(rand.nextInt(potentialClubs.size()));
+                Club offeringClub = potentialClubs.isEmpty() ? null : potentialClubs.get(rand.nextInt(potentialClubs.size()));
                 generateJobOffer(offeringClub);
             }
         }
     }
 
-    private static void generateJobOffer(ClubEnum club) {
+    private static void generateJobOffer(Club club) {
         if (club == null || club.equals(Game.getCurrentClub())) {
             return;
         }
@@ -107,7 +107,7 @@ public class Engine {
         return countriesWithLeagues;
     }
 
-    public static Map<League, List<ClubEnum>> getPlayableLeagues() {
+    public static Map<League, List<Club>> getPlayableLeagues() {
         return playableLeagues;
     }
 
@@ -138,11 +138,11 @@ public class Engine {
         jobOffers.remove(toRemove);
     }
 
-    private static boolean isSelectable(ClubEnum club) {
+    private static boolean isSelectable(Club club) {
         if (club == null) {
             return false;
         }
 
-        return !club.equals(ClubEnum.WITHOUT_CLUB) && !club.equals(ClubEnum.RETIRED);
+        return !club.getFullName().equals("Without club") && !club.getFullName().equals("Retired");
     }
 }

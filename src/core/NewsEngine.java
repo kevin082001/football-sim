@@ -1,12 +1,12 @@
 package core;
 
+import GameObjects.Club;
 import GameObjects.News;
 import GameObjects.Player;
-import enums.ClubEnum;
 import enums.NewsType;
 
 public class NewsEngine {
-    public static void createNewsEntry(ClubEnum club, Player player, NewsType type, boolean isFollowingClub) {
+    public static void createNewsEntry(Club club, Player player, NewsType type, boolean isFollowingClub) {
         if (club == null && player == null) {
             throw new IllegalArgumentException("Either Club or Player must be set in order to create a News entry.");
         }
@@ -19,7 +19,7 @@ public class NewsEngine {
                     newNews.setMessage("Player retired: " + player.getFirstName() + " " + player.getLastName() + " (" + PlayerEngine.getPlayerAge(player) + " years)");
                     break;
                 case TRANSFER:
-                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getClubsSoFar()[1].getName() + " --> " + player.getClubsSoFar()[0].getName() + ")");
+                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getClubsSoFar()[1].getDisplayName() + " --> " + player.getClubsSoFar()[0].getDisplayName() + ")");
                     break;
                 case BALLON_DOR:
                     newNews.setMessage(player.getFirstName() + " " + player.getLastName() + " won the Ballon d'Or this year! Congratulations!");

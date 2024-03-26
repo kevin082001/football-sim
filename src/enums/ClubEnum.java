@@ -3,6 +3,11 @@ package enums;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @deprecated ClubEnum will be removed soon and replaced with class {@link GameObjects.Club}.
+ */
+@Deprecated
 public enum ClubEnum {
     RETIRED("Retired", League.RETIRED),
     WITHOUT_CLUB("Without club", League.WITHOUT_CLUB),

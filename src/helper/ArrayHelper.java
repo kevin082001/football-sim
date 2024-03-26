@@ -1,12 +1,12 @@
 package helper;
 
+import GameObjects.Club;
 import GameObjects.Player;
 import GameObjects.PlayerCareer;
-import enums.ClubEnum;
 
 public class ArrayHelper {
-    public static ClubEnum[] extend(ClubEnum[] array) {
-        ClubEnum[] newArray = new ClubEnum[array.length + 1];
+    public static Club[] extend(Club[] array) {
+        Club[] newArray = new Club[array.length + 1];
         for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
         }

@@ -1,8 +1,8 @@
 package core;
 
+import GameObjects.Club;
 import GameObjects.Player;
 import GameObjects.PlayerCareer;
-import enums.ClubEnum;
 import helper.ArrayHelper;
 import helper.ClubHelper;
 import helper.PlayerHelper;
@@ -42,14 +42,14 @@ public class TransferMarketEngine {
     }
 
     public static void checkForMarketUpdate() {
-        ClubEnum currentClub = Game.getCurrentClub();
+        Club currentClub = Game.getCurrentClub();
 
-        List<ClubEnum> allNpcClubs = ClubHelper.getAllClubs()
+        List<Club> allNpcClubs = ClubHelper.getAllClubs()
                 .stream()
                 .filter(x -> x != currentClub)
                 .toList();
 
-        for (ClubEnum c : allNpcClubs) {
+        for (Club c : allNpcClubs) {
             int chanceForPuttingPlayerOnMarket = 800; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
             if (rand.nextInt(1000) <= chanceForPuttingPlayerOnMarket) {
                 List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
@@ -68,9 +68,9 @@ public class TransferMarketEngine {
 
         //TODO buy player (subtract money from own club, add money to selling club, change player's club, update player.getCareer())
         long cost = playersOnMarket.get(player);
-        Game.setMoney(Game.getMoney() - cost);
+        Game.getCurrentClub().setMoney(Game.getCurrentClub().getMoney() - cost);
         player.setClub(Game.getCurrentClub());
-        ClubEnum[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
+        Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
         clubsSoFar[clubsSoFar.length - 1] = player.getClub();
         PlayerCareer[] career = player.getCareer();
         career = ArrayHelper.extend(career);

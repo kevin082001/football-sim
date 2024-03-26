@@ -1,31 +1,29 @@
 package GameObjects;
 
-import enums.ClubEnum;
-
 public class Match {
-    private ClubEnum home;
-    private ClubEnum away;
+    private Club home;
+    private Club away;
     private Score score;
 
-    public Match(ClubEnum home, ClubEnum away, Score score) {
+    public Match(Club home, Club away, Score score) {
         this.home = home;
         this.away = away;
         this.score = score;
     }
 
-    public ClubEnum getHome() {
+    public Club getHome() {
         return home;
     }
 
-    public void setHome(ClubEnum home) {
+    public void setHome(Club home) {
         this.home = home;
     }
 
-    public ClubEnum getAway() {
+    public Club getAway() {
         return away;
     }
 
-    public void setAway(ClubEnum away) {
+    public void setAway(Club away) {
         this.away = away;
     }
 
@@ -37,7 +35,7 @@ public class Match {
         this.score = score;
     }
 
-    public ClubEnum getWinner() {
+    public Club getWinner() {
         return score == null || score.getScoreHome() == score.getScoreAway() ? null :
                 score.getScoreHome() > score.getScoreAway() ? home : away;
     }

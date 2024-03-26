@@ -1,8 +1,8 @@
 package core;
 
+import GameObjects.Club;
 import GameObjects.LeagueTable;
 import GameObjects.Match;
-import enums.ClubEnum;
 import enums.League;
 import helper.ClubHelper;
 
@@ -31,11 +31,11 @@ public class SeasonEngine {
         //updatePlayerRatings();
     }
 
-    public static void initTable(ClubEnum club) {
+    public static void initTable(Club club) {
         League league = club.getLeague();
 
         table = new LeagueTable(league, new HashMap<>());
-        for (ClubEnum c : ClubHelper.getClubsForLeague(league)) {
+        for (Club c : ClubHelper.getClubsForLeague(league)) {
             table.getPoints().put(c, 0);
         }
     }
@@ -46,8 +46,8 @@ public class SeasonEngine {
 
         League league = round.get(0).getHome().getLeague();
         for (Match m : round) {
-            ClubEnum home = m.getHome();
-            ClubEnum away = m.getAway();
+            Club home = m.getHome();
+            Club away = m.getAway();
             Integer homePoints = table.getPoints().get(home);
             Integer awayPoints = table.getPoints().get(away);
             if (m.getWinner() == null) {
@@ -69,8 +69,8 @@ public class SeasonEngine {
         Integer highest = 0;
 
         while (!tmp.getPoints().isEmpty()) {
-            ClubEnum best = null;
-            for (ClubEnum c : table.getPoints().keySet()) {
+            Club best = null;
+            for (Club c : table.getPoints().keySet()) {
                 if (table.getPoints().get(c) > highest) {
                     highest = table.getPoints().get(c);
                     best = c;

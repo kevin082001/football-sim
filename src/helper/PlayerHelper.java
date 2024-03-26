@@ -1,5 +1,6 @@
 package helper;
 
+import GameObjects.Club;
 import GameObjects.Player;
 import GameObjects.StaticPlayerData;
 import enums.ClubEnum;
@@ -244,7 +245,7 @@ public class PlayerHelper {
         return Arrays.asList(players);
     }
 
-    public static List<Player> getPlayersForClub(ClubEnum club) {
+    public static List<Player> getPlayersForClub(Club club) {
         List<Player> result = new ArrayList<>();
         for (Player p : players) {
             if (p.getClub().equals(club)) {
