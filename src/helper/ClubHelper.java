@@ -98,6 +98,20 @@ public class ClubHelper {
         return null;
     }
 
+    public static Club getClubByInternalName(String internalName) {
+        if (internalName == null || internalName.trim().isEmpty()) {
+            return null;
+        }
+
+        for (Club c : getAllClubs()) {
+            if (c.getInternalName().equals(internalName)) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
     public static long getTotalMarketValue(Club club) {
         if (club == null || PlayerHelper.getPlayersForClub(club).isEmpty()) {
             return 0;

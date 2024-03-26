@@ -20,7 +20,7 @@ public class PrintHelper {
         printNewLine(11);
         System.out.println("----------------------------------------");
         System.out.println(Game.getCurrentClub().getDisplayName());
-        System.out.println("Money: " + Game.getMoney());
+        System.out.println("Money: " + Game.getCurrentClub().getMoney());
         System.out.println("----------------------------------------");
         System.out.println();
         System.out.println("0) Quit without save");
@@ -198,7 +198,7 @@ public class PrintHelper {
         }
 
         System.out.println("Next match:");
-        System.out.println(nextMatch.getHome().getName() + "   VS.   " + nextMatch.getAway().getName());
+        System.out.println(nextMatch.getHome().getDisplayName() + "   VS.   " + nextMatch.getAway().getDisplayName());
         System.out.println();
         System.out.println("Press ENTER to return to home menu");
         try {
@@ -465,7 +465,7 @@ public class PrintHelper {
         printNewLine(2);
 
         for (PlayerCareer career : player.getCareer()) {
-            System.out.println(career.getFrom() + " to " + career.getUntil() + ": " + career.getClub().getName() + " (" + career.getGoals() + " in " + career.getGames() + " games)");
+            System.out.println(career.getFrom() + " to " + career.getUntil() + ": " + career.getClub().getDisplayName() + " (" + career.getGoals() + " in " + career.getGames() + " games)");
         }
 
         printHomeMenu();

@@ -22,7 +22,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     private long marketValue;
     private Club club;
-    private Club[] clubsSoFar; //TODO is clubsSoFar still needed when we have career?
+    //private Club[] clubsSoFar; //TODO is clubsSoFar still needed when we have career?
     private PlayerCareer[] career;
     private int attack;
     private int control;
@@ -36,8 +36,8 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     private Integer retirementSeason;
 
-    public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, long marketValue, Club club,
-                  Club[] clubsSoFar, int attack, int control, int defense, int talent) {
+    public Player(int id, String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position,
+                  long marketValue, Club club, int attack, int control, int defense, int talent) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,7 +48,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.position = position;
         this.marketValue = marketValue;
         this.club = club;
-        this.clubsSoFar = clubsSoFar;
+        //this.clubsSoFar = clubsSoFar;
         this.attack = attack;
         this.control = control;
         this.defense = defense;
@@ -61,8 +61,8 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.retirementSeason = null;
     }
 
-    public Player(String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position, long marketValue, Club club,
-                  Club[] clubsSoFar, int attack, int control, int defense, int talent) {
+    public Player(String firstName, String lastName, Country nation, int rating, LocalDate birthDate, Position position,
+                  long marketValue, Club club, int attack, int control, int defense, int talent) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nation = nation;
@@ -72,7 +72,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
         this.position = position;
         this.marketValue = marketValue;
         this.club = club;
-        this.clubsSoFar = clubsSoFar;
+        //this.clubsSoFar = clubsSoFar;
         this.career = new PlayerCareer[0];
         this.attack = attack;
         this.control = control;
@@ -169,19 +169,6 @@ public class Player { //TODO implement: update talent, decrease rating when perf
 
     public void setClub(Club club) {
         this.club = club;
-    }
-
-    /**
-     * @deprecated Usage not recommended since 'clubsSoFar' will be removed soon. Use {@link #getCareer()} instead
-     * @return clubs the player has played for (from latest to oldest)
-     */
-    @Deprecated
-    public Club[] getClubsSoFar() {
-        return clubsSoFar;
-    }
-
-    public void setClubsSoFar(Club[] clubsSoFar) {
-        this.clubsSoFar = clubsSoFar;
     }
 
     public PlayerCareer[] getCareer() {

@@ -193,7 +193,7 @@ public class PlayerEngine {
 
         Player newPlayer = new Player(
                 firstName, lastName, nation, rating, birthDate, position,
-                marketValue, club, clubsSoFar, stats[0], stats[1], stats[2], talent);
+                marketValue, club, stats[0], stats[1], stats[2], talent);
 
         PlayerCareer career = new PlayerCareer(club, newPlayer, 0);
         newPlayer.addClubToCareer(career);

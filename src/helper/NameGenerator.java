@@ -614,9 +614,14 @@ public class NameGenerator {
 
         lastNames.add("Jackie");
         lastNames.add("Jackson");
+        lastNames.add("Jelinek");
+        lastNames.add("Jovic");
+        lastNames.add("Juncker");
         lastNames.add("Jung");
         lastNames.add("Junge");
         lastNames.add("Junger");
+        lastNames.add("Junker");
+        lastNames.add("Juric");
 
         // -----   K   -----
 

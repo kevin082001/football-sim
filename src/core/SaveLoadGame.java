@@ -44,7 +44,8 @@ public class SaveLoadGame { //TODO update save/load methods
                 for (Player player : PlayerHelper.getPlayersForClub(club)) {
                     writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()
                             + player.getRating() + System.lineSeparator() + player.getPosition() + System.lineSeparator()
-                            + player.getClub() + System.lineSeparator() + PlayerEngine.getClubsSoFarAsString(player.getClubsSoFar())
+                            + player.getClub() + System.lineSeparator()
+                            //+ PlayerEngine.getClubsSoFarAsString(player.getClubsSoFar())
                             + System.lineSeparator() + player.getAttack() + System.lineSeparator() + player.getControl()
                             + System.lineSeparator() + player.getDefense() + System.lineSeparator() + player.getMatches()
                             + System.lineSeparator() + player.getGoals() + System.lineSeparator()
@@ -100,7 +101,7 @@ public class SaveLoadGame { //TODO update save/load methods
                         throw new RuntimeException("Something went wrong while reading player data (PlayerID: " + id + ")");
                     }
                     Player player = new Player(id, staticData.getFirstName(), staticData.getLastName(), nation, rating,
-                            staticData.getBirthDate(), position, marketValue, club, clubsSoFar, attack, control, defense, talent);
+                            staticData.getBirthDate(), position, marketValue, club, attack, control, defense, talent);
                     player.setMatches(matches);
                     player.setGoals(goals);
 

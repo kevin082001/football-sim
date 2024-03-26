@@ -9,6 +9,7 @@ public class Club {
     private String fullName;
     private String displayName;
     private String shortName; //3-letter abbreviation
+    private String internalName; //only in code
     private League league;
     private List<Player> squad;
     private Manager manager;
@@ -24,10 +25,11 @@ public class Club {
      * @param shortName
      * @param league
      */
-    public Club(String fullName, String displayName, String shortName, League league, Manager manager, long money) {
+    public Club(String fullName, String displayName, String shortName, String internalName, League league, Manager manager, long money) {
         this.fullName = fullName;
         this.displayName = displayName;
         this.shortName = shortName;
+        this.internalName = internalName;
         this.league = league;
         //this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
         this.manager = manager;
@@ -46,6 +48,7 @@ public class Club {
         this.fullName = displayName;
         this.displayName = displayName;
         this.shortName = getShortName(displayName);
+        this.internalName = displayName;
         this.league = league;
         //this.squad = PlayerEngine.generateSquad(this); //TODO see todo in PlayerEngine!
         this.manager = manager;
@@ -86,6 +89,14 @@ public class Club {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+    }
+
+    public String getInternalName() {
+        return internalName;
+    }
+
+    public void setInternalName(String internalName) {
+        this.internalName = internalName;
     }
 
     public League getLeague() {

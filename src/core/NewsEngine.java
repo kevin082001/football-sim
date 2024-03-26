@@ -19,7 +19,7 @@ public class NewsEngine {
                     newNews.setMessage("Player retired: " + player.getFirstName() + " " + player.getLastName() + " (" + PlayerEngine.getPlayerAge(player) + " years)");
                     break;
                 case TRANSFER:
-                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getClubsSoFar()[1].getDisplayName() + " --> " + player.getClubsSoFar()[0].getDisplayName() + ")");
+                    newNews.setMessage("Transfer: " + player.getFirstName() + " " + player.getLastName() + " (" + player.getCareer()[1].getClub().getDisplayName() + " --> " + player.getCareer()[0].getClub().getDisplayName() + ")");
                     break;
                 case BALLON_DOR:
                     newNews.setMessage(player.getFirstName() + " " + player.getLastName() + " won the Ballon d'Or this year! Congratulations!");

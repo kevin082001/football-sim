@@ -70,8 +70,8 @@ public class TransferMarketEngine {
         long cost = playersOnMarket.get(player);
         Game.getCurrentClub().setMoney(Game.getCurrentClub().getMoney() - cost);
         player.setClub(Game.getCurrentClub());
-        Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
-        clubsSoFar[clubsSoFar.length - 1] = player.getClub();
+        /*Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
+        clubsSoFar[clubsSoFar.length - 1] = player.getClub();*/
         PlayerCareer[] career = player.getCareer();
         career = ArrayHelper.extend(career);
 
