@@ -1,10 +1,6 @@
 package core;
 
-import GameObjects.Club;
-import GameObjects.Match;
-import GameObjects.Player;
-import GameObjects.Score;
-import enums.League;
+import GameObjects.*;
 import helper.ClubHelper;
 import helper.PlayerHelper;
 import helper.PrintHelper;

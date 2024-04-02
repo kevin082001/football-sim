@@ -3,7 +3,6 @@ package helper;
 import GameObjects.*;
 import core.*;
 import enums.Country;
-import enums.League;
 import enums.Position;
 
 import java.io.IOException;
@@ -78,15 +77,17 @@ public class PrintHelper {
     public static Country printSelectStartCountry() {
         int i = 0;
 
-        List<Country> countryList = Engine.getCountriesWithLeagues().keySet().stream().toList();
+        //List<Country> countryList = Engine.getCountriesWithLeagues().keySet().stream().toList();
 
         printNewLine(11);
         System.out.println("-----------------------------------------");
         System.out.println("- - - - -  SELECT YOUR COUNTRY  - - - - -");
         System.out.println("-----------------------------------------");
-        for (Country c : countryList) {
-            int amountOfPlayableLeagues = Engine.getCountriesWithLeagues().get(c).stream().filter(League::isPlayable).toList().size();
-            //TODO Only countries with playable leagues should be selectable
+        //for (Country c : countryList) {
+        for (Country c : Country.values()) {
+            //int amountOfPlayableLeagues = Engine.getCountriesWithLeagues().get(c).stream().filter(LeagueEnum::isPlayable).toList().size();
+            int amountOfPlayableLeagues = LeagueHelper.getByCountry(c).stream().filter(League::isPlayable).toList().size();
+            //TODO Only playable leagues should be selectable (The plan is to add ALL leagues tho)
             /*if (amountOfPlayableLeagues == 0) {
                 continue;
             }*/
@@ -95,20 +96,22 @@ public class PrintHelper {
         }
         System.out.print(">> ");
         int choice = sc.nextInt();
-        if (choice >= countryList.size() || choice < 0) {
+        if (choice >= Country.values().length || choice < 0) {
             System.out.println("Invalid option");
             printSelectStartCountry();
         }
-        return countryList.get(choice);
+
+        //return countryList.get(choice);
+        return Country.values()[choice];
     }
 
     public static League printSelectStartLeague(Country startCountry) {
         int i = 0;
 
-        List<League> leaguesList = Engine.getPlayableLeagues().keySet()
+        List<League> leaguesList = LeagueHelper.getPlayableLeagues().keySet()
                 .stream()
                 .filter(x -> x.getCountry().equals(startCountry))
-                .filter(x -> x.isPlayable())
+                .filter(League::isPlayable)
                 .toList();
 
         printNewLine(11);
@@ -116,7 +119,7 @@ public class PrintHelper {
         System.out.println("- - - - -  SELECT YOUR LEAGUE  - - - - -");
         System.out.println("----------------------------------------");
         for (League l : leaguesList) {
-            System.out.println("(" + i + ") " + l.getName());
+            System.out.println("(" + i + ") " + l.getDisplayName());
             i++;
         }
         System.out.print(">> ");
@@ -246,7 +249,7 @@ public class PrintHelper {
     private static void printTable() {
         LeagueTable table = SeasonEngine.getTable();
         printNewLine(11);
-        System.out.println(table.getLeague().getName());
+        System.out.println(table.getLeague().getDisplayName());
         System.out.println("----------------------------------------");
         System.out.println();
         int i = 0;
@@ -357,7 +360,7 @@ public class PrintHelper {
 
         printNewLine(11);
         System.out.println("Club:               " + offer.getClub().getDisplayName());
-        System.out.println("League:             " + offer.getClub().getLeague().getName() + " (" + offer.getClub().getLeague() + ")");
+        System.out.println("League:             " + offer.getClub().getLeague().getDisplayName() + " (" + offer.getClub().getLeague() + ")");
         System.out.println("Rating:             " + totalStats[0] + " ATT / " + totalStats[1] + " CON / " + totalStats[2] + " DEF");
         System.out.println("Total market value: " + ClubHelper.getTotalMarketValue(offer.getClub()));
         System.out.println();

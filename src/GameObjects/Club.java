@@ -1,29 +1,22 @@
 package GameObjects;
 
-import core.PlayerEngine;
-import enums.League;
-
-import java.util.List;
-
 public class Club {
     private String fullName;
     private String displayName;
     private String shortName; //3-letter abbreviation
-    private String internalName; //only in code
+    private String internalName; //only used in code
     private League league;
-    private List<Player> squad;
     private Manager manager;
     private long money;
-
-    private final boolean custom; //"true" if user created the club via "Create custom club"
+    private final boolean custom; //"true" if created via "Create custom club"
 
     /**
      * Used to construct pre-generated objects (before the game starts)
      *
-     * @param fullName
-     * @param displayName
-     * @param shortName
-     * @param league
+     * @param fullName The full (long) name of the club
+     * @param displayName The name which is displayed most of the time throughout the game
+     * @param shortName The 'code name' of the club (f.e. FCB for FC Bayern or RMA for Real Madrid)
+     * @param league The league the club is in
      */
     public Club(String fullName, String displayName, String shortName, String internalName, League league, Manager manager, long money) {
         this.fullName = fullName;
@@ -107,13 +100,13 @@ public class Club {
         this.league = league;
     }
 
-    public List<Player> getSquad() {
+    /*public List<Player> getSquad() {
         return squad;
     }
 
     public void setSquad(List<Player> squad) {
         this.squad = squad;
-    }
+    }*/
 
     public Manager getManager() {
         return manager;

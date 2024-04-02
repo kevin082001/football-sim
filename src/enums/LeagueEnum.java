@@ -3,7 +3,10 @@ package enums;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum League {
+/**
+ * @deprecated This class will be removed soon and replaced with {@link GameObjects.League}.
+ */
+public enum LeagueEnum {
     RETIRED("Retired", Country.AQ, 1, false),
     WITHOUT_CLUB("Without club", Country.AQ, 1, false),
 
@@ -109,18 +112,18 @@ public enum League {
 
     private final boolean playable;
 
-    League(String name, Country country, int tier, boolean playable) {
+    LeagueEnum(String name, Country country, int tier, boolean playable) {
         this.name = name;
         this.country = country;
         this.tier = tier;
         this.playable = playable;
     }
 
-    public List<League> getByCountry(Country country) {
+    public List<LeagueEnum> getByCountry(Country country) {
         if (country == null) return null;
 
-        List<League> result = new ArrayList<>();
-        for (League l : League.values()) {
+        List<LeagueEnum> result = new ArrayList<>();
+        for (LeagueEnum l : LeagueEnum.values()) {
             if (l.getCountry().equals(country)) {
                 result.add(l);
             }
@@ -128,9 +131,9 @@ public enum League {
         return result;
     }
 
-    public List<League> getPlayableLeagues() {
-        List<League> leagues = new ArrayList<>();
-        for (League l : League.values()) {
+    public List<LeagueEnum> getPlayableLeagues() {
+        List<LeagueEnum> leagues = new ArrayList<>();
+        for (LeagueEnum l : LeagueEnum.values()) {
             if (l.playable) {
                 leagues.add(l);
             }

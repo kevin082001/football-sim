@@ -2,8 +2,8 @@ package core;
 
 import GameObjects.Club;
 import GameObjects.JobOffer;
+import GameObjects.League;
 import enums.Country;
-import enums.League;
 import helper.ClubHelper;
 import helper.LeagueHelper;
 
@@ -26,7 +26,7 @@ import java.util.Random;
  */
 public class Engine {
     private final static Random rand = new Random(System.nanoTime());
-    private final static Map<Country, List<League>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
+    //private final static Map<Country, List<LeagueEnum>> countriesWithLeagues = LeagueHelper.getCountriesThatHaveLeagues();
     private final static Map<League, List<Club>> playableLeagues = LeagueHelper.getPlayableLeagues();
 
     private static List<JobOffer> jobOffers = new ArrayList<>();
@@ -103,13 +103,13 @@ public class Engine {
         removeFromOffers(offer);
     }
 
-    public static Map<Country, List<League>> getCountriesWithLeagues() {
+    /*public static Map<Country, List<League>> getCountriesWithLeagues() {
         return countriesWithLeagues;
     }
 
-    public static Map<League, List<Club>> getPlayableLeagues() {
+    public static Map<LeagueEnum, List<Club>> getPlayableLeagues() {
         return playableLeagues;
-    }
+    }*/
 
 
     public static List<JobOffer> getJobOffers() {

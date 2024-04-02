@@ -1,7 +1,5 @@
 package GameObjects;
 
-import enums.League;
-
 import java.util.Map;
 
 public class LeagueTable {

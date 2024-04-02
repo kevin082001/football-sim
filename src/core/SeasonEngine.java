@@ -1,9 +1,9 @@
 package core;
 
 import GameObjects.Club;
+import GameObjects.League;
 import GameObjects.LeagueTable;
 import GameObjects.Match;
-import enums.League;
 import helper.ClubHelper;
 
 import java.util.HashMap;
