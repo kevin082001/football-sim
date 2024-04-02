@@ -213,6 +213,7 @@ public class NameGenerator {
         firstNames.add("Herman");
         firstNames.add("Hermann");
         firstNames.add("Herrmann");
+        firstNames.add("Hideo");
         firstNames.add("Hugo");
 
         // -----   I   -----
@@ -255,7 +256,9 @@ public class NameGenerator {
 
         // -----   K   -----
 
+        firstNames.add("Kadir");
         firstNames.add("Karl");
+        firstNames.add("Kasimir");
         firstNames.add("Kevin");
         firstNames.add("Kilian");
         firstNames.add("Killian");
@@ -593,6 +596,7 @@ public class NameGenerator {
         lastNames.add("Hofman");
         lastNames.add("Hofmann");
         lastNames.add("Holzapfel");
+        lastNames.add("Honda");
         lastNames.add("Horvat");
         lastNames.add("Horvath");
         lastNames.add("Horwath");
@@ -629,6 +633,11 @@ public class NameGenerator {
         lastNames.add("Kastenbauer");
         lastNames.add("Kastenhofer");
         lastNames.add("Kastner");
+        lastNames.add("Kick");
+        lastNames.add("Kickinger");
+        lastNames.add("Kickl");
+        lastNames.add("King");
+        lastNames.add("Kojima");
         lastNames.add("Konrad");
         lastNames.add("Kowalski");
 
