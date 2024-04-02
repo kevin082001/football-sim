@@ -128,14 +128,15 @@ public class LeagueHelper {
             return new ArrayList<>();
         }
 
-        List<League> leagues = new ArrayList<>();
+        List<League> result = new ArrayList<>();
+
         for (League l : leagues) {
             if (l.getCountry().equals(country)) {
-                leagues.add(l);
+                result.add(l);
             }
         }
 
-        return leagues;
+        return result;
     }
 
     public static League getByInternalName(String internalName) {

@@ -3,6 +3,7 @@ package core;
 import GameObjects.Club;
 import GameObjects.News;
 import GameObjects.SaveState;
+import helper.ClubHelper;
 import helper.PlayerHelper;
 import helper.PrintHelper;
 
@@ -19,6 +20,7 @@ public class Game {
     private static Club currentClub;
 
     public static void run() {
+        initAllClubs();
         initAllPlayers();
         int newOrLoad = PrintHelper.askNewGameOrLoad();
 
@@ -63,6 +65,10 @@ public class Game {
 
     public static Path getSavePath() {
         return savePath;
+    }
+
+    private static void initAllClubs(){
+        ClubHelper.getAllClubs();
     }
 
     private static void initAllPlayers() {

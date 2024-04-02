@@ -34,6 +34,19 @@ public class ClubHelper {
             new Club("FC Burnley", "FC Burnley", "BUR", "BURNLEY", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000),
             new Club("Sheffield United", "Sheffield United", "SHU", "SHEFFIELD_UTD", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000),
             new Club("Luton Town", "Luton Town", "LUT", "LUTON", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000),
+
+            //TODO add other clubs from ClubEnum
+
+            new Club("KÍ Klaksvík", "KÍ Klaksvík", "KIK", "KLAKSVIK", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("HB Tórshavn", "HB Tórshavn", "HBT", "HB", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("Víkingur Gøta", "Víkingur Gøta", "VIK", "VIKINGUR_GOTA", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("B36 Tórshavn", "B36 Tórshavn", "B36", "B36", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("07 Vestur", "07 Vestur", "VES", "VESTUR", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("EB/Streymur", "EB/Streymur", "EBS", "STREYMUR", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("B68 Toftir", "B68 Toftir", "B68", "TOFTIR", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("ÍF Fuglafjørður", "ÍF Fuglafjørður", "FGL", "FUGLAFJORDUR", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("NSÍ Runavík", "NSÍ Runavík", "NSI", "NSI", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
+            new Club("Skála IF", "Skála IF", "SKA", "SKALA", LeagueHelper.getByInternalName("FO_1"), null, 500_000)
     };
 
     public static Map<Club, List<Player>> initClubs() {
@@ -63,8 +76,8 @@ public class ClubHelper {
 
     public static List<Club> getClubsForLeague(League league) {
         List<Club> result = new ArrayList<>();
-        for (Club c : ClubHelper.getAllClubs()) {
-            if (c.getLeague().equals(league)) {
+        for (Club c : clubs) {
+            if (c.getLeague().getInternalName().equals(league.getInternalName())) {
                 result.add(c);
             }
         }
@@ -133,7 +146,7 @@ public class ClubHelper {
             return null;
         }
 
-        for (Club c : getAllClubs()) {
+        for (Club c : clubs) {
             if (c.getInternalName().equals(internalName)) {
                 return c;
             }
