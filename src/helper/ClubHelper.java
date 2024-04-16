@@ -10,7 +10,7 @@ import java.util.*;
 public class ClubHelper {
     private static final Random rand = new Random(System.nanoTime());
 
-    private final static Club[] clubs = new Club[]{
+    /*private final static Club[] clubs = new Club[]{
             new Club("Retired", "Retired", "Retired", "RETIRED", LeagueHelper.getByInternalName("RETIRED"), null, 0),
             new Club("Without club", "Without club", "Without club", "WITHOUT_CLUB", LeagueHelper.getByInternalName("WITHOUT_CLUB"), null, 0),
 
@@ -47,11 +47,54 @@ public class ClubHelper {
             new Club("ÍF Fuglafjørður", "ÍF Fuglafjørður", "FGL", "FUGLAFJORDUR", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
             new Club("NSÍ Runavík", "NSÍ Runavík", "NSI", "NSI", LeagueHelper.getByInternalName("FO_1"), null, 500_000),
             new Club("Skála IF", "Skála IF", "SKA", "SKALA", LeagueHelper.getByInternalName("FO_1"), null, 500_000)
-    };
+    };*/
 
+    private final static Map<String, Club> clubs = new HashMap<>();
+
+    /**
+     * Populates the internal-held 'clubs' HashMap.<br> Populates another HashMap with the players for each club
+     *
+     * @return The clubs with their players
+     */
     public static Map<Club, List<Player>> initClubs() {
+        clubs.put("RETIRED", new Club("Retired", "Retired", "Retired", LeagueHelper.getByInternalName("RETIRED"), null, 0));
+        clubs.put("WITHOUT_CLUB", new Club("Without club", "Without club", "Without club", LeagueHelper.getByInternalName("WITHOUT_CLUB"), null, 0));
+        clubs.put("MAN_CITY", new Club("Manchester City", "Manchester City", "MCI", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("ARSENAL", new Club("FC Arsenal", "FC Arsenal", "ARS", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("CHELSEA", new Club("FC Chelsea", "FC Chelsea", "CHE", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("LIVERPOOL", new Club("FC Liverpool", "FC Liverpool", "LIV", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("MAN_UTD", new Club("Manchester United", "Manchester United", "MUN", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("SPURS", new Club("Tottenham Hotspur", "Tottenham Hotspur", "TOT", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("NEWCASTLE", new Club("Newcastle United", "Newcastle United", "NEW", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("ASTON_VILLA", new Club("Aston Villa", "Aston Villa", "AVL", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("BRIGHTON", new Club("Brighton & Hove Albion", "Brighton & Hove Albion", "BRI", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("WESTHAM", new Club("West Ham United", "West Ham United", "WHU", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("BRENTFORD", new Club("FC Brentford", "FC Brentford", "BRE", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("NHAM_FOREST", new Club("Nottingham Forest", "Nottingham Forest", "NFO", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("CRYSTAL_PALACE", new Club("Crystal Palace", "Crystal Palace", "CRY", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("EVERTON", new Club("FC Everton", "FC Everton", "EVE", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("BOURNEMOUTH", new Club("AFC Bournemouth", "AFC Bournemouth", "BOU", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("WOLVES", new Club("Wolverhampton Wanderers", "Wolverhampton Wanderers", "WOL", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("FULHAM", new Club("FC Fulham", "FC Fulham", "FUL", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("BURNLEY", new Club("FC Burnley", "FC Burnley", "BUR", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("SHEFFIELD_UTD", new Club("Sheffield United", "Sheffield United", "SHU", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+        clubs.put("LUTON", new Club("Luton Town", "Luton Town", "LUT", LeagueHelper.getByInternalName("ENG_1"), null, 5_000_000));
+
+        //TODO add missing clubs from ClubEnum
+
+        clubs.put("KLAKSVIK", new Club("KÍ Klaksvík", "KÍ Klaksvík", "KIK", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("HB", new Club("HB Tórshavn", "HB Tórshavn", "HBT", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("VIKINGUR_GOTA", new Club("Víkingur Gøta", "Víkingur Gøta", "VIK", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("B36", new Club("B36 Tórshavn", "B36 Tórshavn", "B36", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("VESTUR", new Club("07 Vestur", "07 Vestur", "VES", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("STREYMUR", new Club("EB/Streymur", "EB/Streymur", "EBS", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("TOFTIR", new Club("B68 Toftir", "B68 Toftir", "B68", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("FUGLAFJORDUR", new Club("ÍF Fuglafjørður", "ÍF Fuglafjørður", "FGL", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("NSI", new Club("NSÍ Runavík", "NSÍ Runavík", "NSI", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+        clubs.put("SKALA", new Club("Skála IF", "Skála IF", "SKA", LeagueHelper.getByInternalName("FO_1"), null, 500_000));
+
         Map<Club, List<Player>> result = new HashMap<>();
-        for (Club c : getAllClubs()) {
+        for (Club c : clubs.values()) {
             result.put(c, PlayerHelper.getPlayersForClub(c));
         }
         return result;
@@ -76,7 +119,7 @@ public class ClubHelper {
 
     public static List<Club> getClubsForLeague(League league) {
         List<Club> result = new ArrayList<>();
-        for (Club c : clubs) {
+        for (Club c : clubs.values()) {
             if (c.getLeague().getInternalName().equals(league.getInternalName())) {
                 result.add(c);
             }
@@ -123,8 +166,8 @@ public class ClubHelper {
         return clubs;
     }*/
 
-    public static List<Club> getAllClubs() {
-        return Arrays.asList(clubs);
+    public static Map<String, Club> getAllClubs() {
+        return clubs;
     }
 
     public static Club getClubByDisplayName(String displayName) {
@@ -132,7 +175,7 @@ public class ClubHelper {
             return null;
         }
 
-        for (Club c : getAllClubs()) {
+        for (Club c : clubs.values()) {
             if (c.getDisplayName().equals(displayName)) {
                 return c;
             }
@@ -146,9 +189,15 @@ public class ClubHelper {
             return null;
         }
 
-        for (Club c : clubs) {
+        /*for (Club c : clubs) {
             if (c.getInternalName().equals(internalName)) {
                 return c;
+            }
+        }*/
+
+        for (String s : clubs.keySet()) {
+            if (s.equals(internalName)) {
+                return clubs.get(s);
             }
         }
 

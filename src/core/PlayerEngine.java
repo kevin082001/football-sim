@@ -9,6 +9,7 @@ import helper.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class PlayerEngine {
@@ -147,9 +148,10 @@ public class PlayerEngine {
     // -----------------------------
 
     public static void checkPlayersJoiningFromAcademy() {
-        List<Club> allClubs = ClubHelper.getAllClubs();
+        //List<Club> allClubs = ClubHelper.getAllClubs();
+        Map<String, Club> allClubs = ClubHelper.getAllClubs();
 
-        for (Club club : allClubs) {
+        for (Club club : allClubs.values()) {
             int chanceToGeneratePlayer = rand.nextInt(100);
 
             //60% for 1 player to join

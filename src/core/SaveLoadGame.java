@@ -39,7 +39,7 @@ public class SaveLoadGame { //TODO update save/load methods
             writer.write(saveState.getCurrentClub() + System.lineSeparator());
             writer.write(saveState.getMoney() + System.lineSeparator());
 
-            for (Club club : ClubHelper.getAllClubs()) {
+            for (Club club : ClubHelper.getAllClubs().values()) {
                 System.out.println("Saving: Club " + club.getShortName());
                 for (Player player : PlayerHelper.getPlayersForClub(club)) {
                     writer.write(player.getId() + System.lineSeparator() + player.getNation() + System.lineSeparator()

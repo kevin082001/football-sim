@@ -44,7 +44,7 @@ public class Engine {
         //more than 0.5x currentClub value
         //and less than 3x currentClub value
         List<Club> potentialClubs = new ArrayList<>();
-        for (Club club : ClubHelper.getAllClubs()) {
+        for (Club club : ClubHelper.getAllClubs().values()) {
             if ((ClubHelper.getTotalMarketValue(club) >= 0.5 * ClubHelper.getTotalMarketValue(currentClub))
                     && ClubHelper.getTotalMarketValue(club) <= 3 * ClubHelper.getTotalMarketValue(currentClub)) {
                 potentialClubs.add(club);

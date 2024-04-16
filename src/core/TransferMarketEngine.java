@@ -44,7 +44,7 @@ public class TransferMarketEngine {
     public static void checkForMarketUpdate() {
         Club currentClub = Game.getCurrentClub();
 
-        List<Club> allNpcClubs = ClubHelper.getAllClubs()
+        List<Club> allNpcClubs = ClubHelper.getAllClubs().values()
                 .stream()
                 .filter(x -> x != currentClub)
                 .toList();
