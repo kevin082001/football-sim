@@ -18,6 +18,23 @@ public class ClubHelper {
         return result;
     }
 
+    /**
+     * This method is used to assign an account balance for every club
+     *
+     * @return A map where key=Club and value=accountBalance
+     */
+    public static Map<Club, Long> initClubsWithAccountBalance() {
+        Map<Club, Long> result = new HashMap<>();
+        Club[] allClubs = Club.values();
+
+        //TODO make account balance varying so that smaller clubs get not as much money
+        for (Club c : allClubs) {
+            result.put(c, 500_000L);
+        }
+
+        return result;
+    }
+
     public static int[] getStatsForClub(Club club) {
         int totalAttack = 0;
         int totalControl = 0;

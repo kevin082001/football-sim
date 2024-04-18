@@ -14,7 +14,9 @@ import java.util.Random;
 
 public class TransferMarketEngine {
     private static Random rand = new Random(System.nanoTime());
-    private static Map<Player, Long> playersOnMarket = new HashMap<>(); //Key: Player, Value: transfer cost (rougly market value)
+    private static Map<Player, Long> playersOnMarket = new HashMap<>(); //Key: Player, Value: transfer cost
+
+    private static Map<Club, Long> clubsWithMoney = ClubHelper.initClubsWithAccountBalance();
 
     /**
      * Generates a random market value for youth players who join the club.
@@ -69,6 +71,9 @@ public class TransferMarketEngine {
         //TODO buy player (subtract money from own club, add money to selling club, change player's club, update player.getCareer())
         long cost = playersOnMarket.get(player);
         Game.setMoney(Game.getMoney() - cost);
+        long sellingClubMoney = clubsWithMoney.get(player.getClub());
+        clubsWithMoney.put(player.getClub(), sellingClubMoney + cost);
+
         player.setClub(Game.getCurrentClub());
         Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
         clubsSoFar[clubsSoFar.length - 1] = player.getClub();
