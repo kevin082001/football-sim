@@ -28,7 +28,7 @@ public class TransferMarketEngine {
         return values[rand.nextInt(values.length)];
     }
 
-    private static long getRandomTransferCost(Player p) { //TODO possibly rework the cost calculation
+    private static long getRandomTransferCost(Player p) { //TODO possibly rework the cost calculation (according to current form etc)
         if (p == null) {
             return -1;
         }
