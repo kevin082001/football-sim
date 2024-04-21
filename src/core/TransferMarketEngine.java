@@ -64,11 +64,12 @@ public class TransferMarketEngine {
     }
 
     public static void buyPlayer(Player player) {
+        //TODO Add functionality that allows ALL clubs to randomly buy players from other clubs
+
         if (!isOnMarket(player)) {
             return;
         }
 
-        //TODO buy player (subtract money from own club, add money to selling club, change player's club, update player.getCareer())
         long cost = playersOnMarket.get(player);
         Game.setMoney(Game.getMoney() - cost);
         long sellingClubMoney = clubsWithMoney.get(player.getClub());
