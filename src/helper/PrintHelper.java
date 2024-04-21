@@ -284,51 +284,26 @@ public class PrintHelper {
     }
 
     public static void printTransferMarket() {
-        //TODO Add functionality for selling players
-
-        Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
-
-        if (playersOnMarket.isEmpty()) {
-            printNewLine(11);
-            System.out.println("There are currently no players on the transfer market. Come back later.");
-            try {
-                Thread.sleep(2000);
-                return;
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-        }
-
-        printNewLine(11);
         System.out.println("-------------------------------");
         System.out.println("------  TRANSFER MARKET  ------");
         System.out.println("-------------------------------");
         System.out.println();
-        System.out.println(playersOnMarket.size() + " players found");
-        System.out.println();
-        int i = 0;
-        for (Player p : playersOnMarket.keySet()) {
-            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
-            i++;
-        }
-
+        System.out.println("1) Buy players");
+        System.out.println("2) Sell players");
         System.out.println();
         System.out.print(">>");
         int choice = sc.nextInt();
-        if (choice < 0 || choice >= playersOnMarket.size()) {
-            System.out.println("Invalid input");
-            try {
-                System.in.read();
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
-            printTransferMarket();
+        switch (choice) {
+            case 1:
+                printMarketBuyPlayers();
+                break;
+            case 2:
+                printMarketSellPlayers();
+                break;
+            default:
+                System.out.println("Invalid input.");
+                printTransferMarket();
         }
-        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getMoney())) {
-            System.out.println("Not enough money to buy the player");
-            printTransferMarket();
-        }
-        printMenuBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice]);
     }
 
     public static void printJobOffers() {
@@ -378,6 +353,106 @@ public class PrintHelper {
             case 2 -> Engine.declineOffer(offer);
             case 3 -> printJobOffers();
         }
+    }
+
+    private static void printMarketBuyPlayers() {
+        Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
+
+        if (playersOnMarket.isEmpty()) {
+            printNewLine(11);
+            System.out.println("There are currently no players on the transfer market. Come back later.");
+            try {
+                Thread.sleep(2000);
+                return;
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+        }
+
+        printNewLine(11);
+        System.out.println("-------------------------------");
+        System.out.println("------  TRANSFER MARKET  ------");
+        System.out.println("-------------------------------");
+        System.out.println();
+        System.out.println(playersOnMarket.size() + " players found");
+        System.out.println();
+        int i = 0;
+        for (Player p : playersOnMarket.keySet()) {
+            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
+            i++;
+        }
+
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+        if (choice < 0 || choice >= playersOnMarket.size()) {
+            System.out.println("Invalid input");
+            try {
+                System.in.read();
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            printTransferMarket();
+        }
+        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getMoney())) {
+            System.out.println("Not enough money to buy the player");
+            printTransferMarket();
+        }
+        printMenuBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice]);
+    }
+
+    private static void printMarketSellPlayers() {
+        //TODO other clubs should more likely buy a player when it's a better offer (based on age, rating and price)
+        System.out.println("Choose a player you want to put on the transfer market.");
+
+        List<Player> squad = PlayerHelper.getPlayersForClub(Game.getCurrentClub());
+        for (int i = 0; i < squad.size(); i++) {
+            System.out.println(i + ") " + squad.get(i).getFirstName() + " " + squad.get(i).getLastName());
+        }
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+        if (choice < 0 || choice >= squad.size()) {
+            System.out.println("Invalid input.");
+            printMarketSellPlayers();
+        }
+
+        int confirmationChoice = printSellConfirmation(squad.get(choice));
+
+        switch (confirmationChoice) {
+            case 1:
+                //TODO On the market list, list the own players on top in their own section
+                //TODO Create a News entry when another club buys your player
+
+                TransferMarketEngine.sellPlayer(squad.get(choice));
+                System.out.println("Player successfully put on the market.");
+                printHomeMenu();
+                break;
+            case 2:
+                printTransferMarket();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static int printSellConfirmation(Player playerToSell) {
+        if (playerToSell == null) {
+            throw new NullPointerException("playerToSell was null");
+        }
+
+        System.out.println("Are you sure to sell this player?");
+        System.out.println("Name: " + playerToSell.getFirstName() + " " + playerToSell.getLastName());
+        System.out.println();
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+        System.out.print(">>");
+        int choice = sc.nextInt();
+        if (choice < 1 || choice > 2) {
+            System.out.println("Invalid input");
+            printSellConfirmation(playerToSell);
+        }
+        return choice;
     }
 
     private static void printMenuBuyPlayer(Player player) {

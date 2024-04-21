@@ -101,6 +101,11 @@ public class TransferMarketEngine {
         playersOnMarket.remove(player);
     }
 
+    public static void sellPlayer(Player player) {
+        //TODO The user should be able to choose a transfer cost (right now it's random)
+        putPlayerOnMarket(player);
+    }
+
     public static Map<Player, Long> getPlayersOnMarket() {
         return playersOnMarket;
     }
