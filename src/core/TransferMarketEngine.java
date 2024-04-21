@@ -52,7 +52,9 @@ public class TransferMarketEngine {
                 .toList();
 
         for (Club c : allNpcClubs) {
-            int chanceForPuttingPlayerOnMarket = 800; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
+            int chanceForPuttingPlayerOnMarket = 500; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
+            int chanceForBuyingPlayer = 200; //TODO ONLY FOR TESTING, SET VALUE TO  1 LATER!!
+
             if (rand.nextInt(1000) <= chanceForPuttingPlayerOnMarket) {
                 List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
 
@@ -60,29 +62,43 @@ public class TransferMarketEngine {
                     putPlayerOnMarket(playersInClub.get(rand.nextInt(playersInClub.size())));
                 }
             }
+
+            if (rand.nextInt(1000) <= chanceForBuyingPlayer) {
+                List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
+
+                //Only allow purchases for clubs that have less than 30 players
+                if (playersInClub.size() < 30) {
+                    buyPlayer(PlayerHelper.getRandomPlayer(playersOnMarket.keySet().stream().toList(), true), c);
+                }
+            }
         }
     }
 
-    public static void buyPlayer(Player player) {
-        //TODO Add functionality that allows ALL clubs to randomly buy players from other clubs
-
-        if (!isOnMarket(player)) {
+    public static void buyPlayer(Player player, Club buyingClub) {
+        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)) {
             return;
         }
 
         long cost = playersOnMarket.get(player);
-        Game.setMoney(Game.getMoney() - cost);
         long sellingClubMoney = clubsWithMoney.get(player.getClub());
         clubsWithMoney.put(player.getClub(), sellingClubMoney + cost);
 
-        player.setClub(Game.getCurrentClub());
+        player.setClub(buyingClub);
         Club[] clubsSoFar = ArrayHelper.extend(player.getClubsSoFar());
         clubsSoFar[clubsSoFar.length - 1] = player.getClub();
         PlayerCareer[] career = player.getCareer();
         career = ArrayHelper.extend(career);
 
         //TODO also update career of last club (highestMarketValue,...)
-        career[career.length - 1] = new PlayerCareer(Game.getCurrentClub(), player, cost);
+        career[career.length - 1] = new PlayerCareer(buyingClub, player, cost);
+
+        if (buyingClub.equals(Game.getCurrentClub())) {
+            Game.setMoney(Game.getMoney() - cost);
+        } else {
+            clubsWithMoney.put(buyingClub, clubsWithMoney.get(buyingClub) - cost);
+        }
+
+        playersOnMarket.remove(player);
     }
 
     public static Map<Player, Long> getPlayersOnMarket() {

@@ -15,7 +15,7 @@ public class Game {
     private static final Path savePath = FileSystems.getDefault().getPath(".", "savegame.txt");
     private static int currentSeason = 0;
     private static List<News> news = new ArrayList<>();
-    private static long money = 500_000; //TODO ALL clubs should have money (account balance)
+    private static long money = 500_000;
     private static Club currentClub;
 
     public static void run() {

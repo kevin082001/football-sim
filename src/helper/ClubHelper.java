@@ -1,6 +1,7 @@
 package helper;
 
 import GameObjects.Player;
+import core.Game;
 import enums.Club;
 import enums.League;
 import enums.Position;
@@ -29,6 +30,9 @@ public class ClubHelper {
 
         //TODO make account balance varying so that smaller clubs get not as much money
         for (Club c : allClubs) {
+            if (c.equals(Game.getCurrentClub())) { //Ignore own club since it's already stored separately as well as the account balance
+                continue;
+            }
             result.put(c, 500_000L);
         }
 

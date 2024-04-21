@@ -284,11 +284,13 @@ public class PrintHelper {
     }
 
     public static void printTransferMarket() {
+        //TODO Add functionality for selling players
+
         Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
 
         if (playersOnMarket.isEmpty()) {
             printNewLine(11);
-            System.out.println("There are currently no players on the transfer market. Try again later.");
+            System.out.println("There are currently no players on the transfer market. Come back later.");
             try {
                 Thread.sleep(2000);
                 return;
@@ -398,7 +400,7 @@ public class PrintHelper {
 
         switch (choice) {
             case 1:
-                TransferMarketEngine.buyPlayer(player);
+                TransferMarketEngine.buyPlayer(player, Game.getCurrentClub());
                 System.out.println("Player purchased successfully!");
                 printHomeMenu();
             case 2:

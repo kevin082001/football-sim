@@ -3,6 +3,7 @@ package helper;
 import GameObjects.Player;
 import GameObjects.PlayerCareer;
 import GameObjects.StaticPlayerData;
+import core.Game;
 import enums.Club;
 import enums.Country;
 import enums.Position;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Last updated on: Jan 14, 2024
@@ -243,6 +245,26 @@ public class PlayerHelper {
             }
         }
         return Arrays.asList(players);
+    }
+
+    public static Player getRandomPlayer(List<Player> players, boolean excludeOwnClub) {
+        Random rand = new Random(System.nanoTime());
+
+        /*List<Player> allPlayers = Arrays.asList(players);
+
+        if (excludeOwnClub) {
+            allPlayers.removeIf(p -> p.getClub().equals(Game.getCurrentClub()));
+        }*/
+
+        List<Player> allPlayers = new ArrayList<>();
+        for (Player p : players) {
+            if (excludeOwnClub && p.getClub().equals(Game.getCurrentClub())) {
+                continue;
+            }
+            allPlayers.add(p);
+        }
+
+        return allPlayers.get(rand.nextInt(allPlayers.size()));
     }
 
     public static List<Player> getPlayersForClub(Club club) {
