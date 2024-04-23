@@ -369,6 +369,8 @@ public class PrintHelper {
             }
         }
 
+        //TODO On the market list, list the own players on top in their own section
+        //TODO BUGFIX: Currently, it's not possible to buy players
         printNewLine(11);
         System.out.println("-------------------------------");
         System.out.println("------  TRANSFER MARKET  ------");
@@ -421,10 +423,12 @@ public class PrintHelper {
 
         switch (confirmationChoice) {
             case 1:
-                //TODO On the market list, list the own players on top in their own section
                 //TODO Create a News entry when another club buys your player
+                //TODO The user should be able to choose a transfer cost (right now it's random)
 
-                TransferMarketEngine.sellPlayer(squad.get(choice));
+                long transferCost = printChooseTransferCost(squad.get(choice));
+
+                TransferMarketEngine.sellPlayer(squad.get(choice), transferCost);
                 System.out.println("Player successfully put on the market.");
                 printHomeMenu();
                 break;
@@ -434,6 +438,27 @@ public class PrintHelper {
             default:
                 break;
         }
+    }
+
+    private static long printChooseTransferCost(Player player) {
+        if (player == null) {
+            return -1;
+        }
+
+        long minRecommended = (long) (player.getMarketValue() * 0.6);
+        long maxRecommended = (long) (player.getMarketValue() * 2.5);
+
+        System.out.println("What price do you want the player to sell for?");
+        System.out.println("Recommended: " + minRecommended + "€ - " + maxRecommended + "€");
+        System.out.print(">>");
+        long choice = sc.nextLong();
+
+        if (choice <= 0) {
+            System.out.println("Transfer cost must be at least 1€.");
+            return -1;
+        }
+
+        return choice;
     }
 
     private static int printSellConfirmation(Player playerToSell) {
