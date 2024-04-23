@@ -75,9 +75,7 @@ public class TransferMarketEngine {
     }
 
     public static void buyPlayer(Player player, Club buyingClub) {
-        //TODO before buying the player, check if the other club still has at least 11 players
-
-        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)) {
+        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub) || PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11) {
             return;
         }
 
