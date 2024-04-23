@@ -53,7 +53,7 @@ public class TransferMarketEngine {
 
         for (Club c : allNpcClubs) {
             int chanceForPuttingPlayerOnMarket = 500; //TODO ONLY FOR TESTING, SET VALUE TO 1 LATER!!
-            int chanceForBuyingPlayer = 200; //TODO ONLY FOR TESTING, SET VALUE TO  1 LATER!!
+            int chanceForBuyingPlayer = 50; //TODO ONLY FOR TESTING, SET VALUE TO  1 LATER!!
 
             if (rand.nextInt(1000) <= chanceForPuttingPlayerOnMarket) {
                 List<Player> playersInClub = PlayerHelper.getPlayersForClub(c);
@@ -75,6 +75,8 @@ public class TransferMarketEngine {
     }
 
     public static void buyPlayer(Player player, Club buyingClub) {
+        //TODO before buying the player, check if the other club still has at least 11 players
+
         if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)) {
             return;
         }

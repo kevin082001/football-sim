@@ -248,6 +248,10 @@ public class PlayerHelper {
     }
 
     public static Player getRandomPlayer(List<Player> players, boolean excludeOwnClub) {
+        if(players == null || players.size() == 0){
+            return null;
+        }
+
         Random rand = new Random(System.nanoTime());
 
         /*List<Player> allPlayers = Arrays.asList(players);
