@@ -74,9 +74,17 @@ public class TransferMarketEngine {
         }
     }
 
-    public static void buyPlayer(Player player, Club buyingClub) {
-        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub) || PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11) {
-            return;
+    /**
+     * Tries to buy a player from the market
+     *
+     * @param player     the player to buy
+     * @param buyingClub the club that's buying the player
+     * @return whether the purchase was successful
+     */
+    public static boolean buyPlayer(Player player, Club buyingClub) {
+        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)
+                /*|| PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11*/) { //TODO comment this in later as more players are added
+            return false;
         }
 
         long cost = playersOnMarket.get(player);
@@ -99,6 +107,7 @@ public class TransferMarketEngine {
         }
 
         playersOnMarket.remove(player);
+        return true;
     }
 
     public static void sellPlayer(Player player, long transferCost) {

@@ -370,7 +370,6 @@ public class PrintHelper {
         }
 
         //TODO On the market list, list the own players on top in their own section
-        //TODO BUGFIX: Currently, it's not possible to buy players
         printNewLine(11);
         System.out.println("-------------------------------");
         System.out.println("------  TRANSFER MARKET  ------");
@@ -500,8 +499,9 @@ public class PrintHelper {
 
         switch (choice) {
             case 1:
-                TransferMarketEngine.buyPlayer(player, Game.getCurrentClub());
-                System.out.println("Player purchased successfully!");
+                if (TransferMarketEngine.buyPlayer(player, Game.getCurrentClub())) {
+                    System.out.println("Player purchased successfully!");
+                }
                 printHomeMenu();
             case 2:
                 printTransferMarket();
