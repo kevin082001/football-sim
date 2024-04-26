@@ -423,8 +423,6 @@ public class PrintHelper {
         switch (confirmationChoice) {
             case 1:
                 //TODO Create a News entry when another club buys your player
-                //TODO The user should be able to choose a transfer cost (right now it's random)
-
                 long transferCost = printChooseTransferCost(squad.get(choice));
 
                 TransferMarketEngine.sellPlayer(squad.get(choice), transferCost);
