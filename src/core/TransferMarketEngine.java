@@ -82,8 +82,7 @@ public class TransferMarketEngine {
      * @return whether the purchase was successful
      */
     public static boolean buyPlayer(Player player, Club buyingClub) {
-        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)
-                /*|| PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11*/) { //TODO comment this in later as more players are added
+        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub) || PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11) {
             return false;
         }
 
