@@ -85,7 +85,7 @@ public class Engine {
     }
 
     public static void acceptOffer(JobOffer offer) {
-        //TODO if offer accepted, the money should also be updated
+        //TODO if offer accepted, the money should also be updated (POSSIBLY ALREADY DONE)
 
         if (offer == null) {
             return;

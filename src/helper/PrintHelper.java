@@ -369,8 +369,6 @@ public class PrintHelper {
             }
         }
 
-        //TODO On the market list, list the own players on top in their own section
-
         List<Player> ownPlayers = playersOnMarket.keySet().stream().filter(x -> x.getClub().equals(Game.getCurrentClub())).toList();
         List<Player> otherPlayers = playersOnMarket.keySet().stream().filter(x -> !x.getClub().equals(Game.getCurrentClub())).toList();
 
