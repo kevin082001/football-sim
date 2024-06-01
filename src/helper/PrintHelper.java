@@ -370,6 +370,10 @@ public class PrintHelper {
         }
 
         //TODO On the market list, list the own players on top in their own section
+
+        List<Player> ownPlayers = playersOnMarket.keySet().stream().filter(x -> x.getClub().equals(Game.getCurrentClub())).toList();
+        List<Player> otherPlayers = playersOnMarket.keySet().stream().filter(x -> !x.getClub().equals(Game.getCurrentClub())).toList();
+
         printNewLine(11);
         System.out.println("-------------------------------");
         System.out.println("------  TRANSFER MARKET  ------");
@@ -378,10 +382,26 @@ public class PrintHelper {
         System.out.println(playersOnMarket.size() + " players found");
         System.out.println();
         int i = 0;
-        for (Player p : playersOnMarket.keySet()) {
+
+        System.out.println();
+        System.out.println("----- PLAYERS YOU ARE SELLING -----");
+        System.out.println();
+        for (Player p : ownPlayers) {
+            System.out.println(p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
+        }
+
+        System.out.println();
+        System.out.println("----- PLAYERS FROM OTHER CLUBS -----");
+        System.out.println();
+        for (Player p : otherPlayers) {
             System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
             i++;
         }
+
+        /*for (Player p : playersOnMarket.keySet()) {
+            System.out.println(i + ": " + p.getFirstName() + " " + p.getLastName() + ", " + PlayerEngine.getPlayerAge(p) + " y/o (" + p.getClub().getName() + ") ..... " + p.getRating() + "/" + p.getPosition());
+            i++;
+        }*/
 
         System.out.println();
         System.out.print(">>");
@@ -395,11 +415,11 @@ public class PrintHelper {
             }
             printTransferMarket();
         }
-        if (!TransferMarketEngine.canBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice], Game.getMoney())) {
+        if (!TransferMarketEngine.canBuyPlayer(otherPlayers.get(choice), Game.getMoney())) {
             System.out.println("Not enough money to buy the player");
             printTransferMarket();
         }
-        printMenuBuyPlayer((Player) playersOnMarket.keySet().toArray()[choice]);
+        printMenuBuyPlayer(otherPlayers.get(choice));
     }
 
     private static void printMarketSellPlayers() {
