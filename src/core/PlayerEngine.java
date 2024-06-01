@@ -18,6 +18,46 @@ import java.util.Random;
 public class PlayerEngine {
     private final static Random rand = new Random(System.nanoTime());
 
+    //TODO consider improving logic (maybe add some randomness)
+    public static int[] getPotential(Player player) {
+        if (player == null) {
+            return new int[]{0, 0};
+        }
+
+        int[] potential = new int[2]; // index 0: min. potential / index 1: max. potential
+        int talent = player.getTalent();
+        int rating = player.getRating();
+
+        if (talent == 0) {
+            potential[0] = rating;
+            potential[1] = rating;
+        } else if (talent <= 10) {
+            potential[0] = rating;
+            potential[1] = rating + 2;
+        } else if (talent <= 20) {
+            potential[0] = rating + 1;
+            potential[1] = rating + 5;
+        } else if (talent <= 35) {
+            potential[0] = rating + 2;
+            potential[1] = rating + 7;
+        } else if (talent <= 50) {
+            potential[0] = rating + 3;
+            potential[1] = rating + 8;
+        } else if (talent <= 70) {
+            potential[0] = rating + 5;
+            potential[1] = rating + 11;
+        } else if (talent <= 85) {
+            potential[0] = rating + 9;
+            potential[1] = rating + 16;
+        } else {
+            potential[0] = rating + 18;
+            potential[1] = rating + 30;
+        }
+
+        potential[0] = Math.min(potential[0], 99);
+        potential[1] = Math.min(potential[1], 99);
+        return potential;
+    }
 
     //TODO only check for players who performed well in the match (How is "good performance" defined?)
     public static void checkForPlayerLevelUp(Match match, boolean isOwnClub) { //TODO 'isOwnClub' is a bad hack, extract println instead

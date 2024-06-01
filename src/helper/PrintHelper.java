@@ -503,10 +503,11 @@ public class PrintHelper {
         }
 
         printNewLine(11);
+        int[] potential = PlayerEngine.getPotential(player);
         System.out.println("Name: " + player.getFirstName() + " " + player.getLastName());
         System.out.println("Age: " + PlayerEngine.getPlayerAge(player));
         System.out.println("Position: " + player.getPosition());
-        System.out.println("Rating: " + player.getRating());
+        System.out.println("Rating (Potential): " + player.getRating() + " (" + potential[0] + "-" + potential[1] + ")");
         System.out.println("--------------------");
         System.out.println("Cost: " + TransferMarketEngine.getPlayersOnMarket().get(player) + "€");
         System.out.println();
