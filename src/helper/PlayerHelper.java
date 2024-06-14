@@ -303,6 +303,22 @@ public class PlayerHelper {
         return result;
     }
 
+    public static List<Player> getPlayersByName(String name, List<Player> searchList) {
+        if (name == null || name.trim().isEmpty() || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
+            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())
+                    || p.getLastName().toLowerCase().contains(name.toLowerCase())) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }
+
     public static List<Player> getPlayersForNation(Country nation) {
         if (nation == null) {
             return null;
@@ -318,6 +334,21 @@ public class PlayerHelper {
         return result;
     }
 
+    public static List<Player> getPlayersForNation(Country nation, List<Player> searchList) {
+        if (nation == null || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
+            if (p.getNation().equals(nation)) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }
+
     public static List<Player> getPlayersForRating(int rating) {
         if (rating <= 0) {
             return null;
@@ -325,6 +356,21 @@ public class PlayerHelper {
 
         List<Player> result = new ArrayList<>();
         for (Player p : players) {
+            if (p.getRating() == rating) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }
+
+    public static List<Player> getPlayersForRating(int rating, List<Player> searchList) {
+        if (rating <= 0 || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
             if (p.getRating() == rating) {
                 result.add(p);
             }
