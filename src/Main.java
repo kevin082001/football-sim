@@ -3,7 +3,7 @@ import core.Game;
 import helper.NameGenerator;
 import helper.PlayerHelper;
 
-public class Main { //TODO implement: international cups (UEL, UCL, ...), more leagues, WC and EC
+public class Main {
 
     public static void main(String[] args) {
         //randomNameTest();
