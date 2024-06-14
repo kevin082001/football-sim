@@ -248,7 +248,7 @@ public class PlayerHelper {
     }
 
     public static Player getRandomPlayer(List<Player> players, boolean excludeOwnClub) {
-        if(players == null || players.size() == 0){
+        if (players == null || players.size() == 0) {
             return null;
         }
 
@@ -272,12 +272,64 @@ public class PlayerHelper {
     }
 
     public static List<Player> getPlayersForClub(Club club) {
+        if (club == null) {
+            return null;
+        }
+
         List<Player> result = new ArrayList<>();
         for (Player p : players) {
             if (p.getClub().equals(club)) {
                 result.add(p);
             }
         }
+        return result;
+    }
+
+    public static List<Player> getPlayersByName(String name) {
+        //TODO Improve search (the more the name matches, the higher up in the list the player is in the search results)
+
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : players) {
+            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())
+                    || p.getLastName().toLowerCase().contains(name.toLowerCase())) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }
+
+    public static List<Player> getPlayersForNation(Country nation) {
+        if (nation == null) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : players) {
+            if (p.getNation().equals(nation)) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }
+
+    public static List<Player> getPlayersForRating(int rating) {
+        if (rating <= 0) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : players) {
+            if (p.getRating() == rating) {
+                result.add(p);
+            }
+        }
+
         return result;
     }
 

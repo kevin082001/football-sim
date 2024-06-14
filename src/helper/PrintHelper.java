@@ -288,8 +288,9 @@ public class PrintHelper {
         System.out.println("------  TRANSFER MARKET  ------");
         System.out.println("-------------------------------");
         System.out.println();
-        System.out.println("1) Buy players");
-        System.out.println("2) Sell players");
+        System.out.println("[1] Buy players");
+        System.out.println("[2] Sell players");
+        System.out.println("[3] Search for players");
         System.out.println();
         System.out.print(">>");
         int choice = sc.nextInt();
@@ -299,6 +300,9 @@ public class PrintHelper {
                 break;
             case 2:
                 printMarketSellPlayers();
+                break;
+            case 3:
+                printMarketSearchPlayers();
                 break;
             default:
                 System.out.println("Invalid input.");
@@ -339,9 +343,9 @@ public class PrintHelper {
         System.out.println("Rating:             " + totalStats[0] + " ATT / " + totalStats[1] + " CON / " + totalStats[2] + " DEF");
         System.out.println("Total market value: " + ClubHelper.getTotalMarketValue(offer.getClub()));
         System.out.println();
-        System.out.println("1) Accept offer");
-        System.out.println("2) Decline offer (delete from list)");
-        System.out.println("3) Go back to offers");
+        System.out.println("[1] Accept offer");
+        System.out.println("[2] Decline and delete offer");
+        System.out.println("[3] Go back to offers");
         System.out.print(">> ");
         int choice = sc.nextInt();
         if (choice > 3 || choice < 1) {
@@ -453,6 +457,55 @@ public class PrintHelper {
             default:
                 break;
         }
+    }
+
+    private static void printMarketSearchPlayers() {
+        PrintHelper.printNewLine(3);
+        System.out.println("How do you want to search for players?");
+        System.out.println("[0] Go back");
+        System.out.println("[1] By name");
+        System.out.println("[2] By rating");
+        System.out.println("[3] By position");
+        System.out.println("[4] By nation");
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 0:
+                return;
+            case 1:
+                printMarketSearchByName();
+                break;
+            case 2:
+                printMarketSearchByRating();
+                break;
+            case 3:
+                printMarketSearchByPosition();
+                break;
+            case 4:
+                printMarketSearchByNation();
+                break;
+            default:
+                System.out.println("Invalid input.");
+                printMarketSearchPlayers();
+        }
+    }
+
+    private static void printMarketSearchByName() {
+        System.out.println("COMING SOON...");
+    }
+
+    private static void printMarketSearchByRating() {
+        System.out.println("COMING SOON...");
+    }
+
+    private static void printMarketSearchByPosition() {
+        System.out.println("COMING SOON...");
+    }
+
+    private static void printMarketSearchByNation() {
+        System.out.println("COMING SOON...");
     }
 
     private static long printChooseTransferCost(Player player) {
