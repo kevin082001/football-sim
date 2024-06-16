@@ -100,7 +100,7 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     }
 
     /**
-     * This method is used to calculate the player's rating depending on his position when editing the squad.
+     * Calculates/Updates a player's rating based on his position.
      *
      * @param newPosition The position the player gets moved to
      */
@@ -193,6 +193,9 @@ public class Player { //TODO implement: update talent, decrease rating when perf
     }
 
     public void addClubToCareer(PlayerCareer club) {
+        if(club == null){
+            return;
+        }
         career = ArrayHelper.extend(career);
         career[career.length - 1] = club;
     }

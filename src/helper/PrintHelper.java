@@ -460,6 +460,8 @@ public class PrintHelper {
     }
 
     private static void printMarketSearchPlayers() {
+        //TODO Think about a way to search by multiple attributes (f.e. Nation AND Rating)
+
         PrintHelper.printNewLine(3);
         System.out.println("How do you want to search for players?");
         System.out.println("[0] Go back");
@@ -493,18 +495,23 @@ public class PrintHelper {
     }
 
     private static void printMarketSearchByName() {
+        //TODO implement!
         System.out.println("COMING SOON...");
+
     }
 
     private static void printMarketSearchByRating() {
+        //TODO implement!
         System.out.println("COMING SOON...");
     }
 
     private static void printMarketSearchByPosition() {
+        //TODO implement!
         System.out.println("COMING SOON...");
     }
 
     private static void printMarketSearchByNation() {
+        //TODO implement!
         System.out.println("COMING SOON...");
     }
 
