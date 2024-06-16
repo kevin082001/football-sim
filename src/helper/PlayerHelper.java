@@ -303,7 +303,7 @@ public class PlayerHelper {
         return result;
     }
 
-    public static List<Player> getPlayersByName(String name, List<Player> searchList) {
+    /*public static List<Player> getPlayersByName(String name, List<Player> searchList) {
         if (name == null || name.trim().isEmpty() || searchList == null || searchList.isEmpty()) {
             return null;
         }
@@ -377,7 +377,7 @@ public class PlayerHelper {
         }
 
         return result;
-    }
+    }*/
 
     public static StaticPlayerData getStaticPlayerData(int id) {
         if (id < 0) {

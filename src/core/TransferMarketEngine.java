@@ -3,14 +3,12 @@ package core;
 import GameObjects.Player;
 import GameObjects.PlayerCareer;
 import enums.Club;
+import enums.Country;
 import helper.ArrayHelper;
 import helper.ClubHelper;
 import helper.PlayerHelper;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class TransferMarketEngine {
     private static Random rand = new Random(System.nanoTime());
@@ -82,7 +80,9 @@ public class TransferMarketEngine {
      * @return whether the purchase was successful
      */
     public static boolean buyPlayer(Player player, Club buyingClub) {
-        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub) || PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11) {
+        if (!isOnMarket(player) || buyingClub == null || player.getClub().equals(buyingClub)
+            //!! Only commented out for testing purposes !!
+            /*|| PlayerHelper.getPlayersForClub(player.getClub()).size() <= 11*/) {
             return false;
         }
 
@@ -130,6 +130,100 @@ public class TransferMarketEngine {
 
         return false;
     }
+
+    public static Map<Player, Long> getPlayersByName(String name) {
+        //TODO Improve search (the more the name matches, the higher up in the list the player is in the search results)
+
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
+        Map<Player, Long> result = new HashMap<>();
+        for (Player p : playersOnMarket.keySet()) {
+            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())
+                    || p.getLastName().toLowerCase().contains(name.toLowerCase())) {
+                result.put(p, playersOnMarket.get(p));
+            }
+        }
+
+        return result;
+    }
+
+    /*public static List<Player> getPlayersByName(String name, List<Player> searchList) {
+        if (name == null || name.trim().isEmpty() || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
+            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())
+                    || p.getLastName().toLowerCase().contains(name.toLowerCase())) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }*/
+
+    public static Map<Player, Long> getPlayersForNation(Country nation) {
+        if (nation == null) {
+            return null;
+        }
+
+        Map<Player, Long> result = new HashMap<>();
+        for (Player p : playersOnMarket.keySet()) {
+            if (p.getNation().equals(nation)) {
+                result.put(p, playersOnMarket.get(p));
+            }
+        }
+
+        return result;
+    }
+
+    /*public static List<Player> getPlayersForNation(Country nation, List<Player> searchList) {
+        if (nation == null || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
+            if (p.getNation().equals(nation)) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }*/
+
+    public static Map<Player, Long> getPlayersForRating(int rating) {
+        if (rating <= 0) {
+            return null;
+        }
+
+        Map<Player, Long> result = new HashMap<>();
+        for (Player p : playersOnMarket.keySet()) {
+            if (p.getRating() == rating) {
+                result.put(p, playersOnMarket.get(p));
+            }
+        }
+
+        return result;
+    }
+
+    /*public static List<Player> getPlayersForRating(int rating, List<Player> searchList) {
+        if (rating <= 0 || searchList == null || searchList.isEmpty()) {
+            return null;
+        }
+
+        List<Player> result = new ArrayList<>();
+        for (Player p : searchList) {
+            if (p.getRating() == rating) {
+                result.add(p);
+            }
+        }
+
+        return result;
+    }*/
 
     // -----   PRIVATE METHODS   -----
 

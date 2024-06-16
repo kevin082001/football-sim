@@ -8,6 +8,7 @@ import enums.League;
 import enums.Position;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -296,7 +297,7 @@ public class PrintHelper {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
-                printMarketBuyPlayers();
+                printMarketBuyPlayers(null);
                 break;
             case 2:
                 printMarketSellPlayers();
@@ -359,8 +360,11 @@ public class PrintHelper {
         }
     }
 
-    private static void printMarketBuyPlayers() {
+    private static void printMarketBuyPlayers(Map<Player, Long> playersList) {
         Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
+        if (playersList != null) {
+            playersOnMarket = playersList;
+        }
 
         if (playersOnMarket.isEmpty()) {
             printNewLine(11);
@@ -495,9 +499,44 @@ public class PrintHelper {
     }
 
     private static void printMarketSearchByName() {
-        //TODO implement!
-        System.out.println("COMING SOON...");
+        Map<Player, Long> playersFound;
 
+        PrintHelper.printNewLine(3);
+        System.out.println("Please enter the name you want to search");
+        System.out.print(">>");
+        sc = new Scanner(System.in);
+        String toSearch = sc.nextLine();
+        playersFound = TransferMarketEngine.getPlayersByName(toSearch);
+
+        if (playersFound == null || playersFound.isEmpty()) {
+            System.out.println();
+            System.out.println("No players found.");
+            return;
+        }
+        PrintHelper.printNewLine(4);
+        System.out.println(playersFound.size() + " players found matching '" + toSearch + "'");
+        PrintHelper.printCharacter('-', 30);
+        System.out.println();
+
+        for (int i = 0; i < playersFound.size(); i++) {
+            String first = playersFound.keySet().stream().toList().get(i).getFirstName();
+            String last = playersFound.keySet().stream().toList().get(i).getLastName();
+            String pos = playersFound.keySet().stream().toList().get(i).getPosition().toString();
+            System.out.println("[" + (i+1) + "] " + first + " " + last + " (" + pos + ")");
+        }
+
+        System.out.println();
+        System.out.println("Enter the player you want to buy (Press 0 to go back)");
+        System.out.print(">>");
+        sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+
+        if (choice < 0 || choice > playersFound.size()) {
+            System.out.println("Invalid input");
+            printMarketSearchByName();
+        } else if (choice != 0) {
+            printMenuBuyPlayer(playersFound.keySet().stream().toList().get(choice-1));
+        }
     }
 
     private static void printMarketSearchByRating() {
