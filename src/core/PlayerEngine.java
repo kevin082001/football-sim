@@ -269,7 +269,7 @@ public class PlayerEngine {
             day = rand.nextInt(32);
         } else if (month == 4 || month == 6 || month == 9 || month == 11) {
             day = rand.nextInt(31);
-        } else if (month == 2 && Utils.isLeapYear(year)) {
+        } else if (month == 2 && TimeUtils.isLeapYear(year)) {
             day = rand.nextInt(29);
         } else {
             day = rand.nextInt(28);
