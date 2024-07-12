@@ -8,6 +8,7 @@ import enums.League;
 import enums.Position;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -288,17 +289,21 @@ public class PrintHelper {
         System.out.println("------  TRANSFER MARKET  ------");
         System.out.println("-------------------------------");
         System.out.println();
-        System.out.println("1) Buy players");
-        System.out.println("2) Sell players");
+        System.out.println("[1] Buy players");
+        System.out.println("[2] Sell players");
+        System.out.println("[3] Search for players");
         System.out.println();
         System.out.print(">>");
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
-                printMarketBuyPlayers();
+                printMarketBuyPlayers(null);
                 break;
             case 2:
                 printMarketSellPlayers();
+                break;
+            case 3:
+                printMarketSearchPlayers();
                 break;
             default:
                 System.out.println("Invalid input.");
@@ -339,9 +344,9 @@ public class PrintHelper {
         System.out.println("Rating:             " + totalStats[0] + " ATT / " + totalStats[1] + " CON / " + totalStats[2] + " DEF");
         System.out.println("Total market value: " + ClubHelper.getTotalMarketValue(offer.getClub()));
         System.out.println();
-        System.out.println("1) Accept offer");
-        System.out.println("2) Decline offer (delete from list)");
-        System.out.println("3) Go back to offers");
+        System.out.println("[1] Accept offer");
+        System.out.println("[2] Decline and delete offer");
+        System.out.println("[3] Go back to offers");
         System.out.print(">> ");
         int choice = sc.nextInt();
         if (choice > 3 || choice < 1) {
@@ -355,8 +360,11 @@ public class PrintHelper {
         }
     }
 
-    private static void printMarketBuyPlayers() {
+    private static void printMarketBuyPlayers(Map<Player, Long> playersList) {
         Map<Player, Long> playersOnMarket = TransferMarketEngine.getPlayersOnMarket();
+        if (playersList != null) {
+            playersOnMarket = playersList;
+        }
 
         if (playersOnMarket.isEmpty()) {
             printNewLine(11);
@@ -453,6 +461,97 @@ public class PrintHelper {
             default:
                 break;
         }
+    }
+
+    private static void printMarketSearchPlayers() {
+        //TODO Think about a way to search by multiple attributes (f.e. Nation AND Rating)
+
+        PrintHelper.printNewLine(3);
+        System.out.println("How do you want to search for players?");
+        System.out.println("[0] Go back");
+        System.out.println("[1] By name");
+        System.out.println("[2] By rating");
+        System.out.println("[3] By position");
+        System.out.println("[4] By nation");
+        System.out.println();
+        System.out.print(">>");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 0:
+                return;
+            case 1:
+                printMarketSearchByName();
+                break;
+            case 2:
+                printMarketSearchByRating();
+                break;
+            case 3:
+                printMarketSearchByPosition();
+                break;
+            case 4:
+                printMarketSearchByNation();
+                break;
+            default:
+                System.out.println("Invalid input.");
+                printMarketSearchPlayers();
+        }
+    }
+
+    private static void printMarketSearchByName() {
+        Map<Player, Long> playersFound;
+
+        PrintHelper.printNewLine(3);
+        System.out.println("Please enter the name you want to search");
+        System.out.print(">>");
+        sc = new Scanner(System.in);
+        String toSearch = sc.nextLine();
+        playersFound = TransferMarketEngine.getPlayersByName(toSearch);
+
+        if (playersFound == null || playersFound.isEmpty()) {
+            System.out.println();
+            System.out.println("No players found.");
+            return;
+        }
+        PrintHelper.printNewLine(4);
+        System.out.println(playersFound.size() + " players found matching '" + toSearch + "'");
+        PrintHelper.printCharacter('-', 30);
+        System.out.println();
+
+        for (int i = 0; i < playersFound.size(); i++) {
+            String first = playersFound.keySet().stream().toList().get(i).getFirstName();
+            String last = playersFound.keySet().stream().toList().get(i).getLastName();
+            String pos = playersFound.keySet().stream().toList().get(i).getPosition().toString();
+            System.out.println("[" + (i+1) + "] " + first + " " + last + " (" + pos + ")");
+        }
+
+        System.out.println();
+        System.out.println("Enter the player you want to buy (Press 0 to go back)");
+        System.out.print(">>");
+        sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+
+        if (choice < 0 || choice > playersFound.size()) {
+            System.out.println("Invalid input");
+            printMarketSearchByName();
+        } else if (choice != 0) {
+            printMenuBuyPlayer(playersFound.keySet().stream().toList().get(choice-1));
+        }
+    }
+
+    private static void printMarketSearchByRating() {
+        //TODO implement!
+        System.out.println("COMING SOON...");
+    }
+
+    private static void printMarketSearchByPosition() {
+        //TODO implement!
+        System.out.println("COMING SOON...");
+    }
+
+    private static void printMarketSearchByNation() {
+        //TODO implement!
+        System.out.println("COMING SOON...");
     }
 
     private static long printChooseTransferCost(Player player) {
