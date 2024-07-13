@@ -522,7 +522,7 @@ public class PrintHelper {
             String first = playersFound.keySet().stream().toList().get(i).getFirstName();
             String last = playersFound.keySet().stream().toList().get(i).getLastName();
             String pos = playersFound.keySet().stream().toList().get(i).getPosition().toString();
-            System.out.println("[" + (i+1) + "] " + first + " " + last + " (" + pos + ")");
+            System.out.println("[" + (i + 1) + "] " + first + " " + last + " (" + pos + ")");
         }
 
         System.out.println();
@@ -535,7 +535,7 @@ public class PrintHelper {
             System.out.println("Invalid input");
             printMarketSearchByName();
         } else if (choice != 0) {
-            printMenuBuyPlayer(playersFound.keySet().stream().toList().get(choice-1));
+            printMenuBuyPlayer(playersFound.keySet().stream().toList().get(choice - 1));
         }
     }
 
@@ -573,6 +573,17 @@ public class PrintHelper {
         }
 
         return choice;
+    }
+
+    public static void printYouthPlayersJoining(List<Player> players) {
+        if (players == null || players.isEmpty()) {
+            return;
+        }
+
+        System.out.println("Good news! The following players join your team from the youth academy:");
+        for (Player p : players) {
+            System.out.println("        " + p.getFirstName() + " " + p.getLastName());
+        }
     }
 
     private static int printSellConfirmation(Player playerToSell) {

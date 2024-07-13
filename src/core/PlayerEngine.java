@@ -195,6 +195,7 @@ public class PlayerEngine {
 
         for (Club club : allClubs) {
             int chanceToGeneratePlayer = rand.nextInt(100);
+            List<Player> generatedPlayers = new ArrayList<>();
 
             //60% for 1 player to join
             //30% for 2 players to join
@@ -202,16 +203,23 @@ public class PlayerEngine {
             if (chanceToGeneratePlayer <= 60) {
                 Player newPlayer = generateYouthPlayer(club);
                 PlayerHelper.addPlayer(newPlayer);
+                generatedPlayers.add(newPlayer);
             } else if (chanceToGeneratePlayer <= 90) {
                 for (int i = 1; i <= 2; i++) {
                     Player newPlayer = generateYouthPlayer(club);
                     PlayerHelper.addPlayer(newPlayer);
+                    generatedPlayers.add(newPlayer);
                 }
             } else {
                 for (int i = 1; i <= 3; i++) {
                     Player newPlayer = generateYouthPlayer(club);
                     PlayerHelper.addPlayer(newPlayer);
+                    generatedPlayers.add(newPlayer);
                 }
+            }
+
+            if (Game.getCurrentClub().equals(club)) {
+                PrintHelper.printYouthPlayersJoining(generatedPlayers);
             }
         }
     }
