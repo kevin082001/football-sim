@@ -9,7 +9,22 @@ I started this project because I wasn't 100% happy with the leagues included in 
 ## This project / Future plans
 This project is a terminal / console application, so there will be no graphics at all.
 
-My plan is to work on a GUI for the game once the core features of the console version are implemented.<br>
+My plan is to work on a GUI (probably Angular) for the game once the core features of the console version are implemented.<br>
 Also, I want to add more tournaments like World Cup / EURO Cup, Champions League and much more.
 
-The GUI will be written in either Angular or Vaadin.
+## Planned features
+- More content
+  - World Cup
+  - Euro Cup
+  - Copa America
+  - Champions League
+  - Europa League
+  - Conference League
+  - Nations League
+  - and more...
+- Accurate league rules
+- Loans
+- Create a club
+- Import / Export save files
+- Online transfer market
+- More languages
