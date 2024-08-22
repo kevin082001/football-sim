@@ -90,7 +90,7 @@ public class MatchEngine {
         int startIndex = getStartIndex(round, club);
 
         for (int i = startIndex; i < (startIndex + amountOfMatches); i++) {
-            //TODO IndexOutOfBoundsException: Index 90 out of bounds for length 90 (played 4 matches)
+            //TODO IndexOutOfBoundsException: Index 90 out of bounds for length 90 (after playing 4 matches)
             matchesThisRound.add(new Match(matchesThisSeason.get(i).getHome(), matchesThisSeason.get(i).getAway(), null));
         }
 
