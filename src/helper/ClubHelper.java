@@ -49,9 +49,12 @@ public class ClubHelper {
             totalControl += p.getControl();
             totalDefense += p.getDefense();
         }
-        int avgAttack = totalAttack / players.size();
-        int avgControl = totalControl / players.size();
-        int avgDefense = totalDefense / players.size();
+        //int avgAttack = totalAttack / players.size();
+        int avgAttack = players.isEmpty() ? 0 : totalAttack / players.size(); //TODO only a temporary workaround, should use without inline if
+        //int avgControl = totalControl / players.size();
+        int avgControl = players.isEmpty() ? 0 : totalControl / players.size();
+        //int avgDefense = totalDefense / players.size();
+        int avgDefense = players.isEmpty() ? 0 : totalDefense / players.size();
 
         return new int[]{avgAttack, avgControl, avgDefense};
     }

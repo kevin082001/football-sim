@@ -27,7 +27,7 @@ public class MatchEngine {
 
         for (int homeIndex = 0; homeIndex < clubsInLeague.size(); homeIndex++) {
             for (int awayIndex = homeIndex; awayIndex < clubsInLeague.size(); awayIndex++) {
-                if (clubsInLeague.get(homeIndex).equals(clubsInLeague.get(awayIndex))) {
+                if (clubsInLeague.get(homeIndex).equals(clubsInLeague.get(awayIndex))) { //club can't play against itself!
                     continue;
                 }
                 result.add(new Match(clubsInLeague.get(homeIndex), clubsInLeague.get(awayIndex), null));
@@ -44,6 +44,7 @@ public class MatchEngine {
 
         List<Club> clubsInLeague = ClubHelper.getClubsForLeague(Game.getCurrentClub().getLeague());
         int matchesInRound = (clubsInLeague.size() - round) * 2; //number of matches per round decreases (10 clubs --> 18, 16, 14, 12,...)
+        //int startIndex = getStartIndex()
 
         for (int i = 0; i < matchesInRound; i++) {
             simulateMatch(matchesThisSeason.get(i), false);
@@ -90,7 +91,7 @@ public class MatchEngine {
         int startIndex = getStartIndex(round, club);
 
         for (int i = startIndex; i < (startIndex + amountOfMatches); i++) {
-            //TODO IndexOutOfBoundsException: Index 90 out of bounds for length 90 (after playing 4 matches)
+            //TODO IndexOutOfBoundsException: Index 90 out of bounds for length 90 (after playing 6 matches)
             matchesThisRound.add(new Match(matchesThisSeason.get(i).getHome(), matchesThisSeason.get(i).getAway(), null));
         }
 
@@ -196,11 +197,13 @@ public class MatchEngine {
 
     public static Map<Player, List<Integer>> updateMatchScore(Club club, int minute, Map<Player, List<Integer>> scorers, Score score, boolean isOwnClub) {
         Player scorer = getScorer(PlayerHelper.getPlayersForClub(club));
-        scorer.setGoals(scorer.getGoals() + 1);
-        scorers = updateScorers(scorers, scorer, minute);
-        score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
-        if (isOwnClub) {
-            PrintHelper.printScoredGoal(scorer, minute);
+        if (scorer != null) {
+            scorer.setGoals(scorer.getGoals() + 1);
+            scorers = updateScorers(scorers, scorer, minute);
+            score.getScorers().put(scorer, score.getScorers().get(scorer) == null ? 1 : score.getScorers().get(scorer) + 1);
+            if (isOwnClub) {
+                PrintHelper.printScoredGoal(scorer, minute);
+            }
         }
         return scorers;
     }
@@ -237,7 +240,7 @@ public class MatchEngine {
 
         int alreadyPlayed = 0;
 
-        while (round-- >= 0) {
+        while (round-- > 0) {
             alreadyPlayed += (leagueSize - round) * 2;
         }
 
