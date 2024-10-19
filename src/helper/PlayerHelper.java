@@ -1,7 +1,6 @@
 package helper;
 
 import GameObjects.Player;
-import GameObjects.PlayerCareer;
 import GameObjects.StaticPlayerData;
 import core.Game;
 import enums.Club;
@@ -234,6 +233,11 @@ public class PlayerHelper {
             new Player("Ramzi", "Idrissou", Country.TG, 57, LocalDate.of(1996, 7, 31), Position.CB, 25_000, Club.WITHOUT_CLUB, new Club[]{Club.WITHOUT_CLUB, Club.ARGIR, Club.FUZINAR, Club.HODD, Club.LEVANGER, Club.HODD}, 38, 38, 58, 41),
     };
 
+    /**
+     * Sets the ID for all players and then returns a list of all players
+     * (NOTE: Randomly generated players are also included)
+     * @return A list of all players
+     */
     public static List<Player> getAllPlayers() {
         Player checkId = getById(1);
         if (checkId == null) { //check if ID is set because otherwise it would be set EVERYTIME for ALL players
@@ -247,18 +251,18 @@ public class PlayerHelper {
         return Arrays.asList(players);
     }
 
+    /**
+     * Returns a random player from a specified list
+     * @param players The players to choose a random player from
+     * @param excludeOwnClub Whether to allow returning players from your own club
+     * @return A random player. Null if the search list was null or empty.
+     */
     public static Player getRandomPlayer(List<Player> players, boolean excludeOwnClub) {
-        if (players == null || players.size() == 0) {
+        if (players == null || players.isEmpty()) {
             return null;
         }
 
         Random rand = new Random(System.nanoTime());
-
-        /*List<Player> allPlayers = Arrays.asList(players);
-
-        if (excludeOwnClub) {
-            allPlayers.removeIf(p -> p.getClub().equals(Game.getCurrentClub()));
-        }*/
 
         List<Player> allPlayers = new ArrayList<>();
         for (Player p : players) {
@@ -271,6 +275,11 @@ public class PlayerHelper {
         return allPlayers.get(rand.nextInt(allPlayers.size()));
     }
 
+    /**
+     * Returns the squad of a club
+     * @param club The club to return the squad of
+     * @return The club's squad. Null if club==null. Empty list if the club doesn't have players
+     */
     public static List<Player> getPlayersForClub(Club club) {
         if (club == null) {
             return null;
@@ -285,6 +294,14 @@ public class PlayerHelper {
         return result;
     }
 
+    /**
+     * Searches for players whose name contains a certain search string.
+     * Before searching, both the search string and the players' names are converted to lowercase.
+     * @param name The name to search for. Doesn't have to be an exact match
+     * @return The players whose name contains the search string.
+     * <br> Null if the search string is null or blank.
+     * <br> Empty list if no players were found.
+     */
     public static List<Player> getPlayersByName(String name) {
         //TODO Improve search (the more the name matches, the higher up in the list the player is in the search results)
 
@@ -303,82 +320,11 @@ public class PlayerHelper {
         return result;
     }
 
-    /*public static List<Player> getPlayersByName(String name, List<Player> searchList) {
-        if (name == null || name.trim().isEmpty() || searchList == null || searchList.isEmpty()) {
-            return null;
-        }
-
-        List<Player> result = new ArrayList<>();
-        for (Player p : searchList) {
-            if (p.getFirstName().toLowerCase().contains(name.toLowerCase())
-                    || p.getLastName().toLowerCase().contains(name.toLowerCase())) {
-                result.add(p);
-            }
-        }
-
-        return result;
-    }
-
-    public static List<Player> getPlayersForNation(Country nation) {
-        if (nation == null) {
-            return null;
-        }
-
-        List<Player> result = new ArrayList<>();
-        for (Player p : players) {
-            if (p.getNation().equals(nation)) {
-                result.add(p);
-            }
-        }
-
-        return result;
-    }
-
-    public static List<Player> getPlayersForNation(Country nation, List<Player> searchList) {
-        if (nation == null || searchList == null || searchList.isEmpty()) {
-            return null;
-        }
-
-        List<Player> result = new ArrayList<>();
-        for (Player p : searchList) {
-            if (p.getNation().equals(nation)) {
-                result.add(p);
-            }
-        }
-
-        return result;
-    }
-
-    public static List<Player> getPlayersForRating(int rating) {
-        if (rating <= 0) {
-            return null;
-        }
-
-        List<Player> result = new ArrayList<>();
-        for (Player p : players) {
-            if (p.getRating() == rating) {
-                result.add(p);
-            }
-        }
-
-        return result;
-    }
-
-    public static List<Player> getPlayersForRating(int rating, List<Player> searchList) {
-        if (rating <= 0 || searchList == null || searchList.isEmpty()) {
-            return null;
-        }
-
-        List<Player> result = new ArrayList<>();
-        for (Player p : searchList) {
-            if (p.getRating() == rating) {
-                result.add(p);
-            }
-        }
-
-        return result;
-    }*/
-
+    /**
+     * Returns the static player data for a player
+     * @param id The player's ID
+     * @return The static player data of the player, null if not found
+     */
     public static StaticPlayerData getStaticPlayerData(int id) {
         if (id < 0) {
             return null;
@@ -392,6 +338,11 @@ public class PlayerHelper {
         return null;
     }
 
+    /**
+     * Returns a player by ID
+     * @param id The player's id
+     * @return The player with that id, null if no player with the id was found
+     */
     public static Player getById(int id) {
         if (id < 0) {
             return null;
@@ -404,6 +355,10 @@ public class PlayerHelper {
         return null;
     }
 
+    /**
+     * Adds a new player to the players list. Also assigns an ID to the player
+     * @param p The player to add to the list
+     */
     public static void addPlayer(Player p) {
         if (p == null) {
             return;
