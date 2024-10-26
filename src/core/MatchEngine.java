@@ -18,6 +18,10 @@ public class MatchEngine {
     private static final Random rand = new Random(System.nanoTime());
 
 
+    /**
+     * Initializes the matches for the upcoming season
+     * @param club
+     */
     //TODO probably move to SeasonEngine
     public static void initMatchesForSeason(Club club) {
         List<Match> result = new ArrayList<>();

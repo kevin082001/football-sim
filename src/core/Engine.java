@@ -32,6 +32,10 @@ public class Engine {
     private static List<JobOffer> jobOffers = new ArrayList<>();
 
 
+    /**
+     * Checks for job offers based on your current club's total value.
+     * @param currentClub Your current club
+     */
     public static void checkForJobOffers(Club currentClub) {
         if (currentClub == null) {
             return;
@@ -84,6 +88,10 @@ public class Engine {
         jobOffers.add(new JobOffer(club));
     }
 
+    /**
+     * Accepts a job offer. Also initializes the squad and the season for your new club
+     * @param offer The offer which is accepted
+     */
     public static void acceptOffer(JobOffer offer) {
         //TODO if offer accepted, the money should also be updated (POSSIBLY ALREADY DONE)
 
@@ -97,6 +105,10 @@ public class Engine {
         jobOffers = new ArrayList<>();
     }
 
+    /**
+     * Declines a job offer and removes it from the offers list
+     * @param offer The offer which is declined
+     */
     public static void declineOffer(JobOffer offer) {
         if (offer == null) {
             return;
@@ -105,15 +117,24 @@ public class Engine {
         removeFromOffers(offer);
     }
 
+    /**
+     * @return A map where the key is the countries which have leagues, and the value are the leagues
+     */
     public static Map<Country, List<League>> getCountriesWithLeagues() {
         return countriesWithLeagues;
     }
 
+    /**
+     * @return A map with all leagues that are playable (playable=true in League enum) and the clubs in the leagues
+     */
     public static Map<League, List<Club>> getPlayableLeagues() {
         return playableLeagues;
     }
 
 
+    /**
+     * @return Job offers as a list
+     */
     public static List<JobOffer> getJobOffers() {
         return jobOffers;
     }
@@ -140,6 +161,11 @@ public class Engine {
         jobOffers.remove(toRemove);
     }
 
+    /**
+     * Checks if a club is selectable.
+     * @param club The club to check
+     * @return True if the club is selectable. False if the club is Club.WITHOUT_CLUB or Club.RETIRED
+     */
     private static boolean isSelectable(Club club) {
         if (club == null) {
             return false;
